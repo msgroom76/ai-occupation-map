@@ -328,8 +328,11 @@ body{font-size:13px;line-height:1.5;letter-spacing:-.005em;font-feature-settings
 .badge::before{border-radius:50%;width:6px;height:6px}
 /* 검색 */
 .search{margin-bottom:16px}
-.search input{border-radius:0;background:none;border-bottom:1px solid var(--rule);padding:12px 0 10px 26px;font-size:15px;font-weight:500;letter-spacing:-.02em}
-.search svg{left:0;width:15px;height:15px}
+.search input{border-radius:0;background:var(--fill);border:1px solid var(--hair);padding:12px 40px 12px 38px;font-size:14px;font-weight:500;letter-spacing:-.02em;transition:border-color .15s}
+.search input:hover{border-color:color-mix(in srgb,var(--ink) 45%,transparent)}
+.search input:focus{outline:0;border-color:var(--ink);background:var(--bg)}
+.search svg{left:13px;top:23px;width:15px;height:15px;color:var(--ink2)}
+.search::after{content:"↵";position:absolute;right:14px;top:23px;transform:translateY(-50%);font-size:13px;color:var(--ink3);pointer-events:none}
 .results{border-radius:0;background:var(--bg);border:1px solid var(--rule);margin-top:-1px}
 .results button{padding:9px 12px;font-size:13px}
 .results li+li{border-top:1px solid var(--hair)}
