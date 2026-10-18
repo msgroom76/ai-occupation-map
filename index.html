@@ -11,7 +11,7 @@
   --ink:#F5F5F7; --ink2:rgba(235,235,245,.64); --ink3:rgba(235,235,245,.38);
   --fill:rgba(118,118,128,.18); --fill2:rgba(118,118,128,.28); --sep:rgba(84,84,88,.55);
   --glass:rgba(28,28,30,.74); --glass-solid:#1C1C1E; --glass-edge:rgba(255,255,255,.08);
-  --tint:#0A84FF; --hot:#FF8CCD; --hot-ink:#FF8CCD; --warn:#FF9F0A;
+  --tint:#0A84FF; --c100:#ff8ccd; --hot:#FF8CCD; --hot-ink:#FF8CCD; --warn:#FF9F0A;
   --label-bg:rgba(242,242,247,.94); --label-ink:#0B0C10; --label-ink2:#48484A;
   --shadow:0 10px 40px rgba(0,0,0,.5);
   --f:-apple-system,BlinkMacSystemFont,"SF Pro Text","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
@@ -24,7 +24,7 @@
   --ink:#1C1C1E; --ink2:rgba(60,60,67,.66); --ink3:rgba(60,60,67,.38);
   --fill:rgba(120,120,128,.12); --fill2:rgba(120,120,128,.2); --sep:rgba(60,60,67,.18);
   --glass:rgba(255,255,255,.78); --glass-solid:#FFFFFF; --glass-edge:rgba(0,0,0,.06);
-  --tint:#007AFF; --hot:#B5297B; --hot-ink:#A3206F; --warn:#C25E00;
+  --tint:#007AFF; --c100:#8a085a; --hot:#B5297B; --hot-ink:#A3206F; --warn:#C25E00;
   --label-bg:rgba(28,28,30,.9); --label-ink:#FFFFFF; --label-ink2:#C7C7CC;
   --shadow:0 10px 40px rgba(0,0,0,.14); color-scheme:light}}
 :root[data-theme="light"]{
@@ -32,7 +32,7 @@
   --ink:#1C1C1E; --ink2:rgba(60,60,67,.66); --ink3:rgba(60,60,67,.38);
   --fill:rgba(120,120,128,.12); --fill2:rgba(120,120,128,.2); --sep:rgba(60,60,67,.18);
   --glass:rgba(255,255,255,.78); --glass-solid:#FFFFFF; --glass-edge:rgba(0,0,0,.06);
-  --tint:#007AFF; --hot:#B5297B; --hot-ink:#A3206F; --warn:#C25E00;
+  --tint:#007AFF; --c100:#8a085a; --hot:#B5297B; --hot-ink:#A3206F; --warn:#C25E00;
   --label-bg:rgba(28,28,30,.9); --label-ink:#FFFFFF; --label-ink2:#C7C7CC;
   --shadow:0 10px 40px rgba(0,0,0,.14); color-scheme:light}
 html,body{height:100%}
@@ -124,7 +124,7 @@ button,input{font:inherit;color:inherit}
 .head p{margin:2px 0 0;color:var(--ink2);font-size:14px}
 .head .kicker{margin:0 0 12px;font-size:14px;color:var(--ink2);letter-spacing:-.01em;word-break:keep-all}
 .head .kicker b{font-weight:700;margin-right:6px}
-.logo{display:grid;grid-template-columns:auto auto;column-gap:13px;width:max-content;max-width:100%;color:var(--ink);font-weight:700;padding-top:4px;margin-bottom:20px}
+.logo{display:grid;grid-template-columns:auto auto;column-gap:13px;width:max-content;max-width:100%;color:var(--c100);font-weight:700;padding-top:4px;margin-bottom:20px}
 .logo h1{display:contents}
 .logo .ai{grid-row:1/3;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:86px;line-height:1;letter-spacing:-.04em;margin:-7px 0 0 -4px;align-self:start}
 .logo .w{line-height:1;white-space:nowrap}
