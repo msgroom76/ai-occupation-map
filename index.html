@@ -709,7 +709,7 @@ function jobCard(j){
   const acts=el('div','acts');const isMine=MINE&&MINE.code===RJ_[j].code;
   const sv=el('button','btn'+(isMine?' on':''),isMine?'★ 내 직업':'☆ 내 직업으로 저장');sv.type='button';sv.setAttribute('aria-pressed',!!isMine);
   sv.onclick=()=>{if(isMine){MINE=null;lsSet(null)}else{MINE={code:RJ_[j].code,t:selVia?selVia.t:null,d:selVia?selVia.d||null:null,k:selVia?selVia.k||null:null,kn:selVia?selVia.kn||null:null,v:occ(j,2026),seen:FEED.updated||new Date().toISOString()};lsSet(MINE)}render()};
-  const sh=el('button','btn','공유');sh.type='button';sh.onclick=async()=>{const u=location.origin+'/j/'+RJ_[j].code+'.html'+(selVia?'?q='+encodeURIComponent(selVia.t):'');const t=`${selVia?selVia.t:RJ_[j].name}, AI가 이미 ${pct(occ(j,2026))}%를 해낼 수 있대요 · AI 점령지도`;
+  const sh=el('button','btn','공유');sh.type='button';sh.onclick=async()=>{const u=location.origin+'/j/'+RJ_[j].code+(selVia?'?q='+encodeURIComponent(selVia.t):'');const t=`${selVia?selVia.t:RJ_[j].name}, AI가 이미 ${pct(occ(j,2026))}%를 해낼 수 있대요 · AI 점령지도`;
     try{if(navigator.share){await navigator.share({title:'AI 점령지도',text:t,url:u});return}await navigator.clipboard.writeText(t+' '+u);sh.textContent='링크 복사했어요'}catch(e){sh.textContent='복사하지 못했어요'}setTimeout(()=>sh.textContent='공유',2500)};
   acts.append(sv,sh);
   const rids=new Set(RJ_[j].tasks.filter(t=>t[2]>=.06).map(t=>t[1])),rel=FEED.items.filter(n=>n.st!=='hold'&&(n.r||[]).some(r=>rids.has(r))).slice(0,3);
