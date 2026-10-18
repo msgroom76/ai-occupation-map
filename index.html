@@ -669,7 +669,7 @@ function layoutLabels(F){
     for(const k of offs){const x=Math.round(cx-w/2),y=Math.round(cy-h/2+k*(h+5)),r=[x,y,x+w,y+h];
       if(x<6||y<6||x+w>vw-6||y+h>vh-6||hit(r))continue;used.push(r);X.e.style.transform=`translate(${x}px,${y}px)`;X.e.classList.remove('off');return}
     X.e.classList.add('off')};
-  const zoomSm=view.k>=2.4&&mtype!=='flat';
+  const zoomSm=view.k>=2.4&&mtype==='occ';
   L.regL.forEach(X=>{X.e.classList.toggle('zs',zoomSm);const v=occ(X.r,year);if(zoomSm){const one=(RJ_[X.r].smalls||[]).length<2;X.sm.style.display=one?'none':'';if(!one)X.sm.textContent=X.sl.map(([c,n])=>`${n} ${pct(SMD[c]?occS(c,year):v)}%`).join(' · ')}X.v.textContent=pct(v)+'%';X.i.style.background=mtype==='cat'?'transparent':binC(v);X.i.style.display=mtype==='cat'?'none':'';const t=F&&F.outline.get(X.r);
     X.e.classList.toggle('a',t==='a');X.e.classList.toggle('b',t==='b');X.e.classList.toggle('dim',!!F&&!F.regs.has(X.r))});
   L.catL.forEach(X=>X.v.textContent=pct(L.gOcc(X.g,year))+'%');
@@ -679,7 +679,7 @@ function layoutLabels(F){
   L.catL.forEach(X=>{if(!OVL.sectors||(!X.main&&view.k<1.6)){X.e.classList.add('off');return}place(X,[0,-1,1,-2,2])});
   const big=F||!OVL.jobs?[]:L.regL.filter(X=>ws(X)>=100);big.forEach(X=>place(X,[0,-1,1]));
   L.regL.filter(X=>!foc.includes(X)&&!big.includes(X)).sort((a,b)=>ws(b)-ws(a)).forEach(X=>{if(!OVL.jobs||(view.k<1.6&&(F||ws(X)<55))){X.e.classList.add('off');return}place(X,[0,-1,1])});
-  L.taskL.forEach(X=>{const on=OVL.tasks&&mtype!=='flat'&&view.k>=1.8&&X.n*s*s>2200&&(!F||F.regs.has(X.r));if(!on){X.e.classList.add('off');return}X.v.textContent=pct(ptj(X.r,X.rid,year))+'%';place(X,[0])});
+  L.taskL.forEach(X=>{const on=(OVL.tasks||mtype==='cat')&&mtype!=='flat'&&view.k>=(mtype==='cat'?1.3:1.8)&&X.n*s*s>2200&&(!F||F.regs.has(X.r));if(!on){X.e.classList.add('off');return}X.v.textContent=pct(ptj(X.r,X.rid,year))+'%';place(X,[0])});
 }
 
 // ---------- 범례·지도 유형 ----------
@@ -726,10 +726,12 @@ vp.addEventListener('pointerup',up);vp.addEventListener('pointercancel',up);vp.a
 function pickI(e){const s=base()*view.k,x=Math.floor((e.clientX-view.tx)/s),y=Math.floor((e.clientY-view.ty)/s);return (x<0||y<0||x>=W||y>=H)?-1:y*W+x}
 function hoverAt(e){const tip=$('#tip'),i=pickI(e),r=i<0?-1:L.RJ[i];if(r<0||r>=NJ){tip.hidden=true;return}
   const tt=RJ_[r].tasks[Math.min(L.GT[i]&7,RJ_[r].tasks.length-1)],pv=ptj(r,tt[1],year);tip.hidden=false;tip.innerHTML='';
+  if(mtype==='cat'){const w=RJ_[r].w41[tt[1]]||0;
+    tip.append(el('div','k',`${tt[0]} ${pct(pv)}%`),el('div','s',`${CAT[tt[1][0]][0]} · ${SUB.has(tt[1])?'대체형':'보완형'} · 전국 ${Math.round(TW[tt[1]]).toLocaleString()}만 명분의 일`),el('div',null,`이 칸은 ${RJ_[r].name}의 업무 · 그 직업 일의 ${pct(w)}%`))}else{
   const sm=(RJ_[r].smalls||[]).length>1?RJ_[r].smalls.filter(x=>!/^기타/.test(x[1])).slice(0,3).map(x=>`${x[1].replace(/ 관련/g,'').replace(/ 종사자$/,'').replace(/‧/g,'·')} ${pct(SMD[x[0]]?occS(x[0],year):occ(r,year))}%`):[];
   tip.append(el('div','k',`${RJ_[r].name} ${pct(occ(r,year))}%`),el('div','s',`${GNAME[RJ_[r].group]} 구역 · 취업자 ${fw(RJ_[r].ws)}만 명`));
   if(sm.length)tip.append(el('div',null,'세부 직업 → '+sm.join(' / ')));
-  if(OVL.tasks)tip.append(el('div','s',`업무 칸: ${tt[0]} ${pct(pv)}% · ${SUB.has(tt[1])?'대체형':'보완형'}`));
+  if(OVL.tasks)tip.append(el('div','s',`업무 칸: ${tt[0]} ${pct(pv)}% · ${SUB.has(tt[1])?'대체형':'보완형'}`));}
   const w=tip.offsetWidth,h=tip.offsetHeight;let lx=e.clientX+16,ly=e.clientY-h-16;if(lx+w>innerWidth-8)lx=e.clientX-w-16;if(ly<8)ly=e.clientY+20;tip.style.left=lx+'px';tip.style.top=ly+'px';
   if(e.pointerType!=='mouse'){clearTimeout(tip._t);tip._t=setTimeout(()=>tip.hidden=true,3000)}}
 
