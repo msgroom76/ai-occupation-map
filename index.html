@@ -61,7 +61,7 @@ button,input{font:inherit;color:inherit}
 .lb.job.dim{opacity:.45}
 .lb.job.a{outline:2.5px solid var(--ink);outline-offset:2px}
 .lb.job.b{outline:2.5px dashed var(--ink);outline-offset:2px}
-.lb.cat{color:var(--ink);font-family:var(--f-display);font-weight:800;letter-spacing:-.01em;font-size:19px;gap:8px;padding:7px 13px 8px;border-radius:10px;background:color-mix(in srgb,var(--map-bg) 86%,transparent);border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.lb.cat{color:var(--ink);font-family:var(--f-display);font-weight:800;letter-spacing:-.01em;font-size:20px;gap:8px;padding:7px 13px 8px;border-radius:10px;background:color-mix(in srgb,var(--map-bg) 86%,transparent);border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);box-shadow:0 2px 10px rgba(0,0,0,.35)}
 .lb.cat .v{letter-spacing:0;font-weight:600;font-size:.78em;color:var(--hot-ink)}
 .loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink2)}
 
@@ -420,7 +420,7 @@ const pack=(c,f=1)=>(255<<24)|(Math.min(255,Math.round(c[2]*f))<<16)|(Math.min(2
   $('#tb').getContext('2d').putImageData(mkB((a,b)=>RJ[b]<NJ&&RJ[b]===RJ[a]&&(GT[a]&16)===0&&(GT[b]&16)===0&&tk(b)!==tk(a),1,(210<<24)|0x100e0b),0,0);
   const mk=c=>{const e=el('div','lb '+c);LB.appendChild(e);return e};
   const regL=RJ_.map((rg,r)=>{const e=mk('job'),i=el('i'),n=el('span',null,rg.name),v=el('span','v');e.append(i,n,v);e.style.fontSize=(rg.ws>=100?14:rg.ws>=40?13:12)+'px';return {e,i,v,x:rg.label[0],y:rg.label[1],r}});
-  const catL=[];GK.forEach(g=>cm.groups[g].forEach(([x,y],k)=>{const e=mk('cat'),gw=RJ_.filter(r=>r.group===g).reduce((a,r)=>a+r.ws,0);e.style.fontSize=(gw>=450?22:gw>=200?19:16)+'px';const _=0,n=el('span',null,GNAME[g]+' 구역'),v=el('span','v');e.append(n,v);catL.push({e,v,x,y,g,main:k===0})}));
+  const catL=[];GK.forEach(g=>cm.groups[g].forEach(([x,y],k)=>{const e=mk('cat'),n=el('span',null,GNAME[g]+' 구역'),v=el('span','v');e.append(n,v);catL.push({e,v,x,y,g,main:k===0})}));
   const gOcc=(g,y)=>{let s=0,w=0;RJ_.forEach((rg,r)=>{if(rg.group===g){s+=rg.ws*occ(r,y);w+=rg.ws}});return s/w};
   L={RJ,GT,BN,rids,regL,catL,gOcc};
 }
