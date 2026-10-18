@@ -226,6 +226,9 @@ button,input{font:inherit;color:inherit}
 .comp li i{grid-column:1/-1;display:block;height:4px;border-radius:2px;background:var(--fill2);position:relative}
 .comp li i{background:linear-gradient(var(--ink3),var(--ink3)) no-repeat left/100% 100%;opacity:.45}
 .comp li.more{display:block;color:var(--ink3);font-size:12.5px}
+.comp.sm2 li i{opacity:1;height:5px}
+.comp.sm2 li.on .nm{font-weight:600}
+.comp.sm2 li .vv small{color:var(--ink3);font-size:12px}
 .x{all:unset;cursor:pointer;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--fill2);color:var(--ink2);flex:none}
 .split{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--fill2);gap:2px}
 .split i{display:block}
@@ -288,7 +291,7 @@ details.card[open] summary::after{transform:rotate(90deg)}
   <div class="vp" id="vp" tabindex="0" aria-label="AI 점령지도. 직업 영역을 누르면 그 직업이 선택됩니다.">
     <div class="stack" id="stack">
       <canvas id="fab" width="1800" height="2400"></canvas>
-      <img id="roads" alt="" draggable="false" src="city_roads.png?v=20261018c">
+      <img id="roads" alt="" draggable="false" src="city_roads.png?v=20261019a">
       <canvas id="tb" width="1800" height="2400" hidden></canvas>
       <canvas id="jb" width="1800" height="2400"></canvas>
       <canvas id="grp" width="1800" height="2400"></canvas>
@@ -350,7 +353,7 @@ details.card[open] summary::after{transform:rotate(90deg)}
 
 <script>
 (async function(){
-const W=1800,H=2400, VER='v0.12 베타';let ASOF='2026.10.18';
+const W=1800,H=2400, VER='v0.13 베타';let ASOF='2026.10.19';
 const $=s=>document.querySelector(s);
 const pct=v=>Math.round(v*100);
 const el=(t,cls,txt)=>{const e=document.createElement(t);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
@@ -378,7 +381,7 @@ const binC=v=>RAMP[TH][bin(v)];
 const lum=c=>(c[0]*.299+c[1]*.587+c[2]*.114);
 
 // ---------- 데이터 ----------
-const cm=await (await fetch('city_meta.json')).json();
+const cm=await (await fetch('city_meta.json?v=20261019a')).json();
 const getJ=async(u,d)=>{try{const r=await fetch(u,{cache:'no-cache'});if(!r.ok)throw 0;return await r.json()}catch(e){return d}};
 const [FEED,IDX,CFG]=await Promise.all([getJ('feed.json',{items:[]}),getJ('index.json',{weeks:[]}),getJ('config.json',{})]);
 FEED.items.sort((a,b)=>b.ts<a.ts?-1:1);
@@ -396,6 +399,10 @@ RJ_.forEach(jb=>{jb.tasks.forEach(t=>t[2]=jb.w41[t[1]]||0)});
 const tw=j=>RJ_[j].tasks.reduce((a,t)=>a+t[2],0);
 const ptj=(j,r,y,s=0)=>Math.min(RP[r][2],RJ_[j].cal*p(r,y,s));
 const occ=(j,y,s=0)=>{const jb=RJ_[j];let a=0;for(const r in jb.w41)a+=jb.w41[r]*p(r,y,s);return Math.min(.99,jb.cal*a)};
+const SMD=cm.sm||{};const occS=(c,y,s=0)=>occD(SMD[c],y,s);
+const smOf=(j,k)=>{if(!k||j<0)return null;const c=String(k).slice(0,3),sm=RJ_[j].smalls||[];return SMD[c]&&sm.length>1&&sm.some(x=>x[0]===c)?c:null};
+const smName=(j,c)=>((RJ_[j].smalls||[]).find(x=>x[0]===c)||[,''])[1];
+const occV=(j,k,y,s=0)=>{const c=smOf(j,k);return c?occS(c,y,s):occ(j,y,s)};
 const WS=RJ_.reduce((a,j)=>a+j.ws,0);
 const total=(y,s=0)=>RJ_.reduce((a,jb,j)=>a+jb.ws*occ(j,y,s),0)/WS;
 const TJ={},TW={};Object.keys(RN).forEach(r=>{TJ[r]=new Set();TW[r]=0});
@@ -418,7 +425,7 @@ const vp=$('#vp'),stack=$('#stack'),fctx=$('#fab').getContext('2d'),octx=$('#ovl
 const out=fctx.createImageData(W,H),out32=new Uint32Array(out.data.buffer);
 const pack=(c,f=1)=>(255<<24)|(Math.min(255,Math.round(c[2]*f))<<16)|(Math.min(255,Math.round(c[1]*f))<<8)|Math.min(255,Math.round(c[0]*f));
 {
-  const img=new Image();img.src='city_index.png?v=20261018c';await img.decode();
+  const img=new Image();img.src='city_index.png?v=20261019a';await img.decode();
   const oc=document.createElement('canvas');oc.width=W;oc.height=H;const ox=oc.getContext('2d',{willReadFrequently:true});ox.drawImage(img,0,0);
   const raw=ox.getImageData(0,0,W,H).data,RJ=new Uint8Array(W*H),GT=new Uint8Array(W*H),BN=new Uint8Array(W*H);
   for(let i=0,k=0;i<W*H;i++,k+=4){RJ[i]=raw[k];GT[i]=raw[k+1];BN[i]=raw[k+2]}
@@ -432,7 +439,7 @@ const pack=(c,f=1)=>(255<<24)|(Math.min(255,Math.round(c[2]*f))<<16)|(Math.min(2
   $('#tb').getContext('2d').putImageData(mkB((a,b)=>RJ[b]<NJ&&RJ[b]===RJ[a]&&(GT[a]&16)===0&&(GT[b]&16)===0&&tk(b)!==tk(a),1,(210<<24)|0x100e0b),0,0);
   const mk=c=>{const e=el('div','lb '+c);LB.appendChild(e);return e};
   const shortSm=n=>n.replace(/ 관련/g,'').replace(/ 종사자$/,'').replace(/ 및$/,'').replace(/ 및 관련직$/,'').replace(/‧/g,'·');
-  const regL=RJ_.map((rg,r)=>{const e=mk('job'),i=el('i'),n=el('span',null,rg.name),v=el('span','v'),sm=el('span','sm',(rg.smalls||[]).filter(x=>!/^기타/.test(x[1])).slice(0,3).map(x=>shortSm(x[1])).join(' · '));e.append(i,n,v,sm);e.style.fontSize=(rg.ws>=100?14:rg.ws>=40?13:12)+'px';return {e,i,v,x:rg.label[0],y:rg.label[1],r}});
+  const regL=RJ_.map((rg,r)=>{const e=mk('job'),i=el('i'),n=el('span',null,rg.name),v=el('span','v'),sm=el('span','sm'),sl=(rg.smalls||[]).filter(x=>!/^기타/.test(x[1])).slice(0,3).map(x=>[x[0],shortSm(x[1])]);e.append(i,n,v,sm);e.style.fontSize=(rg.ws>=100?14:rg.ws>=40?13:12)+'px';return {e,i,v,sm,sl,x:rg.label[0],y:rg.label[1],r}});
   const catL=[];GK.forEach(g=>cm.groups[g].forEach(([x,y],k)=>{const e=mk('cat'),n=el('span',null,GNAME[g]+' 구역'),v=el('span','v');e.append(n,v);catL.push({e,v,x,y,g,main:k===0})}));
   const gOcc=(g,y)=>{let s=0,w=0;RJ_.forEach((rg,r)=>{if(rg.group===g){s+=rg.ws*occ(r,y);w+=rg.ws}});return s/w};
   // 확대했을 때 보이는 업무 이름: 지역 안 업무 칸 묶음마다 무게중심
@@ -492,7 +499,7 @@ function layoutLabels(F){
       if(x<6||y<6||x+w>vw-6||y+h>vh-6||hit(r))continue;used.push(r);X.e.style.transform=`translate(${x}px,${y}px)`;X.e.classList.remove('off');return}
     X.e.classList.add('off')};
   const zoomSm=view.k>=2.4&&mtype!=='flat';
-  L.regL.forEach(X=>{X.e.classList.toggle('zs',zoomSm);const v=occ(X.r,year);X.v.textContent=pct(v)+'%';X.i.style.background=mtype==='cat'?'transparent':binC(v);X.i.style.display=mtype==='cat'?'none':'';const t=F&&F.outline.get(X.r);
+  L.regL.forEach(X=>{X.e.classList.toggle('zs',zoomSm);const v=occ(X.r,year);if(zoomSm){const one=(RJ_[X.r].smalls||[]).length<2;X.sm.style.display=one?'none':'';if(!one)X.sm.textContent=X.sl.map(([c,n])=>`${n} ${pct(SMD[c]?occS(c,year):v)}%`).join(' · ')}X.v.textContent=pct(v)+'%';X.i.style.background=mtype==='cat'?'transparent':binC(v);X.i.style.display=mtype==='cat'?'none':'';const t=F&&F.outline.get(X.r);
     X.e.classList.toggle('a',t==='a');X.e.classList.toggle('b',t==='b');X.e.classList.toggle('dim',!!F&&!F.regs.has(X.r))});
   L.catL.forEach(X=>X.v.textContent=pct(L.gOcc(X.g,year))+'%');
   const ws=X=>RJ_[X.r].ws;
@@ -601,7 +608,7 @@ function summaryCard(){
   c.append(el('div','lab','오늘의 지도'));
   const lede=el('p','lede');lede.innerHTML=`사람이 하던 일의 <span style="white-space:nowrap"><em>${pct(total(year))}%</em>를</span> AI가 이미 해낼 수 있어요.`;
   if(yi()!==2026)lede.innerHTML=`${yi()}년에는 사람이 하던 일의 <span style="white-space:nowrap"><em>${pct(total(year))}%</em>를</span> AI가 해낼 수 있어요.`;
-  const bn=el('div','bign');const b=el('b','num');b.append(String(pct(total(year))),el('small',null,'%'));bn.append(b,el('span',null,`${yi()} ${tag(year)} · 절반을 넘는 해 ${half}년 (${hf}–${hs})`));
+  const bn=el('div','bign');const b=el('b','num');b.append(String(pct(total(year))),el('small',null,'%'));bn.append(b,el('span',null,`${yi()} ${tag(year)} · ${half?`절반을 넘는 해 ${half}년 (${hf??'—'}–${hs??'2045+'})`:`2045년까지 최대 ${pct(total(2045))}%`}`));
   c.append(lede,bn,trend((y,s)=>total(y,s)));
   if(WNOW){const wk=el('div','wk');const tot=total(2026),prev=WPREV&&WPREV.total!=null?WPREV.total:null;
     const wl=el('a',null,`주간 지수 ${+WNOW.week.split('-W')[1]}주차`);wl.href=WNOW.total!=null?'/w/'+WNOW.week:'/w/';wl.style.cssText='color:var(--ink);font-weight:600';wk.append(wl,` · ${fmtD(WNOW.date)} 발표 · ${(tot*100).toFixed(1)}%`,prev!=null?el('span','d',` (지난주 대비 ${tot-prev>=0?'+':''}${((tot-prev)*100).toFixed(1)}%p)`):el('span','d',' (첫 발표)'));c.appendChild(wk)}
@@ -617,7 +624,7 @@ const MINE_K='aimap.mine.v1';const lsGet=()=>{try{return JSON.parse(localStorage
 let MINE=lsGet();const MINE_PREV=MINE?{...MINE}:null;
 const jIdx=code=>RJ_.findIndex(r=>r.code===code);
 function mineCard(){if(!MINE)return null;const j=jIdx(MINE.code);if(j<0)return null;
-  const v=occ(j,2026),d=MINE_PREV?v-MINE_PREV.v:0,since=MINE_PREV?MINE_PREV.seen:null;
+  const v=occV(j,MINE.k,2026),d=MINE_PREV?v-MINE_PREV.v:0,since=MINE_PREV?MINE_PREV.seen:null;
   const rids=new Set(RJ_[j].tasks.map(t=>t[1])),news=FEED.items.filter(n=>(!since||n.ts>since)&&(n.r||[]).some(r=>rids.has(r)));
   const c=el('section','card mine');const b=el('button','mineb');b.type='button';b.onclick=()=>pickJob(j,MINE.t?{t:MINE.t,d:MINE.d||null,k:MINE.k||null,kn:MINE.kn||null}:null);
   const l=el('div');l.append(el('div','lab','내 직업'),el('b','nm',MINE.t||RJ_[j].name),el('div','sub',MINE.t&&MINE.t!==RJ_[j].name?RJ_[j].name:GNAME[RJ_[j].group]+' 구역'));
@@ -684,7 +691,7 @@ function aboutCard(){
   m.innerHTML=`<dl>
    <div><dt>무엇을 재나요</dt><dd>AI 노출도. 일의 몇 %를 생성형 AI(언어 모델과 그 위에 만든 소프트웨어)가 사람 수준으로 해내거나 시간을 절반 이상 줄일 수 있는지예요. 실제로 일자리가 사라진 비율이 아니고, 도입 비용·규제·실제 도입 속도는 반영하지 않았어요. 로봇·자율주행 같은 물리 자동화는 이 지표에 거의 잡히지 않아요.</dd></div>
    <div><dt>노출도 출처</dt><dd>Eloundou·Manning·Mishkin·Rock, 「GPTs are GPTs」(Science, 2024). 미국 O*NET 업무 약 1만 9천 개를 하나씩 평가한 공개 데이터(MIT 라이선스)예요. 직업별 수치는 이 연구의 직업 단위 β(직접 노출 + 도구가 있으면 노출의 절반)를 그대로 써요.</dd></div>
-   <div><dt>업무 구성</dt><dd>미국 O*NET 30.0의 직업별 업무 목록과 중요도를 41개 일반업무활동으로 묶었어요. 한국 중분류마다 해당하는 미국 직업들을 미국 고용(OEWS 2021) 비중으로 합쳤어요. 연결표: <a href="ksco_soc_map.json" target="_blank" rel="noopener">ksco_soc_map.json</a></dd></div>
+   <div><dt>업무 구성</dt><dd>미국 O*NET 30.0의 직업별 업무 목록과 중요도를 41개 일반업무활동으로 묶었어요. 한국 소분류(163개)마다 해당하는 미국 직업을 연결하고(148개 연결, 나머지 15개는 중분류 값 사용) 미국 고용(OEWS 2021) 비중으로 합쳤어요. 중분류 값은 소분류 값을 한국 취업자 수로 가중 평균해요. 연결표: <a href="ksco_soc_map.json" target="_blank" rel="noopener">ksco_soc_map.json</a></dd></div>
    <div><dt>직업과 전체</dt><dd>직업 노출도 = 41개 업무 비중 × 업무 노출도, 연구의 직업 단위 값에 맞춰 보정. 전체 = 한국 실제 취업자 수로 가중 평균.</dd></div>
    <div><dt>시간 축 (가정)</dt><dd>업무마다 2023년 = 언어 모델 단독(α), 2026년 = 도구까지 쓴 경우(β), 상한 = 모든 보조 소프트웨어가 갖춰진 경우(γ)로 놓고 S자 곡선을 그렸어요. 2026년 값과 앞으로의 경로는 연구값을 시간에 놓은 저희의 가정이에요. 범위는 도달 시점을 ±1.5년 흔든 값이에요.</dd></div>
    <div><dt>대체형·보완형</dt><dd>AI가 그 일을 대신하는 업무와, 사람이 AI와 함께 더 하게 되는 업무를 나눈 저희의 분류예요.</dd></div>
@@ -706,30 +713,34 @@ function flashCard(){const c=el('section','card place');const top=el('div','top'
     b.append(el('span','no',i+1),el('span','nm',RJ_[o.j].name),vv);b.onclick=()=>pickJob(o.j);li.appendChild(b);ul.appendChild(li)});c.appendChild(ul);
   c.appendChild(el('div','chips',[...flash].map(r=>RN[r][0]).join(' · ')));return c}
 function jobCard(j){
-  const c=el('section','card place'),t_=tw(j),y4=Math.min(yi()+4,2032),v=occ(j,year);
+  const sk=selVia?smOf(j,selVia.k):null,f=(y,s=0)=>sk?occS(sk,y,s):occ(j,y,s);
+  const c=el('section','card place'),t_=tw(j),y4=Math.min(yi()+4,2032),v=f(year);
   const top=el('div','top'),tt=el('div');tt.append(el('h2',null,RJ_[j].name),el('div','sub',`${GNAME[RJ_[j].group]} 구역 · 표준직업분류 ${RJ_[j].code} ${RJ_[j].full} · 취업자 ${fw(RJ_[j].ws)}만 명`));
-  const x=el('button','x','✕');x.type='button';x.setAttribute('aria-label','닫기');x.onclick=clearAll;top.append(tt,x);if(selVia){const v=el('div','sub via');v.style.marginTop='6px';const nm=selVia.k?`'${selVia.t}' · 세분류 ${selVia.k} ${selVia.kn}`:`'${selVia.t}'`;
-    v.textContent=`${nm}(으)로 찾았어요. 이 지역 전체 기준으로 계산했어요.`;tt.appendChild(v);
-    if(selVia.d&&cm.detail[selVia.d]){const dv=el('div','sub via');const od=occD(cm.detail[selVia.d],year);dv.innerHTML=`'${selVia.d}' 업무만 따로 보면 <b>${pct(od)}%</b>예요.`;tt.appendChild(dv)}}
-  const r40=reach(y=>occ(j,y),.4),f40=reach(y=>occ(j,y,1),.4),s40=reach(y=>occ(j,y,-1),.4);
+  const x=el('button','x','✕');x.type='button';x.setAttribute('aria-label','닫기');x.onclick=clearAll;top.append(tt,x);if(selVia){const v=el('div','sub via');v.style.marginTop='6px';const nm=selVia.k?`'${selVia.t}' · ${String(selVia.k).length===3?'소분류':'세분류'} ${selVia.k} ${selVia.kn}`:`'${selVia.t}'`;
+    v.textContent=sk?`${nm}(으)로 찾았어요. 아래 숫자는 소분류 '${smName(j,sk)}' 기준이에요. ${RJ_[j].name} 전체는 ${pct(occ(j,year))}%예요.`:`${nm}(으)로 찾았어요. 이 지역 전체 기준으로 계산했어요.`;tt.appendChild(v);
+    if(!sk&&selVia.d&&cm.detail[selVia.d]){const dv=el('div','sub via');const od=occD(cm.detail[selVia.d],year);dv.innerHTML=`'${selVia.d}' 업무만 따로 보면 <b>${pct(od)}%</b>예요.`;tt.appendChild(dv)}}
+  const r40=reach(y=>f(y),.4),f40=reach(y=>f(y,1),.4),s40=reach(y=>f(y,-1),.4);
   const lede=el('p','lede');lede.innerHTML=v>=.5?`이 일의 절반 이상을 AI가 해낼 수 있어요.`:v>=.4?`이 일의 40%\u2060 이상을 AI가 해낼 수 있어요.`:r40&&r40<=yi()?`올해 안에 이 일의 40%\u2060를 AI가 해낼 수 있게 될 전망이에요.`:r40?`${r40}년쯤 이 일의 40%\u2060를 AI가 해낼 수 있게 돼요.`:`아직 대부분 사람의 몫이에요.`;
   const bn=el('div','bign');const b=el('b','num');b.append(String(pct(v)),el('small',null,'%'));bn.append(b,el('span',null,`${yi()} ${tag(year)} 노출도`));
-  const st=el('div','stats');[[`${y4} 예측`,`${pct(occ(j,y4))}%`,`범위 ${pct(occ(j,y4,-1))}–${pct(occ(j,y4,1))}`],['40% 도달',r40===null?'2045 이후':v>=.4?'이미 도달':r40<=yi()?'올해 안':`${r40}년`,r40&&r40>2026?`범위 ${f40}–${s40??'2045+'}`:r40?`${r40}년`:''],['남은 구역',`${100-pct(v)}%`,'사람 몫']].forEach(([a,bb,cc])=>{const d=el('div');d.append(el('small',null,a),el('b','num',bb),el('em',null,cc));st.appendChild(d)});
-  let sub=0,aug=0;for(const r in RJ_[j].w41){const vv=RJ_[j].w41[r]*ptj(j,r,year);if(SUB.has(r))sub+=vv;else aug+=vv}{const sc=v/Math.max(sub+aug,1e-9);sub*=sc;aug*=sc}
+  const st=el('div','stats');[[`${y4} 예측`,`${pct(f(y4))}%`,`범위 ${pct(f(y4,-1))}–${pct(f(y4,1))}`],['40% 도달',r40===null?'2045 이후':v>=.4?'이미 도달':r40<=yi()?'올해 안':`${r40}년`,r40&&r40>2026?`범위 ${f40}–${s40??'2045+'}`:r40?`${r40}년`:''],['남은 구역',`${100-pct(v)}%`,'사람 몫']].forEach(([a,bb,cc])=>{const d=el('div');d.append(el('small',null,a),el('b','num',bb),el('em',null,cc));st.appendChild(d)});
+  let sub=0,aug=0;for(const r in RJ_[j].w41){const vv=RJ_[j].w41[r]*ptj(j,r,year);if(SUB.has(r))sub+=vv;else aug+=vv}{const sc=occ(j,year)/Math.max(sub+aug,1e-9);sub*=sc;aug*=sc}
   const sp=el('div','split');[[sub,'var(--hot)'],[aug,'var(--tint)'],[1-sub-aug,'var(--fill2)']].forEach(([w,cc])=>{const i=el('i');i.style.width=(w*100).toFixed(1)+'%';i.style.background=cc;sp.appendChild(i)});
   const lg=el('div','legend2');[[`대체형 ${pct(sub)}%`,'var(--hot)'],[`보완형 ${pct(aug)}%`,'var(--tint)'],[`사람 몫 ${100-pct(sub)-pct(aug)}%`,'var(--ink3)']].forEach(([t,cc])=>{const s=el('span',null,t);s.style.setProperty('--c',cc);lg.appendChild(s)});
   const acts=el('div','acts');const isMine=MINE&&MINE.code===RJ_[j].code;
   const sv=el('button','btn'+(isMine?' on':''),isMine?'★ 내 직업':'☆ 내 직업으로 저장');sv.type='button';sv.setAttribute('aria-pressed',!!isMine);
-  sv.onclick=()=>{if(isMine){MINE=null;lsSet(null)}else{MINE={code:RJ_[j].code,t:selVia?selVia.t:null,d:selVia?selVia.d||null:null,k:selVia?selVia.k||null:null,kn:selVia?selVia.kn||null:null,v:occ(j,2026),seen:FEED.updated||new Date().toISOString()};lsSet(MINE)}render()};
-  const sh=el('button','btn','공유');sh.type='button';sh.onclick=async()=>{const u=location.origin+'/j/'+RJ_[j].code+(selVia?'?q='+encodeURIComponent(selVia.t):'');const t=`${selVia?selVia.t:RJ_[j].name}, AI가 이미 ${pct(occ(j,2026))}%를 해낼 수 있대요 · AI 점령지도`;
+  sv.onclick=()=>{if(isMine){MINE=null;lsSet(null)}else{MINE={code:RJ_[j].code,t:selVia?selVia.t:null,d:selVia?selVia.d||null:null,k:selVia?selVia.k||null:null,kn:selVia?selVia.kn||null:null,v:f(2026),seen:FEED.updated||new Date().toISOString()};lsSet(MINE)}render()};
+  const sh=el('button','btn','공유');sh.type='button';sh.onclick=async()=>{const u=location.origin+'/j/'+RJ_[j].code+(selVia?'?q='+encodeURIComponent(selVia.t):'');const t=`${selVia?selVia.t:RJ_[j].name}, AI가 이미 ${pct(f(2026))}%를 해낼 수 있대요 · AI 점령지도`;
     try{if(navigator.share){await navigator.share({title:'AI 점령지도',text:t,url:u});return}await navigator.clipboard.writeText(t+' '+u);sh.textContent='링크 복사했어요'}catch(e){sh.textContent='복사하지 못했어요'}setTimeout(()=>sh.textContent='공유',2500)};
   acts.append(sv,sh);
   const rids=new Set(RJ_[j].tasks.filter(t=>t[2]>=.06).map(t=>t[1])),rel=FEED.items.filter(n=>n.st!=='hold'&&(n.r||[]).some(r=>rids.has(r))).slice(0,3);
   const relBox=el('div');if(rel.length){const rl=el('div','lab');rl.append(el('span',null,'이 직업에 닿은 최근 소식'));const ul=el('ul','news');rel.forEach(n=>ul.appendChild(newsItem(n)));relBox.append(rl,ul)}
-  c.append(top,acts,lede,bn,trend((y,s)=>occ(j,y,s),{ref:.4,refLabel:'40% 선'}),st,relBox,el('div','lab','노출된 업무의 성격'),sp,lg);
-  if(RJ_[j].smalls&&RJ_[j].smalls.length>1){const sl=el('div','lab');sl.append(el('span',null,'이 지역의 세부 직업'),el('span',null,'소분류 · 취업자'));c.append(sl);
-    const ul2=el('ul','comp'),mx=RJ_[j].smalls[0][2]||1;RJ_[j].smalls.slice(0,6).forEach(([cd,n,k])=>{const li=el('li');const bar=el('i');bar.style.width=(k/mx*100).toFixed(1)+'%';li.append(el('span','nm',n),el('span','vv',`${fw(k/10)}만`),bar);ul2.appendChild(li)});
-    if(RJ_[j].smalls.length>6)ul2.appendChild(el('li','more',`외 ${RJ_[j].smalls.length-6}개`));c.append(ul2)}
+  c.append(top,acts,lede,bn,trend((y,s)=>f(y,s),{ref:.4,refLabel:'40% 선'}),st,relBox,el('div','lab','노출된 업무의 성격'),sp,lg);
+  if(RJ_[j].smalls&&RJ_[j].smalls.length>1){const sl=el('div','lab');sl.append(el('span',null,'이 지역의 세부 직업'),el('span',null,`소분류 · ${yi()} 노출도 · 취업자`));c.append(sl);
+    const ul2=el('ul','comp sm2');let thin=false;RJ_[j].smalls.slice(0,8).forEach(([cd,n,k])=>{const d=SMD[cd],a=d?occS(cd,year):occ(j,year);if(d&&d.n<=2)thin=true;const li=el('li',cd===sk?'on':null);
+      const nm=el('span','nm',n+(d&&d.n<=2?' *':''));const vv=el('span','vv');vv.append(d?`${pct(a)}%`:`${pct(a)}%`,el('small',null,d?` · ${fw(k/10)}만`:` · ${fw(k/10)}만 · 중분류 값`));
+      const bar=el('i');bar.style.background=`linear-gradient(${binC(a)},${binC(a)}) no-repeat left/${(a*100).toFixed(1)}% 100%,var(--fill2)`;li.append(nm,vv,bar);ul2.appendChild(li)});
+    if(RJ_[j].smalls.length>8)ul2.appendChild(el('li','more',`외 ${RJ_[j].smalls.length-8}개`));c.append(ul2);
+    c.append(el('p','rule',`소분류마다 해당하는 미국 직업을 따로 연결해 계산했어요.${thin?' * 표시는 연결된 미국 직업이 1~2개라 오차가 클 수 있어요.':''} 지역 전체 값은 소분류 값을 한국 취업자 수로 가중 평균한 거예요.`))}
   const tl=el('div','lab');tl.append(el('span',null,`이 직업의 주요 업무 ${RJ_[j].tasks.length}개`));c.append(tl);
   const ul=el('ul','tasks'),bR=new Set(selB>=0?RJ_[selB].tasks.map(t=>t[1]):[]);
   RJ_[j].tasks.slice().sort((a,b)=>b[2]-a[2]).forEach(t=>{const a=ptj(j,t[1],year),f=ptj(j,t[1],y4),li=el('li'),bt=el('button');bt.type='button';
@@ -780,6 +791,7 @@ const ENT=[];RJ_.forEach((j,i)=>{ENT.push({t:j.name,j:i,std:true});if(j.full!==j
 let KS={codes:{},titles:[]};try{KS=await (await fetch('ksco_titles.json')).json()}catch(e){}
 Object.entries(KS.codes).forEach(([c,[n,j,d]])=>ENT.push({t:n,j,std:false,k:c,kn:n,d,ks:true}));
 KS.titles.forEach(([t,c])=>{const v=KS.codes[c];if(v)ENT.push({t,j:v[1],std:false,k:c,kn:v[0],d:v[2]})});
+{const KM=new Map();ENT.forEach(e=>{if(e.k&&/^\d/.test(e.k)){const n=norm(e.t);if(!KM.has(n))KM.set(n,e)}});ENT.forEach(e=>{if(!e.std&&!e.k){const m=KM.get(norm(e.t))||(e.d&&KM.get(norm(e.d)));if(m&&m.j===e.j){e.k=m.k;e.kn=m.kn}}})}
 const NT=ENT.length;
 function matches(q){q=norm(q);if(!q)return [];const seen=new Set();
   return ENT.map(e=>{const n=norm(e.t);const sc=n===q?0:n.startsWith(q)?1:n.includes(q)?2:(q.length>=2&&q.includes(n)&&n.length>=2)?3:9;return {...e,sc}}).filter(o=>o.sc<9)
@@ -788,7 +800,7 @@ function wireSearch(inp,res,onPick){
   const draw=()=>{res.innerHTML='';const m=matches(inp.value);if(!inp.value){res.hidden=true;return}
     if(!m.length){const li=el('li');const d=el('div',null,`아직 사전에 없는 이름이에요. 직업명 ${ENT.length.toLocaleString()}개 중에서 찾고 있어요. 비슷한 말로 찾아보세요.`);d.style.padding='11px 14px';d.style.fontSize='13px';d.style.color='var(--ink2)';li.appendChild(d);res.appendChild(li)}
     m.forEach(e=>{const li=el('li'),b=el('button');b.type='button';const L=el('span',null,e.t);
-      const R=el('small',null,e.std?`지역 · 노출도 ${pct(occ(e.j,year))}%`:`→ ${RJ_[e.j].name} · ${pct(occ(e.j,year))}%`);
+      const R=el('small',null,e.std?`지역 · 노출도 ${pct(occ(e.j,year))}%`:`→ ${RJ_[e.j].name} · ${pct(occV(e.j,e.k,year))}%`);
       b.append(L,R);b.onclick=()=>{inp.value='';res.hidden=true;onPick(e.j,e.std?null:e)};li.appendChild(b);res.appendChild(li)});res.hidden=false};
   inp.addEventListener('input',draw);
   inp.addEventListener('keydown',e=>{if(e.key==='Enter'){const m=matches(inp.value);if(m.length){inp.value='';res.hidden=true;onPick(m[0].j,m[0].std?null:m[0])}}if(e.key==='Escape'){inp.value='';res.hidden=true}})}
