@@ -297,7 +297,7 @@ details.card[open] summary::after{transform:rotate(90deg)}
   <div class="ctl">
     <div class="grp glass"><button type="button" id="lyrbtn" aria-label="지도 유형" aria-expanded="false" aria-controls="lyr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></button></div>
     <div class="grp glass"><button type="button" id="zin" aria-label="확대"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><button type="button" id="zout" aria-label="축소"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button></div>
-    <div class="grp glass"><button type="button" id="zfit" aria-label="도시 전체 보기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div>
+    <div class="grp glass"><button type="button" id="zfit" aria-label="도시 전체가 보이게 맞추기" title="도시 전체 보기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3.5 6.5 9 4.5l6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></svg></button><button type="button" id="zfs" aria-label="전체 화면으로 보기" title="전체 화면"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div>
   </div>
   <div class="lyr glass" id="lyr" hidden>
     <div class="lyrh"><b>지도 유형</b><button type="button" id="lyrx" aria-label="닫기">✕</button></div>
@@ -509,6 +509,12 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!lyr.hidden)setL
 
 // ---------- 확대·이동 ----------
 $('#zin').onclick=()=>zoomAt(view.k*1.7);$('#zout').onclick=()=>zoomAt(view.k/1.7);$('#zfit').onclick=home;
+{const fb=$('#zfs'),de=document.documentElement,on='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>',off='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>';
+  const fsEl=()=>document.fullscreenElement||document.webkitFullscreenElement;
+  if(!(document.fullscreenEnabled||document.webkitFullscreenEnabled))fb.hidden=true;
+  fb.onclick=async()=>{try{if(fsEl())await (document.exitFullscreen||document.webkitExitFullscreen).call(document);else await (de.requestFullscreen||de.webkitRequestFullscreen).call(de)}catch(e){}};
+  const sync=()=>{const f=!!fsEl();fb.innerHTML=f?off:on;fb.setAttribute('aria-label',f?'전체 화면 끝내기':'전체 화면으로 보기');fb.title=f?'전체 화면 끝내기':'전체 화면'};
+  document.addEventListener('fullscreenchange',sync);document.addEventListener('webkitfullscreenchange',sync)}
 vp.addEventListener('wheel',e=>{e.preventDefault();zoomAt(view.k*Math.exp(-e.deltaY*(e.ctrlKey?.01:.002)),e.clientX,e.clientY)},{passive:false});
 vp.addEventListener('dblclick',e=>zoomAt(view.k*2,e.clientX,e.clientY));
 vp.addEventListener('keydown',e=>{if(e.key==='+'||e.key==='=')zoomAt(view.k*1.5);if(e.key==='-')zoomAt(view.k/1.5);if(e.key==='0')home()});
