@@ -1,46 +1,103 @@
 {
- "updated": "2026-10-18T21:30:00+09:00",
+ "updated": "2026-10-19T07:50:18+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
   {
-   "id": "2026-10-16-gemini4-argon",
-   "ts": "2026-10-16T09:00:00+09:00",
-   "src": "thunai.ai (요약 매체)",
-   "url": "https://www.thunai.ai/blog/gemini-argon-4-enterprise-ai-orchestration",
-   "tier": "확인 필요",
+   "id": "2026-10-18-shanghai-humanoid",
+   "ts": "2026-10-18T19:37:00+09:00",
+   "src": "로봇신문",
+   "url": "https://www.irobotnews.com/news/articleView.html?idxno=49043",
+   "tier": "신뢰 매체",
+   "sig": "정책",
+   "us": false,
+   "hd": "중국 상하이시, 지능형 제조 행동계획에서 제조공장에 휴머노이드 로봇 8천 대 배치 목표 제시",
+   "r": [],
+   "st": "none",
+   "note": "정책 동향 · 노출도 수치 영향 없음"
+  },
+  {
+   "id": "2026-10-18-hyundai-humanoid",
+   "ts": "2026-10-18T15:30:00+09:00",
+   "src": "아주경제(Aju Press)",
+   "url": "https://www.ajupress.com/view/20261018152154879",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "현대차그룹, 2032년 이후 신공장에 휴머노이드 투입 계획 공개 (배선 연결·내장재 공급·도장 보수 등)",
+   "r": [
+    "C1",
+    "C2"
+   ],
+   "st": "none",
+   "note": "2032년 이후 계획 · 현재 도입 아님"
+  },
+  {
+   "id": "2026-10-15-workday-agents",
+   "ts": "2026-10-16T02:15:00+09:00",
+   "src": "The Register",
+   "url": "https://www.theregister.com/saas/2026/10/15/workday-wants-a-slice-of-customers-labour-budget-that-its-ai-agents-could-replace/5303281",
+   "tier": "신뢰 매체",
    "sig": "능력",
    "us": true,
-   "hd": "구글, 기업용 Gemini 4 Argon 전 세계 정식 제공 시작",
+   "hd": "워크데이, AI 에이전트가 화면 없이 인사·재무 시스템 업무를 직접 처리하도록 개방하고 사용량 기반 과금 예고",
+   "r": [
+    "D15",
+    "B2"
+   ],
+   "st": "pending"
+  },
+  {
+   "id": "2026-10-13-motie-humanoid",
+   "ts": "2026-10-13T15:00:00+09:00",
+   "src": "파이낸셜뉴스",
+   "url": "https://www.fnnews.com/news/202610131103564249",
+   "tier": "신뢰 매체",
+   "sig": "규제",
+   "us": false,
+   "kr": true,
+   "hd": "산업통상부 규제특례위, 안전펜스 규제 풀어 제조 현장에 이동형 휴머노이드 20대 실증 투입 승인",
+   "r": [],
+   "st": "none",
+   "note": "규제 동향 · 노출도 수치 영향 없음"
+  },
+  {
+   "id": "2026-10-16-gemini4-argon",
+   "ts": "2026-10-13T09:00:00+09:00",
+   "src": "Google Cloud 블로그",
+   "url": "https://cloud.google.com/blog/products/ai-machine-learning/gemini-4-argon-available-on-google-cloud",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "us": true,
+   "hd": "구글, Gemini 4 Argon을 Google Cloud 전체 고객에게 제공 시작 (기업용 Gemini·API 포함)",
    "r": [
     "B2",
     "B9",
     "C5"
    ],
-   "st": "hold",
-   "note": "구글 공식 발표 확인 전"
+   "st": "pending"
   },
   {
    "id": "2026-10-16-copilot-studio",
-   "ts": "2026-10-16T09:00:00+09:00",
-   "src": "NeoTeo (요약 매체)",
-   "url": "https://www.neoteo.com/en/microsoft-announces-persistent-agents-for-copilot-studio",
-   "tier": "확인 필요",
+   "ts": "2026-10-15T09:00:00+09:00",
+   "src": "Microsoft Copilot 블로그",
+   "url": "https://www.microsoft.com/en-us/copilot/blog/copilot-studio/delegate-shared-business-processes-to-agents-that-are-more-persistent-and-proactive-with-microsoft-copilot-studio/",
+   "tier": "1차 출처",
    "sig": "능력",
    "us": true,
-   "hd": "마이크로소프트, Copilot Studio에 상시 작동 에이전트(계정·공유 메모리·트리거) 미리보기",
+   "hd": "마이크로소프트, Copilot Studio 에이전트에 자체 계정·업무 기억·자동 트리거 도입 (Frontier 프로그램 우선)",
    "r": [
     "C9",
     "D15"
    ],
-   "st": "hold",
-   "note": "MS 공식 발표 확인 전"
+   "st": "pending"
   },
   {
    "id": "2026-10-16-chatgpt-chrome",
    "ts": "2026-10-16T09:00:00+09:00",
-   "src": "PiunikaWeb",
-   "url": "https://piunikaweb.com/2026/10/16/chatgpt-chrome-extension-tab-control-automation",
-   "tier": "확인 필요",
+   "src": "9to5Google",
+   "url": "https://9to5google.com/2026/10/16/chatgpt-gets-deeper-google-chrome-integration-including-control-over-tabs/",
+   "tier": "신뢰 매체",
    "sig": "능력",
    "us": true,
    "hd": "오픈AI, ChatGPT 크롬 확장에 탭 제어·브라우저 자동화 추가",
@@ -48,31 +105,29 @@
     "A1",
     "C5"
    ],
-   "st": "hold",
-   "note": "오픈AI 공식 발표 확인 전"
+   "st": "pending"
   },
   {
    "id": "2026-10-16-vertafore",
-   "ts": "2026-10-16T09:00:00+09:00",
-   "src": "FinTech Global",
-   "url": "https://fintech.global/2026/10/16/vertafore-launches-ai-agents-to-automate-insurance-policy-checks",
+   "ts": "2026-10-15T09:00:00+09:00",
+   "src": "ColoradoBiz",
+   "url": "https://coloradobiz.com/vertafore-launches-ai-tools-for-insurance-policy-processing/",
    "tier": "신뢰 매체",
    "sig": "도입",
    "us": true,
-   "hd": "보험 소프트웨어 기업 버타포어, 증권 데이터 입력·검증 AI 에이전트 2종 출시",
+   "hd": "보험 소프트웨어 기업 버타포어, 보험증권 데이터 입력·대조 검증 AI 에이전트 2종 출시",
    "r": [
     "B2",
     "B3"
    ],
-   "st": "hold",
-   "note": "주간 점검에서 확인 실패"
+   "st": "pending"
   },
   {
    "id": "2026-10-16-servicenow",
-   "ts": "2026-10-16T09:00:00+09:00",
-   "src": "CXOToday",
-   "url": "https://cxotoday.com/media-coverage/servicenow-debuts-3rd-gen-employee-ai-harness-to-democratize-no-code-enterprise-agentic-workflows",
-   "tier": "신뢰 매체",
+   "ts": "2026-10-15T09:00:00+09:00",
+   "src": "ServiceNow 뉴스룸",
+   "url": "https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-introduces-the-third-generation-of-its-employee-centric-AI-harness-so-the-workforce-can-build-and-use-the-AI-their-jobs-demand/default.aspx",
+   "tier": "1차 출처",
    "sig": "도입",
    "us": true,
    "hd": "서비스나우, 직원이 코딩 없이 업무용 에이전트를 만드는 도구 발표",
@@ -80,8 +135,7 @@
     "D15",
     "C9"
    ],
-   "st": "hold",
-   "note": "주간 점검에서 확인 실패"
+   "st": "pending"
   },
   {
    "id": "2026-10-14-deloitte-uk",
