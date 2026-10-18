@@ -3,7 +3,7 @@
 <meta property="og:type" content="website"><meta property="og:title" content="AI 점령 지도 · AI Occupied Map"><meta property="og:description" content="사람의 일, AI가 어디까지 장악했나? 한국 직업 163개의 AI 노출도와 실제 사용을 지도로.">
 <meta property="og:image" content="og.png"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0b0b0f">
 <title>AI 점령 지도 · AI Occupied Map</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap">
 <style>
 /* Layout: 지도가 화면 전체(Maps 방식). 데스크톱은 왼쪽 떠 있는 패널, 휴대폰은 아래에서 끌어올리는 시트. 숫자는 문장 먼저, 숫자 다음, 근거는 마지막 */
 :root{
@@ -302,85 +302,156 @@ details.card[open] summary::after{transform:rotate(90deg)}
 :root{--peek:170px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
-/* ===== 편집 디자인 톤: 그로테스크 글꼴, 가는 선으로 나눈 목록, 각진 면, 그림자 없음. 색은 그대로 ===== */
-:root{--f:Inter,"Noto Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;--f-display:Inter,"Noto Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;--r-panel:0px;--r-card:0px;--r-ctl:0px;--rule:color-mix(in srgb,var(--ink) 85%,transparent);--hair:color-mix(in srgb,var(--ink) 22%,transparent)}
-body{letter-spacing:-.01em}
-.glass{-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);border:1px solid var(--hair);box-shadow:none}
-.scroll{gap:16px}
-/* 카드 → 굵은 선으로 시작하는 구획 */
-.card{background:none;border-radius:0;border-top:1.5px solid var(--rule);padding:12px 0 4px;gap:12px}
-.card .lab{font-size:11.5px;font-weight:600;color:var(--ink);letter-spacing:.02em}
-.card .lab span+span{color:var(--ink2);font-weight:500}
-.lede{font-size:21px;font-weight:700;letter-spacing:-.03em;line-height:1.3}
-.bign b{font-size:68px;letter-spacing:-.055em;font-weight:700}
-.bign b small{font-size:30px;letter-spacing:-.02em}
-.place h2{font-size:30px;letter-spacing:-.04em;line-height:1.12}
-.mine .nm{font-size:22px;letter-spacing:-.03em}
-.mine .vv b{font-size:36px;letter-spacing:-.04em}
-.stats{gap:0;border-top:1px solid var(--hair)}
-.stats div{padding:8px 10px 2px;border-left:1px solid var(--hair)}
-.stats div:first-child{padding-left:0;border-left:0}
-.stats b{font-size:20px;letter-spacing:-.03em;font-weight:700}
-/* 목록: 가는 선 */
-.hl li+li,.catrow+.catrow,.list li+li,.news li+li,.tasks li+li,.results li+li{border-top:1px solid var(--hair)}
-.list,.news,.tasks,.hl{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-.list .nm,.tasks .nm,.news .hd{font-size:15px;letter-spacing:-.02em}
+/* ===== 스위스 그래픽 스타일
+   한 가지 글꼴 가족(Pretendard: 한글 고딕 + 그로테스크 라틴), 작은 본문과 아주 큰 숫자의 대비,
+   8px 리듬, 왼쪽 정렬, 가는 선 그리드, 번호 매긴 구획, 약물(→ ● ○ — / +). 색은 그대로. ===== */
+:root{--f:"Pretendard Variable",Pretendard,Inter,"Noto Sans KR",system-ui,sans-serif;--f-display:var(--f);--r-panel:0px;--r-card:0px;--r-ctl:0px;
+  --rule:var(--ink);--hair:color-mix(in srgb,var(--ink) 20%,transparent);--u:8px}
+body{font-size:13px;line-height:1.5;letter-spacing:-.005em;font-feature-settings:"ss01","tnum" 0}
+.num,.vv,.stats b,.raters b,.tasks .vv,.list .vv{font-feature-settings:"tnum"}
+.glass{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none;border:1px solid var(--rule);box-shadow:none}
+/* 패널 = 포스터 지면 */
+@media (min-width:900px){
+  .sheet{left:0;top:0;bottom:0;width:400px;border:0;border-right:1px solid var(--rule)}
+  .legend{left:calc(400px + 24px);top:24px}
+  .timeline{left:calc(400px + 24px);right:88px;bottom:24px;max-width:600px;margin-inline:0}
+  .ctl{right:24px;top:24px}
+}
+@media (max-width:899px){.sheet{border:0;border-top:1px solid var(--rule)}.grab::before{border-radius:0;height:2px;width:32px;background:var(--ink)}}
+.scroll{padding:24px 24px 48px;gap:0;counter-reset:sec}
+.head{margin-bottom:32px}
+.head .kicker{font-size:11px;margin:0 0 16px;color:var(--ink);letter-spacing:0}
+.head .kicker b{font-weight:700;margin-right:10px}
+.head .kicker b::after{content:" —";font-weight:400}
+.logo{margin:0 0 24px;padding-top:6px}
+.badge{display:flex;background:none;border:0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);border-radius:0;padding:6px 0;margin:0;font-size:11px;color:var(--ink2)}
+.badge::before{border-radius:50%;width:6px;height:6px}
+/* 검색 */
+.search{margin-bottom:16px}
+.search input{border-radius:0;background:none;border-bottom:1px solid var(--rule);padding:12px 0 10px 26px;font-size:15px;font-weight:500;letter-spacing:-.02em}
+.search svg{left:0;width:15px;height:15px}
+.results{border-radius:0;background:var(--bg);border:1px solid var(--rule);margin-top:-1px}
+.results button{padding:9px 12px;font-size:13px}
+.results li+li{border-top:1px solid var(--hair)}
+.sugg{gap:0;margin-bottom:40px;font-size:12px;color:var(--ink2)}
+.sugg::before{content:"예 →";margin-right:8px;color:var(--ink3)}
+.sugg button{background:none;border-radius:0;padding:0;font-size:12px;color:var(--ink)}
+.sugg button:not(:last-child)::after{content:"/";color:var(--ink3);margin:0 7px}
+.sugg button:hover{background:none;text-decoration:underline;text-underline-offset:3px}
+/* 구획: 굵은 선 + 번호 */
+.card{background:none;border-radius:0;border-top:1px solid var(--rule);padding:8px 0 0;margin:0 0 48px;gap:16px;counter-increment:sec}
+.card .lab{display:grid;grid-template-columns:32px minmax(0,1fr) auto;align-items:baseline;gap:0;font-size:11px;font-weight:600;color:var(--ink);letter-spacing:0;margin-top:8px}
+.card .lab::before{content:"—";font-weight:400;color:var(--ink3)}
+.card>.lab:first-child{margin-top:0}
+.card>.lab:first-child::before{content:counter(sec,decimal-leading-zero);font-weight:500;color:var(--ink)}
+.card .lab>span:last-child:not(:first-child){color:var(--ink2);font-weight:400;text-align:right}
+.card .lab .more{font-size:11px;color:var(--ink);font-weight:500}
+.card .lab .more::after,.card>.more::after,.news .show::after{content:" →"}
+.card>.more,.news .show{color:var(--ink);font-size:12px;font-weight:500}
+.rule,.chips{font-size:11px;line-height:1.55;color:var(--ink2)}
+/* 글자 크기: 본문 작게, 숫자는 포스터처럼 크게 */
+.lede{font-size:17px;font-weight:700;letter-spacing:-.025em;line-height:1.35}
+.lede.sm{font-size:15px}
+.bign{gap:4px 12px;align-items:flex-end}
+.bign b{font-size:104px;font-weight:600;letter-spacing:-.065em;line-height:.8;margin-left:-4px}
+.bign b small{font-size:30px;font-weight:500;letter-spacing:-.02em;vertical-align:top;position:relative;top:-.02em;margin-left:4px}
+.bign span{font-size:11px;color:var(--ink2);padding-bottom:2px}
+.place{gap:16px}
+.place h2{font-size:22px;letter-spacing:-.035em;line-height:1.2}
+.place .sub{font-size:11.5px;line-height:1.55}
+.place .sub.via{font-size:11.5px}
+.x{border-radius:0;background:none;color:var(--ink);width:24px;height:24px;font-size:16px;font-weight:300}
+.chart text{font-size:9.5px}
+.readout{font-size:11px}
+/* 숫자 표: 세로 선 그리드 */
+.stats,.raters{gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--hair);margin:0}
+.stats div,.raters div{background:none;border-radius:0;padding:8px 10px 10px;border-left:1px solid var(--hair);display:grid;gap:4px;align-content:start}
+.stats div:first-child,.raters div:first-child{padding-left:0;border-left:0}
+.stats small,.raters small{font-size:10.5px;color:var(--ink2);margin:0}
+.stats b,.raters b{font-size:22px;font-weight:600;letter-spacing:-.04em;line-height:1}
+.stats em{font-size:10px}
+.obs{font-size:11.5px;display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:baseline;border-top:1px solid var(--hair);padding-top:10px}
+.obs b{font-size:28px;font-weight:600;letter-spacing:-.04em;margin:0}
+.obs span{grid-column:1/-1;font-size:11px}
+.wk{font-size:11.5px;border-top:1px solid var(--hair);padding-top:10px}
+/* 목록: 번호 + 가는 선 */
+.list,.news,.tasks,.hl{border-top:1px solid var(--hair)}
+.hl li+li,.catrow+.catrow,.list li+li,.news li+li,.tasks li+li{border-top:1px solid var(--hair)}
+.list button{grid-template-columns:32px minmax(0,1fr) auto;padding:8px 0}
+.list .no{font-size:11px;color:var(--ink2)}
+.list .nm,.tasks .nm{font-size:13px;font-weight:500;letter-spacing:-.015em}
+.list .vv,.tasks .vv{font-size:13px}
+.list .meter{grid-column:2/-1}
+.tasks button{padding:8px 0}
+.tasks .meta{font-size:10.5px}
+.hl li{font-size:12.5px;grid-template-columns:32px 1fr;padding:8px 0}
+.hl svg{width:14px;height:14px}
+.catrow .n{font-size:13px}
 .comp{gap:0;border-top:1px solid var(--hair)}
-.comp li{padding:7px 0 8px;border-bottom:1px solid var(--hair)}
-.comp li.more{border-bottom:0}
-.comp li i,.meter,.meter i,.split,.strip button{border-radius:0}
-.legend .ramp i:first-child,.legend .ramp i:last-child{border-radius:0}
-/* 작은 알약: 잉크로 채운 캡슐 */
-.pill,.news .tier{background:var(--ink);color:var(--bg);font-size:10px;font-weight:600;padding:1px 6px 1.5px;letter-spacing:0}
-.pill.r{background:var(--hot);color:var(--bg)}
-.pill.d{background:transparent;color:var(--ink);outline:1px dashed var(--ink)}
-.news .tier.hold{background:transparent;color:var(--warn);outline:1px solid var(--warn);outline-offset:-1px}
-.badge{background:none;border:1px solid var(--hair);font-size:11.5px}
+.comp li{padding:7px 0 8px;border-bottom:1px solid var(--hair);font-size:12.5px}
+.comp li.more{border-bottom:0;font-size:11px}
+.comp.sm2 li .vv small{font-size:10.5px}
+.meter{height:3px}.comp.sm2 li i{height:3px}.tasks .meter,.list .meter{height:3px}
+.comp li i,.meter,.meter i,.split,.strip button,.legend .ramp i:first-child,.legend .ramp i:last-child,.legend2 span::before{border-radius:0}
+.split{height:6px;gap:0}
+.legend2{font-size:11px;gap:14px}
+.news button,.news .nb{padding:10px 0;gap:4px}
+.news .hd{font-size:13.5px;font-weight:600;letter-spacing:-.02em;line-height:1.4}
+.news .m,.news .eff{font-size:10.5px}
+.news a.hd::after{content:" ↗";font-weight:400;color:var(--ink3)}
+/* 약물로 표시하는 태그 */
+.news .tier{background:none;color:var(--ink);padding:0;font-size:10.5px;font-weight:600}
+.news .tier::before{content:"● "}
+.news .tier.hold{color:var(--warn);outline:0}
+.news .tier.hold::before{content:"○ "}
+.pill{background:none;border:1px solid currentColor;border-radius:0;font-size:9.5px;font-weight:600;padding:0 4px;color:var(--ink2);margin-left:6px}
+.pill.r{color:var(--hot-ink)}
+.pill.d{outline:0;border-style:dashed}
 /* 버튼 */
-.btn{border-radius:0;background:var(--ink);color:var(--bg);font-size:13.5px;padding:8px 14px}
-.acts .btn{background:none;border:1px solid var(--rule);color:var(--ink);padding:6px 12px}
-.acts .btn.on{background:var(--hot);border-color:var(--hot);color:var(--bg)}
-.sugg{gap:0 14px}
-.sugg button{background:none;border-radius:0;padding:2px 0;border-bottom:1px solid var(--hair);font-size:14px}
-.sugg button:hover{background:none;border-bottom-color:var(--ink)}
-.x{border-radius:0;background:none;color:var(--ink);font-size:18px;width:28px;height:28px}
-.card .lab .more,.card>.more,.news .show{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
-/* 검색: 밑줄 입력 */
-.search input{border-radius:0;background:none;border-bottom:1.5px solid var(--rule);padding:10px 4px 10px 30px;font-size:17px;letter-spacing:-.02em}
-.search svg{left:2px}
-.results{border-radius:0;background:var(--glass-solid);border:1px solid var(--hair)}
-/* 세 연구값: 세로 선으로 나눈 표 */
-.raters{gap:0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);margin:6px 0 0}
-.raters div{background:none;border-radius:0;padding:8px 10px;border-left:1px solid var(--hair)}
-.raters div:first-child{padding-left:0;border-left:0}
-.raters b{font-size:22px;letter-spacing:-.03em;font-weight:700}
-.guard{background:none;border-radius:0;border-left:3px solid var(--ink);padding:2px 0 2px 10px;color:var(--ink2)}
-.cite{border-radius:0;background:none;border:1px solid var(--hair)}
+.btn{border-radius:0;background:none;color:var(--ink);border:1px solid var(--rule);font-size:11.5px;font-weight:600;padding:6px 10px}
+.card>.btn::after{content:" →"}
+.acts{gap:6px}
+.acts .btn{background:none;border:1px solid var(--rule);color:var(--ink);padding:5px 9px;font-size:11.5px}
+.acts .btn.on{background:var(--ink);color:var(--bg)}
 .seg{border-radius:0;background:none;border:1px solid var(--rule);padding:0}
-.seg button{border-radius:0}
+.seg button{border-radius:0;font-size:11px;padding:4px 8px}
 .seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);box-shadow:none}
-.wk{border-top:1px solid var(--hair)}
-.ad .adbox{border-radius:0}
-/* 펼침: + / − */
-details.card summary{font-size:16px;font-weight:700;letter-spacing:-.02em}
-details.card summary::after{content:"+";font-weight:300;font-size:22px;color:var(--ink);transform:none!important}
+.guard{background:none;border-radius:0;border-left:2px solid var(--ink);padding:0 0 0 10px;font-size:11px;color:var(--ink2)}
+.cite{border-radius:0;background:none;border:1px solid var(--hair);font-size:11.5px}
+.meth{font-size:12px}.meth dt{font-size:11.5px}
+details.card summary{font-size:13px;font-weight:700;letter-spacing:-.01em;display:grid;grid-template-columns:32px 1fr auto;align-items:baseline}
+details.card summary::before{content:counter(sec,decimal-leading-zero);font-size:11px;font-weight:500}
+details.card summary::after{content:"+";font-weight:300;font-size:18px;color:var(--ink);transform:none!important;line-height:1}
 details.card[open] summary::after{content:"−"}
-/* 지도 위 요소: 각지고 그림자 없이 */
-.lb.job{border-radius:0;box-shadow:none;font-weight:600;letter-spacing:-.01em}
-.lb.cat{border-radius:0;box-shadow:none;font-weight:500;letter-spacing:-.03em;border:1px solid var(--rule)}
+.mine .nm{font-size:18px;letter-spacing:-.03em}
+.mine .vv b{font-size:40px;font-weight:600;letter-spacing:-.05em}
+.mine .sub,.mine .vv small{font-size:11px}
+.ad .adbox{border-radius:0;font-size:11px}
+.foot{font-size:10.5px;text-align:left;border-top:1px solid var(--rule);padding-top:8px}
+/* 지도 위: 각진 면, 가는 선, 작은 글자 */
+.lb.job{border-radius:0;box-shadow:none;font-size:11.5px!important;font-weight:600;padding:4px 7px 4px 5px;letter-spacing:-.01em}
+.lb.job i{border-radius:0;width:7px;height:7px}
+.lb.cat{border-radius:0;box-shadow:none;font-size:15px;font-weight:600;letter-spacing:-.03em;background:var(--map-bg);border:1px solid var(--rule);padding:5px 9px 6px}
 .lb.task,.lb.task .tg{border-radius:0}
+.ctl{gap:8px}
 .ctl .grp{border-radius:0}
+.ctl button{width:40px;height:40px}
 .ctl .grp button+button{border-top:1px solid var(--hair)}
-.legend{border-radius:0}
-.legend .wm{border-top:1px solid var(--hair)}
-.timeline{border-radius:0}
-.timeline .play{border-radius:0;background:var(--ink);color:var(--bg)}
-.tip{border-radius:0}
+.legend{border-radius:0;padding:10px 12px;font-size:10.5px;gap:6px}
+.legend b{font-size:11px;font-weight:700}
+.legend .ticks{font-size:10px}
+.legend .wm{border-top:1px solid var(--hair);font-size:10px}
+.timeline{border-radius:0;padding:8px 16px 8px 8px}
+.timeline .play{border-radius:0;background:var(--ink);color:var(--bg);width:32px;height:32px}
+.timeline .yr{font-size:20px;font-weight:600;letter-spacing:-.04em;min-width:76px;line-height:1}
+.timeline .yr small{font-size:10px;letter-spacing:0;margin-top:3px}
+.timeline .tk{font-size:10px}
+.tip{border-radius:0;font-size:11px}
+.tip .k{font-size:15px}
 .lyr{border-radius:0}
 .lyrh button{border-radius:0;background:none;color:var(--ink)}
 .types button i,.ovs button i{border-radius:0}
-.legend2 span::before{border-radius:0}
-@media (max-width:899px){.grab::before{border-radius:0;height:3px;width:44px}}
+.types button,.ovs button{font-size:11px}
 </style>
 
 </head><body>
@@ -761,7 +832,7 @@ function rankCard(){
   const y4=Math.min(yi()+4,2032),rows=RJ_.map((jb,j)=>({j,now:occ(j,year),fut:occ(j,y4)})).map(o=>({...o,gain:o.fut-o.now})).sort((a,b)=>rankMode==='now'?b.now-a.now:b.gain-a.gain);
   const ul=el('ul','list');(rankAll?rows:rows.slice(0,5)).forEach((o,i)=>{const li=el('li'),b=el('button');b.type='button';
     const vv=el('span','vv');vv.append(rankMode==='now'?pct(o.now)+'%':`+${pct(o.gain)}%p`,el('small',null,rankMode==='now'?`→ ${pct(o.fut)}`:`${y4}`));
-    b.append(el('span','no',i+1),el('span','nm',RJ_[o.j].name),vv,meter(o.now,o.fut));b.onclick=()=>pickJob(o.j);li.appendChild(b);ul.appendChild(li)});
+    b.append(el('span','no',String(i+1).padStart(2,'0')),el('span','nm',RJ_[o.j].name),vv,meter(o.now,o.fut));b.onclick=()=>pickJob(o.j);li.appendChild(b);ul.appendChild(li)});
   const more=el('button','more',rankAll?'접기':`${NJ}개 모두 보기`);more.type='button';more.onclick=()=>{rankAll=!rankAll;render()};
   c.append(ul,more);more.style.justifySelf='start';more.className='more';more.style.all='unset';more.style.cursor='pointer';more.style.color='var(--tint)';more.style.fontSize='14px';return c}
 let newsAll=false;
@@ -810,7 +881,7 @@ function flashCard(){const c=el('section','card place');const top=el('div','top'
   c.appendChild(el('p','rule','이 소식이 다룬 업무를 하는 동네만 밝게 남겼어요. 업무 비중이 큰 직업 지역 순이에요.'));
   const rows=RJ_.map((jb,j)=>({j,w:jb.tasks.filter(t=>flash.has(t[1])).reduce((a,t)=>a+t[2],0)})).filter(o=>o.w>=.07).sort((a,b)=>b.w*RJ_[b.j].ws-a.w*RJ_[a.j].ws);
   const ul=el('ul','list');rows.slice(0,8).forEach((o,i)=>{const li=el('li'),b=el('button');b.type='button';const vv=el('span','vv');vv.append(`${pct(o.w)}%`,el('small',null,'업무 비중'));
-    b.append(el('span','no',i+1),el('span','nm',RJ_[o.j].name),vv);b.onclick=()=>pickJob(o.j);li.appendChild(b);ul.appendChild(li)});c.appendChild(ul);
+    b.append(el('span','no',String(i+1).padStart(2,'0')),el('span','nm',RJ_[o.j].name),vv);b.onclick=()=>pickJob(o.j);li.appendChild(b);ul.appendChild(li)});c.appendChild(ul);
   c.appendChild(el('div','chips',[...flash].map(r=>RN[r][0]).join(' · ')));return c}
 function jobCard(j){
   const sk=selVia?smOf(j,selVia.k):null,f=(y,s=0)=>sk?occS(sk,y,s):occ(j,y,s);
@@ -868,7 +939,7 @@ function taskCard(r){
   const bn=el('div','bign');const b=el('b','num');b.append(String(pct(v)),el('small',null,'%'));bn.append(b,el('span',null,`${yi()} ${tag(year)} 노출도 · ${y4}년 ${pct(pT(r,y4))}%`));
   c.append(top,lede,bn,trend((y,s)=>pT(r,y,s)),el('div','lab',`이 업무를 하는 직업 ${TJ[r].size}개`));
   const ul=el('ul','list');[...TJ[r]].sort((a,b)=>RJ_[b].ws*RJ_[b].w41[r]-RJ_[a].ws*RJ_[a].w41[r]).forEach((j,i)=>{const t=RJ_[j].tasks.find(t=>t[1]===r),li=el('li'),bt=el('button');bt.type='button';
-    const vv=el('span','vv');vv.append(`${pct(RJ_[j].w41[r]||0)}%`,el('small',null,'비중'));bt.append(el('span','no',i+1),el('span','nm',RJ_[j].name),vv);bt.onclick=()=>pickJob(j);li.appendChild(bt);ul.appendChild(li)});
+    const vv=el('span','vv');vv.append(`${pct(RJ_[j].w41[r]||0)}%`,el('small',null,'비중'));bt.append(el('span','no',String(i+1).padStart(2,'0')),el('span','nm',RJ_[j].name),vv);bt.onclick=()=>pickJob(j);li.appendChild(bt);ul.appendChild(li)});
   c.append(ul,el('p','rule','지도에서 이 업무를 하는 동네만 밝게 남아요.'));return c}
 
 function render(){
