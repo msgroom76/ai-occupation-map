@@ -122,15 +122,14 @@ button,input{font:inherit;color:inherit}
 .scroll{overflow-y:auto;overscroll-behavior:contain;padding:18px 16px 24px;display:grid;gap:14px;align-content:start}
 .head h1{margin:0;font-family:var(--f-display);font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
 .head p{margin:2px 0 0;color:var(--ink2);font-size:14px}
-.logo{display:grid;grid-template-columns:auto 1fr;column-gap:15px;width:min(100%,300px);color:var(--ink);font-weight:700;padding-top:4px}
+.head .kicker{margin:0 0 12px;font-size:14px;color:var(--ink2);letter-spacing:-.01em;word-break:keep-all}
+.head .kicker b{font-weight:700;margin-right:6px}
+.logo{display:grid;grid-template-columns:auto auto;column-gap:9px;width:max-content;color:var(--ink);font-weight:700;padding-top:2px}
 .logo h1{display:contents}
-.logo .ai{grid-row:1/3;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:98.6px;line-height:1;letter-spacing:-.04em;margin:-8.8px 0 0 -5px;align-self:start}
-.logo .w{border-bottom:2px solid currentColor;line-height:1;white-space:nowrap}
-.logo .en{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:34px;letter-spacing:-.035em;padding:0 0 6px}
-.logo .en+.en{padding-top:5px}
-.logo .ko{grid-column:2;font-family:'Noto Sans KR',sans-serif;font-size:27px;letter-spacing:-.04em;padding:7px 0 7px}
-
-.head .tagline{grid-column:2;margin:9px 0 0;font-size:13px;font-weight:700;color:var(--ink);letter-spacing:-.02em;word-break:keep-all}
+.logo .ai{grid-row:1/3;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:59.7px;line-height:1;letter-spacing:-.04em;margin:-4.9px 0 0 -3px;align-self:start}
+.logo .w{line-height:1;white-space:nowrap}
+.logo .en{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:24px;letter-spacing:-.03em}
+.logo .en+.en{padding-top:2px}
 .badge{display:inline-flex;gap:6px;align-items:center;margin-top:8px;font-size:12px;color:var(--ink2);background:var(--fill);border-radius:999px;padding:3px 10px}
 .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--warn)}
 .search{position:relative}
@@ -352,8 +351,8 @@ details.card[open] summary::after{transform:rotate(90deg)}
     <button type="button" class="grab" id="grab" aria-label="패널 크기 바꾸기"></button>
     <div class="scroll" id="scroll">
       <header class="head">
-        <div class="logo"><h1 aria-label="AI 점령 지도 · AI Occupied Map"><span class="ai" aria-hidden="true">AI</span><span class="w en" aria-hidden="true">Occupied</span><span class="w en" aria-hidden="true">Map</span><span class="w ko" aria-hidden="true">점령 지도</span></h1>
-        <p class="tagline">사람의 일, AI가 어디까지 장악했나?</p></div>
+        <p class="kicker"><b>AI 점령 지도</b> 사람의 일, AI가 어디까지 장악했나?</p>
+        <div class="logo"><h1 aria-label="AI 점령 지도 · AI Occupied Map"><span class="ai" aria-hidden="true">AI</span><span class="w en" aria-hidden="true">Occupied</span><span class="w en" aria-hidden="true">Map</span></h1></div>
         <span class="badge" id="badge"></span>
       </header>
       <div class="search">
