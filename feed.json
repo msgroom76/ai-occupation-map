@@ -1,0 +1,15 @@
+{
+ "updated": "2026-10-18T21:30:00+09:00",
+ "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
+ "items": [
+  {"id":"2026-10-16-gemini4-argon","ts":"2026-10-16T09:00:00+09:00","src":"thunai.ai (요약 매체)","url":"https://www.thunai.ai/blog/gemini-argon-4-enterprise-ai-orchestration","tier":"확인 필요","sig":"능력","us":true,"hd":"구글, 기업용 Gemini 4 Argon 전 세계 정식 제공 시작","r":["B2","B9","C5"],"st":"hold","note":"구글 공식 발표 확인 전"},
+  {"id":"2026-10-16-copilot-studio","ts":"2026-10-16T09:00:00+09:00","src":"NeoTeo (요약 매체)","url":"https://www.neoteo.com/en/microsoft-announces-persistent-agents-for-copilot-studio","tier":"확인 필요","sig":"능력","us":true,"hd":"마이크로소프트, Copilot Studio에 상시 작동 에이전트(계정·공유 메모리·트리거) 미리보기","r":["C9","D15"],"st":"hold","note":"MS 공식 발표 확인 전"},
+  {"id":"2026-10-16-chatgpt-chrome","ts":"2026-10-16T09:00:00+09:00","src":"PiunikaWeb","url":"https://piunikaweb.com/2026/10/16/chatgpt-chrome-extension-tab-control-automation","tier":"확인 필요","sig":"능력","us":true,"hd":"오픈AI, ChatGPT 크롬 확장에 탭 제어·브라우저 자동화 추가","r":["A1","C5"],"st":"hold","note":"오픈AI 공식 발표 확인 전"},
+  {"id":"2026-10-16-vertafore","ts":"2026-10-16T09:00:00+09:00","src":"FinTech Global","url":"https://fintech.global/2026/10/16/vertafore-launches-ai-agents-to-automate-insurance-policy-checks","tier":"신뢰 매체","sig":"도입","us":true,"hd":"보험 소프트웨어 기업 버타포어, 증권 데이터 입력·검증 AI 에이전트 2종 출시","r":["B2","B3"],"st":"pending"},
+  {"id":"2026-10-16-servicenow","ts":"2026-10-16T09:00:00+09:00","src":"CXOToday","url":"https://cxotoday.com/media-coverage/servicenow-debuts-3rd-gen-employee-ai-harness-to-democratize-no-code-enterprise-agentic-workflows","tier":"신뢰 매체","sig":"도입","us":true,"hd":"서비스나우, 직원이 코딩 없이 업무용 에이전트를 만드는 도구 발표","r":["D15","C9"],"st":"pending"},
+  {"id":"2026-10-14-deloitte-uk","ts":"2026-10-14T08:40:00+09:00","src":"글로벌이코노믹 (블룸버그·FT 인용)","url":"https://www.g-enews.com/article/Global-Biz/2026/10/2026101408403596729a1f309431_1","tier":"신뢰 매체","sig":"고용","us":false,"hd":"딜로이트 조사: 영국 대기업 CFO 52%가 \"AI 도입으로 내년 인력 감축\" 예상","r":[],"st":"none","note":"고용 신호 · 노출도 수치 영향 없음"},
+  {"id":"2026-10-14-imf-tax","ts":"2026-10-18T08:00:00+09:00","src":"머니투데이","url":"https://www.mt.co.kr/world/2026/10/18/2026101515475292816","tier":"신뢰 매체","sig":"정책","us":false,"hd":"IMF 패널 \"AI가 노동을 대체하면 세수 3~8% 줄 수 있어\" 과세 체계 재설계 제안","r":[],"st":"none","note":"정책 동향 · 노출도 수치 영향 없음"},
+  {"id":"2026-10-13-audit-youth","ts":"2026-10-13T15:38:00+09:00","src":"아주경제","url":"https://www.ajunews.com/view/20261013153817871","tier":"신뢰 매체","sig":"고용","us":false,"kr":true,"hd":"국정감사: 최근 4년 청년 일자리 28.5만 개 감소, 94%가 AI 노출 높은 업종 (한국은행 분석 인용)","r":[],"st":"none","note":"국내 고용 신호 · 노출도 수치 영향 없음"},
+  {"id":"2026-10-08-gemini-agent","ts":"2026-10-08T09:00:00+09:00","src":"TechCrunch","url":"https://techcrunch.com/2026/10/08/google-brings-agentic-ai-to-gemini-starting-with-businesses/","tier":"신뢰 매체","sig":"능력","us":true,"hd":"구글, Gemini에 업무 계획·분배하는 에이전트 기능 도입 (기업 고객부터)","r":["B9","D9","C5"],"st":"pending"}
+ ]
+}
