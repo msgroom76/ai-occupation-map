@@ -3,7 +3,7 @@
 <meta property="og:type" content="website"><meta property="og:title" content="AI 점령 지도 · AI Occupied Map"><meta property="og:description" content="사람의 일, AI가 어디까지 장악했나? 한국 직업 163개의 AI 노출도와 실제 사용을 지도로.">
 <meta property="og:image" content="og.png"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0b0b0f">
 <title>AI 점령 지도 · AI Occupied Map</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
 <style>
 /* Layout: 지도가 화면 전체(Maps 방식). 데스크톱은 왼쪽 떠 있는 패널, 휴대폰은 아래에서 끌어올리는 시트. 숫자는 문장 먼저, 숫자 다음, 근거는 마지막 */
 :root{
@@ -301,6 +301,86 @@ details.card[open] summary::after{transform:rotate(90deg)}
 }
 :root{--peek:170px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ===== 편집 디자인 톤: 그로테스크 글꼴, 가는 선으로 나눈 목록, 각진 면, 그림자 없음. 색은 그대로 ===== */
+:root{--f:Inter,"Noto Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;--f-display:Inter,"Noto Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;--r-panel:0px;--r-card:0px;--r-ctl:0px;--rule:color-mix(in srgb,var(--ink) 85%,transparent);--hair:color-mix(in srgb,var(--ink) 22%,transparent)}
+body{letter-spacing:-.01em}
+.glass{-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);border:1px solid var(--hair);box-shadow:none}
+.scroll{gap:16px}
+/* 카드 → 굵은 선으로 시작하는 구획 */
+.card{background:none;border-radius:0;border-top:1.5px solid var(--rule);padding:12px 0 4px;gap:12px}
+.card .lab{font-size:11.5px;font-weight:600;color:var(--ink);letter-spacing:.02em}
+.card .lab span+span{color:var(--ink2);font-weight:500}
+.lede{font-size:21px;font-weight:700;letter-spacing:-.03em;line-height:1.3}
+.bign b{font-size:68px;letter-spacing:-.055em;font-weight:700}
+.bign b small{font-size:30px;letter-spacing:-.02em}
+.place h2{font-size:30px;letter-spacing:-.04em;line-height:1.12}
+.mine .nm{font-size:22px;letter-spacing:-.03em}
+.mine .vv b{font-size:36px;letter-spacing:-.04em}
+.stats{gap:0;border-top:1px solid var(--hair)}
+.stats div{padding:8px 10px 2px;border-left:1px solid var(--hair)}
+.stats div:first-child{padding-left:0;border-left:0}
+.stats b{font-size:20px;letter-spacing:-.03em;font-weight:700}
+/* 목록: 가는 선 */
+.hl li+li,.catrow+.catrow,.list li+li,.news li+li,.tasks li+li,.results li+li{border-top:1px solid var(--hair)}
+.list,.news,.tasks,.hl{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.list .nm,.tasks .nm,.news .hd{font-size:15px;letter-spacing:-.02em}
+.comp{gap:0;border-top:1px solid var(--hair)}
+.comp li{padding:7px 0 8px;border-bottom:1px solid var(--hair)}
+.comp li.more{border-bottom:0}
+.comp li i,.meter,.meter i,.split,.strip button{border-radius:0}
+.legend .ramp i:first-child,.legend .ramp i:last-child{border-radius:0}
+/* 작은 알약: 잉크로 채운 캡슐 */
+.pill,.news .tier{background:var(--ink);color:var(--bg);font-size:10px;font-weight:600;padding:1px 6px 1.5px;letter-spacing:0}
+.pill.r{background:var(--hot);color:var(--bg)}
+.pill.d{background:transparent;color:var(--ink);outline:1px dashed var(--ink)}
+.news .tier.hold{background:transparent;color:var(--warn);outline:1px solid var(--warn);outline-offset:-1px}
+.badge{background:none;border:1px solid var(--hair);font-size:11.5px}
+/* 버튼 */
+.btn{border-radius:0;background:var(--ink);color:var(--bg);font-size:13.5px;padding:8px 14px}
+.acts .btn{background:none;border:1px solid var(--rule);color:var(--ink);padding:6px 12px}
+.acts .btn.on{background:var(--hot);border-color:var(--hot);color:var(--bg)}
+.sugg{gap:0 14px}
+.sugg button{background:none;border-radius:0;padding:2px 0;border-bottom:1px solid var(--hair);font-size:14px}
+.sugg button:hover{background:none;border-bottom-color:var(--ink)}
+.x{border-radius:0;background:none;color:var(--ink);font-size:18px;width:28px;height:28px}
+.card .lab .more,.card>.more,.news .show{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+/* 검색: 밑줄 입력 */
+.search input{border-radius:0;background:none;border-bottom:1.5px solid var(--rule);padding:10px 4px 10px 30px;font-size:17px;letter-spacing:-.02em}
+.search svg{left:2px}
+.results{border-radius:0;background:var(--glass-solid);border:1px solid var(--hair)}
+/* 세 연구값: 세로 선으로 나눈 표 */
+.raters{gap:0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);margin:6px 0 0}
+.raters div{background:none;border-radius:0;padding:8px 10px;border-left:1px solid var(--hair)}
+.raters div:first-child{padding-left:0;border-left:0}
+.raters b{font-size:22px;letter-spacing:-.03em;font-weight:700}
+.guard{background:none;border-radius:0;border-left:3px solid var(--ink);padding:2px 0 2px 10px;color:var(--ink2)}
+.cite{border-radius:0;background:none;border:1px solid var(--hair)}
+.seg{border-radius:0;background:none;border:1px solid var(--rule);padding:0}
+.seg button{border-radius:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);box-shadow:none}
+.wk{border-top:1px solid var(--hair)}
+.ad .adbox{border-radius:0}
+/* 펼침: + / − */
+details.card summary{font-size:16px;font-weight:700;letter-spacing:-.02em}
+details.card summary::after{content:"+";font-weight:300;font-size:22px;color:var(--ink);transform:none!important}
+details.card[open] summary::after{content:"−"}
+/* 지도 위 요소: 각지고 그림자 없이 */
+.lb.job{border-radius:0;box-shadow:none;font-weight:600;letter-spacing:-.01em}
+.lb.cat{border-radius:0;box-shadow:none;font-weight:500;letter-spacing:-.03em;border:1px solid var(--rule)}
+.lb.task,.lb.task .tg{border-radius:0}
+.ctl .grp{border-radius:0}
+.ctl .grp button+button{border-top:1px solid var(--hair)}
+.legend{border-radius:0}
+.legend .wm{border-top:1px solid var(--hair)}
+.timeline{border-radius:0}
+.timeline .play{border-radius:0;background:var(--ink);color:var(--bg)}
+.tip{border-radius:0}
+.lyr{border-radius:0}
+.lyrh button{border-radius:0;background:none;color:var(--ink)}
+.types button i,.ovs button i{border-radius:0}
+.legend2 span::before{border-radius:0}
+@media (max-width:899px){.grab::before{border-radius:0;height:3px;width:44px}}
 </style>
 
 </head><body>
