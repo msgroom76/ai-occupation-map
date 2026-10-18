@@ -726,7 +726,10 @@ vp.addEventListener('pointerup',up);vp.addEventListener('pointercancel',up);vp.a
 function pickI(e){const s=base()*view.k,x=Math.floor((e.clientX-view.tx)/s),y=Math.floor((e.clientY-view.ty)/s);return (x<0||y<0||x>=W||y>=H)?-1:y*W+x}
 function hoverAt(e){const tip=$('#tip'),i=pickI(e),r=i<0?-1:L.RJ[i];if(r<0||r>=NJ){tip.hidden=true;return}
   const tt=RJ_[r].tasks[Math.min(L.GT[i]&7,RJ_[r].tasks.length-1)],pv=ptj(r,tt[1],year);tip.hidden=false;tip.innerHTML='';
-  const k=el('div','k',`${tt[0]} ${pct(pv)}%`);tip.append(k,el('div','s',`이 동네의 업무 · ${CAT[tt[1][0]][0]} · ${SUB.has(tt[1])?'대체형':'보완형'}`),el('div',null,`${RJ_[r].name} · 직업 노출도 ${pct(occ(r,year))}%`));
+  const sm=(RJ_[r].smalls||[]).length>1?RJ_[r].smalls.filter(x=>!/^기타/.test(x[1])).slice(0,3).map(x=>`${x[1].replace(/ 관련/g,'').replace(/ 종사자$/,'').replace(/‧/g,'·')} ${pct(SMD[x[0]]?occS(x[0],year):occ(r,year))}%`):[];
+  tip.append(el('div','k',`${RJ_[r].name} ${pct(occ(r,year))}%`),el('div','s',`${GNAME[RJ_[r].group]} 구역 · 취업자 ${fw(RJ_[r].ws)}만 명`));
+  if(sm.length)tip.append(el('div',null,'세부 직업 → '+sm.join(' / ')));
+  if(OVL.tasks)tip.append(el('div','s',`업무 칸: ${tt[0]} ${pct(pv)}% · ${SUB.has(tt[1])?'대체형':'보완형'}`));
   const w=tip.offsetWidth,h=tip.offsetHeight;let lx=e.clientX+16,ly=e.clientY-h-16;if(lx+w>innerWidth-8)lx=e.clientX-w-16;if(ly<8)ly=e.clientY+20;tip.style.left=lx+'px';tip.style.top=ly+'px';
   if(e.pointerType!=='mouse'){clearTimeout(tip._t);tip._t=setTimeout(()=>tip.hidden=true,3000)}}
 
