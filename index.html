@@ -686,9 +686,9 @@ function jobCard(j){
     v.textContent=`${nm}(으)로 찾았어요. 이 지역 전체 기준으로 계산했어요.`;tt.appendChild(v);
     if(selVia.d&&cm.detail[selVia.d]){const dv=el('div','sub via');const od=occT(cm.detail[selVia.d],year);dv.innerHTML=`'${selVia.d}' 업무 구성만 따로 보면 <b>${pct(od)}%</b>예요. (시연용 추정)`;tt.appendChild(dv)}}
   const r40=reach(y=>occ(j,y),.4),f40=reach(y=>occ(j,y,1),.4),s40=reach(y=>occ(j,y,-1),.4);
-  const lede=el('p','lede');lede.innerHTML=v>=.5?`이 일의 절반 이상을 AI가 해낼 수 있어요.`:v>=.4?`이 일의 40%\u2060 이상을 AI가 해낼 수 있어요.`:r40?`${r40}년쯤 이 일의 40%\u2060를 AI가 해낼 수 있게 돼요.`:`아직 대부분 사람의 몫이에요.`;
+  const lede=el('p','lede');lede.innerHTML=v>=.5?`이 일의 절반 이상을 AI가 해낼 수 있어요.`:v>=.4?`이 일의 40%\u2060 이상을 AI가 해낼 수 있어요.`:r40&&r40<=yi()?`올해 안에 이 일의 40%\u2060를 AI가 해낼 수 있게 될 전망이에요.`:r40?`${r40}년쯤 이 일의 40%\u2060를 AI가 해낼 수 있게 돼요.`:`아직 대부분 사람의 몫이에요.`;
   const bn=el('div','bign');const b=el('b','num');b.append(String(pct(v)),el('small',null,'%'));bn.append(b,el('span',null,`${yi()} ${tag(year)} 노출도`));
-  const st=el('div','stats');[[`${y4} 예측`,`${pct(occ(j,y4))}%`,`범위 ${pct(occ(j,y4,-1))}–${pct(occ(j,y4,1))}`],['40% 도달',r40===null?'2045 이후':r40<=2026?'이미 도달':`${r40}년`,r40&&r40>2026?`범위 ${f40}–${s40??'2045+'}`:r40?`${r40}년`:''],['남은 구역',`${100-pct(v)}%`,'사람 몫']].forEach(([a,bb,cc])=>{const d=el('div');d.append(el('small',null,a),el('b','num',bb),el('em',null,cc));st.appendChild(d)});
+  const st=el('div','stats');[[`${y4} 예측`,`${pct(occ(j,y4))}%`,`범위 ${pct(occ(j,y4,-1))}–${pct(occ(j,y4,1))}`],['40% 도달',r40===null?'2045 이후':v>=.4?'이미 도달':r40<=yi()?'올해 안':`${r40}년`,r40&&r40>2026?`범위 ${f40}–${s40??'2045+'}`:r40?`${r40}년`:''],['남은 구역',`${100-pct(v)}%`,'사람 몫']].forEach(([a,bb,cc])=>{const d=el('div');d.append(el('small',null,a),el('b','num',bb),el('em',null,cc));st.appendChild(d)});
   let sub=0,aug=0;RJ_[j].tasks.forEach(t=>{const vv=t[2]/t_*p(t[1],year);if(SUB.has(t[1]))sub+=vv;else aug+=vv});
   const sp=el('div','split');[[sub,'var(--hot)'],[aug,'var(--tint)'],[1-sub-aug,'var(--fill2)']].forEach(([w,cc])=>{const i=el('i');i.style.width=(w*100).toFixed(1)+'%';i.style.background=cc;sp.appendChild(i)});
   const lg=el('div','legend2');[[`대체형 ${pct(sub)}%`,'var(--hot)'],[`보완형 ${pct(aug)}%`,'var(--tint)'],[`사람 몫 ${100-pct(sub)-pct(aug)}%`,'var(--ink3)']].forEach(([t,cc])=>{const s=el('span',null,t);s.style.setProperty('--c',cc);lg.appendChild(s)});
