@@ -227,6 +227,14 @@ button,input{font:inherit;color:inherit}
 .comp li i{background:linear-gradient(var(--ink3),var(--ink3)) no-repeat left/100% 100%;opacity:.45}
 .comp li.more{display:block;color:var(--ink3);font-size:12.5px}
 .comp.sm2 li i{opacity:1;height:5px}
+.raters{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 4px}
+.raters div{background:var(--fill2);border-radius:12px;padding:9px 11px}
+.raters small{display:block;font-size:11.5px;color:var(--ink3);margin-bottom:2px}
+.raters b{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums}
+.raters .u b{color:var(--tint)}
+.obs{margin-top:10px;font-size:13px;color:var(--ink2);line-height:1.45}
+.obs b{font-size:17px;color:var(--tint);margin-right:6px;font-variant-numeric:tabular-nums}
+.obs span{display:block;font-size:12px;color:var(--ink3)}
 .comp.sm2 li.on .nm{font-weight:600}
 .comp.sm2 li .vv small{color:var(--ink3);font-size:12px}
 .x{all:unset;cursor:pointer;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--fill2);color:var(--ink2);flex:none}
@@ -291,7 +299,7 @@ details.card[open] summary::after{transform:rotate(90deg)}
   <div class="vp" id="vp" tabindex="0" aria-label="AI 점령지도. 직업 영역을 누르면 그 직업이 선택됩니다.">
     <div class="stack" id="stack">
       <canvas id="fab" width="1800" height="2400"></canvas>
-      <img id="roads" alt="" draggable="false" src="city_roads.png?v=20261019a">
+      <img id="roads" alt="" draggable="false" src="city_roads.png?v=20261019b">
       <canvas id="tb" width="1800" height="2400" hidden></canvas>
       <canvas id="jb" width="1800" height="2400"></canvas>
       <canvas id="grp" width="1800" height="2400"></canvas>
@@ -381,7 +389,7 @@ const binC=v=>RAMP[TH][bin(v)];
 const lum=c=>(c[0]*.299+c[1]*.587+c[2]*.114);
 
 // ---------- 데이터 ----------
-const cm=await (await fetch('city_meta.json?v=20261019a')).json();
+const cm=await (await fetch('city_meta.json?v=20261019b')).json();
 const getJ=async(u,d)=>{try{const r=await fetch(u,{cache:'no-cache'});if(!r.ok)throw 0;return await r.json()}catch(e){return d}};
 const [FEED,IDX,CFG]=await Promise.all([getJ('feed.json',{items:[]}),getJ('index.json',{weeks:[]}),getJ('config.json',{})]);
 FEED.items.sort((a,b)=>b.ts<a.ts?-1:1);
@@ -425,7 +433,7 @@ const vp=$('#vp'),stack=$('#stack'),fctx=$('#fab').getContext('2d'),octx=$('#ovl
 const out=fctx.createImageData(W,H),out32=new Uint32Array(out.data.buffer);
 const pack=(c,f=1)=>(255<<24)|(Math.min(255,Math.round(c[2]*f))<<16)|(Math.min(255,Math.round(c[1]*f))<<8)|Math.min(255,Math.round(c[0]*f));
 {
-  const img=new Image();img.src='city_index.png?v=20261019a';await img.decode();
+  const img=new Image();img.src='city_index.png?v=20261019b';await img.decode();
   const oc=document.createElement('canvas');oc.width=W;oc.height=H;const ox=oc.getContext('2d',{willReadFrequently:true});ox.drawImage(img,0,0);
   const raw=ox.getImageData(0,0,W,H).data,RJ=new Uint8Array(W*H),GT=new Uint8Array(W*H),BN=new Uint8Array(W*H);
   for(let i=0,k=0;i<W*H;i++,k+=4){RJ[i]=raw[k];GT[i]=raw[k+1];BN[i]=raw[k+2]}
@@ -609,7 +617,9 @@ function summaryCard(){
   const lede=el('p','lede');lede.innerHTML=`사람이 하던 일의 <span style="white-space:nowrap"><em>${pct(total(year))}%</em>를</span> AI가 이미 해낼 수 있어요.`;
   if(yi()!==2026)lede.innerHTML=`${yi()}년에는 사람이 하던 일의 <span style="white-space:nowrap"><em>${pct(total(year))}%</em>를</span> AI가 해낼 수 있어요.`;
   const bn=el('div','bign');const b=el('b','num');b.append(String(pct(total(year))),el('small',null,'%'));bn.append(b,el('span',null,`${yi()} ${tag(year)} · ${half?`절반을 넘는 해 ${half}년 (${hf??'—'}–${hs??'2045+'})`:`2045년까지 최대 ${pct(total(2045))}%`}`));
-  c.append(lede,bn,trend((y,s)=>total(y,s)));
+  const OBT=RJ_.reduce((a,jb,j)=>a+jb.ws*Math.min(jb.ob||0,occ(j,2026)),0)/WS;
+  const ob=el('div','obs');ob.innerHTML=`<b>${pct(OBT)}%</b> 실제 사용 확인 <span>AI 사용 기록에서 이미 쓰이는 게 확인된 몫이에요. 해낼 수 있는 몫(${pct(t26)}%) 중 일부예요.</span>`;
+  c.append(lede,bn,trend((y,s)=>total(y,s)),ob);
   if(WNOW){const wk=el('div','wk');const tot=total(2026),prev=WPREV&&WPREV.total!=null?WPREV.total:null;
     const wl=el('a',null,`주간 지수 ${+WNOW.week.split('-W')[1]}주차`);wl.href=WNOW.total!=null?'/w/'+WNOW.week:'/w/';wl.style.cssText='color:var(--ink);font-weight:600';wk.append(wl,` · ${fmtD(WNOW.date)} 발표 · ${(tot*100).toFixed(1)}%`,prev!=null?el('span','d',` (지난주 대비 ${tot-prev>=0?'+':''}${((tot-prev)*100).toFixed(1)}%p)`):el('span','d',' (첫 발표)'));c.appendChild(wk)}
   c.append(el('p','rule',`노출도는 AI가 기술적으로 해낼 수 있는 몫이에요. 실제로 일자리가 사라진 비율은 아니에요. 대상: 한국표준직업분류 중분류 ${NJ}개, 취업자 ${Math.round(WS).toLocaleString()}만 명(2025년 하반기, 군인 제외). 넓이가 실제 취업자 수예요.`));
@@ -690,8 +700,9 @@ function aboutCard(){
   const d=el('details','card');d.innerHTML=`<summary>이 지도에 대해 · 인용하기</summary>`;const m=el('div','meth');
   m.innerHTML=`<dl>
    <div><dt>무엇을 재나요</dt><dd>AI 노출도. 일의 몇 %를 생성형 AI(언어 모델과 그 위에 만든 소프트웨어)가 사람 수준으로 해내거나 시간을 절반 이상 줄일 수 있는지예요. 실제로 일자리가 사라진 비율이 아니고, 도입 비용·규제·실제 도입 속도는 반영하지 않았어요. 로봇·자율주행 같은 물리 자동화는 이 지표에 거의 잡히지 않아요.</dd></div>
-   <div><dt>노출도 출처</dt><dd>Eloundou·Manning·Mishkin·Rock, 「GPTs are GPTs」(Science, 2024). 미국 O*NET 업무 약 1만 9천 개를 하나씩 평가한 공개 데이터(MIT 라이선스)예요. 직업별 수치는 이 연구의 직업 단위 β(직접 노출 + 도구가 있으면 노출의 절반)를 그대로 써요.</dd></div>
-   <div><dt>업무 구성</dt><dd>미국 O*NET 30.0의 직업별 업무 목록과 중요도를 41개 일반업무활동으로 묶었어요. 한국 소분류(163개)마다 해당하는 미국 직업을 연결하고(148개 연결, 나머지 15개는 중분류 값 사용) 미국 고용(OEWS 2021) 비중으로 합쳤어요. 중분류 값은 소분류 값을 한국 취업자 수로 가중 평균해요. 연결표: <a href="ksco_soc_map.json" target="_blank" rel="noopener">ksco_soc_map.json</a></dd></div>
+   <div><dt>노출도 출처 (두 연구의 평균)</dt><dd>① Eloundou·Manning·Mishkin·Rock, 「GPTs are GPTs」(Science, 2024). 미국 O*NET 업무 약 1만 9천 개를 하나씩 평가한 공개 데이터(MIT 라이선스). 직업 단위 β(직접 노출 + 도구가 있으면 노출의 절반)를 써요. ② 국제노동기구(ILO) Gmyrek 외, 「Generative AI and Jobs: A Refined Global Index」(2025, Working Paper 140). 국제표준직업분류(ISCO-08) 427개 직업의 업무 3,265개 점수(CC BY 4.0). 한국 표준직업분류는 국제분류를 바탕으로 하므로 소분류마다 해당 국제 직업을 연결했어요(저희 연결, 국가데이터처 공식 연계표로 교체 예정). 두 연구는 소분류 단위에서 상관계수 0.88로 대체로 일치하고, 2026년 값은 둘의 평균이에요.</dd></div>
+   <div><dt>실제 사용 확인</dt><dd>Anthropic 경제지수(2026.3, CC BY) 직업별 관측 노출도. 노출된 업무 중 실제 업무용 Claude 대화에서 확인된 것만 센 값이에요(자동화는 1, 보조는 0.5). 한 회사 이용자 기준이라 실제보다 낮게 잡혀요. 노출도보다 높게 나오면 노출도에 맞춰 표시해요. Microsoft Copilot 사용 기반 적용도(Tomlinson 외, 2025)와 중분류 단위 상관계수 0.76으로 교차 확인했어요.</dd></div>
+   <div><dt>업무 구성</dt><dd>미국 O*NET 30.0의 직업별 업무 목록과 중요도를 41개 일반업무활동으로 묶었어요. 한국 소분류(163개)마다 해당하는 미국 직업을 연결하고(148개 연결, 나머지 15개는 중분류 값 사용) 미국 고용(OEWS 2021) 비중으로 합쳤어요. 중분류 값은 소분류 값을 한국 취업자 수로 가중 평균해요. 연결표(미국·국제 분류): <a href="ksco_soc_map.json" target="_blank" rel="noopener">ksco_soc_map.json</a></dd></div>
    <div><dt>직업과 전체</dt><dd>직업 노출도 = 41개 업무 비중 × 업무 노출도, 연구의 직업 단위 값에 맞춰 보정. 전체 = 한국 실제 취업자 수로 가중 평균.</dd></div>
    <div><dt>시간 축 (가정)</dt><dd>업무마다 2023년 = 언어 모델 단독(α), 2026년 = 도구까지 쓴 경우(β), 상한 = 모든 보조 소프트웨어가 갖춰진 경우(γ)로 놓고 S자 곡선을 그렸어요. 2026년 값과 앞으로의 경로는 연구값을 시간에 놓은 저희의 가정이에요. 범위는 도달 시점을 ±1.5년 흔든 값이에요.</dd></div>
    <div><dt>대체형·보완형</dt><dd>AI가 그 일을 대신하는 업무와, 사람이 AI와 함께 더 하게 되는 업무를 나눈 저희의 분류예요.</dd></div>
@@ -700,7 +711,7 @@ function aboutCard(){
    <div><dt>지도</dt><dd>실제 지역이 아닌 가상의 도시예요. 큰 구역 = 표준직업분류 대분류(9개), 테두리 영역 = 중분류(56개), 넓이 = 실제 취업자 수.</dd></div></dl>`;
   
   m.appendChild(el('p','guard','직업 단위의 경향이에요. 개인 평가나 인원 감축의 근거로 쓸 수 없어요.'));
-  const cite=`출처: AI 점령지도(포스트오피스), ${ASOF} 기준, ${VER}. 노출도: Eloundou 외(2024, Science) 직업별 생성형 AI 노출도, 업무 구성: 미국 O*NET 30.0, 취업자 수: 국가데이터처 지역별고용조사 2025년 하반기. 연도별 경로는 AI 점령지도의 추정.`;
+  const cite=`출처: AI 점령지도(포스트오피스), ${ASOF} 기준, ${VER}. 노출도: Eloundou 외(2024, Science)와 ILO Gmyrek 외(2025)의 평균, 실제 사용: Anthropic 경제지수(2026), 업무 구성: 미국 O*NET 30.0, 취업자 수: 국가데이터처 지역별고용조사 2025년 하반기. 연도별 경로는 AI 점령지도의 추정.`;
   const cb=el('div','cite',cite),btn=el('button','btn','인용문 복사');btn.type='button';
   btn.onclick=async()=>{try{await navigator.clipboard.writeText(cite);btn.textContent='복사했어요'}catch(e){const r=document.createRange();r.selectNodeContents(cb);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='선택했어요. 복사해 주세요'}setTimeout(()=>btn.textContent='인용문 복사',2500)};
   m.append(cb,btn);d.appendChild(m);return d}
@@ -734,7 +745,9 @@ function jobCard(j){
   acts.append(sv,sh);
   const rids=new Set(RJ_[j].tasks.filter(t=>t[2]>=.06).map(t=>t[1])),rel=FEED.items.filter(n=>n.st!=='hold'&&(n.r||[]).some(r=>rids.has(r))).slice(0,3);
   const relBox=el('div');if(rel.length){const rl=el('div','lab');rl.append(el('span',null,'이 직업에 닿은 최근 소식'));const ul=el('ul','news');rel.forEach(n=>ul.appendChild(newsItem(n)));relBox.append(rl,ul)}
-  c.append(top,acts,lede,bn,trend((y,s)=>f(y,s),{ref:.4,refLabel:'40% 선'}),st,relBox,el('div','lab','노출된 업무의 성격'),sp,lg);
+  const RT=sk?SMD[sk]:RJ_[j];const rt=el('div','raters');rt.innerHTML=`<div><small>미국 연구</small><b>${pct(RT.e)}%</b></div><div><small>국제노동기구</small><b>${pct(RT.il)}%</b></div><div class="u"><small>실제 사용 확인</small><b>${RT.ob==null?'자료 없음':pct(Math.min(RT.ob,f(2026)))+'%'}</b></div>`;
+  const rtn=el('p','rule','2026 노출도는 두 연구 값의 평균이에요. 실제 사용 확인은 AI 사용 기록(Anthropic 경제지수)에서 이미 쓰이는 게 보인 몫이에요.');
+  c.append(top,acts,lede,bn,trend((y,s)=>f(y,s),{ref:.4,refLabel:'40% 선'}),st,rt,rtn,relBox,el('div','lab','노출된 업무의 성격'),sp,lg);
   if(RJ_[j].smalls&&RJ_[j].smalls.length>1){const sl=el('div','lab');sl.append(el('span',null,'이 지역의 세부 직업'),el('span',null,`소분류 · ${yi()} 노출도 · 취업자`));c.append(sl);
     const ul2=el('ul','comp sm2');let thin=false;RJ_[j].smalls.slice(0,8).forEach(([cd,n,k])=>{const d=SMD[cd],a=d?occS(cd,year):occ(j,year);if(d&&d.n<=2)thin=true;const li=el('li',cd===sk?'on':null);
       const nm=el('span','nm',n+(d&&d.n<=2?' *':''));const vv=el('span','vv');vv.append(d?`${pct(a)}%`:`${pct(a)}%`,el('small',null,d?` · ${fw(k/10)}만`:` · ${fw(k/10)}만 · 중분류 값`));
@@ -776,7 +789,7 @@ function render(){
   else if(selA>=0)ctx.appendChild(jobCard(selA));
   else if(flash){ctx.appendChild(flashCard())}
   else{[mineCard(),summaryCard(),todayCard(),highlights()].forEach(x=>x&&ctx.appendChild(x))}
-  [newsCard(),catsCard(),rankCard(),adSlot(),aboutCard()].forEach(x=>x&&rest.appendChild(x));rest.append(el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024) · 업무 O*NET 30.0 · 취업자 국가데이터처(2025년 하반기)`));
+  [newsCard(),catsCard(),rankCard(),adSlot(),aboutCard()].forEach(x=>x&&rest.appendChild(x));rest.append(el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024)·ILO(2025) 평균 · 실제 사용 Anthropic(2026) · 업무 O*NET 30.0 · 취업자 국가데이터처(2025년 하반기)`));
   $('#sugg').hidden=selA>=0||!!selTask;$('#sheet').classList.toggle('ctxmode',selA>=0||!!selTask);
   if(keep==='q2'){const q=$('#q2');if(q)q.focus()}
 }
