@@ -62,6 +62,8 @@ button,input{font:inherit;color:inherit}
 .lb.job.a{outline:2.5px solid var(--ink);outline-offset:2px}
 .lb.job.b{outline:2.5px dashed var(--ink);outline-offset:2px}
 .lb.cat{color:var(--ink);font-family:var(--f-display);font-weight:400;letter-spacing:-.01em;font-size:20px;gap:8px;padding:7px 13px 8px;border-radius:10px;background:color-mix(in srgb,var(--map-bg) 86%,transparent);border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.lb.task{font-size:11px;font-weight:500;color:#fff;padding:3px 6px;border-radius:5px;background:rgba(20,18,24,.72);gap:4px}
+.lb.task .v{color:#ffb3dd;font-size:.92em}
 .lb.cat .v{letter-spacing:0;font-weight:500;font-size:.78em;color:var(--hot-ink)}
 .loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink2)}
 
@@ -428,7 +430,10 @@ const pack=(c,f=1)=>(255<<24)|(Math.min(255,Math.round(c[2]*f))<<16)|(Math.min(2
   const regL=RJ_.map((rg,r)=>{const e=mk('job'),i=el('i'),n=el('span',null,rg.name),v=el('span','v');e.append(i,n,v);e.style.fontSize=(rg.ws>=100?14:rg.ws>=40?13:12)+'px';return {e,i,v,x:rg.label[0],y:rg.label[1],r}});
   const catL=[];GK.forEach(g=>cm.groups[g].forEach(([x,y],k)=>{const e=mk('cat'),n=el('span',null,GNAME[g]+' 구역'),v=el('span','v');e.append(n,v);catL.push({e,v,x,y,g,main:k===0})}));
   const gOcc=(g,y)=>{let s=0,w=0;RJ_.forEach((rg,r)=>{if(rg.group===g){s+=rg.ws*occ(r,y);w+=rg.ws}});return s/w};
-  L={RJ,RF,GT,BN,rids,regL,catL,gOcc};
+  // 확대했을 때 보이는 업무 이름: 지역 안 업무 칸 묶음마다 무게중심
+  const TS=new Float64Array(NJ*8*3);for(let i=0;i<W*H;i++){const r=RJ[i];if(r>=NJ||(GT[i]&16))continue;const b=(r*8+(GT[i]&7))*3;TS[b]+=i%W;TS[b+1]+=(i/W)|0;TS[b+2]++}
+  const taskL=[];for(let r=0;r<NJ;r++)RJ_[r].tasks.forEach((t,k)=>{const b=(r*8+k)*3,n=TS[b+2];if(n<400)return;const e=mk('task'),nm=el('span',null,t[0]),v=el('span','v');e.append(nm,v);taskL.push({e,v,x:TS[b]/n,y:TS[b+1]/n,n,r,rid:t[1]})});
+  L={RJ,RF,GT,BN,rids,regL,catL,gOcc,taskL};
 }
 $('#loading').remove();
 
@@ -490,6 +495,7 @@ function layoutLabels(F){
   L.catL.forEach(X=>{if(!OVL.sectors||(!X.main&&view.k<1.6)){X.e.classList.add('off');return}place(X,[0,-1,1,-2,2])});
   const big=F||!OVL.jobs?[]:L.regL.filter(X=>ws(X)>=100);big.forEach(X=>place(X,[0,-1,1]));
   L.regL.filter(X=>!foc.includes(X)&&!big.includes(X)).sort((a,b)=>ws(b)-ws(a)).forEach(X=>{if(!OVL.jobs||(view.k<1.6&&(F||ws(X)<55))){X.e.classList.add('off');return}place(X,[0,-1,1])});
+  L.taskL.forEach(X=>{const on=mtype!=='flat'&&view.k>=2.6&&X.n*s*s>2600&&(!F||F.regs.has(X.r));if(!on){X.e.classList.add('off');return}X.v.textContent=pct(ptj(X.r,X.rid,year))+'%';place(X,[0])});
 }
 
 // ---------- 범례·지도 유형 ----------
