@@ -14,13 +14,11 @@ for n in feed['items']:
     for r in n['r']:adj[r]=round(adj.get(r,0)+sh,4)
     n['st']='applied';n['wk']=wk;applied.append(n['id'])
 R=cm['R']
-def p(r,yr):m,k=R[r];return .92/(1+math.exp(-k*(yr-m+adj.get(r,0))))
-def occ(j,yr):t=j['tasks'];return sum(x[2]*p(x[1],yr) for x in t)/sum(x[2] for x in t)
+def p(r,yr,a=None):m,k,K=R[r];a=adj if a is None else a;return K/(1+math.exp(-k*(yr-m+a.get(r,0))))
+def occ(j,yr,a=None):return min(.99,j['cal']*sum(x*p(r,yr,a) for r,x in j['w41'].items()))
 tot=sum(j['ws']*occ(j,2026) for j in cm['jobs'])/sum(j['ws'] for j in cm['jobs'])
 if last.get('total') is None and len(idx['weeks'])==1:
-    adj0={};
-    def p0(r,yr):m,k=R[r];return .92/(1+math.exp(-k*(yr-m)))
-    last['total']=round(sum(j['ws']*sum(x[2]*p0(x[1],2026) for x in j['tasks'])/sum(x[2] for x in j['tasks']) for j in cm['jobs'])/sum(j['ws'] for j in cm['jobs']),5)
+    last['total']=round(sum(j['ws']*occ(j,2026,{}) for j in cm['jobs'])/sum(j['ws'] for j in cm['jobs']),5)
 idx['weeks'].append({'week':wk,'date':D,'adj':adj,'total':round(tot,5),'applied':applied})
 json.dump(idx,open('index.json','w'),ensure_ascii=False,indent=1);json.dump(feed,open('feed.json','w'),ensure_ascii=False,indent=1)
 print(wk,'total',round(tot*100,2),'applied',len(applied),'prev',last['total'])

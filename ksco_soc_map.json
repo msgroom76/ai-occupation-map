@@ -1,0 +1,1326 @@
+{
+ "note": "한국표준직업분류 8차 중분류 → 미국 SOC 2018 코드 접두어(가장 긴 접두어 우선). 대분류 기본값은 fallback. AI 점령지도 작성.",
+ "map": {
+  "11": {
+   "name": "의회‧정부 및 기업 고위직",
+   "soc_prefix": [
+    "11-1011",
+    "11-1031"
+   ],
+   "us_examples": [
+    "Chief Sustainability Officers",
+    "Chief Executives",
+    "Legislators"
+   ],
+   "onet_occupations": 3,
+   "paper_exposure": {
+    "alpha": 0.115,
+    "beta": 0.488,
+    "gamma": 0.861
+   },
+   "calibration": 1.0402
+  },
+  "12": {
+   "name": "행정‧경영 지원 및 마케팅 관리직",
+   "soc_prefix": [
+    "11-2011",
+    "11-2021",
+    "11-2032",
+    "11-2033",
+    "11-3011",
+    "11-3012",
+    "11-3013",
+    "11-3031",
+    "11-3061",
+    "11-3111",
+    "11-3121",
+    "11-3131",
+    "11-1021"
+   ],
+   "us_examples": [
+    "General and Operations Managers",
+    "Marketing Managers",
+    "Treasurers and Controllers",
+    "Investment Fund Managers",
+    "Financial Managers"
+   ],
+   "onet_occupations": 15,
+   "paper_exposure": {
+    "alpha": 0.017,
+    "beta": 0.48,
+    "gamma": 0.942
+   },
+   "calibration": 1.1027
+  },
+  "13": {
+   "name": "전문 서비스 관리직",
+   "soc_prefix": [
+    "11-9111",
+    "11-9121",
+    "11-9031",
+    "11-9032",
+    "11-9033",
+    "11-9039",
+    "11-9151",
+    "11-9161",
+    "11-3021",
+    "11-9179",
+    "11-9199",
+    "11-9171",
+    "11-9072"
+   ],
+   "us_examples": [
+    "Computer and Information Systems Managers",
+    "Medical and Health Services Managers",
+    "Education Administrators, Kindergarten through Secondary",
+    "Social and Community Service Managers",
+    "Education Administrators, Postsecondary"
+   ],
+   "onet_occupations": 22,
+   "paper_exposure": {
+    "alpha": 0.061,
+    "beta": 0.467,
+    "gamma": 0.872
+   },
+   "calibration": 1.0361
+  },
+  "14": {
+   "name": "건설‧전기 및 생산 관련 관리직",
+   "soc_prefix": [
+    "11-3051",
+    "11-9021",
+    "11-3071",
+    "11-9041",
+    "11-9013"
+   ],
+   "us_examples": [
+    "Construction Managers",
+    "Biofuels/Biodiesel Technology and Product Development Managers",
+    "Architectural and Engineering Managers",
+    "Transportation, Storage, and Distribution Managers",
+    "Supply Chain Managers"
+   ],
+   "onet_occupations": 12,
+   "paper_exposure": {
+    "alpha": 0.048,
+    "beta": 0.442,
+    "gamma": 0.836
+   },
+   "calibration": 0.9862
+  },
+  "15": {
+   "name": "판매 및 고객 서비스 관리직",
+   "soc_prefix": [
+    "11-2022",
+    "11-9051",
+    "11-9081",
+    "11-9141"
+   ],
+   "us_examples": [
+    "Sales Managers",
+    "Property, Real Estate, and Community Association Managers",
+    "Food Service Managers",
+    "Lodging Managers"
+   ],
+   "onet_occupations": 4,
+   "paper_exposure": {
+    "alpha": 0.016,
+    "beta": 0.441,
+    "gamma": 0.866
+   },
+   "calibration": 1.0434
+  },
+  "21": {
+   "name": "과학 전문가 및 관련직",
+   "soc_prefix": [
+    "19-1",
+    "19-2",
+    "19-4"
+   ],
+   "us_examples": [
+    "Medical Scientists, Except Epidemiologists",
+    "Occupational Health and Safety Specialists",
+    "Chemists",
+    "Biological Technicians",
+    "Chemical Technicians"
+   ],
+   "onet_occupations": 45,
+   "paper_exposure": {
+    "alpha": 0.138,
+    "beta": 0.452,
+    "gamma": 0.766
+   },
+   "calibration": 1.0473
+  },
+  "22": {
+   "name": "정보 통신 전문가 및 기술직",
+   "soc_prefix": [
+    "15-12",
+    "15-2"
+   ],
+   "us_examples": [
+    "Software Developers",
+    "Computer User Support Specialists",
+    "Network and Computer Systems Administrators",
+    "Health Informatics Specialists",
+    "Computer Systems Analysts"
+   ],
+   "onet_occupations": 36,
+   "paper_exposure": {
+    "alpha": 0.576,
+    "beta": 0.751,
+    "gamma": 0.926
+   },
+   "calibration": 1.2699
+  },
+  "23": {
+   "name": "공학 전문가 및 기술직",
+   "soc_prefix": [
+    "17-",
+    "53-2011",
+    "53-2012",
+    "53-2021",
+    "53-2022"
+   ],
+   "us_examples": [
+    "Electrical Engineers",
+    "Electrical and Electronic Engineering Technologists and Technicians",
+    "Water/Wastewater Engineers",
+    "Transportation Engineers",
+    "Civil Engineers"
+   ],
+   "onet_occupations": 60,
+   "paper_exposure": {
+    "alpha": 0.17,
+    "beta": 0.504,
+    "gamma": 0.838
+   },
+   "calibration": 1.1213
+  },
+  "24": {
+   "name": "보건 전문가 및 관련직",
+   "soc_prefix": [
+    "29-"
+   ],
+   "us_examples": [
+    "Licensed Practical and Licensed Vocational Nurses",
+    "Registered Nurses",
+    "Critical Care Nurses",
+    "Clinical Nurse Specialists",
+    "Advanced Practice Psychiatric Nurses"
+   ],
+   "onet_occupations": 89,
+   "paper_exposure": {
+    "alpha": 0.087,
+    "beta": 0.344,
+    "gamma": 0.601
+   },
+   "calibration": 0.974
+  },
+  "25": {
+   "name": "사회복지‧종교 전문가 및 관련직",
+   "soc_prefix": [
+    "21-",
+    "19-3"
+   ],
+   "us_examples": [
+    "Social and Human Service Assistants",
+    "Child, Family, and School Social Workers",
+    "Substance Abuse and Behavioral Disorder Counselors",
+    "Mental Health Counselors",
+    "Educational, Guidance, and Career Counselors and Advisors"
+   ],
+   "onet_occupations": 29,
+   "paper_exposure": {
+    "alpha": 0.095,
+    "beta": 0.313,
+    "gamma": 0.531
+   },
+   "calibration": 0.7532
+  },
+  "26": {
+   "name": "교육 전문가 및 관련직",
+   "soc_prefix": [
+    "25-"
+   ],
+   "us_examples": [
+    "Elementary School Teachers, Except Special Education",
+    "Secondary School Teachers, Except Special and Career/Technical Education",
+    "Middle School Teachers, Except Special and Career/Technical Education",
+    "Preschool Teachers, Except Special Education",
+    "Substitute Teachers, Short-Term"
+   ],
+   "onet_occupations": 62,
+   "paper_exposure": {
+    "alpha": 0.117,
+    "beta": 0.368,
+    "gamma": 0.618
+   },
+   "calibration": 0.8679
+  },
+  "27": {
+   "name": "법률 및 행정 전문직",
+   "soc_prefix": [
+    "23-1"
+   ],
+   "us_examples": [
+    "Lawyers",
+    "Judges, Magistrate Judges, and Magistrates",
+    "Judicial Law Clerks",
+    "Administrative Law Judges, Adjudicators, and Hearing Officers",
+    "Arbitrators, Mediators, and Conciliators"
+   ],
+   "onet_occupations": 5,
+   "paper_exposure": {
+    "alpha": 0.007,
+    "beta": 0.429,
+    "gamma": 0.851
+   },
+   "calibration": 0.861
+  },
+  "28": {
+   "name": "경영‧금융 전문가 및 관련직",
+   "soc_prefix": [
+    "13-"
+   ],
+   "us_examples": [
+    "Accountants and Auditors",
+    "Management Analysts",
+    "Project Management Specialists",
+    "Human Resources Specialists",
+    "Wholesale and Retail Buyers, Except Farm Products"
+   ],
+   "onet_occupations": 48,
+   "paper_exposure": {
+    "alpha": 0.127,
+    "beta": 0.534,
+    "gamma": 0.942
+   },
+   "calibration": 1.0944
+  },
+  "29": {
+   "name": "문화‧예술‧스포츠‧기타 전문가 및 관련직",
+   "soc_prefix": [
+    "27-"
+   ],
+   "us_examples": [
+    "Public Relations Specialists",
+    "Graphic Designers",
+    "Coaches and Scouts",
+    "Merchandise Displayers and Window Trimmers",
+    "Editors"
+   ],
+   "onet_occupations": 40,
+   "paper_exposure": {
+    "alpha": 0.173,
+    "beta": 0.488,
+    "gamma": 0.802
+   },
+   "calibration": 1.1468
+  },
+  "31": {
+   "name": "기획‧영업 및 인사 사무직",
+   "soc_prefix": [
+    "43-1011",
+    "43-4161",
+    "43-6011"
+   ],
+   "us_examples": [
+    "First-Line Supervisors of Office and Administrative Support Workers",
+    "Executive Secretaries and Executive Administrative Assistants",
+    "Human Resources Assistants, Except Payroll and Timekeeping"
+   ],
+   "onet_occupations": 3,
+   "paper_exposure": {
+    "alpha": 0.162,
+    "beta": 0.533,
+    "gamma": 0.905
+   },
+   "calibration": 1.161
+  },
+  "32": {
+   "name": "자재‧생산 및 운송 사무직",
+   "soc_prefix": [
+    "43-5"
+   ],
+   "us_examples": [
+    "Shipping, Receiving, and Inventory Clerks",
+    "Production, Planning, and Expediting Clerks",
+    "Postal Service Mail Carriers",
+    "Dispatchers, Except Police, Fire, and Ambulance",
+    "Postal Service Mail Sorters, Processors, and Processing Machine Operators"
+   ],
+   "onet_occupations": 11,
+   "paper_exposure": {
+    "alpha": 0.262,
+    "beta": 0.465,
+    "gamma": 0.667
+   },
+   "calibration": 1.0986
+  },
+  "33": {
+   "name": "회계‧경리 및 통계 사무직",
+   "soc_prefix": [
+    "43-3031",
+    "43-3051",
+    "43-3061",
+    "43-3021",
+    "43-3099"
+   ],
+   "us_examples": [
+    "Bookkeeping, Accounting, and Auditing Clerks",
+    "Billing and Posting Clerks",
+    "Payroll and Timekeeping Clerks",
+    "Procurement Clerks"
+   ],
+   "onet_occupations": 4,
+   "paper_exposure": {
+    "alpha": 0.617,
+    "beta": 0.794,
+    "gamma": 0.971
+   },
+   "calibration": 1.2671
+  },
+  "34": {
+   "name": "금융 사무직",
+   "soc_prefix": [
+    "43-3071",
+    "43-4131",
+    "43-4141",
+    "43-9041",
+    "43-3011"
+   ],
+   "us_examples": [
+    "Tellers",
+    "Loan Interviewers and Clerks",
+    "Insurance Claims and Policy Processing Clerks",
+    "Bill and Account Collectors",
+    "New Accounts Clerks"
+   ],
+   "onet_occupations": 5,
+   "paper_exposure": {
+    "alpha": 0.371,
+    "beta": 0.644,
+    "gamma": 0.916
+   },
+   "calibration": 1.2014
+  },
+  "35": {
+   "name": "법률‧감사 및 정부 행정 사무직",
+   "soc_prefix": [
+    "23-2",
+    "43-4031",
+    "43-4061",
+    "43-4021",
+    "43-4011"
+   ],
+   "us_examples": [
+    "Paralegals and Legal Assistants",
+    "Eligibility Interviewers, Government Programs",
+    "Court, Municipal, and License Clerks",
+    "Title Examiners, Abstractors, and Searchers",
+    "Brokerage Clerks"
+   ],
+   "onet_occupations": 6,
+   "paper_exposure": {
+    "alpha": 0.316,
+    "beta": 0.613,
+    "gamma": 0.911
+   },
+   "calibration": 1.1271
+  },
+  "36": {
+   "name": "상담‧안내 및 접수 사무직",
+   "soc_prefix": [
+    "43-4051",
+    "43-4171",
+    "43-4181",
+    "43-2011",
+    "43-2021"
+   ],
+   "us_examples": [
+    "Customer Service Representatives",
+    "Receptionists and Information Clerks",
+    "Reservation and Transportation Ticket Agents and Travel Clerks",
+    "Switchboard Operators, Including Answering Service",
+    "Telephone Operators"
+   ],
+   "onet_occupations": 5,
+   "paper_exposure": {
+    "alpha": 0.157,
+    "beta": 0.558,
+    "gamma": 0.958
+   },
+   "calibration": 1.1444
+  },
+  "37": {
+   "name": "일반 지원 사무직",
+   "soc_prefix": [
+    "43-9",
+    "43-6014",
+    "43-6012",
+    "43-6013",
+    "43-4071",
+    "43-4111",
+    "43-4121",
+    "43-4151"
+   ],
+   "us_examples": [
+    "Office Clerks, General",
+    "Secretaries and Administrative Assistants, Except Legal, Medical, and Executive",
+    "Medical Secretaries and Administrative Assistants",
+    "Hotel, Motel, and Resort Desk Clerks",
+    "Interviewers, Except Eligibility and Loan"
+   ],
+   "onet_occupations": 18,
+   "paper_exposure": {
+    "alpha": 0.383,
+    "beta": 0.618,
+    "gamma": 0.853
+   },
+   "calibration": 1.2901
+  },
+  "41": {
+   "name": "경찰‧소방 및 보안 관련 서비스직",
+   "soc_prefix": [
+    "33-"
+   ],
+   "us_examples": [
+    "Correctional Officers and Jailers",
+    "Police and Sheriff's Patrol Officers",
+    "Customs and Border Protection Officers",
+    "Firefighters",
+    "First-Line Supervisors of Police and Detectives"
+   ],
+   "onet_occupations": 24,
+   "paper_exposure": {
+    "alpha": 0.157,
+    "beta": 0.286,
+    "gamma": 0.416
+   },
+   "calibration": 0.8452
+  },
+  "42": {
+   "name": "돌봄 및 보건 서비스직",
+   "soc_prefix": [
+    "31-",
+    "39-9011"
+   ],
+   "us_examples": [
+    "Personal Care Aides",
+    "Home Health Aides",
+    "Nursing Assistants",
+    "Medical Assistants",
+    "Dental Assistants"
+   ],
+   "onet_occupations": 21,
+   "paper_exposure": {
+    "alpha": 0.121,
+    "beta": 0.169,
+    "gamma": 0.217
+   },
+   "calibration": 0.6754
+  },
+  "43": {
+   "name": "개인 생활 서비스직",
+   "soc_prefix": [
+    "39-5",
+    "39-4",
+    "39-2",
+    "39-9031",
+    "39-9041",
+    "39-1"
+   ],
+   "us_examples": [
+    "Hairdressers, Hairstylists, and Cosmetologists",
+    "Recreation Workers",
+    "Animal Caretakers",
+    "Exercise Trainers and Group Fitness Instructors",
+    "Manicurists and Pedicurists"
+   ],
+   "onet_occupations": 18,
+   "paper_exposure": {
+    "alpha": 0.094,
+    "beta": 0.182,
+    "gamma": 0.271
+   },
+   "calibration": 0.6259
+  },
+  "44": {
+   "name": "운송 및 여가 서비스직",
+   "soc_prefix": [
+    "53-2031",
+    "39-3",
+    "39-7",
+    "39-6"
+   ],
+   "us_examples": [
+    "Flight Attendants",
+    "Gambling Dealers",
+    "Ushers, Lobby Attendants, and Ticket Takers",
+    "Concierges",
+    "Travel Guides"
+   ],
+   "onet_occupations": 10,
+   "paper_exposure": {
+    "alpha": 0.137,
+    "beta": 0.217,
+    "gamma": 0.297
+   },
+   "calibration": 0.6587
+  },
+  "45": {
+   "name": "조리 및 음식 서비스직",
+   "soc_prefix": [
+    "35-"
+   ],
+   "us_examples": [
+    "Waiters and Waitresses",
+    "Fast Food and Counter Workers",
+    "Baristas",
+    "Cooks, Restaurant",
+    "First-Line Supervisors of Food Preparation and Serving Workers"
+   ],
+   "onet_occupations": 12,
+   "paper_exposure": {
+    "alpha": 0.076,
+    "beta": 0.16,
+    "gamma": 0.244
+   },
+   "calibration": 0.7275
+  },
+  "51": {
+   "name": "영업직",
+   "soc_prefix": [
+    "41-3",
+    "41-4",
+    "41-9021",
+    "41-9022",
+    "41-9031"
+   ],
+   "us_examples": [
+    "Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products",
+    "Sales Representatives of Services, Except Advertising, Insurance, Financial Services, and Travel",
+    "Securities, Commodities, and Financial Services Sales Agents",
+    "Insurance Sales Agents",
+    "Real Estate Sales Agents"
+   ],
+   "onet_occupations": 11,
+   "paper_exposure": {
+    "alpha": 0.223,
+    "beta": 0.594,
+    "gamma": 0.966
+   },
+   "calibration": 1.2693
+  },
+  "52": {
+   "name": "매장 판매 및 상품 대여직",
+   "soc_prefix": [
+    "41-2",
+    "41-1011",
+    "41-1012"
+   ],
+   "us_examples": [
+    "Retail Salespersons",
+    "Cashiers",
+    "First-Line Supervisors of Retail Sales Workers",
+    "Parts Salespersons",
+    "First-Line Supervisors of Non-Retail Sales Workers"
+   ],
+   "onet_occupations": 6,
+   "paper_exposure": {
+    "alpha": 0.106,
+    "beta": 0.316,
+    "gamma": 0.525
+   },
+   "calibration": 0.7561
+  },
+  "53": {
+   "name": "통신 및 방문‧노점 판매 관련직",
+   "soc_prefix": [
+    "41-9041",
+    "41-9091",
+    "41-9011",
+    "41-9012"
+   ],
+   "us_examples": [
+    "Telemarketers",
+    "Demonstrators and Product Promoters",
+    "Door-to-Door Sales Workers, News and Street Vendors, and Related Workers",
+    "Models"
+   ],
+   "onet_occupations": 4,
+   "paper_exposure": {
+    "alpha": 0.447,
+    "beta": 0.606,
+    "gamma": 0.766
+   },
+   "calibration": 1.3037
+  },
+  "61": {
+   "name": "농축산 숙련직",
+   "soc_prefix": [
+    "45-2091",
+    "45-2093",
+    "45-1011",
+    "45-2099"
+   ],
+   "us_examples": [
+    "Farmworkers, Farm, Ranch, and Aquacultural Animals",
+    "Agricultural Equipment Operators",
+    "First-Line Supervisors of Farming, Fishing, and Forestry Workers"
+   ],
+   "onet_occupations": 3,
+   "paper_exposure": {
+    "alpha": 0.042,
+    "beta": 0.109,
+    "gamma": 0.176
+   },
+   "calibration": 0.5166
+  },
+  "62": {
+   "name": "임업 숙련직",
+   "soc_prefix": [
+    "45-4"
+   ],
+   "us_examples": [
+    "Logging Equipment Operators",
+    "Forest and Conservation Workers",
+    "Fallers",
+    "Log Graders and Scalers"
+   ],
+   "onet_occupations": 4,
+   "paper_exposure": {
+    "alpha": 0.129,
+    "beta": 0.15,
+    "gamma": 0.17
+   },
+   "calibration": 0.6346
+  },
+  "63": {
+   "name": "어업 숙련직",
+   "soc_prefix": [
+    "45-3"
+   ],
+   "us_examples": [
+    "Fishing and Hunting Workers"
+   ],
+   "onet_occupations": 1,
+   "paper_exposure": {
+    "alpha": 0.0,
+    "beta": 0.044,
+    "gamma": 0.088
+   },
+   "calibration": 0.4024
+  },
+  "71": {
+   "name": "식품 가공 관련 기능직",
+   "soc_prefix": [
+    "51-3011",
+    "51-3021",
+    "51-3022",
+    "51-3023"
+   ],
+   "us_examples": [
+    "Bakers",
+    "Butchers and Meat Cutters",
+    "Meat, Poultry, and Fish Cutters and Trimmers",
+    "Slaughterers and Meat Packers"
+   ],
+   "onet_occupations": 4,
+   "paper_exposure": {
+    "alpha": 0.063,
+    "beta": 0.123,
+    "gamma": 0.183
+   },
+   "calibration": 0.7027
+  },
+  "72": {
+   "name": "섬유‧의복 및 가죽 관련 기능직",
+   "soc_prefix": [
+    "51-6041",
+    "51-6042",
+    "51-6051",
+    "51-6052",
+    "51-6011",
+    "51-6021",
+    "51-6092",
+    "51-6093"
+   ],
+   "us_examples": [
+    "Laundry and Dry-Cleaning Workers",
+    "Upholsterers",
+    "Pressers, Textile, Garment, and Related Materials",
+    "Tailors, Dressmakers, and Custom Sewers",
+    "Shoe and Leather Workers and Repairers"
+   ],
+   "onet_occupations": 8,
+   "paper_exposure": {
+    "alpha": 0.035,
+    "beta": 0.071,
+    "gamma": 0.106
+   },
+   "calibration": 0.5149
+  },
+  "73": {
+   "name": "목재‧가구‧악기 및 간판 관련 기능직",
+   "soc_prefix": [
+    "51-7011",
+    "51-7021",
+    "51-7031",
+    "51-7099"
+   ],
+   "us_examples": [
+    "Cabinetmakers and Bench Carpenters",
+    "Furniture Finishers",
+    "Model Makers, Wood"
+   ],
+   "onet_occupations": 3,
+   "paper_exposure": {
+    "alpha": 0.05,
+    "beta": 0.105,
+    "gamma": 0.159
+   },
+   "calibration": 0.5445
+  },
+  "74": {
+   "name": "금속 성형 관련 기능직",
+   "soc_prefix": [
+    "51-4121",
+    "51-4122",
+    "51-2041",
+    "47-2211",
+    "51-4111",
+    "51-4071"
+   ],
+   "us_examples": [
+    "Welders, Cutters, Solderers, and Brazers",
+    "Sheet Metal Workers",
+    "Tool and Die Makers",
+    "Structural Metal Fabricators and Fitters",
+    "Welding, Soldering, and Brazing Machine Setters, Operators, and Tenders"
+   ],
+   "onet_occupations": 6,
+   "paper_exposure": {
+    "alpha": 0.056,
+    "beta": 0.085,
+    "gamma": 0.114
+   },
+   "calibration": 0.5698
+  },
+  "75": {
+   "name": "운송 및 기계 관련 기능직",
+   "soc_prefix": [
+    "49-3",
+    "49-9041",
+    "49-9071",
+    "49-9043",
+    "49-9021",
+    "49-9044",
+    "49-9045",
+    "49-1011"
+   ],
+   "us_examples": [
+    "Maintenance and Repair Workers, General",
+    "Automotive Service Technicians and Mechanics",
+    "First-Line Supervisors of Mechanics, Installers, and Repairers",
+    "Industrial Machinery Mechanics",
+    "Heating, Air Conditioning, and Refrigeration Mechanics and Installers"
+   ],
+   "onet_occupations": 33,
+   "paper_exposure": {
+    "alpha": 0.054,
+    "beta": 0.152,
+    "gamma": 0.251
+   },
+   "calibration": 0.7978
+  },
+  "76": {
+   "name": "전기 및 전자 관련 기능직",
+   "soc_prefix": [
+    "47-2111",
+    "49-2",
+    "49-9051",
+    "49-9012"
+   ],
+   "us_examples": [
+    "Electricians",
+    "Electrical Power-Line Installers and Repairers",
+    "Computer, Automated Teller, and Office Machine Repairers",
+    "Security and Fire Alarm Systems Installers",
+    "Electrical and Electronics Repairers, Commercial and Industrial Equipment"
+   ],
+   "onet_occupations": 11,
+   "paper_exposure": {
+    "alpha": 0.107,
+    "beta": 0.161,
+    "gamma": 0.216
+   },
+   "calibration": 0.7686
+  },
+  "77": {
+   "name": "정보 통신 및 방송장비 관련 기능직",
+   "soc_prefix": [
+    "49-2022",
+    "49-9052",
+    "49-2097",
+    "49-2021"
+   ],
+   "us_examples": [
+    "Telecommunications Equipment Installers and Repairers, Except Line Installers",
+    "Telecommunications Line Installers and Repairers",
+    "Audiovisual Equipment Installers and Repairers",
+    "Radio, Cellular, and Tower Equipment Installers and Repairers"
+   ],
+   "onet_occupations": 4,
+   "paper_exposure": {
+    "alpha": 0.156,
+    "beta": 0.189,
+    "gamma": 0.221
+   },
+   "calibration": 0.8515
+  },
+  "78": {
+   "name": "건설 및 채굴 관련 기능직",
+   "soc_prefix": [
+    "47-"
+   ],
+   "us_examples": [
+    "Carpenters",
+    "Operating Engineers and Other Construction Equipment Operators",
+    "Solar Energy Installation Managers",
+    "First-Line Supervisors of Construction Trades and Extraction Workers",
+    "Painters, Construction and Maintenance"
+   ],
+   "onet_occupations": 49,
+   "paper_exposure": {
+    "alpha": 0.029,
+    "beta": 0.143,
+    "gamma": 0.256
+   },
+   "calibration": 0.7839
+  },
+  "79": {
+   "name": "기타 기능 관련직",
+   "soc_prefix": [
+    "51-9071",
+    "51-9081",
+    "51-9082",
+    "51-9083",
+    "49-9062",
+    "49-9063",
+    "49-9064"
+   ],
+   "us_examples": [
+    "Medical Equipment Repairers",
+    "Dental Laboratory Technicians",
+    "Ophthalmic Laboratory Technicians",
+    "Medical Appliance Technicians",
+    "Jewelers and Precious Stone and Metal Workers"
+   ],
+   "onet_occupations": 8,
+   "paper_exposure": {
+    "alpha": 0.067,
+    "beta": 0.176,
+    "gamma": 0.284
+   },
+   "calibration": 0.9335
+  },
+  "81": {
+   "name": "식품가공 관련 기계 조작직",
+   "soc_prefix": [
+    "51-3091",
+    "51-3092",
+    "51-3093"
+   ],
+   "us_examples": [
+    "Food Batchmakers",
+    "Food Cooking Machine Operators and Tenders",
+    "Food and Tobacco Roasting, Baking, and Drying Machine Operators and Tenders"
+   ],
+   "onet_occupations": 3,
+   "paper_exposure": {
+    "alpha": 0.102,
+    "beta": 0.112,
+    "gamma": 0.122
+   },
+   "calibration": 0.5013
+  },
+  "82": {
+   "name": "섬유 및 신발 관련 기계 조작직",
+   "soc_prefix": [
+    "51-6031",
+    "51-6061",
+    "51-6062",
+    "51-6063",
+    "51-6064",
+    "51-6091"
+   ],
+   "us_examples": [
+    "Sewing Machine Operators",
+    "Textile Winding, Twisting, and Drawing Out Machine Setters, Operators, and Tenders",
+    "Textile Knitting and Weaving Machine Setters, Operators, and Tenders",
+    "Extruding and Forming Machine Setters, Operators, and Tenders, Synthetic and Glass Fibers",
+    "Textile Cutting Machine Setters, Operators, and Tenders"
+   ],
+   "onet_occupations": 6,
+   "paper_exposure": {
+    "alpha": 0.066,
+    "beta": 0.095,
+    "gamma": 0.124
+   },
+   "calibration": 0.6355
+  },
+  "83": {
+   "name": "화학 관련 기계 조작직",
+   "soc_prefix": [
+    "51-9011",
+    "51-9012",
+    "51-9021",
+    "51-9023",
+    "51-8091",
+    "51-8092",
+    "51-8093",
+    "51-8013",
+    "51-9041",
+    "51-9051",
+    "51-9124"
+   ],
+   "us_examples": [
+    "Coating, Painting, and Spraying Machine Setters, Operators, and Tenders",
+    "Mixing and Blending Machine Setters, Operators, and Tenders",
+    "Chemical Equipment Operators and Tenders",
+    "Extruding, Forming, Pressing, and Compacting Machine Setters, Operators, and Tenders",
+    "Separating, Filtering, Clarifying, Precipitating, and Still Machine Setters, Operators, and Tenders"
+   ],
+   "onet_occupations": 13,
+   "paper_exposure": {
+    "alpha": 0.075,
+    "beta": 0.11,
+    "gamma": 0.146
+   },
+   "calibration": 0.6336
+  },
+  "84": {
+   "name": "금속 및 비금속 관련 기계 조작직",
+   "soc_prefix": [
+    "51-4",
+    "51-9032",
+    "51-9195"
+   ],
+   "us_examples": [
+    "Machinists",
+    "Cutting, Punching, and Press Machine Setters, Operators, and Tenders, Metal and Plastic",
+    "Molding, Coremaking, and Casting Machine Setters, Operators, and Tenders, Metal and Plastic",
+    "Multiple Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+    "Grinding, Lapping, Polishing, and Buffing Machine Tool Setters, Operators, and Tenders, Metal and Plastic"
+   ],
+   "onet_occupations": 24,
+   "paper_exposure": {
+    "alpha": 0.075,
+    "beta": 0.118,
+    "gamma": 0.161
+   },
+   "calibration": 0.6008
+  },
+  "85": {
+   "name": "기계 제조‧관련 기계 조작 및 조립직",
+   "soc_prefix": [
+    "51-2031",
+    "51-2011",
+    "51-2092",
+    "51-2061",
+    "51-1011",
+    "51-2021",
+    "51-2051"
+   ],
+   "us_examples": [
+    "Team Assemblers",
+    "First-Line Supervisors of Production and Operating Workers",
+    "Engine and Other Machine Assemblers",
+    "Aircraft Structure, Surfaces, Rigging, and Systems Assemblers",
+    "Fiberglass Laminators and Fabricators"
+   ],
+   "onet_occupations": 7,
+   "paper_exposure": {
+    "alpha": 0.16,
+    "beta": 0.277,
+    "gamma": 0.394
+   },
+   "calibration": 0.979
+  },
+  "86": {
+   "name": "전기‧전자 관련 기계 조작 및 조립직",
+   "soc_prefix": [
+    "51-2022",
+    "51-2023",
+    "51-2028"
+   ],
+   "us_examples": [
+    "Electromechanical Equipment Assemblers",
+    "Electrical and Electronic Equipment Assemblers"
+   ],
+   "onet_occupations": 2,
+   "paper_exposure": {
+    "alpha": 0.019,
+    "beta": 0.071,
+    "gamma": 0.122
+   },
+   "calibration": 0.3876
+  },
+  "87": {
+   "name": "운전 및 운송 관련 기계 조작직",
+   "soc_prefix": [
+    "53-3",
+    "53-7051",
+    "53-4",
+    "53-5",
+    "53-7021",
+    "53-7011",
+    "53-7031",
+    "53-7041",
+    "53-7071",
+    "53-7073",
+    "53-1"
+   ],
+   "us_examples": [
+    "Heavy and Tractor-Trailer Truck Drivers",
+    "Light Truck Drivers",
+    "Industrial Truck and Tractor Operators",
+    "Driver/Sales Workers",
+    "Bus Drivers, School"
+   ],
+   "onet_occupations": 40,
+   "paper_exposure": {
+    "alpha": 0.169,
+    "beta": 0.256,
+    "gamma": 0.342
+   },
+   "calibration": 1.0697
+  },
+  "88": {
+   "name": "상하수도 및 재활용 처리 관련 기계 조작직",
+   "soc_prefix": [
+    "51-8031",
+    "51-8021",
+    "51-8012",
+    "51-8011"
+   ],
+   "us_examples": [
+    "Water and Wastewater Treatment Plant and System Operators",
+    "Stationary Engineers and Boiler Operators",
+    "Power Distributors and Dispatchers",
+    "Nuclear Power Reactor Operators"
+   ],
+   "onet_occupations": 4,
+   "paper_exposure": {
+    "alpha": 0.127,
+    "beta": 0.152,
+    "gamma": 0.177
+   },
+   "calibration": 0.6449
+  },
+  "89": {
+   "name": "목재‧인쇄 및 기타 기계 조작직",
+   "soc_prefix": [
+    "51-5",
+    "51-7041",
+    "51-7042",
+    "51-9111",
+    "51-9061",
+    "51-9141",
+    "51-9161",
+    "51-9162",
+    "51-9191",
+    "51-9192",
+    "51-9193",
+    "51-9194",
+    "51-9199",
+    "51-9151",
+    "51-9031"
+   ],
+   "us_examples": [
+    "Inspectors, Testers, Sorters, Samplers, and Weighers",
+    "Packaging and Filling Machine Operators and Tenders",
+    "Computer Numerically Controlled Tool Operators",
+    "Printing Press Operators",
+    "Paper Goods Machine Setters, Operators, and Tenders"
+   ],
+   "onet_occupations": 22,
+   "paper_exposure": {
+    "alpha": 0.147,
+    "beta": 0.224,
+    "gamma": 0.3
+   },
+   "calibration": 0.9434
+  },
+  "91": {
+   "name": "건설 및 광업 관련 단순 노무직",
+   "soc_prefix": [
+    "47-2061",
+    "47-3",
+    "47-5081",
+    "47-4051",
+    "47-4061"
+   ],
+   "us_examples": [
+    "Construction Laborers",
+    "Highway Maintenance Workers",
+    "Helpers--Electricians",
+    "Helpers--Pipelayers, Plumbers, Pipefitters, and Steamfitters",
+    "Helpers--Carpenters"
+   ],
+   "onet_occupations": 10,
+   "paper_exposure": {
+    "alpha": 0.001,
+    "beta": 0.04,
+    "gamma": 0.078
+   },
+   "calibration": 0.5425
+  },
+  "92": {
+   "name": "운송 관련 단순 노무직",
+   "soc_prefix": [
+    "53-7062",
+    "53-7065",
+    "43-5021",
+    "53-7061",
+    "53-7063"
+   ],
+   "us_examples": [
+    "Stockers and Order Fillers",
+    "Recycling and Reclamation Workers",
+    "Laborers and Freight, Stock, and Material Movers, Hand",
+    "Cleaners of Vehicles and Equipment",
+    "Couriers and Messengers"
+   ],
+   "onet_occupations": 6,
+   "paper_exposure": {
+    "alpha": 0.075,
+    "beta": 0.109,
+    "gamma": 0.143
+   },
+   "calibration": 0.4277
+  },
+  "93": {
+   "name": "제조 관련 단순 노무직",
+   "soc_prefix": [
+    "51-9198",
+    "53-7064"
+   ],
+   "us_examples": [
+    "Packers and Packagers, Hand",
+    "Helpers--Production Workers"
+   ],
+   "onet_occupations": 2,
+   "paper_exposure": {
+    "alpha": 0.086,
+    "beta": 0.097,
+    "gamma": 0.109
+   },
+   "calibration": 0.5579
+  },
+  "94": {
+   "name": "청소 및 건물 관리 단순 노무직",
+   "soc_prefix": [
+    "37-2011",
+    "37-2019",
+    "37-1011",
+    "37-2021",
+    "33-9032",
+    "33-9091",
+    "37-1012"
+   ],
+   "us_examples": [
+    "Janitors and Cleaners, Except Maids and Housekeeping Cleaners",
+    "Security Guards",
+    "First-Line Supervisors of Housekeeping and Janitorial Workers",
+    "First-Line Supervisors of Landscaping, Lawn Service, and Groundskeeping Workers",
+    "Pest Control Workers"
+   ],
+   "onet_occupations": 6,
+   "paper_exposure": {
+    "alpha": 0.067,
+    "beta": 0.082,
+    "gamma": 0.096
+   },
+   "calibration": 0.5383
+  },
+  "95": {
+   "name": "가사‧음식 및 판매 관련 단순 노무직",
+   "soc_prefix": [
+    "35-9021",
+    "35-9011",
+    "35-2021",
+    "37-2012",
+    "35-9031",
+    "41-2021"
+   ],
+   "us_examples": [
+    "Food Preparation Workers",
+    "Maids and Housekeeping Cleaners",
+    "Dishwashers",
+    "Counter and Rental Clerks",
+    "Dining Room and Cafeteria Attendants and Bartender Helpers"
+   ],
+   "onet_occupations": 6,
+   "paper_exposure": {
+    "alpha": 0.044,
+    "beta": 0.103,
+    "gamma": 0.162
+   },
+   "calibration": 0.6003
+  },
+  "99": {
+   "name": "농림어업 및 기타 서비스 단순 노무직",
+   "soc_prefix": [
+    "45-2092",
+    "37-3011",
+    "37-3012",
+    "37-3013",
+    "37-3019",
+    "53-7081",
+    "39-3091",
+    "39-3093"
+   ],
+   "us_examples": [
+    "Landscaping and Groundskeeping Workers",
+    "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
+    "Amusement and Recreation Attendants",
+    "Refuse and Recyclable Material Collectors",
+    "Tree Trimmers and Pruners"
+   ],
+   "onet_occupations": 10,
+   "paper_exposure": {
+    "alpha": 0.059,
+    "beta": 0.091,
+    "gamma": 0.123
+   },
+   "calibration": 0.5298
+  }
+ },
+ "fallback": {
+  "11-": "13",
+  "13-": "28",
+  "15-": "22",
+  "17-": "23",
+  "19-": "21",
+  "21-": "25",
+  "23-": "27",
+  "25-": "26",
+  "27-": "29",
+  "29-": "24",
+  "31-": "42",
+  "33-": "41",
+  "35-": "45",
+  "37-": "94",
+  "39-": "43",
+  "41-": "52",
+  "43-": "37",
+  "45-": "99",
+  "47-": "78",
+  "49-": "75",
+  "51-": "89",
+  "53-": "87"
+ }
+}
