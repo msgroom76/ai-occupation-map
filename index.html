@@ -598,7 +598,7 @@ function summaryCard(){
   const bn=el('div','bign');const b=el('b','num');b.append(String(pct(total(year))),el('small',null,'%'));bn.append(b,el('span',null,`${yi()} ${tag(year)} · 절반을 넘는 해 ${half}년 (${hf}–${hs})`));
   c.append(lede,bn,trend((y,s)=>total(y,s)));
   if(WNOW){const wk=el('div','wk');const tot=total(2026),prev=WPREV&&WPREV.total!=null?WPREV.total:null;
-    wk.append(el('b',null,`주간 지수 ${WNOW.week.replace('2026-W','')}주차`),` · ${fmtD(WNOW.date)} 발표 · ${(tot*100).toFixed(1)}%`,prev!=null?el('span','d',` (지난주 대비 ${tot-prev>=0?'+':''}${((tot-prev)*100).toFixed(1)}%p)`):el('span','d',' (첫 발표)'));c.appendChild(wk)}
+    const wl=el('a',null,`주간 지수 ${+WNOW.week.split('-W')[1]}주차`);wl.href=WNOW.total!=null?'/w/'+WNOW.week:'/w/';wl.style.cssText='color:var(--ink);font-weight:600';wk.append(wl,` · ${fmtD(WNOW.date)} 발표 · ${(tot*100).toFixed(1)}%`,prev!=null?el('span','d',` (지난주 대비 ${tot-prev>=0?'+':''}${((tot-prev)*100).toFixed(1)}%p)`):el('span','d',' (첫 발표)'));c.appendChild(wk)}
   c.append(el('p','rule',`노출도는 AI가 기술적으로 해낼 수 있는 몫이에요. 실제로 일자리가 사라진 비율은 아니에요. 대상: 한국표준직업분류 중분류 ${NJ}개, 취업자 ${Math.round(WS).toLocaleString()}만 명(2025년 하반기, 군인 제외). 넓이가 실제 취업자 수예요.`));
   return c}
 function todayCard(){if(!FRESH.length)return null;
