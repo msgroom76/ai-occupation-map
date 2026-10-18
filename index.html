@@ -100,7 +100,7 @@ button,input{font:inherit;color:inherit}
 .lyrh b,.lyrs{font-size:15px;font-weight:600}
 .lyrh button{all:unset;cursor:pointer;width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:var(--fill2);font-size:15px;color:var(--ink2)}
 .types,.ovs{display:grid;gap:10px}
-.types{grid-template-columns:repeat(2,1fr)}.ovs{grid-template-columns:repeat(3,1fr)}
+.types{grid-template-columns:repeat(3,1fr)}.ovs{grid-template-columns:repeat(3,1fr)}
 .types button,.ovs button{all:unset;cursor:pointer;display:grid;justify-items:center;gap:6px;font-size:12px;text-align:center;color:var(--ink2)}
 .types button i,.ovs button i{display:block;width:100%;height:48px;border-radius:10px;border:2.5px solid transparent;box-sizing:border-box}
 .types button[aria-pressed="true"],.ovs button[aria-pressed="true"]{color:var(--tint);font-weight:600}
@@ -282,7 +282,7 @@ details.card[open] summary::after{transform:rotate(90deg)}
   <div class="vp" id="vp" tabindex="0" aria-label="AI 점령지도. 직업 영역을 누르면 그 직업이 선택됩니다.">
     <div class="stack" id="stack">
       <canvas id="fab" width="1800" height="2400"></canvas>
-      <img id="roads" alt="" draggable="false" src="city_roads.png">
+      <img id="roads" alt="" draggable="false" src="city_roads.png?v=20261018b">
       <canvas id="tb" width="1800" height="2400" hidden></canvas>
       <canvas id="jb" width="1800" height="2400"></canvas>
       <canvas id="grp" width="1800" height="2400"></canvas>
@@ -304,6 +304,7 @@ details.card[open] summary::after{transform:rotate(90deg)}
     <div class="types" id="types">
       <button type="button" data-t="occ" aria-pressed="true"><i class="sw occ"></i>AI 노출도</button>
       <button type="button" data-t="cat" aria-pressed="false"><i class="sw cat"></i>업무 4분류</button>
+      <button type="button" data-t="flat" aria-pressed="false"><i class="sw flat"></i>영역만</button>
     </div>
     <b class="lyrs">지도 추가 정보</b>
     <div class="ovs" id="ovs">
@@ -407,10 +408,11 @@ const vp=$('#vp'),stack=$('#stack'),fctx=$('#fab').getContext('2d'),octx=$('#ovl
 const out=fctx.createImageData(W,H),out32=new Uint32Array(out.data.buffer);
 const pack=(c,f=1)=>(255<<24)|(Math.min(255,Math.round(c[2]*f))<<16)|(Math.min(255,Math.round(c[1]*f))<<8)|Math.min(255,Math.round(c[0]*f));
 {
-  const img=new Image();img.src='city_index.png';await img.decode();
+  const img=new Image();img.src='city_index.png?v=20261018b';await img.decode();
   const oc=document.createElement('canvas');oc.width=W;oc.height=H;const ox=oc.getContext('2d',{willReadFrequently:true});ox.drawImage(img,0,0);
   const raw=ox.getImageData(0,0,W,H).data,RJ=new Uint8Array(W*H),GT=new Uint8Array(W*H),BN=new Uint8Array(W*H);
   for(let i=0,k=0;i<W*H;i++,k+=4){RJ[i]=raw[k];GT[i]=raw[k+1];BN[i]=raw[k+2]}
+  const RF=RJ.slice();for(let pass=0;pass<60;pass++){let left=0;for(let i=W+1;i<W*H-W-1;i++){if(RF[i]!==250)continue;const n=RF[i-1]<NJ?RF[i-1]:RF[i+1]<NJ?RF[i+1]:RF[i-W]<NJ?RF[i-W]:RF[i+W]<NJ?RF[i+W]:-1;if(n>=0)RF[i]=n;else left++}if(!left)break}
   const rids=RJ_.map(r=>r.tasks.map(t=>t[1])),GK=Object.keys(cm.groups),JG=RJ_.map(r=>GK.indexOf(r.group));
   const mkB=(test,rad,col)=>{const im=gctx.createImageData(W,H),o=new Uint32Array(im.data.buffer);
     for(let y=3;y<H-3;y++)for(let x=3;x<W-3;x++){const i=y*W+x;if(RJ[i]>=NJ)continue;if(test(i,i+1)||test(i,i+W)){for(let dy=-rad;dy<=rad;dy++)for(let dx=-rad;dx<=rad;dx++)o[i+dy*W+dx]=col}}return im};
@@ -422,7 +424,7 @@ const pack=(c,f=1)=>(255<<24)|(Math.min(255,Math.round(c[2]*f))<<16)|(Math.min(2
   const regL=RJ_.map((rg,r)=>{const e=mk('job'),i=el('i'),n=el('span',null,rg.name),v=el('span','v');e.append(i,n,v);e.style.fontSize=(rg.ws>=100?14:rg.ws>=40?13:12)+'px';return {e,i,v,x:rg.label[0],y:rg.label[1],r}});
   const catL=[];GK.forEach(g=>cm.groups[g].forEach(([x,y],k)=>{const e=mk('cat'),n=el('span',null,GNAME[g]+' 구역'),v=el('span','v');e.append(n,v);catL.push({e,v,x,y,g,main:k===0})}));
   const gOcc=(g,y)=>{let s=0,w=0;RJ_.forEach((rg,r)=>{if(rg.group===g){s+=rg.ws*occ(r,y);w+=rg.ws}});return s/w};
-  L={RJ,GT,BN,rids,regL,catL,gOcc};
+  L={RJ,RF,GT,BN,rids,regL,catL,gOcc};
 }
 $('#loading').remove();
 
@@ -443,7 +445,9 @@ function paint(){
         if(off)c=c.map((x,i)=>bg[i]+(x-bg[i])*(TH==='dark'?.16:.14));
         lut[(r*8+k)*16+b]=pack(c)}}}
   const park=pack(PARKc,F?.6:1),BG32=pack(bg),RJ=L.RJ,GT=L.GT,BN=L.BN;
-  for(let i=0;i<W*H;i++){const r=RJ[i],g=GT[i];out32[i]=r===255||(g&16)?BG32:r===250?park:lut[(r*8+(g&7))*16+BN[i]]}
+  if(mtype==='flat'){const fl=new Uint32Array(NJ);for(let r=0;r<NJ;r++){let c=PAL[bin(occ(r,year))];if(F&&!F.regs.has(r))c=c.map((x,i)=>bg[i]+(x-bg[i])*(TH==='dark'?.16:.14));fl[r]=pack(c)}
+    const RF=L.RF;for(let i=0;i<W*H;i++){const r=RF[i];out32[i]=r<NJ?fl[r]:BG32}}
+  else for(let i=0;i<W*H;i++){const r=RJ[i],g=GT[i];out32[i]=r===255||(g&16)?BG32:r===250?park:lut[(r*8+(g&7))*16+BN[i]]}
   fctx.putImageData(out,0,0);octx.clearRect(0,0,W,H);
   if(F&&F.outline.size){const im=octx.createImageData(W,H),o32=new Uint32Array(im.data.buffer),ink=pack(hex2(TH==='dark'?'#ffffff':'#1c1c1e'));
     for(let y=2;y<H-2;y++)for(let x=2;x<W-2;x++){const i=y*W+x,r=RJ[i],t=F.outline.get(r);if(!t)continue;
@@ -486,14 +490,14 @@ function layoutLabels(F){
 
 // ---------- 범례·지도 유형 ----------
 function renderLegend(){const lg=$('#legend');lg.innerHTML='';
-  if(mtype==='occ'){lg.append(el('b',null,'AI 노출도'));const rp=el('div','ramp');RAMP[TH].forEach(c=>{const i=el('i');i.style.background=c;rp.appendChild(i)});
+  if(mtype==='occ'||mtype==='flat'){lg.append(el('b',null,mtype==='flat'?'AI 노출도 · 직업 평균':'AI 노출도'));const rp=el('div','ramp');RAMP[TH].forEach(c=>{const i=el('i');i.style.background=c;rp.appendChild(i)});
     const tk=el('div','ticks num');['0','20','40','60','80','100%'].forEach(t=>tk.appendChild(el('span',null,t)));lg.append(rp,tk)}
   else{lg.append(el('b',null,'업무 4분류'));Object.keys(CAT).forEach(g=>{const r=el('div','row'),i=el('i');i.style.background=CATP[TH][g];r.append(i,CAT[g][0],el('b','num',pct(catOcc(g,year))+'%'));lg.appendChild(r)});
     lg.appendChild(el('div','ticks','밝을수록 노출도 높음'))}
   lg.appendChild(el('div','wm',`넓이 = 실제 취업자 · ${VER}`))}
-function swatches(){$('.sw.occ').style.background=`linear-gradient(90deg,${RAMP[TH].map((c,i)=>`${c} ${i*20}% ${(i+1)*20}%`).join(',')})`;
+function swatches(){$('.sw.flat').style.background=`linear-gradient(90deg,${RAMP[TH][1]} 0 33%,${RAMP[TH][3]} 33% 66%,${RAMP[TH][2]} 66%)`;$('.sw.occ').style.background=`linear-gradient(90deg,${RAMP[TH].map((c,i)=>`${c} ${i*20}% ${(i+1)*20}%`).join(',')})`;
   $('.sw.cat').style.background=`linear-gradient(90deg,${'ABCD'.split('').map((g,i)=>`${CATP[TH][g]} ${i*25}% ${(i+1)*25}%`).join(',')})`}
-function applyLayers(){$('#jb').hidden=!OVL.jobs;$('#grp').hidden=!OVL.sectors;$('#tb').hidden=!OVL.tasks;
+function applyLayers(){$('#jb').hidden=!OVL.jobs;$('#grp').hidden=!OVL.sectors;$('#tb').hidden=!OVL.tasks||mtype==='flat';$('#roads').hidden=mtype==='flat';
   document.querySelectorAll('#types button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t===mtype));
   document.querySelectorAll('#ovs button').forEach(b=>b.setAttribute('aria-pressed',!!OVL[b.dataset.o]));renderLegend();schedule()}
 document.querySelectorAll('#types button').forEach(b=>b.onclick=()=>{mtype=b.dataset.t;applyLayers()});
