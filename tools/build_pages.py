@@ -35,20 +35,20 @@ for i,w in enumerate(weeks):
     top=sorted(J,key=lambda j:-occ(j,2026,w['adj']))[:5]
     toprows=''.join(f'<tr><td><a href="/j/{j["code"]}">{H.escape(j["name"])}</a></td><td class="n">{occ(j,2026,w["adj"])*100:.0f}%</td><td class="n">{j["ws"]:.0f}만 명</td></tr>' for j in top)
     body=f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{title} · AI 점령지도</title><meta name="description" content="{H.escape(lede)}">
+<title>{title} · AI 점령 지도</title><meta name="description" content="{H.escape(lede)}">
 <meta property="og:type" content="article"><meta property="og:title" content="{title}"><meta property="og:description" content="{H.escape(lede)}"><meta property="og:image" content="{BASE}/og.png"><meta property="og:url" content="{BASE}/w/{wk}">
 <meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="{BASE}/w/{wk}"><style>{CSS}</style></head><body><main>
-<a class="brand" href="/">AI 점령지도</a><div class="sub">{w["date"]} 발표 · 주간 지수</div>
+<a class="brand" href="/">AI 점령 지도</a><div class="sub">{w["date"]} 발표 · 주간 지수</div>
 <h1>{wk[:4]}년 {int(num)}주차 AI 점령률</h1><div class="big">{t*100:.1f}%</div><p>{H.escape(lede)}</p>
 {'<h2>이번 주 반영된 소식</h2><ul>'+news+'</ul>' if news else '<h2>이번 주 반영된 소식</h2><p class="sub">숫자를 움직인 확인된 소식이 없었어요.</p>'}
 {'<h2>이번 주 많이 오른 직업</h2><table><tr><th>직업</th><th class="n">노출도</th><th class="n">변화</th></tr>'+rows+'</table>' if rows else ''}
 <h2>가장 많이 노출된 직업</h2><table><tr><th>직업</th><th class="n">노출도</th><th class="n">취업자</th></tr>{toprows}</table>
 <a class="cta" href="/">내 직업 찾아보기</a>
-<p class="foot">노출도: Eloundou 외(2024, Science) · 업무: O*NET 30.0 · 취업자: 국가데이터처 지역별고용조사 2025년 하반기. 연도별 경로와 소식 반영은 AI 점령지도의 추정이에요. 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요. <a href="/w/">지난 주간 지수</a></p>
+<p class="foot">노출도: Eloundou 외(2024, Science)·ILO Gmyrek 외(2025) 평균 · 업무: O*NET 30.0 · 취업자: 국가데이터처 지역별고용조사 2025년 하반기. 연도별 경로와 소식 반영은 AI 점령 지도의 추정이에요. 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요. <a href="/w/">지난 주간 지수</a></p>
 </main></body></html>'''
     open(f'w/{wk}.html','w').write(body);pages.append((wk,title,w['date']))
 lst=''.join(f'<li><a href="/w/{wk}">{H.escape(t)}</a> <span class="sub">· {d}</span></li>' for wk,t,d in reversed(pages))
-open('w/index.html','w').write(f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>주간 지수 · AI 점령지도</title><link rel="canonical" href="{BASE}/w/"><style>{CSS}</style></head><body><main><a class="brand" href="/">AI 점령지도</a><h1>주간 지수</h1><p class="sub">매주 월요일 아침, 지난주 확인된 AI 소식을 반영해 발표해요.</p><ul>{lst or '<li class="sub">첫 발표 전이에요.</li>'}</ul></main></body></html>''')
+open('w/index.html','w').write(f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>주간 지수 · AI 점령 지도</title><link rel="canonical" href="{BASE}/w/"><style>{CSS}</style></head><body><main><a class="brand" href="/">AI 점령 지도</a><h1>주간 지수</h1><p class="sub">매주 월요일 아침, 지난주 확인된 AI 소식을 반영해 발표해요.</p><ul>{lst or '<li class="sub">첫 발표 전이에요.</li>'}</ul></main></body></html>''')
 urls=[BASE+'/',BASE+'/w/']+[f'{BASE}/w/{wk}' for wk,_,_ in pages]+[f'{BASE}/j/{j["code"]}' for j in J]
 open('sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{u}</loc></url>\n' for u in urls)+'</urlset>\n')
 open('robots.txt','w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n')

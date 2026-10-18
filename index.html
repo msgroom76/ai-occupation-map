@@ -1,8 +1,8 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>[hidden]{display:none!important}</style>
 <meta name="description" content="사람이 하던 일, AI가 어디까지 들어왔나. 한국 취업자 2,904만 명의 일을 지도로 그리고, AI 소식을 하루 세 번 반영합니다.">
-<meta property="og:type" content="website"><meta property="og:title" content="AI 점령지도"><meta property="og:description" content="내 직업, AI가 이미 몇 %를 해낼 수 있을까? 한국 직업 56개 지역의 AI 노출도 지도.">
+<meta property="og:type" content="website"><meta property="og:title" content="AI 점령 지도 · AI Occupied Map"><meta property="og:description" content="사람의 일, AI가 어디까지 장악했나? 한국 직업 163개의 AI 노출도와 실제 사용을 지도로.">
 <meta property="og:image" content="og.png"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0b0b0f">
-<title>AI 점령지도</title>
+<title>AI 점령 지도 · AI Occupied Map</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
 <style>
 /* Layout: 지도가 화면 전체(Maps 방식). 데스크톱은 왼쪽 떠 있는 패널, 휴대폰은 아래에서 끌어올리는 시트. 숫자는 문장 먼저, 숫자 다음, 근거는 마지막 */
@@ -305,7 +305,7 @@ details.card[open] summary::after{transform:rotate(90deg)}
 
 </head><body>
 <div class="stage" id="stage">
-  <div class="vp" id="vp" tabindex="0" aria-label="AI 점령지도. 직업 영역을 누르면 그 직업이 선택됩니다.">
+  <div class="vp" id="vp" tabindex="0" aria-label="AI 점령 지도. 직업 영역을 누르면 그 직업이 선택됩니다.">
     <div class="stack" id="stack">
       <canvas id="fab" width="1800" height="2400"></canvas>
       <img id="roads" alt="" draggable="false" src="city_roads.png?v=20261019b">
@@ -352,7 +352,7 @@ details.card[open] summary::after{transform:rotate(90deg)}
     <button type="button" class="grab" id="grab" aria-label="패널 크기 바꾸기"></button>
     <div class="scroll" id="scroll">
       <header class="head">
-        <div class="logo"><h1 aria-label="AI 점령지도 (AI Occupied Map)"><span class="ai" aria-hidden="true">AI</span><span class="w en" aria-hidden="true">Occupied</span><span class="w en" aria-hidden="true">Map</span><span class="w ko" aria-hidden="true">점령 지도</span></h1>
+        <div class="logo"><h1 aria-label="AI 점령 지도 · AI Occupied Map"><span class="ai" aria-hidden="true">AI</span><span class="w en" aria-hidden="true">Occupied</span><span class="w en" aria-hidden="true">Map</span><span class="w ko" aria-hidden="true">점령 지도</span></h1>
         <p class="tagline">사람의 일, AI가 어디까지 장악했나?</p></div>
         <span class="badge" id="badge"></span>
       </header>
@@ -720,7 +720,7 @@ function aboutCard(){
    <div><dt>지도</dt><dd>실제 지역이 아닌 가상의 도시예요. 큰 구역 = 표준직업분류 대분류(9개), 테두리 영역 = 중분류(56개), 넓이 = 실제 취업자 수.</dd></div></dl>`;
   
   m.appendChild(el('p','guard','직업 단위의 경향이에요. 개인 평가나 인원 감축의 근거로 쓸 수 없어요.'));
-  const cite=`출처: AI 점령지도(포스트오피스), ${ASOF} 기준, ${VER}. 노출도: Eloundou 외(2024, Science)와 ILO Gmyrek 외(2025)의 평균, 실제 사용: Anthropic 경제지수(2026), 업무 구성: 미국 O*NET 30.0, 취업자 수: 국가데이터처 지역별고용조사 2025년 하반기. 연도별 경로는 AI 점령지도의 추정.`;
+  const cite=`출처: AI 점령 지도(포스트오피스), ${ASOF} 기준, ${VER}. 노출도: Eloundou 외(2024, Science)와 ILO Gmyrek 외(2025)의 평균, 실제 사용: Anthropic 경제지수(2026), 업무 구성: 미국 O*NET 30.0, 취업자 수: 국가데이터처 지역별고용조사 2025년 하반기. 연도별 경로는 AI 점령 지도의 추정.`;
   const cb=el('div','cite',cite),btn=el('button','btn','인용문 복사');btn.type='button';
   btn.onclick=async()=>{try{await navigator.clipboard.writeText(cite);btn.textContent='복사했어요'}catch(e){const r=document.createRange();r.selectNodeContents(cb);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='선택했어요. 복사해 주세요'}setTimeout(()=>btn.textContent='인용문 복사',2500)};
   m.append(cb,btn);d.appendChild(m);return d}
@@ -749,8 +749,8 @@ function jobCard(j){
   const acts=el('div','acts');const isMine=MINE&&MINE.code===RJ_[j].code;
   const sv=el('button','btn'+(isMine?' on':''),isMine?'★ 내 직업':'☆ 내 직업으로 저장');sv.type='button';sv.setAttribute('aria-pressed',!!isMine);
   sv.onclick=()=>{if(isMine){MINE=null;lsSet(null)}else{MINE={code:RJ_[j].code,t:selVia?selVia.t:null,d:selVia?selVia.d||null:null,k:selVia?selVia.k||null:null,kn:selVia?selVia.kn||null:null,v:f(2026),seen:FEED.updated||new Date().toISOString()};lsSet(MINE)}render()};
-  const sh=el('button','btn','공유');sh.type='button';sh.onclick=async()=>{const u=location.origin+'/j/'+RJ_[j].code+(selVia?'?q='+encodeURIComponent(selVia.t):'');const t=`${selVia?selVia.t:RJ_[j].name}, AI가 이미 ${pct(f(2026))}%를 해낼 수 있대요 · AI 점령지도`;
-    try{if(navigator.share){await navigator.share({title:'AI 점령지도',text:t,url:u});return}await navigator.clipboard.writeText(t+' '+u);sh.textContent='링크 복사했어요'}catch(e){sh.textContent='복사하지 못했어요'}setTimeout(()=>sh.textContent='공유',2500)};
+  const sh=el('button','btn','공유');sh.type='button';sh.onclick=async()=>{const u=location.origin+'/j/'+RJ_[j].code+(selVia?'?q='+encodeURIComponent(selVia.t):'');const t=`${selVia?selVia.t:RJ_[j].name}, AI가 이미 ${pct(f(2026))}%를 해낼 수 있대요 · AI 점령 지도`;
+    try{if(navigator.share){await navigator.share({title:'AI 점령 지도',text:t,url:u});return}await navigator.clipboard.writeText(t+' '+u);sh.textContent='링크 복사했어요'}catch(e){sh.textContent='복사하지 못했어요'}setTimeout(()=>sh.textContent='공유',2500)};
   acts.append(sv,sh);
   const rids=new Set(RJ_[j].tasks.filter(t=>t[2]>=.06).map(t=>t[1])),rel=FEED.items.filter(n=>n.st!=='hold'&&(n.r||[]).some(r=>rids.has(r))).slice(0,3);
   const relBox=el('div');if(rel.length){const rl=el('div','lab');rl.append(el('span',null,'이 직업에 닿은 최근 소식'));const ul=el('ul','news');rel.forEach(n=>ul.appendChild(newsItem(n)));relBox.append(rl,ul)}

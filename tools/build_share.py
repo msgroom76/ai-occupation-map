@@ -30,9 +30,9 @@ async def main():
             await pg.set_content(h);await pg.wait_for_timeout(50)
             await pg.screenshot(path=f"og/{j['code']}.png")
             title=f"{j['name']}, AI가 이미 {round(v*100)}%를 해낼 수 있어요"
-            desc=f"표준직업분류 {j['code']} {j['full']} · 취업자 {round(j['ws']) if j['ws']>=10 else j['ws']}만 명 · 2030년 예측 {round(v30*100)}% · AI 점령지도"
+            desc=f"표준직업분류 {j['code']} {j['full']} · 취업자 {round(j['ws']) if j['ws']>=10 else j['ws']}만 명 · 2030년 예측 {round(v30*100)}% · AI 점령 지도"
             open(f"j/{j['code']}.html",'w').write(f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{H.escape(title)} · AI 점령지도</title><meta name="description" content="{H.escape(desc)}">
+<title>{H.escape(title)} · AI 점령 지도</title><meta name="description" content="{H.escape(desc)}">
 <meta property="og:type" content="article"><meta property="og:title" content="{H.escape(title)}"><meta property="og:description" content="{H.escape(desc)}">
 <meta property="og:image" content="{BASE}/og/{j['code']}.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="{BASE}/j/{j['code']}">
 <meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="{BASE}/#j={j['code']}">
