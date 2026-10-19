@@ -63,7 +63,7 @@ for i,w in enumerate(weeks):
     rows.append(f'<tr><td style="padding:40px 0 0;border-bottom:1px solid {INK}"></td></tr>')
     rows.append(para(f'노출도: Eloundou 외(2024, Science)·ILO Gmyrek 외(2025) 평균 · 업무: O*NET 30.0 · 취업자: 국가데이터처 지역별고용조사 2025년 하반기. 연도별 경로와 소식 반영은 AI 점령 지도의 추정이에요. 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요.',MUT,12))
     rows.append(para(f'{a(url,"웹에서 보기",MUT)} · {a("{{unsubscribe_url}}","수신 거부",MUT)}<br>이 메일은 AI 점령 지도에서 주간 지수 받기를 신청한 분께 보내요.',MUT,12))
-    html_=f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>{H.escape(subject)}</title></head>
+    html_=f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="robots" content="noindex"><title>{H.escape(subject)}</title></head>
 <body style="margin:0;padding:0;background:{BG}"><div style="display:none;max-height:0;overflow:hidden;opacity:0">{H.escape(pre)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{BG}"><tr><td align="center" style="padding:24px 12px">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fff;border-top:6px solid {PINK}"><tr><td style="padding:32px 28px 36px">
