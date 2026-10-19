@@ -1,7 +1,51 @@
 {
- "updated": "2026-10-19T12:11:00+09:00",
+ "updated": "2026-10-19T17:55:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-10-19-elevenlabs-architect",
+   "ts": "2026-10-19T10:53:00+09:00",
+   "src": "파이낸셜뉴스",
+   "url": "https://www.fnnews.com/news/202610191046548529",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": true,
+   "hd": "일레븐랩스, 대화만으로 음성 상담 에이전트를 만들고 로그 검토·테스트 시뮬레이션까지 하는 'ElevenAgent Architect' 알파 공개",
+   "r": [
+    "C5",
+    "B3"
+   ],
+   "st": "pending"
+  },
+  {
+   "id": "2026-10-16-anthropic-employment",
+   "ts": "2026-10-16T09:00:00+09:00",
+   "src": "Anthropic",
+   "url": "https://www.anthropic.com/research/employment-at-anthropic",
+   "tier": "1차 출처",
+   "sig": "고용",
+   "us": true,
+   "hd": "앤트로픽 사내 고용 보고서: 2025년 초 이후 기술직 신규 채용 중 주니어 비중 27%→9%, AI 에이전트 작업 시간은 직원의 6배",
+   "r": [],
+   "st": "none",
+   "note": "기업 내부 고용 통계 · 노출도 수치 영향 없음"
+  },
+  {
+   "id": "2026-10-16-astra-pro-parallel",
+   "ts": "2026-10-16T09:00:00+09:00",
+   "src": "Lapaas Voice",
+   "url": "https://lapaasvoice.com/openai-upgrades-gpt-6-astra-pro-in-chatgpt-with-faster-responses-and-parallel-agents",
+   "tier": "확인 필요",
+   "sig": "능력",
+   "us": true,
+   "hd": "오픈AI, ChatGPT의 GPT-6 Astra Pro에 여러 에이전트가 한 작업을 나눠 병렬 처리하는 기능 추가 (Pro 사용자)",
+   "r": [
+    "C5",
+    "B5"
+   ],
+   "st": "hold",
+   "note": "원문은 오픈AI X 게시물로 직접 열람 불가 · 요약 매체만 확인"
+  },
   {
    "id": "2026-10-19-bitcomputer-bitmate",
    "ts": "2026-10-19T11:15:00+09:00",
