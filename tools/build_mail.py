@@ -72,7 +72,13 @@ for i,w in enumerate(weeks):
     dtxt=('첫 주간 지수예요' if dt is None else f'지난주보다 {dt:+.2f}%p' if abs(dt)<0.1 else f'지난주보다 {dt:+.1f}%p')
     bp=f'mail/brief/{wk}.json';B=json.load(open(bp)) if os.path.exists(bp) else None
     url=f'{BASE}/w/{wk}'
-    rows=[para(f'<b style="color:{INK}">AI 점령 지도 주간 브리핑</b> · {wk[:4]}년 {num}주차 · {w["date"]}',MUT,13,'0 0 18px')]
+    md=date.fromisoformat(w['date'])
+    mast=(f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0">'
+          f'<tr><td colspan="2" style="padding:0 0 10px;font:600 12px/1.4 {F};color:{INK}">AI 점령 지도 <span style="color:{MUT};font-weight:400">— 사람의 일, AI가 어디까지 장악했나?</span></td></tr>'
+          f'<tr><td valign="bottom"><a href="{BASE}/" style="text-decoration:none"><img src="{BASE}/mail/img/logo.png" width="150" height="47" alt="AI 점령 지도 · AI Occupied Map" style="display:block;border:0;width:150px;height:auto;color:{PINK};font:700 20px {F}"></a></td>'
+          f'<td valign="bottom" align="right" style="font:12px/1.5 {F};color:{MUT};white-space:nowrap"><b style="color:{INK};letter-spacing:.06em">WEEKLY BRIEFING</b><br>{wk[:4]} · {num}주차 · {md.month}월 {md.day}일</td></tr>'
+          f'<tr><td colspan="2" style="padding:14px 0 0;border-bottom:2px solid {INK}"></td></tr></table>')
+    rows=[row(mast,'0 0 24px')]
     if B:
         subject=f'[AI 점령 지도] {B["headline"]} · {num}주차 {t*100:.1f}%'
         pre=B['tldr'][0][:90] if B.get('tldr') else B['intro'][:90]
