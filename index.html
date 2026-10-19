@@ -457,6 +457,12 @@ details.card[open] summary::after{content:"−"}
 .types button i,.ovs button i{border-radius:0}
 .types button,.ovs button{font-size:11px}
 
+.fm{display:grid;gap:8px}
+.fm input:not([type=checkbox]),.fm select,.fm textarea{width:100%;box-sizing:border-box;border:1px solid var(--hair);border-radius:0;background:var(--fill);color:var(--ink);font:inherit;font-size:16px;padding:10px 12px}
+.fm input:focus,.fm select:focus,.fm textarea:focus{outline:0;border-color:var(--ink);background:var(--bg)}
+.fm .ck{font-size:12px;color:var(--ink2);display:flex;gap:6px;align-items:center}.fm .ck input{accent-color:var(--ink);width:16px;height:16px}
+.fm .btn{justify-self:start}.fm .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.fmsg{font-size:12px;margin:0;min-height:1em;color:var(--ink2)}.fmsg.ok{color:var(--tint)}.fmsg.err{color:var(--warn)}
 /* ===== 휴대폰: 위 검색 막대 + 가벼운 지도 위 요소 + 낮은 시트 ===== */
 .topbar{display:none}
 @media (max-width:899px){
@@ -755,7 +761,7 @@ function swatches(){$('.sw.flat').style.background=`linear-gradient(90deg,${RAMP
 function applyLayers(){document.body.dataset.m=mtype;$('#jb').hidden=!OVL.jobs;$('#grp').hidden=!OVL.sectors;$('#tb').hidden=mtype!=='cat';$('#roads').hidden=mtype==='flat';
   document.querySelectorAll('#types button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t===mtype));
   document.querySelectorAll('#ovs button').forEach(b=>b.setAttribute('aria-pressed',!!OVL[b.dataset.o]));renderLegend();schedule()}
-document.querySelectorAll('#types button').forEach(b=>b.onclick=()=>{mtype=b.dataset.t;applyLayers()});
+document.querySelectorAll('#types button').forEach(b=>b.onclick=()=>{mtype=b.dataset.t;track('map',mtype);applyLayers()});
 document.querySelectorAll('#ovs button').forEach(b=>b.onclick=()=>{OVL[b.dataset.o]=!OVL[b.dataset.o];applyLayers()});
 const lyr=$('#lyr'),lbtn=$('#lyrbtn');
 const setLyr=o=>{lyr.hidden=!o;lbtn.setAttribute('aria-expanded',o);layoutLabels()};
@@ -927,6 +933,33 @@ function adSlot(){if(!(CFG.ads&&CFG.ads.enabled)&&!/[?&]ads=1/.test(location.sea
   const a=el('aside','card ad');a.setAttribute('aria-label','광고');a.append(el('div','lab','광고'));const box=el('div','adbox');
   if(CFG.ads&&CFG.ads.html)box.innerHTML=CFG.ads.html;else box.textContent='광고 자리';a.appendChild(box);
   a.appendChild(el('p','rule','광고는 지도 데이터와 순위에 영향을 주지 않아요.'));return a}
+// ---------- 행동 집계(쿠키 없음, 개인 식별 정보 없음) ----------
+const track=(n,l='')=>{try{const b=JSON.stringify({n,l:String(l).slice(0,40)});if(!(navigator.sendBeacon&&navigator.sendBeacon('/api/e',new Blob([b],{type:'application/json'}))))fetch('/api/e',{method:'POST',body:b,keepalive:true})}catch(e){}};
+async function postForm(url,data,out,btn){btn.disabled=true;out.textContent='보내는 중…';out.className='fmsg';
+  try{const r=await fetch(url,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(data)});const j=await r.json().catch(()=>({}));out.textContent=j.msg||(r.ok?'접수했어요.':'잠시 후 다시 시도해 주세요.');out.className='fmsg '+(r.ok&&j.ok!==false?'ok':'err');return r.ok&&j.ok!==false}
+  catch(e){out.textContent='연결이 끊겼어요. 잠시 후 다시 시도해 주세요.';out.className='fmsg err';return false}finally{btn.disabled=false}}
+const PRIV=t=>el('p','rule',t);
+function subCard(){const c=el('section','card');const lab=el('div','lab');lab.append(el('span',null,'주간 지수를 메일로'),el('span',null,'매주 월요일'));c.appendChild(lab);
+  c.appendChild(el('p','lede sm','한 주 동안 AI가 건드린 업무와 지수 변화를 월요일 아침에 보내드려요.'));
+  const f=el('form','fm');f.noValidate=true;const em=el('input');em.type='email';em.placeholder='이메일 주소';em.autocomplete='email';em.required=true;em.setAttribute('aria-label','이메일 주소');
+  const hp=el('input');hp.name='website';hp.tabIndex=-1;hp.autocomplete='off';hp.className='hp';hp.setAttribute('aria-hidden','true');
+  const jb=el('label','ck');const jc=el('input');jc.type='checkbox';jc.checked=!!MINE;jb.append(jc,` 내 직업 소식도 함께${MINE?` (${MINE.t||RJ_[jIdx(MINE.code)]?.name||''})`:' (내 직업을 저장하면 함께 보내드려요)'}`);
+  const cs=el('label','ck');const cc=el('input');cc.type='checkbox';cs.append(cc,' 개인정보 수집·이용에 동의해요');
+  const bt=el('button','btn','구독하기');bt.type='submit';const out=el('p','fmsg');
+  f.append(em,hp,jb,cs,bt,out);f.onsubmit=async e=>{e.preventDefault();const ok=await postForm('/api/subscribe',{email:em.value,consent:cc.checked,job:jc.checked&&MINE?(MINE.k||MINE.code):'',src:'site',website:hp.value},out,bt);if(ok){track('sub');em.value=''}};
+  c.append(f,PRIV('수집 항목: 이메일, 선택한 직업. 목적: 주간 지수 뉴스레터 발송. 보유 기간: 구독 해지 때까지. 메일마다 있는 해지 링크로 언제든 끊을 수 있어요. 동의하지 않으면 구독할 수 없어요.'));return c}
+function leadCard(){const d=el('details','card');d.innerHTML='<summary>기관·기업 리포트 문의</summary>';const m=el('div','meth');
+  m.appendChild(el('p',null,'우리 조직의 직무별 AI 노출 분석 리포트, 임직원·교육생 대상 워크숍, 언론·기관 공동 리포트를 만들어 드려요.'));
+  const f=el('form','fm');f.noValidate=true;const mk=(ph,ty='text',ac='')=>{const i=el('input');i.type=ty;i.placeholder=ph;i.setAttribute('aria-label',ph);if(ac)i.autocomplete=ac;return i};
+  const nm=mk('이름','text','name'),og=mk('소속(회사·기관)','text','organization'),em=mk('이메일','email','email');
+  const kd=el('select');kd.setAttribute('aria-label','문의 종류');['조직 리포트','워크숍·강연','공동 리포트·연구','언론 취재','기타'].forEach(t=>{const o=el('option',null,t);kd.appendChild(o)});
+  const ms=el('textarea');ms.rows=4;ms.placeholder='문의 내용 (조직 규모, 원하는 시기 등)';ms.setAttribute('aria-label','문의 내용');
+  const hp=el('input');hp.name='website';hp.tabIndex=-1;hp.autocomplete='off';hp.className='hp';hp.setAttribute('aria-hidden','true');
+  const cs=el('label','ck');const cc=el('input');cc.type='checkbox';cs.append(cc,' 개인정보 수집·이용에 동의해요');
+  const bt=el('button','btn','문의 보내기');bt.type='submit';const out=el('p','fmsg');
+  f.append(nm,og,em,kd,ms,hp,cs,bt,out);f.onsubmit=async e=>{e.preventDefault();const ok=await postForm('/api/contact',{name:nm.value,org:og.value,email:em.value,kind:kd.value,msg:ms.value,consent:cc.checked,website:hp.value},out,bt);if(ok){track('lead',kd.value);ms.value=''}};
+  m.append(f,PRIV('수집 항목: 이름, 소속, 이메일, 문의 내용. 목적: 문의 답변과 견적 안내. 보유 기간: 문의 처리 후 1년. 동의하지 않으면 문의를 보낼 수 없어요. 문의처: 포스트오피스.'));d.appendChild(m);
+  d.addEventListener('toggle',()=>{if(d.open)track('lead','open')});return d}
 function aboutCard(){
   const d=el('details','card');d.innerHTML=`<summary>이 지도에 대해 · 인용하기</summary>`;const m=el('div','meth');
   m.innerHTML=`<dl>
@@ -971,8 +1004,8 @@ function jobCard(j){
   const lg=el('div','legend2');[[`대체형 ${pct(sub)}%`,'var(--hot)'],[`보완형 ${pct(aug)}%`,'var(--tint)'],[`사람 몫 ${100-pct(sub)-pct(aug)}%`,'var(--ink3)']].forEach(([t,cc])=>{const s=el('span',null,t);s.style.setProperty('--c',cc);lg.appendChild(s)});
   const acts=el('div','acts');const isMine=MINE&&MINE.code===RJ_[j].code;
   const sv=el('button','btn'+(isMine?' on':''),isMine?'★ 내 직업':'☆ 내 직업으로 저장');sv.type='button';sv.setAttribute('aria-pressed',!!isMine);
-  sv.onclick=()=>{if(isMine){MINE=null;lsSet(null)}else{MINE={code:RJ_[j].code,t:selVia?selVia.t:null,d:selVia?selVia.d||null:null,k:selVia?selVia.k||null:null,kn:selVia?selVia.kn||null:null,v:f(2026),seen:FEED.updated||new Date().toISOString()};lsSet(MINE)}render()};
-  const sh=el('button','btn','공유');sh.type='button';sh.onclick=async()=>{const u=location.origin+'/j/'+RJ_[j].code+(selVia?'?q='+encodeURIComponent(selVia.t):'');const t=`${selVia?selVia.t:RJ_[j].name}, AI가 이미 ${pct(f(2026))}%를 해낼 수 있대요 · AI 점령 지도`;
+  sv.onclick=()=>{track('save',RJ_[j].code);if(isMine){MINE=null;lsSet(null)}else{MINE={code:RJ_[j].code,t:selVia?selVia.t:null,d:selVia?selVia.d||null:null,k:selVia?selVia.k||null:null,kn:selVia?selVia.kn||null:null,v:f(2026),seen:FEED.updated||new Date().toISOString()};lsSet(MINE)}render()};
+  const sh=el('button','btn','공유');sh.type='button';sh.onclick=async()=>{track('share',RJ_[j].code);const u=location.origin+'/j/'+RJ_[j].code+(selVia?'?q='+encodeURIComponent(selVia.t):'');const t=`${selVia?selVia.t:RJ_[j].name}, AI가 이미 ${pct(f(2026))}%를 해낼 수 있대요 · AI 점령 지도`;
     try{if(navigator.share){await navigator.share({title:'AI 점령 지도',text:t,url:u});return}await navigator.clipboard.writeText(t+' '+u);sh.textContent='링크 복사했어요'}catch(e){sh.textContent='복사하지 못했어요'}setTimeout(()=>sh.textContent='공유',2500)};
   acts.append(sv,sh);
   const rids=new Set(RJ_[j].tasks.filter(t=>t[2]>=.06).map(t=>t[1])),rel=FEED.items.filter(n=>n.st!=='hold'&&(n.r||[]).some(r=>rids.has(r))).slice(0,3);
@@ -1021,7 +1054,7 @@ function render(){
   else if(selA>=0)ctx.appendChild(jobCard(selA));
   else if(flash){ctx.appendChild(flashCard())}
   else{[mineCard(),summaryCard(),todayCard(),highlights()].forEach(x=>x&&ctx.appendChild(x))}
-  [newsCard(),catsCard(),rankCard(),adSlot(),aboutCard()].forEach(x=>x&&rest.appendChild(x));rest.append(el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024)·ILO(2025) 평균 · 실제 사용 Anthropic(2026) · 업무 O*NET 30.0 · 취업자 국가데이터처(2025년 하반기)`));
+  [newsCard(),subCard(),catsCard(),rankCard(),adSlot(),leadCard(),aboutCard()].forEach(x=>x&&rest.appendChild(x));rest.append(el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024)·ILO(2025) 평균 · 실제 사용 Anthropic(2026) · 업무 O*NET 30.0 · 취업자 국가데이터처(2025년 하반기)`));
   $('#sugg').hidden=selA>=0||!!selTask;$('#sheet').classList.toggle('ctxmode',selA>=0||!!selTask);
   if(keep==='q2'){const q=$('#q2');if(q)q.focus()}
 }
@@ -1046,7 +1079,7 @@ function wireSearch(inp,res,onPick){
     if(!m.length){const li=el('li');const d=el('div',null,`아직 사전에 없는 이름이에요. 직업명 ${ENT.length.toLocaleString()}개 중에서 찾고 있어요. 비슷한 말로 찾아보세요.`);d.style.padding='11px 14px';d.style.fontSize='13px';d.style.color='var(--ink2)';li.appendChild(d);res.appendChild(li)}
     m.forEach(e=>{const li=el('li'),b=el('button');b.type='button';const L=el('span',null,e.t);
       const R=el('small',null,e.std?`지역 · 노출도 ${pct(occ(e.j,year))}%`:`→ ${RJ_[e.j].name} · ${pct(occV(e.j,e.k,year))}%`);
-      b.append(L,R);b.onclick=()=>{inp.value='';res.hidden=true;onPick(e.j,e.std?null:e)};li.appendChild(b);res.appendChild(li)});res.hidden=false};
+      b.append(L,R);b.onclick=()=>{inp.value='';res.hidden=true;track('search',e.t);onPick(e.j,e.std?null:e)};li.appendChild(b);res.appendChild(li)});res.hidden=false};
   inp.addEventListener('input',draw);
   inp.addEventListener('keydown',e=>{if(e.key==='Enter'){const m=matches(inp.value);if(m.length){inp.value='';res.hidden=true;onPick(m[0].j,m[0].std?null:m[0])}}if(e.key==='Escape'){inp.value='';res.hidden=true}})}
 wireSearch($('#q'),$('#results'),(i,via)=>pickJob(i,via));
@@ -1057,8 +1090,8 @@ const sheet=$('#sheet');
 function setDetent(d){if(desk())return;sheet.classList.toggle('half',d==='half');sheet.classList.toggle('full',d==='full');sheet.dataset.d=d||'peek'}
 let selVia=null;
 function setHash(h){try{history.replaceState(null,'',h?'#'+h:location.pathname+location.search)}catch(e){}}
-function pickJob(j,via=null){selVia=via;selA=j;selB=-1;selTask=null;flash=null;refresh();$('#scroll').scrollTop=0;setDetent('half');setHash('j='+RJ_[j].code+(via&&via.t?'&q='+encodeURIComponent(via.t):''))}
-function selectTask(r){selTask=selTask===r?null:r;flash=null;refresh();$('#scroll').scrollTop=0;if(selTask)setDetent('half')}
+function pickJob(j,via=null){track('job',RJ_[j].code+(via&&via.k?':'+String(via.k).slice(0,3):''));selVia=via;selA=j;selB=-1;selTask=null;flash=null;refresh();$('#scroll').scrollTop=0;setDetent('half');setHash('j='+RJ_[j].code+(via&&via.t?'&q='+encodeURIComponent(via.t):''))}
+function selectTask(r){track('task',r);selTask=selTask===r?null:r;flash=null;refresh();$('#scroll').scrollTop=0;if(selTask)setDetent('half')}
 function clearAll(){selA=selB=-1;selTask=null;flash=null;flashLabel='';refresh();setHash('')}
 // 휴대폰 시트: 손잡이를 끌거나 눌러 높이 바꾸기
 {let sy=null,moved=false;const g=$('#grab');

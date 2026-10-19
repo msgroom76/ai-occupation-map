@@ -32,5 +32,10 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 
 ## 주간 작업이 함께 만드는 파일
 - `python3 tools/weekly.py YYYY-MM-DD` → index.json에 한 주 추가
-- `python3 tools/build_pages.py` → `w/<주>.html` 주간 리포트, `w/index.html` 목록, `sitemap.xml`, `robots.txt`
-- `python3 tools/build_share.py` → `j/<코드>.html` 공유 페이지와 `og/<코드>.png` 미리보기(그 주 숫자로). playwright가 없으면 건너뛴다.
+- `python3 tools/build_pages.py` → `w/<주>.html` 주간 리포트, `w/index.html` 목록, 직업 페이지 `j/<코드>.html`(중분류 56 + 소분류 154, tools/build_jobs.py), `sitemap.xml`, `robots.txt`
+- `python3 tools/build_share.py` → `og/<코드>.png` 미리보기(그 주 숫자로). playwright가 없으면 건너뛴다.
+
+## 서버 기능 (functions/, Cloudflare Pages Functions)
+- `POST /api/e` 행동 집계(날짜·이벤트·라벨별 횟수만). `POST /api/subscribe` 뉴스레터 구독. `POST /api/contact` 기관·기업 문의. `GET /api/stats?k=…` 운영자 집계 조회.
+- Cloudflare Pages 프로젝트 설정 → 바인딩에 D1 데이터베이스를 `DB` 이름으로 연결해야 저장된다(표는 첫 요청 때 자동 생성). 환경 변수 `STATS_KEY`를 넣어야 집계 조회가 열린다.
+- 바인딩이 없으면 집계는 조용히 건너뛰고, 구독·문의는 '준비 중' 안내를 돌려준다.
