@@ -54,3 +54,4 @@ urls=[BASE+'/',BASE+'/w/']+[f'{BASE}/w/{wk}' for wk,_,_ in pages]+json.load(open
 open('sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{u}</loc></url>\n' for u in urls)+'</urlset>\n')
 open('robots.txt','w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n')
 print('weeks',len(pages),'urls',len(urls))
+exec(open('tools/build_mail.py').read(),{'__name__':'build_mail'})
