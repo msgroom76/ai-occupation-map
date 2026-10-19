@@ -504,41 +504,121 @@ details.card[open] summary::after{content:"−"}
   .lb.job{font-size:10.5px!important;padding:3px 5px 3px 4px}
 }
 
-/* ===== 폴더: 주제별 면 + 엇갈린 탭. 그림자·질감·둥근 모서리 없이 겹침과 명도로만 깊이를 만든다 ===== */
+/* ===== 폴더: 주제별 면. 빈틈없이 겹쳐 쌓이고(뒤 폴더 탭이 앞 폴더 아래 여백에 올라탄다), 위 가장자리의 부드러운 그림자로 층을 만든다. 탭을 누르면 접고 펼친다 ===== */
 .scroll{padding-bottom:0}
 #ctx,#rest{display:block}
-.fold{position:relative;margin:36px -24px 0;padding:22px 24px 8px;background:color-mix(in srgb,var(--ink) calc(3% + var(--i) * 3.2%),var(--bg));
-  box-shadow:0 -1px 0 var(--hair);filter:drop-shadow(0 -3px 6px rgba(0,0,0,.06));scroll-margin-top:40px}
+.fold{--fb:color-mix(in srgb,var(--ink) calc(3% + var(--i) * 3.4%),var(--bg));--tabh:30px;position:relative;margin:0 -24px;padding:18px 24px calc(var(--tabh) + 10px);
+  background:var(--fb);border-radius:18px 18px 0 0;box-shadow:inset 0 1px 0 rgba(255,255,255,.35);
+  filter:drop-shadow(0 -6px 12px rgba(0,0,0,.08)) drop-shadow(0 -1px 1px rgba(0,0,0,.06))}
+#ctx>.fold:first-child,#ctx:empty+#rest>.fold:first-child{margin-top:calc(var(--tabh) + 8px)}
 .fold:focus-within{z-index:3}
-.fold>.tab{position:absolute;bottom:100%;left:calc(24px + (100% - 48px - 132px) * var(--k));min-width:132px;height:28px;box-sizing:border-box;
-  display:flex;align-items:center;gap:8px;padding:1px 18px 0 16px;border:0;background:inherit;color:var(--ink);font:inherit;font-size:11px;cursor:pointer;
-  clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 100%,0 100%);box-shadow:inset 0 1px 0 var(--hair)}
+/* 탭: 위 모서리는 둥글게, 아래 양쪽은 몸체로 부드럽게 이어지는 어깨 */
+.fold>.tab{position:absolute;bottom:100%;left:calc(24px + (100% - 48px - 150px) * var(--k));min-width:150px;height:var(--tabh);box-sizing:border-box;
+  display:flex;align-items:center;gap:8px;padding:2px 14px 0 16px;border:0;border-radius:10px 10px 0 0;background:var(--fb);color:var(--ink);font:inherit;font-size:11px;cursor:pointer;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.fold>.tab::before,.fold>.tab::after{content:"";position:absolute;bottom:0;width:10px;height:10px;pointer-events:none}
+.fold>.tab::before{left:-10px;background:radial-gradient(circle at 0 0,transparent 9.5px,var(--fb) 10px)}
+.fold>.tab::after{right:-10px;background:radial-gradient(circle at 100% 0,transparent 9.5px,var(--fb) 10px)}
 .fold>.tab b{font-weight:500;color:var(--ink2);font-feature-settings:"tnum"}
 .fold>.tab span{font-weight:700;letter-spacing:-.01em}
+.fold>.tab .pm{margin-left:auto;font-style:normal;font-size:14px;font-weight:300;line-height:1;color:var(--ink2);width:12px;text-align:center}
 .fold>.tab:hover span{text-decoration:underline;text-underline-offset:3px}
-.fold>.tab:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
-.fold.f-mine,.fold.f-job,.fold.f-task,.fold.f-flash{background:color-mix(in srgb,var(--hot) 9%,var(--bg))}
+.fold>.tab:focus-visible,.fold>.fsum:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+.fold.f-mine,.fold.f-job,.fold.f-task,.fold.f-flash{--fb:color-mix(in srgb,var(--hot) 10%,var(--bg))}
 .fold.f-mine>.tab b,.fold.f-job>.tab b,.fold.f-task>.tab b{color:var(--hot-ink)}
-/* 폴더 안 카드: 첫 카드는 폴더 가장자리가 선을 대신하고, 이후 카드는 가는 선 */
-.fold>.card{margin:0 0 36px;border-top:1px solid var(--hair);padding-top:12px}
-.fold>.tab+.card{border-top:0;padding-top:0}
-.fold>.card:last-child{margin-bottom:28px}
+/* 접힌 상태: 몸체는 접히고 한 줄 요약(제목 + 큰 숫자)만 남는다 */
+.fbody{display:grid;grid-template-rows:1fr;transition:grid-template-rows .42s cubic-bezier(.2,.75,.25,1),opacity .3s}
+.fin{min-height:0}
+.fold.closed .fbody{grid-template-rows:0fr;opacity:0}
+.fold.closed .fin{overflow:hidden}
+.fsum{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:12px;width:100%;border:0;background:none;color:var(--ink);font:inherit;text-align:left;cursor:pointer;
+  padding:0;max-height:0;opacity:0;overflow:hidden;transition:max-height .42s cubic-bezier(.2,.75,.25,1),opacity .3s,padding .42s}
+.fold.closed .fsum{max-height:90px;opacity:1;padding:2px 0 4px}
+.fsum .t{font-size:12px;font-weight:600;color:var(--ink2);line-height:1.4;padding-bottom:4px}
+.fsum .n{font-size:34px;font-weight:600;letter-spacing:-.05em;line-height:.95;font-feature-settings:"tnum"}
+.f-mine .fsum .n,.f-job .fsum .n{color:var(--hot-ink)}
+.fold.closed{padding-top:14px}
+@media (prefers-reduced-motion:reduce){.fbody,.fsum{transition:none}}
+/* 폴더 안 카드 */
+.fin>.card{margin:0 0 36px;border-top:1px solid var(--hair);padding-top:12px}
+.fin>.card:first-child{border-top:0;padding-top:0}
+.fin>.card:last-child{margin-bottom:12px}
 .fold .card>.lab:first-child::before{content:"—";font-weight:400;color:var(--ink3)}
 .fold .lab.dup{display:none}
 .fold details.card summary::before{content:"—";font-weight:400;color:var(--ink3)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .fold.inv{--bg:#000;background:#000}}
-:root[data-theme="dark"] .fold.inv{--bg:#000;background:#000}
 /* 마지막 폴더는 어둡게 닫는다(구독·문의) */
-.fold.inv{--bg:#17171B;--ink:#F5F5F7;--ink2:rgba(235,235,245,.66);--ink3:rgba(235,235,245,.4);--fill:rgba(255,255,255,.1);--fill2:rgba(255,255,255,.18);
+.fold.inv{--fb:#17171B;--bg:#17171B;--ink:#F5F5F7;--ink2:rgba(235,235,245,.66);--ink3:rgba(235,235,245,.4);--fill:rgba(255,255,255,.1);--fill2:rgba(255,255,255,.18);
   --rule:#F5F5F7;--hair:rgba(245,245,247,.22);--hot:#FF8CCD;--hot-ink:#FF8CCD;--tint:#0A84FF;--warn:#FF9F0A;
-  background:#17171B;color:var(--ink);padding-bottom:calc(48px + env(safe-area-inset-bottom,0px));min-height:40vh;box-shadow:none;filter:drop-shadow(0 -3px 8px rgba(0,0,0,.14))}
-.fold.inv>.tab{box-shadow:none}
+  color:var(--ink);padding-bottom:calc(48px + env(safe-area-inset-bottom,0px));min-height:40vh;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+  filter:drop-shadow(0 -6px 14px rgba(0,0,0,.16)) drop-shadow(0 -1px 1px rgba(0,0,0,.1))}
+.fold.inv.closed{min-height:0}
+.fold.inv>.tab{box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
 .fold.inv .foot{color:var(--ink3)}
 .fold.inv input,.fold.inv textarea,.fold.inv select{background:rgba(255,255,255,.06);color:var(--ink);border-color:var(--hair)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .fold.inv{--fb:#000;--bg:#000}
+  :root:not([data-theme="light"]) .fold:not(.inv),:root:not([data-theme="light"]) .fold:not(.inv)>.tab{box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+  :root:not([data-theme="light"]) .fold{--fb:color-mix(in srgb,var(--ink) calc(4% + var(--i) * 4.5%),var(--bg))}}
+:root[data-theme="dark"] .fold.inv{--fb:#000;--bg:#000}
 @media (max-width:899px){
-  .fold{margin-top:32px;padding-top:18px}
-  .fold>.tab{min-width:112px;height:26px;padding:1px 14px 0 12px;left:calc(24px + (100% - 48px - 112px) * var(--k))}
-  #ctx>.fold:first-child{margin-top:30px}
+  .fold{--tabh:28px;border-radius:16px 16px 0 0}
+  .fold>.tab{min-width:128px;left:calc(24px + (100% - 48px - 128px) * var(--k))}
+  .scroll>.head{order:-3;margin:0 0 4px}
+  .sugg{display:none}
+}
+
+/* ===== 지도 우선 화면: 위 막대(메뉴 · 로고 · 검색) + 왼쪽 서랍 정보 패널 ===== */
+:root{--tb:64px}
+.topbar{display:flex;position:absolute;z-index:9;left:0;right:0;top:0;box-sizing:border-box;height:auto;padding:calc(11px + env(safe-area-inset-top,0px)) 16px 11px;gap:14px;align-items:center;background:var(--bg);border-bottom:1px solid var(--rule)}
+.topbar .mark{display:flex;align-items:center;gap:5px;color:var(--c100);text-decoration:none;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-weight:700;flex:none}
+.topbar .mark b{font-size:36px;letter-spacing:-.045em;line-height:.8}
+.topbar .mark span{font-size:11.5px;line-height:1.02;letter-spacing:-.02em}
+.topbar .search{flex:0 1 440px;min-width:0;margin:0;position:relative}
+.topbar .search input{padding:9px 30px 9px 32px}
+.topbar .search svg{top:21px;left:11px}
+.topbar .search::after{top:21px;right:11px}
+.topbar .results{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:10;max-height:60vh;overflow:auto;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.menu{flex:none;width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--rule);border-radius:50%;background:var(--bg);color:var(--ink);cursor:pointer;padding:0}
+.menu svg{width:20px;height:20px}
+.menu:hover,.menu[aria-expanded="true"]{background:var(--ink);color:var(--bg)}
+.menu:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+/* 서랍 */
+.sheet,.sheet.half,.sheet.full{position:absolute;left:0;top:0;bottom:0;right:auto;height:auto;width:min(420px,calc(100vw - 48px));border:0;border-right:1px solid var(--rule);border-radius:0;z-index:12;
+  transform:translateX(calc(-100% - 2px));transition:transform .36s cubic-bezier(.2,.8,.2,1),box-shadow .36s;padding:0}
+.sheet.open{transform:none;box-shadow:12px 0 40px rgba(0,0,0,.16)}
+.sheet .scroll,.sheet:not(.full):not(.half) .scroll{overflow-y:auto;padding:calc(20px + env(safe-area-inset-top,0px)) 24px 0}
+.grab,.sheet .grab{display:none!important}
+.dclose{position:absolute;z-index:4;top:calc(14px + env(safe-area-inset-top,0px));right:14px;width:34px;height:34px;border:1px solid var(--rule);border-radius:50%;background:var(--bg);color:var(--ink);font-size:14px;cursor:pointer;display:grid;place-items:center;padding:0}
+.dclose:hover{background:var(--ink);color:var(--bg)}
+.sheet .head{padding-right:44px}
+.sheet .head .kicker{display:block}.sheet .head .logo{display:grid}
+.sheet .scroll{grid-template-columns:minmax(0,1fr)}.sheet .scroll>*{min-width:0}
+.sheet.ctxmode .head{display:block}
+.sheet .search{display:none}
+.sheet .sugg{display:flex}
+.scrim{position:absolute;inset:0;z-index:11;background:rgba(10,10,14,.32);opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.on{opacity:1;pointer-events:auto}
+.stack.glide{transition:transform .36s cubic-bezier(.2,.8,.2,1)}
+@media (min-width:900px){
+  .scrim{display:none}
+  .sheet,.sheet.half,.sheet.full{top:var(--tb)}
+  .sheet .scroll,.sheet:not(.full):not(.half) .scroll{padding-top:20px}
+  .dclose{top:14px}
+  .legend{left:24px;top:calc(var(--tb) + 16px)}
+  .ctl{right:24px;top:calc(var(--tb) + 16px)}
+  .timeline{left:24px;right:88px;bottom:24px;max-width:600px}
+  body.dopen .legend,body.dopen .timeline{left:calc(min(420px,100vw - 48px) + 24px)}
+  .legend,.timeline{transition:left .36s cubic-bezier(.2,.8,.2,1)}
+}
+@media (max-width:899px){
+  :root{--peek:0px;--tb:calc(62px + env(safe-area-inset-top,0px))}
+  .topbar{padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px;gap:10px}
+  .topbar .search{flex:1}
+  .topbar .search input{font-size:16px}
+  .menu{width:38px;height:38px}
+  .topbar .mark b{font-size:30px}.topbar .mark span{font-size:10px}
+  .timeline{bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+  .sheet .head .logo{display:grid}
+  .scroll>.head{order:-3}
 }
 </style>
 
@@ -559,7 +639,7 @@ details.card[open] summary::after{content:"−"}
 
   <div class="legend glass" id="legend"></div>
 
-  <div class="topbar" id="topbar"><a class="mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a></div>
+  <div class="topbar" id="topbar"><button type="button" class="menu" id="menu" aria-label="정보 패널 열기" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h11M4 17h16"/></svg></button><a class="mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a></div>
   <div class="ctl">
     <div class="grp glass"><button type="button" id="lyrbtn" aria-label="지도 유형" aria-expanded="false" aria-controls="lyr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></button></div>
     <div class="grp glass"><button type="button" id="zin" aria-label="확대"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><button type="button" id="zout" aria-label="축소"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button></div>
@@ -590,7 +670,8 @@ details.card[open] summary::after{content:"−"}
 
   <div class="tip glass" id="tip" hidden></div>
 
-  <section class="sheet glass" id="sheet" aria-label="정보 패널">
+  <div class="scrim" id="scrim" aria-hidden="true"></div>
+  <section class="sheet glass" id="sheet" aria-label="정보 패널"><button type="button" class="dclose" id="dclose" aria-label="정보 패널 닫기">←</button>
     <button type="button" class="grab" id="grab" aria-label="패널 크기 바꾸기"></button>
     <div class="scroll" id="scroll">
       <header class="head">
@@ -749,8 +830,8 @@ function paint(){
 }
 // 지도를 놓을 영역(패널·시트를 뺀 곳)
 const desk=()=>innerWidth>=900;
-function area(){const w=innerWidth,h=innerHeight;if(desk()){const x0=$('#sheet').getBoundingClientRect().right+12;return {x0,x1:w-70,y0:70,y1:h-80}}
-  const peek=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--peek'))||170;const lgb=$('#legend').getBoundingClientRect().bottom||0,tbb=$('#topbar').getBoundingClientRect().bottom||0;return {x0:8,x1:w-52,y0:Math.max(lgb,tbb)+8,y1:h-peek-56}}
+function area(){const w=innerWidth,h=innerHeight;if(desk()){const tb=$('#topbar').getBoundingClientRect().bottom||64,x0=(typeof dOpen!=='undefined'&&dOpen?$('#sheet').offsetWidth:0)+24;return {x0,x1:w-70,y0:tb+16,y1:h-80}}
+  const peek=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--peek'))||170;const lgb=$('#legend').getBoundingClientRect().bottom||0,tbb=$('#topbar').getBoundingClientRect().bottom||0;return {x0:8,x1:w-52,y0:Math.max(lgb,tbb)+8,y1:h-64}}
 function base(){const a=area();return Math.min((a.x1-a.x0)/W,(a.y1-a.y0)/H)}
 function home(){const a=area(),b=base();view={k:1,tx:a.x0+((a.x1-a.x0)-W*b)/2,ty:a.y0+((a.y1-a.y0)-H*b)/2};apply()}
 function apply(){stack.style.transform=`translate(${view.tx}px,${view.ty}px) scale(${base()*view.k})`;vp.classList.toggle('zoomed',view.k>1.01);layoutLabels()}
@@ -803,7 +884,7 @@ document.querySelectorAll('#ovs button').forEach(b=>b.onclick=()=>{OVL[b.dataset
 const lyr=$('#lyr'),lbtn=$('#lyrbtn');
 const setLyr=o=>{lyr.hidden=!o;lbtn.setAttribute('aria-expanded',o);layoutLabels()};
 lbtn.onclick=()=>setLyr(lyr.hidden);$('#lyrx').onclick=()=>{setLyr(false);lbtn.focus()};
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!lyr.hidden)setLyr(false);else if(selTask||selA>=0)clearAll()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!lyr.hidden)setLyr(false);else if(dOpen&&!desk())drawer(false,'key');else if(selTask||selA>=0)clearAll()}});
 
 // ---------- 확대·이동 ----------
 $('#zin').onclick=()=>zoomAt(view.k*1.7);$('#zout').onclick=()=>zoomAt(view.k/1.7);$('#zfit').onclick=home;
@@ -904,6 +985,7 @@ function todayCard(){if(!FRESH.length)return null;
   const p_=el('p','lede sm');p_.textContent=regs.length?`${regs.length}개 직업 지역의 업무가 최근 소식에 등장했어요.`:'최근 소식은 고용·정책 동향이라 지도 수치에는 닿지 않았어요.';c.appendChild(p_);
   if(regs.length){const b=el('button','btn','지도에 표시');b.type='button';b.onclick=()=>{selA=-1;selTask=null;flash=new Set(TODAY_R);flashLabel='최근 사흘 소식';refresh()};c.appendChild(b)}
   return c}
+const FOLD_K='aimap.fold.v1';const foldGet=()=>{try{return JSON.parse(localStorage.getItem(FOLD_K)||'[]')}catch(e){return []}};const foldSet=(k,c)=>{try{const s=new Set(foldGet());c?s.add(k):s.delete(k);localStorage.setItem(FOLD_K,JSON.stringify([...s]))}catch(e){}};
 const MINE_K='aimap.mine.v1';const lsGet=()=>{try{return JSON.parse(localStorage.getItem(MINE_K)||'null')}catch(e){return null}};const lsSet=v=>{try{v?localStorage.setItem(MINE_K,JSON.stringify(v)):localStorage.removeItem(MINE_K)}catch(e){}};
 let MINE=lsGet();const MINE_PREV=MINE?{...MINE}:null;
 const jIdx=code=>RJ_.findIndex(r=>r.code===code);
@@ -1087,7 +1169,7 @@ function taskCard(r){
 function render(){
   const keep=document.activeElement&&document.activeElement.id;
   ctx.innerHTML='';rest.innerHTML='';
-  // 폴더: 주제별로 묶어 탭을 단 면. 뒤 폴더가 앞 폴더 아래쪽을 덮으며 쌓인다.
+  // 폴더: 주제별로 묶은 면. 뒤 폴더가 앞 폴더 아래쪽을 덮으며 빈틈없이 쌓이고, 탭을 누르면 접고 펼친다.
   const F=[];
   if(selTask)F.push(['task','선택한 업무',[taskCard(selTask)],ctx]);
   else if(selA>=0)F.push(['job','선택한 직업',[jobCard(selA)],ctx]);
@@ -1096,10 +1178,24 @@ function render(){
   F.push(['news','이번 주 소식',[newsCard()],rest]);
   F.push(['browse','둘러보기',[catsCard(),rankCard(),adSlot()],rest]);
   F.push(['join','함께하기',[subCard(),leadCard(),aboutCard(),el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024)·ILO(2025) 평균 · 실제 사용 Anthropic(2026) · 업무 O*NET 30.0 · 취업자 국가데이터처(2025년 하반기)`)],rest]);
-  const FL=F.map(f=>[f[0],f[1],f[2].filter(Boolean),f[3]]).filter(f=>f[2].length);
-  FL.forEach(([key,label,kids,box],i)=>{const f=el('section','fold f-'+key+(i===FL.length-1?' inv':''));f.id='f-'+key;f.style.setProperty('--i',i);f.style.setProperty('--k',FL.length>1?i/(FL.length-1):0);
-    const tb=el('button','tab');tb.type='button';tb.setAttribute('aria-label',label+' 구획으로 이동');tb.append(el('b',null,String(i+1).padStart(2,'0')),el('span',null,label));
-    tb.onclick=()=>f.scrollIntoView({behavior:'smooth',block:'start'});f.append(tb,...kids);{const l0=kids[0].querySelector('.lab');if(l0&&l0.textContent.trim().startsWith(label))l0.classList.add('dup')}box.appendChild(f)});
+  const FL=F.map(f=>[f[0],f[1],f[2].filter(Boolean),f[3]]).filter(f=>f[2].length),CL=foldGet();
+  const txt=(k,s)=>{const e=k.querySelector(s);return e?e.textContent.trim():''};
+  const sumOf=(key,k)=>key==='mine'?[txt(k,'.nm')+(txt(k,'.sub')?' · '+txt(k,'.sub'):''),txt(k,'.num')]
+    :key==='job'||key==='task'?[txt(k,'h2'),txt(k,'.bign b')]
+    :key==='today'?['사람이 하던 일 중 AI가 해낼 수 있는 몫',pct(total(year))+'%']
+    :key==='news'?['확인된 AI 소식 · 숫자는 매주 월요일 반영',FEED.items.filter(n=>n.st!=='hold').length+'건']
+    :key==='browse'?['업무 4분류 · 직업 순위',NJ+'개']
+    :key==='join'?['주간 메일 구독 · 기관 리포트 문의','→']:[txt(k,'h2')||'',''];
+  FL.forEach(([key,label,kids,box],i)=>{const shut=CL.includes(key)&&key!=='job'&&key!=='task'&&key!=='flash';
+    const f=el('section','fold f-'+key+(i===FL.length-1?' inv':'')+(shut?' closed':''));f.id='f-'+key;f.style.setProperty('--i',i);f.style.setProperty('--k',FL.length>1?i/(FL.length-1):0);
+    const tb=el('button','tab');tb.type='button';tb.setAttribute('aria-expanded',!shut);tb.setAttribute('aria-controls','fb-'+key);
+    tb.append(el('b',null,String(i+1).padStart(2,'0')),el('span',null,label),el('i','pm',shut?'+':'−'));
+    const [st,sn]=sumOf(key,kids[0]);const sm=el('button','fsum');sm.type='button';sm.tabIndex=shut?0:-1;sm.setAttribute('aria-hidden',!shut);sm.append(el('span','t',st),el('b','n',sn));
+    const fb=el('div','fbody');fb.id='fb-'+key;const fin=el('div','fin');fin.append(...kids);fb.appendChild(fin);if(shut)fb.inert=true;
+    {const l0=kids[0].querySelector('.lab');if(l0&&l0.textContent.trim().startsWith(label))l0.classList.add('dup')}
+    const tog=()=>{const c=!f.classList.contains('closed');f.classList.toggle('closed',c);tb.setAttribute('aria-expanded',!c);tb.querySelector('.pm').textContent=c?'+':'−';
+      sm.tabIndex=c?0:-1;sm.setAttribute('aria-hidden',!c);fb.inert=c;foldSet(key,c);track('fold',(c?'close:':'open:')+key)};
+    tb.onclick=tog;sm.onclick=tog;f.append(tb,sm,fb);box.appendChild(f)});
   $('#sugg').hidden=selA>=0||!!selTask;$('#sheet').classList.toggle('ctxmode',selA>=0||!!selTask);
   if(keep==='q2'){const q=$('#q2');if(q)q.focus()}
 }
@@ -1132,7 +1228,14 @@ wireSearch($('#q'),$('#results'),(i,via)=>pickJob(i,via));
 
 // ---------- 선택 ----------
 const sheet=$('#sheet');
-function setDetent(d){if(desk())return;sheet.classList.toggle('half',d==='half');sheet.classList.toggle('full',d==='full');sheet.dataset.d=d||'peek'}
+// 정보 패널은 왼쪽 서랍: 기본은 지도만 크게, 메뉴 버튼이나 직업 선택으로 열린다
+let dOpen=false;
+function drawer(o,why){o=!!o;if(o===dOpen)return;dOpen=o;sheet.classList.toggle('open',o);document.body.classList.toggle('dopen',o);$('#scrim').classList.toggle('on',o);sheet.inert=!o;
+  const mb=$('#menu');mb.setAttribute('aria-expanded',o);mb.setAttribute('aria-label',o?'정보 패널 닫기':'정보 패널 열기');
+  if(desk()){stack.classList.add('glide');view.tx+=(o?1:-1)*sheet.offsetWidth/2;clamp();apply();setTimeout(()=>stack.classList.remove('glide'),380)}
+  if(o&&why==='menu')setTimeout(()=>$('#dclose').focus({preventScroll:true}),60);if(!o&&why==='key')mb.focus();track('menu',(o?'open:':'close:')+(why||''))}
+function setDetent(d){if(d==='half'||d==='full')drawer(true,'pick')}
+sheet.inert=true;
 let selVia=null;
 function setHash(h){try{history.replaceState(null,'',h?'#'+h:location.pathname+location.search)}catch(e){}}
 function pickJob(j,via=null){track('job',RJ_[j].code+(via&&via.k?':'+String(via.k).slice(0,3):''));selVia=via;selA=j;selB=-1;selTask=null;flash=null;refresh();$('#scroll').scrollTop=0;setDetent('half');setHash('j='+RJ_[j].code+(via&&via.t?'&q='+encodeURIComponent(via.t):''))}
@@ -1144,7 +1247,10 @@ function clearAll(){selA=selB=-1;selTask=null;flash=null;flashLabel='';refresh()
   g.addEventListener('pointermove',e=>{if(sy!==null&&Math.abs(e.clientY-sy)>8)moved=true});
   g.addEventListener('pointerup',e=>{const d=sheet.dataset.d||'peek',dy=e.clientY-sy;sy=null;const order=['peek','half','full'];let i=order.indexOf(d);
     if(!moved)i=(i+1)%3;else i=Math.max(0,Math.min(2,i+(dy<0?1:-1)));setDetent(order[i])});
-  $('#q').addEventListener('focus',()=>{if(!desk()&&(sheet.dataset.d||'peek')==='peek')setDetent('full')})}
+}
+$('#menu').onclick=()=>drawer(!dOpen,'menu');$('#dclose').onclick=()=>drawer(false,'close');$('#scrim').onclick=()=>drawer(false,'scrim');
+{let sx=null,sy2=null;sheet.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy2=e.touches[0].clientY},{passive:true});
+  sheet.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy2;sx=null;if(dx<-70&&Math.abs(dy)<50)drawer(false,'swipe')},{passive:true})}
 
 // ---------- 테마 변화 ----------
 const onTheme=()=>{readTheme();swatches();renderLegend();render();schedule()};
@@ -1152,7 +1258,7 @@ mqD.addEventListener('change',onTheme);new MutationObserver(onTheme).observe(doc
 
 $('#badge').textContent=FEED.updated?`소식 ${fmtT(FEED.updated)} 갱신 · 베타`:`베타 · ${ASOF}`;
 const sMark=document.createComment('search');$('.search').before(sMark);
-function placeSearch(){const sb=$('.search');$('#q').placeholder=desk()?'직업 이름 검색 (예: 마케터, AE, 간호사)':'직업 검색 (예: 마케터)';if(!desk()){if(sb.parentElement!==$('#topbar'))$('#topbar').appendChild(sb)}else if(sb.parentElement===$('#topbar'))sMark.after(sb)}
+function placeSearch(){const sb=$('.search');$('#q').placeholder=desk()?'직업 이름 검색 (예: 마케터, AE, 간호사)':'직업 검색 (예: 마케터)';if(sb.parentElement!==$('#topbar'))$('#topbar').appendChild(sb)}
 placeSearch();
 addEventListener('resize',()=>{placeSearch();home()});sheet.addEventListener('transitionend',()=>layoutLabels());
 swatches();applyLayers();home();setYear(2026);
