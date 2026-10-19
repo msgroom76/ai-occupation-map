@@ -4,10 +4,10 @@
   {
    "week": "2026-W43",
    "date": "2026-10-19",
-   "subject": "[AI 점령 지도] AI가 '비서'에서 '동료'로 넘어가는 주 · 43주차 31.4%",
-   "preheader": "점령률 31.4%, 지난주보다 +0.01%p. 숫자에 반영한 건 구글 Gemini 에이전트 소식 1건이에요.",
+   "subject": "[AI 점령 지도] AI가 '비서'에서 '동료'로 넘어가는 주 · 43주차 31.5%",
+   "preheader": "이번 주 숫자에 반영한 소식은 구글 Gemini 에이전트 1건이라, 변화는 아주 작아요.",
    "web": "https://ai-occupation-map.pages.dev/w/2026-W43",
-   "total": 31.4,
+   "total": 31.5,
    "delta": 0.01,
    "briefing": true,
    "html": "/mail/2026-W43.html",

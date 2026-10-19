@@ -50,3 +50,8 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 - 결과는 값과 픽셀이 지금 파일과 같다. `city_meta.json`만 JSON 키 순서가 다르다(원래 실행은 파이썬 해시 순서가 매번 달랐고, run.sh는 PYTHONHASHSEED=0으로 고정).
 - 필요한 환경: Python 3, numpy, scipy, pandas, openpyxl, Pillow, matplotlib, Noto Sans CJK 글꼴(`/usr/share/fonts/opentype/noto/`, 이름표 위치가 글꼴 크기에 따라 달라짐).
 - 이용 조건: O*NET CC BY 4.0, GPTs-are-GPTs MIT, 고용24 매핑정보 제한 없음, KOSIS·ILO·Anthropic 경제지수(CC BY)는 출처 표시. Microsoft 적용도 자료와 ILO 자료는 재배포 조건을 확인해야 한다.
+
+## 변경 기록 (숫자가 바뀐 변경)
+| 날짜 | 버전 | 무엇이 바뀌었나 | 전체 2026 노출도 |
+|---|---|---|---|
+| 2026-10-19 | v0.14 | 한국 직업 ↔ ISCO 연결을 손으로 만든 표에서 국가데이터처 공식 연계표(2025.11.03)로 교체. ILO 값이 소분류 163개 모두 새로 계산됨(직업별 평균 ±0.9%p, 가장 큰 변화: 기획·영업·인사 사무 +8%p, 공공행정 사무 −4%p, 영업직 −4%p). 지난 주간 지수(W42·W43)도 같은 기준으로 다시 계산(index.json의 `rebased`) | 31.4% → 31.5% |

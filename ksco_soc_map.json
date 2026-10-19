@@ -18,7 +18,7 @@
     "beta": 0.488,
     "gamma": 0.861
    },
-   "calibration": 0.8961
+   "calibration": 0.8855
   },
   "12": {
    "name": "행정‧경영 지원 및 마케팅 관리직",
@@ -50,7 +50,7 @@
     "beta": 0.48,
     "gamma": 0.942
    },
-   "calibration": 0.9901
+   "calibration": 0.9809
   },
   "13": {
    "name": "전문 서비스 관리직",
@@ -82,7 +82,7 @@
     "beta": 0.467,
     "gamma": 0.872
    },
-   "calibration": 0.9857
+   "calibration": 0.9895
   },
   "14": {
    "name": "건설‧전기 및 생산 관련 관리직",
@@ -106,7 +106,7 @@
     "beta": 0.442,
     "gamma": 0.836
    },
-   "calibration": 0.8874
+   "calibration": 0.8944
   },
   "15": {
    "name": "판매 및 고객 서비스 관리직",
@@ -128,7 +128,7 @@
     "beta": 0.441,
     "gamma": 0.866
    },
-   "calibration": 0.9893
+   "calibration": 0.9894
   },
   "21": {
    "name": "과학 전문가 및 관련직",
@@ -150,7 +150,7 @@
     "beta": 0.452,
     "gamma": 0.766
    },
-   "calibration": 0.9502
+   "calibration": 0.9435
   },
   "22": {
    "name": "정보 통신 전문가 및 기술직",
@@ -171,7 +171,7 @@
     "beta": 0.751,
     "gamma": 0.926
    },
-   "calibration": 1.1937
+   "calibration": 1.2017
   },
   "23": {
    "name": "공학 전문가 및 기술직",
@@ -195,7 +195,7 @@
     "beta": 0.504,
     "gamma": 0.838
    },
-   "calibration": 0.9112
+   "calibration": 0.9278
   },
   "24": {
    "name": "보건 전문가 및 관련직",
@@ -215,7 +215,7 @@
     "beta": 0.344,
     "gamma": 0.601
    },
-   "calibration": 0.8765
+   "calibration": 0.8745
   },
   "25": {
    "name": "사회복지‧종교 전문가 및 관련직",
@@ -236,7 +236,7 @@
     "beta": 0.313,
     "gamma": 0.531
    },
-   "calibration": 0.6867
+   "calibration": 0.6767
   },
   "26": {
    "name": "교육 전문가 및 관련직",
@@ -256,7 +256,7 @@
     "beta": 0.368,
     "gamma": 0.618
    },
-   "calibration": 0.8481
+   "calibration": 0.8331
   },
   "27": {
    "name": "법률 및 행정 전문직",
@@ -276,7 +276,7 @@
     "beta": 0.429,
     "gamma": 0.851
    },
-   "calibration": 0.8745
+   "calibration": 0.9156
   },
   "28": {
    "name": "경영‧금융 전문가 및 관련직",
@@ -296,7 +296,7 @@
     "beta": 0.534,
     "gamma": 0.942
    },
-   "calibration": 1.0114
+   "calibration": 1.013
   },
   "29": {
    "name": "문화‧예술‧스포츠‧기타 전문가 및 관련직",
@@ -316,7 +316,7 @@
     "beta": 0.488,
     "gamma": 0.802
    },
-   "calibration": 0.9464
+   "calibration": 0.9509
   },
   "31": {
    "name": "기획‧영업 및 인사 사무직",
@@ -336,7 +336,7 @@
     "beta": 0.533,
     "gamma": 0.905
    },
-   "calibration": 1.0679
+   "calibration": 1.2462
   },
   "32": {
    "name": "자재‧생산 및 운송 사무직",
@@ -356,7 +356,7 @@
     "beta": 0.465,
     "gamma": 0.667
    },
-   "calibration": 1.14
+   "calibration": 1.1324
   },
   "33": {
    "name": "회계‧경리 및 통계 사무직",
@@ -379,7 +379,7 @@
     "beta": 0.794,
     "gamma": 0.971
    },
-   "calibration": 1.1559
+   "calibration": 1.1683
   },
   "34": {
    "name": "금융 사무직",
@@ -403,7 +403,7 @@
     "beta": 0.644,
     "gamma": 0.916
    },
-   "calibration": 1.1448
+   "calibration": 1.1409
   },
   "35": {
    "name": "법률‧감사 및 정부 행정 사무직",
@@ -427,7 +427,7 @@
     "beta": 0.613,
     "gamma": 0.911
    },
-   "calibration": 1.0722
+   "calibration": 0.9959
   },
   "36": {
    "name": "상담‧안내 및 접수 사무직",
@@ -451,7 +451,7 @@
     "beta": 0.558,
     "gamma": 0.958
    },
-   "calibration": 1.167
+   "calibration": 1.1585
   },
   "37": {
    "name": "일반 지원 사무직",
@@ -478,7 +478,7 @@
     "beta": 0.618,
     "gamma": 0.853
    },
-   "calibration": 1.2169
+   "calibration": 1.1671
   },
   "41": {
    "name": "경찰‧소방 및 보안 관련 서비스직",
@@ -498,7 +498,7 @@
     "beta": 0.286,
     "gamma": 0.416
    },
-   "calibration": 0.7026
+   "calibration": 0.6986
   },
   "42": {
    "name": "돌봄 및 보건 서비스직",
@@ -519,7 +519,7 @@
     "beta": 0.169,
     "gamma": 0.217
    },
-   "calibration": 0.6247
+   "calibration": 0.6141
   },
   "43": {
    "name": "개인 생활 서비스직",
@@ -544,7 +544,7 @@
     "beta": 0.182,
     "gamma": 0.271
    },
-   "calibration": 0.6722
+   "calibration": 0.6823
   },
   "44": {
    "name": "운송 및 여가 서비스직",
@@ -567,7 +567,7 @@
     "beta": 0.217,
     "gamma": 0.297
    },
-   "calibration": 0.7404
+   "calibration": 0.7501
   },
   "45": {
    "name": "조리 및 음식 서비스직",
@@ -587,7 +587,7 @@
     "beta": 0.16,
     "gamma": 0.244
    },
-   "calibration": 0.9
+   "calibration": 0.8905
   },
   "51": {
    "name": "영업직",
@@ -611,7 +611,7 @@
     "beta": 0.594,
     "gamma": 0.966
    },
-   "calibration": 1.176
+   "calibration": 1.0967
   },
   "52": {
    "name": "매장 판매 및 상품 대여직",
@@ -633,7 +633,7 @@
     "beta": 0.316,
     "gamma": 0.525
    },
-   "calibration": 0.8419
+   "calibration": 0.8138
   },
   "53": {
    "name": "통신 및 방문‧노점 판매 관련직",
@@ -655,7 +655,7 @@
     "beta": 0.606,
     "gamma": 0.766
    },
-   "calibration": 1.118
+   "calibration": 1.0819
   },
   "61": {
    "name": "농축산 숙련직",
@@ -676,7 +676,7 @@
     "beta": 0.109,
     "gamma": 0.176
    },
-   "calibration": 0.7179
+   "calibration": 0.723
   },
   "62": {
    "name": "임업 숙련직",
@@ -711,7 +711,7 @@
     "beta": 0.044,
     "gamma": 0.088
    },
-   "calibration": 1.07
+   "calibration": 1.1043
   },
   "71": {
    "name": "식품 가공 관련 기능직",
@@ -733,7 +733,7 @@
     "beta": 0.123,
     "gamma": 0.183
    },
-   "calibration": 0.8298
+   "calibration": 0.84
   },
   "72": {
    "name": "섬유‧의복 및 가죽 관련 기능직",
@@ -760,7 +760,7 @@
     "beta": 0.071,
     "gamma": 0.106
    },
-   "calibration": 0.9493
+   "calibration": 1.0313
   },
   "73": {
    "name": "목재‧가구‧악기 및 간판 관련 기능직",
@@ -781,7 +781,7 @@
     "beta": 0.105,
     "gamma": 0.159
    },
-   "calibration": 0.6871
+   "calibration": 0.7552
   },
   "74": {
    "name": "금속 성형 관련 기능직",
@@ -806,7 +806,7 @@
     "beta": 0.085,
     "gamma": 0.114
    },
-   "calibration": 0.8044
+   "calibration": 0.8267
   },
   "75": {
    "name": "운송 및 기계 관련 기능직",
@@ -833,7 +833,7 @@
     "beta": 0.152,
     "gamma": 0.251
    },
-   "calibration": 0.8929
+   "calibration": 0.8764
   },
   "76": {
    "name": "전기 및 전자 관련 기능직",
@@ -856,7 +856,7 @@
     "beta": 0.161,
     "gamma": 0.216
    },
-   "calibration": 0.8131
+   "calibration": 0.8151
   },
   "77": {
    "name": "정보 통신 및 방송장비 관련 기능직",
@@ -878,7 +878,7 @@
     "beta": 0.189,
     "gamma": 0.221
    },
-   "calibration": 1.0492
+   "calibration": 1.0405
   },
   "78": {
    "name": "건설 및 채굴 관련 기능직",
@@ -898,7 +898,7 @@
     "beta": 0.143,
     "gamma": 0.256
    },
-   "calibration": 0.8891
+   "calibration": 0.9727
   },
   "79": {
    "name": "기타 기능 관련직",
@@ -924,7 +924,7 @@
     "beta": 0.176,
     "gamma": 0.284
    },
-   "calibration": 0.8715
+   "calibration": 0.8529
   },
   "81": {
    "name": "식품가공 관련 기계 조작직",
@@ -969,7 +969,7 @@
     "beta": 0.095,
     "gamma": 0.124
    },
-   "calibration": 0.8187
+   "calibration": 0.8432
   },
   "83": {
    "name": "화학 관련 기계 조작직",
@@ -999,7 +999,7 @@
     "beta": 0.11,
     "gamma": 0.146
    },
-   "calibration": 0.8693
+   "calibration": 0.9992
   },
   "84": {
    "name": "금속 및 비금속 관련 기계 조작직",
@@ -1021,7 +1021,7 @@
     "beta": 0.118,
     "gamma": 0.161
    },
-   "calibration": 0.8471
+   "calibration": 1.0172
   },
   "85": {
    "name": "기계 제조‧관련 기계 조작 및 조립직",
@@ -1047,7 +1047,7 @@
     "beta": 0.277,
     "gamma": 0.394
    },
-   "calibration": 0.9663
+   "calibration": 0.9477
   },
   "86": {
    "name": "전기‧전자 관련 기계 조작 및 조립직",
@@ -1096,7 +1096,7 @@
     "beta": 0.256,
     "gamma": 0.342
    },
-   "calibration": 0.9846
+   "calibration": 1.0024
   },
   "88": {
    "name": "상하수도 및 재활용 처리 관련 기계 조작직",
@@ -1118,7 +1118,7 @@
     "beta": 0.152,
     "gamma": 0.177
    },
-   "calibration": 0.8395
+   "calibration": 0.88
   },
   "89": {
    "name": "목재‧인쇄 및 기타 기계 조작직",
@@ -1152,7 +1152,7 @@
     "beta": 0.224,
     "gamma": 0.3
    },
-   "calibration": 1.0023
+   "calibration": 0.9861
   },
   "91": {
    "name": "건설 및 광업 관련 단순 노무직",
@@ -1176,7 +1176,7 @@
     "beta": 0.04,
     "gamma": 0.078
    },
-   "calibration": 0.9268
+   "calibration": 0.9494
   },
   "92": {
    "name": "운송 관련 단순 노무직",
@@ -1200,7 +1200,7 @@
     "beta": 0.109,
     "gamma": 0.143
    },
-   "calibration": 0.8613
+   "calibration": 0.9415
   },
   "93": {
    "name": "제조 관련 단순 노무직",
@@ -1218,7 +1218,7 @@
     "beta": 0.097,
     "gamma": 0.109
    },
-   "calibration": 0.7391
+   "calibration": 0.9692
   },
   "94": {
    "name": "청소 및 건물 관리 단순 노무직",
@@ -1244,7 +1244,7 @@
     "beta": 0.082,
     "gamma": 0.096
    },
-   "calibration": 0.7825
+   "calibration": 0.8134
   },
   "95": {
    "name": "가사‧음식 및 판매 관련 단순 노무직",
@@ -1269,7 +1269,7 @@
     "beta": 0.103,
     "gamma": 0.162
    },
-   "calibration": 0.7332
+   "calibration": 0.7519
   },
   "99": {
    "name": "농림어업 및 기타 서비스 단순 노무직",
@@ -1296,7 +1296,7 @@
     "beta": 0.091,
     "gamma": 0.123
    },
-   "calibration": 0.6076
+   "calibration": 0.6668
   }
  },
  "fallback": {
@@ -1340,10 +1340,10 @@
    "onet_occupations": 1,
    "exposure_2026": {
     "eloundou": 0.4,
-    "ilo": 0.3533
+    "ilo": 0.3317
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.8452
+   "calibration": 0.8209
   },
   "112": {
    "name": "기업 대표 및 기업 고위 임원",
@@ -1377,9 +1377,9 @@
     "11-3131"
    ],
    "isco08": [
+    1213,
     1211,
     1212,
-    1213,
     1219
    ],
    "us_examples": [
@@ -1390,10 +1390,10 @@
    "onet_occupations": 8,
    "exposure_2026": {
     "eloundou": 0.4752,
-    "ilo": 0.3775
+    "ilo": 0.3687
    },
    "observed_use_anthropic": 0.1257,
-   "calibration": 0.9903
+   "calibration": 0.9802
   },
   "122": {
    "name": "마케팅 및 광고‧홍보 관리자",
@@ -1404,8 +1404,8 @@
     "11-2033"
    ],
    "isco08": [
-    1221,
-    1222
+    1222,
+    1221
    ],
    "us_examples": [
     "Marketing Managers",
@@ -1475,9 +1475,9 @@
    ],
    "isco08": [
     1342,
+    1341,
     1343,
-    1344,
-    1341
+    1344
    ],
    "us_examples": [
     "Medical and Health Services Managers",
@@ -1486,10 +1486,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.4192,
-    "ilo": 0.3425
+    "ilo": 0.3483
    },
    "observed_use_anthropic": 0.0962,
-   "calibration": 0.8694
+   "calibration": 0.8761
   },
   "134": {
    "name": "문화‧예술 관련 관리자",
@@ -1497,6 +1497,7 @@
     "11-9072"
    ],
    "isco08": [
+    1349,
     1431
    ],
    "us_examples": [
@@ -1505,10 +1506,10 @@
    "onet_occupations": 1,
    "exposure_2026": {
     "eloundou": 0.3529,
-    "ilo": 0.32
+    "ilo": 0.35
    },
    "observed_use_anthropic": 0.0912,
-   "calibration": 0.8494
+   "calibration": 0.8873
   },
   "135": {
    "name": "정보 통신 관련 관리자",
@@ -1539,7 +1540,8 @@
     "11-9131"
    ],
    "isco08": [
-    1349
+    1221,
+    1439
    ],
    "us_examples": [
     "Wind Energy Operations Managers",
@@ -1549,10 +1551,10 @@
    "onet_occupations": 11,
    "exposure_2026": {
     "eloundou": 0.4887,
-    "ilo": 0.38
+    "ilo": 0.41
    },
    "observed_use_anthropic": 0.0651,
-   "calibration": 0.9337
+   "calibration": 0.9659
   },
   "141": {
    "name": "건설‧전기 및 생산 관련 관리자",
@@ -1562,10 +1564,10 @@
     "11-9041"
    ],
    "isco08": [
+    1324,
     1321,
     1322,
-    1323,
-    1324
+    1323
    ],
    "us_examples": [
     "Construction Managers",
@@ -1575,26 +1577,27 @@
    "onet_occupations": 9,
    "exposure_2026": {
     "eloundou": 0.4327,
-    "ilo": 0.3625
+    "ilo": 0.3683
    },
    "observed_use_anthropic": 0.0633,
-   "calibration": 0.8887
+   "calibration": 0.8952
   },
   "149": {
    "name": "기타 건설‧전기 및 생산 관련 관리자",
    "soc_prefix": [],
    "isco08": [
     1311,
-    1312
+    1312,
+    1321
    ],
    "us_examples": [],
    "onet_occupations": 0,
    "exposure_2026": {
     "eloundou": 0.442,
-    "ilo": 0.245
+    "ilo": 0.29
    },
    "observed_use_anthropic": 0.0686,
-   "calibration": 0.7664
+   "calibration": 0.8166
   },
   "151": {
    "name": "판매 및 운송 관리자",
@@ -1603,8 +1606,10 @@
     "11-3071"
    ],
    "isco08": [
+    1324,
     1420,
-    1324
+    1221,
+    1439
    ],
    "us_examples": [
     "Sales Managers",
@@ -1614,10 +1619,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.4588,
-    "ilo": 0.41
+    "ilo": 0.398
    },
    "observed_use_anthropic": 0.0559,
-   "calibration": 1.0275
+   "calibration": 1.0133
   },
   "152": {
    "name": "고객 서비스 관리자",
@@ -1626,8 +1631,10 @@
     "11-9081"
    ],
    "isco08": [
+    1412,
     1411,
-    1412
+    1431,
+    1439
    ],
    "us_examples": [
     "Food Service Managers",
@@ -1636,10 +1643,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.4225,
-    "ilo": 0.365
+    "ilo": 0.354
    },
    "observed_use_anthropic": 0.0177,
-   "calibration": 0.924
+   "calibration": 0.911
   },
   "153": {
    "name": "환경‧청소 및 경비 관련 관리자",
@@ -1649,7 +1656,7 @@
     "33-1091"
    ],
    "isco08": [
-    5151
+    1219
    ],
    "us_examples": [
     "First-Line Supervisors of Housekeeping and Janitorial Workers",
@@ -1659,10 +1666,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.321,
-    "ilo": 0.22
+    "ilo": 0.42
    },
    "observed_use_anthropic": 0.0715,
-   "calibration": 0.7339
+   "calibration": 1.0053
   },
   "159": {
    "name": "기타 판매 및 고객 서비스 관리자",
@@ -1670,7 +1677,7 @@
     "11-9141"
    ],
    "isco08": [
-    1420
+    1114
    ],
    "us_examples": [
     "Property, Real Estate, and Community Association Managers"
@@ -1678,10 +1685,10 @@
    "onet_occupations": 1,
    "exposure_2026": {
     "eloundou": 0.4432,
-    "ilo": 0.44
+    "ilo": 0.37
    },
    "observed_use_anthropic": 0.1653,
-   "calibration": 1.0077
+   "calibration": 0.9278
   },
   "211": {
    "name": "생명 및 자연과학 관련 전문가",
@@ -1690,14 +1697,14 @@
     "19-2"
    ],
    "isco08": [
+    2131,
+    2132,
+    2133,
     2111,
     2112,
     2113,
     2114,
-    2120,
-    2131,
-    2132,
-    2133
+    2120
    ],
    "us_examples": [
     "Medical Scientists, Except Epidemiologists",
@@ -1707,10 +1714,10 @@
    "onet_occupations": 28,
    "exposure_2026": {
     "eloundou": 0.4831,
-    "ilo": 0.4125
+    "ilo": 0.4013
    },
    "observed_use_anthropic": 0.1055,
-   "calibration": 0.9559
+   "calibration": 0.9439
   },
   "212": {
    "name": "인문 및 사회과학 전문가",
@@ -1726,9 +1733,10 @@
     "19-3099"
    ],
    "isco08": [
-    2631,
     2632,
-    2633
+    2633,
+    2634,
+    2631
    ],
    "us_examples": [
     "Urban and Regional Planners",
@@ -1738,10 +1746,10 @@
    "onet_occupations": 10,
    "exposure_2026": {
     "eloundou": 0.5115,
-    "ilo": 0.5
+    "ilo": 0.4733
    },
    "observed_use_anthropic": 0.1466,
-   "calibration": 0.9791
+   "calibration": 0.9533
   },
   "213": {
    "name": "생명 및 자연과학 관련 시험원",
@@ -1749,10 +1757,13 @@
     "19-4"
    ],
    "isco08": [
-    3111,
     3141,
+    3213,
     3142,
-    3143
+    3143,
+    3111,
+    3119,
+    3314
    ],
    "us_examples": [
     "Biological Technicians",
@@ -1762,10 +1773,10 @@
    "onet_occupations": 15,
    "exposure_2026": {
     "eloundou": 0.4432,
-    "ilo": 0.2775
+    "ilo": 0.3128
    },
    "observed_use_anthropic": 0.1486,
-   "calibration": 0.8858
+   "calibration": 0.9292
   },
   "221": {
    "name": "컴퓨터 하드웨어 및 통신공학 전문가",
@@ -1802,10 +1813,12 @@
     "15-1299"
    ],
    "isco08": [
-    2511,
     2512,
-    2514,
-    2519
+    2513,
+    2519,
+    2511,
+    2522,
+    2514
    ],
    "us_examples": [
     "Software Developers",
@@ -1815,10 +1828,10 @@
    "onet_occupations": 16,
    "exposure_2026": {
     "eloundou": 0.5954,
-    "ilo": 0.535
+    "ilo": 0.5553
    },
    "observed_use_anthropic": 0.3304,
-   "calibration": 1.1963
+   "calibration": 1.2178
   },
   "223": {
    "name": "네트워크 및 정보 보안 전문가",
@@ -1828,8 +1841,9 @@
     "15-1244"
    ],
    "isco08": [
+    2529,
     2523,
-    2529
+    2522
    ],
    "us_examples": [
     "Network and Computer Systems Administrators",
@@ -1839,10 +1853,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.6852,
-    "ilo": 0.505
+    "ilo": 0.5083
    },
    "observed_use_anthropic": 0.3595,
-   "calibration": 1.0993
+   "calibration": 1.1023
   },
   "224": {
    "name": "데이터 전문가",
@@ -1852,8 +1866,7 @@
     "15-2"
    ],
    "isco08": [
-    2521,
-    2120
+    2521
    ],
    "us_examples": [
     "Operations Research Analysts",
@@ -1863,10 +1876,10 @@
    "onet_occupations": 12,
    "exposure_2026": {
     "eloundou": 0.6255,
-    "ilo": 0.565
+    "ilo": 0.57
    },
    "observed_use_anthropic": 0.3971,
-   "calibration": 1.0865
+   "calibration": 1.0911
   },
   "225": {
    "name": "정보 시스템 및 웹 운영자",
@@ -1875,10 +1888,10 @@
     "15-1232"
    ],
    "isco08": [
-    2513,
     3514,
+    3511,
     3512,
-    2522
+    3513
    ],
    "us_examples": [
     "Computer User Support Specialists",
@@ -1887,10 +1900,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.633,
-    "ilo": 0.5425
+    "ilo": 0.4867
    },
    "observed_use_anthropic": 0.4698,
-   "calibration": 1.2628
+   "calibration": 1.2029
   },
   "226": {
    "name": "통신 및 방송 송출 장비 기사",
@@ -1898,8 +1911,8 @@
     "27-4012"
    ],
    "isco08": [
-    3521,
-    3522
+    3522,
+    3521
    ],
    "us_examples": [
     "Broadcast Technicians"
@@ -1925,12 +1938,13 @@
     "17-3031"
    ],
    "isco08": [
-    2142,
     2161,
+    2142,
     2162,
     2164,
     2165,
-    3112
+    3112,
+    3119
    ],
    "us_examples": [
     "Water/Wastewater Engineers",
@@ -1940,10 +1954,10 @@
    "onet_occupations": 11,
    "exposure_2026": {
     "eloundou": 0.5037,
-    "ilo": 0.3617
+    "ilo": 0.3614
    },
    "observed_use_anthropic": 0.0234,
-   "calibration": 0.9144
+   "calibration": 0.9141
   },
   "232": {
    "name": "화학공학 기술자 및 시험원",
@@ -1972,7 +1986,8 @@
    ],
    "isco08": [
     2146,
-    3117
+    3117,
+    2149
    ],
    "us_examples": [
     "Materials Engineers"
@@ -1980,10 +1995,10 @@
    "onet_occupations": 1,
    "exposure_2026": {
     "eloundou": 0.4878,
-    "ilo": 0.285
+    "ilo": 0.29
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.9389
+   "calibration": 0.945
   },
   "234": {
    "name": "전기‧전자공학 기술자 및 시험원",
@@ -1995,6 +2010,7 @@
     "17-3029"
    ],
    "isco08": [
+    2152,
     2151,
     3113,
     3114
@@ -2007,10 +2023,10 @@
    "onet_occupations": 7,
    "exposure_2026": {
     "eloundou": 0.4989,
-    "ilo": 0.32
+    "ilo": 0.3688
    },
    "observed_use_anthropic": 0.0523,
-   "calibration": 0.9494
+   "calibration": 1.0059
   },
   "235": {
    "name": "기계‧로봇공학 기술자 및 시험원",
@@ -2025,8 +2041,11 @@
     "17-2121"
    ],
    "isco08": [
+    2149,
     2144,
-    3115
+    2141,
+    3115,
+    3119
    ],
    "us_examples": [
     "Mechanical Engineers",
@@ -2036,10 +2055,10 @@
    "onet_occupations": 15,
    "exposure_2026": {
     "eloundou": 0.5269,
-    "ilo": 0.29
+    "ilo": 0.3017
    },
    "observed_use_anthropic": 0.0545,
-   "calibration": 0.8721
+   "calibration": 0.8846
   },
   "236": {
    "name": "소방‧방재‧산업안전 기술자 및 시험원",
@@ -2048,8 +2067,12 @@
     "19-5"
    ],
    "isco08": [
+    2149,
+    3257,
     2263,
-    3257
+    2142,
+    3112,
+    3119
    ],
    "us_examples": [
     "Occupational Health and Safety Specialists",
@@ -2059,10 +2082,10 @@
    "onet_occupations": 4,
    "exposure_2026": {
     "eloundou": 0.3682,
-    "ilo": 0.26
+    "ilo": 0.278
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.8736
+   "calibration": 0.8986
   },
   "237": {
    "name": "환경공학‧가스‧에너지 기술자 및 시험원",
@@ -2074,8 +2097,11 @@
     "17-2171"
    ],
    "isco08": [
+    2145,
+    3119,
+    3132,
     2143,
-    3131
+    2133
    ],
    "us_examples": [
     "Environmental Engineers",
@@ -2085,10 +2111,10 @@
    "onet_occupations": 12,
    "exposure_2026": {
     "eloundou": 0.5233,
-    "ilo": 0.33
+    "ilo": 0.3117
    },
    "observed_use_anthropic": 0.0535,
-   "calibration": 0.908
+   "calibration": 0.8885
   },
   "238": {
    "name": "항공기‧선박 기관사 및 관제사",
@@ -2099,10 +2125,11 @@
     "53-2022"
    ],
    "isco08": [
+    3153,
     3151,
     3152,
-    3153,
-    3154
+    3154,
+    3155
    ],
    "us_examples": [
     "Airline Pilots, Copilots, and Flight Engineers",
@@ -2112,10 +2139,10 @@
    "onet_occupations": 4,
    "exposure_2026": {
     "eloundou": 0.321,
-    "ilo": 0.275
+    "ilo": 0.285
    },
    "observed_use_anthropic": 0.0038,
-   "calibration": 0.9612
+   "calibration": 0.9773
   },
   "239": {
    "name": "기타 공학 전문가 및 관련 종사자",
@@ -2128,9 +2155,10 @@
     "17-3028"
    ],
    "isco08": [
-    2141,
+    3119,
     2149,
-    3119
+    3118,
+    2141
    ],
    "us_examples": [
     "Nanotechnology Engineering Technologists and Technicians",
@@ -2140,10 +2168,10 @@
    "onet_occupations": 6,
    "exposure_2026": {
     "eloundou": 0.4527,
-    "ilo": 0.31
+    "ilo": 0.2975
    },
    "observed_use_anthropic": 0.026,
-   "calibration": 0.9289
+   "calibration": 0.9137
   },
   "241": {
    "name": "의사·한의사 및 치과의사",
@@ -2156,10 +2184,11 @@
     "29-1291"
    ],
    "isco08": [
-    2211,
     2212,
+    2230,
     2261,
-    2230
+    2267,
+    2211
    ],
    "us_examples": [
     "Dentists, General",
@@ -2169,10 +2198,10 @@
    "onet_occupations": 26,
    "exposure_2026": {
     "eloundou": 0.3925,
-    "ilo": 0.2575
+    "ilo": 0.2512
    },
    "observed_use_anthropic": 0.0336,
-   "calibration": 0.8712
+   "calibration": 0.8628
   },
   "242": {
    "name": "수의사",
@@ -2221,8 +2250,8 @@
     "29-1171"
    ],
    "isco08": [
-    2221,
-    2222
+    2222,
+    2221
    ],
    "us_examples": [
     "Registered Nurses",
@@ -2270,13 +2299,17 @@
     "29-1041"
    ],
    "isco08": [
-    2264,
-    2266,
-    2267,
-    3211,
-    3212,
     3214,
-    3254
+    3212,
+    3211,
+    3251,
+    2634,
+    2266,
+    2269,
+    2264,
+    3255,
+    2240,
+    3230
    ],
    "us_examples": [
     "Physical Therapists",
@@ -2286,10 +2319,10 @@
    "onet_occupations": 27,
    "exposure_2026": {
     "eloundou": 0.2772,
-    "ilo": 0.2443
+    "ilo": 0.2337
    },
    "observed_use_anthropic": 0.0055,
-   "calibration": 0.8481
+   "calibration": 0.8309
   },
   "249": {
    "name": "기타 보건 전문가 및 관련 종사자",
@@ -2312,13 +2345,17 @@
     "29-1128"
    ],
    "isco08": [
-    3221,
-    3213,
-    3252,
-    3258,
     3259,
-    2269,
-    2240
+    3258,
+    3254,
+    3252,
+    3253,
+    3257,
+    3221,
+    3222,
+    3256,
+    2211,
+    2221
    ],
    "us_examples": [
     "Licensed Practical and Licensed Vocational Nurses",
@@ -2328,10 +2365,10 @@
    "onet_occupations": 23,
    "exposure_2026": {
     "eloundou": 0.3125,
-    "ilo": 0.2843
+    "ilo": 0.2924
    },
    "observed_use_anthropic": 0.0745,
-   "calibration": 0.8934
+   "calibration": 0.9055
   },
   "251": {
    "name": "보육교사",
@@ -2339,7 +2376,6 @@
     "25-2011"
    ],
    "isco08": [
-    2342,
     5311
    ],
    "us_examples": [
@@ -2348,10 +2384,10 @@
    "onet_occupations": 1,
    "exposure_2026": {
     "eloundou": 0.2273,
-    "ilo": 0.2
+    "ilo": 0.19
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.5932
+   "calibration": 0.5793
   },
   "252": {
    "name": "시민사회 활동가",
@@ -2384,7 +2420,7 @@
    ],
    "isco08": [
     2635,
-    2634,
+    2423,
     3412
    ],
    "us_examples": [
@@ -2395,10 +2431,10 @@
    "onet_occupations": 16,
    "exposure_2026": {
     "eloundou": 0.3015,
-    "ilo": 0.3333
+    "ilo": 0.324
    },
    "observed_use_anthropic": 0.0386,
-   "calibration": 0.7671
+   "calibration": 0.7558
   },
   "254": {
    "name": "종교 관련 종사자",
@@ -2492,12 +2528,13 @@
     "25-3"
    ],
    "isco08": [
+    2320,
     2353,
-    2354,
-    2355,
-    2356,
     2359,
-    2320
+    2356,
+    5165,
+    2354,
+    2355
    ],
    "us_examples": [
     "Substitute Teachers, Short-Term",
@@ -2507,10 +2544,10 @@
    "onet_occupations": 4,
    "exposure_2026": {
     "eloundou": 0.3973,
-    "ilo": 0.365
+    "ilo": 0.3417
    },
    "observed_use_anthropic": 0.1908,
-   "calibration": 0.9655
+   "calibration": 0.936
   },
   "269": {
    "name": "기타 교육 전문가",
@@ -2520,7 +2557,9 @@
     "25-9099"
    ],
    "isco08": [
-    2351
+    2351,
+    2310,
+    2359
    ],
    "us_examples": [
     "Instructional Coordinators",
@@ -2529,10 +2568,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.4811,
-    "ilo": 0.39
+    "ilo": 0.3633
    },
    "observed_use_anthropic": 0.2878,
-   "calibration": 0.8734
+   "calibration": 0.8467
   },
   "271": {
    "name": "법률 전문가",
@@ -2541,8 +2580,9 @@
    ],
    "isco08": [
     2611,
-    2612,
-    2619
+    2619,
+    3411,
+    2612
    ],
    "us_examples": [
     "Lawyers",
@@ -2552,10 +2592,10 @@
    "onet_occupations": 5,
    "exposure_2026": {
     "eloundou": 0.4286,
-    "ilo": 0.3467
+    "ilo": 0.364
    },
    "observed_use_anthropic": 0.176,
-   "calibration": 0.778
+   "calibration": 0.7954
   },
   "272": {
    "name": "정부 행정 전문가 및 관련 종사자",
@@ -2566,10 +2606,7 @@
    ],
    "isco08": [
     2422,
-    3352,
-    3353,
-    3354,
-    3359
+    4414
    ],
    "us_examples": [
     "Financial Examiners",
@@ -2579,10 +2616,10 @@
    "onet_occupations": 9,
    "exposure_2026": {
     "eloundou": 0.5291,
-    "ilo": 0.43
+    "ilo": 0.5
    },
    "observed_use_anthropic": 0.0995,
-   "calibration": 1.0059
+   "calibration": 1.0793
   },
   "281": {
    "name": "인사 및 경영 전문가",
@@ -2600,9 +2637,10 @@
    ],
    "isco08": [
     2411,
+    3331,
     2421,
-    2423,
-    2424
+    2424,
+    2423
    ],
    "us_examples": [
     "Accountants and Auditors",
@@ -2612,10 +2650,10 @@
    "onet_occupations": 17,
    "exposure_2026": {
     "eloundou": 0.55,
-    "ilo": 0.4575
+    "ilo": 0.496
    },
    "observed_use_anthropic": 0.2739,
-   "calibration": 1.0257
+   "calibration": 1.0648
   },
   "282": {
    "name": "금융 및 보험 전문가",
@@ -2632,12 +2670,12 @@
     "13-1032"
    ],
    "isco08": [
-    2412,
     2413,
+    2412,
     3311,
-    3312,
     3315,
-    3321
+    3334,
+    2120
    ],
    "us_examples": [
     "Loan Officers",
@@ -2647,10 +2685,10 @@
    "onet_occupations": 11,
    "exposure_2026": {
     "eloundou": 0.5336,
-    "ilo": 0.5667
+    "ilo": 0.5533
    },
    "observed_use_anthropic": 0.2625,
-   "calibration": 1.1032
+   "calibration": 1.0898
   },
   "283": {
    "name": "상품 기획‧홍보 및 조사 전문가",
@@ -2663,9 +2701,9 @@
    ],
    "isco08": [
     2431,
-    2432,
-    3323,
-    4227
+    2120,
+    3332,
+    2432
    ],
    "us_examples": [
     "Wholesale and Retail Buyers, Except Farm Products",
@@ -2675,10 +2713,10 @@
    "onet_occupations": 8,
    "exposure_2026": {
     "eloundou": 0.5106,
-    "ilo": 0.48
+    "ilo": 0.526
    },
    "observed_use_anthropic": 0.5176,
-   "calibration": 1.0462
+   "calibration": 1.0948
   },
   "284": {
    "name": "감정‧기술 영업 및 중개 관련 종사자",
@@ -2690,12 +2728,13 @@
     "13-1051"
    ],
    "isco08": [
-    2433,
-    2434,
-    3322,
+    3315,
+    3323,
     3324,
     3334,
-    3315
+    3322,
+    2433,
+    2434
    ],
    "us_examples": [
     "Cost Estimators",
@@ -2705,10 +2744,10 @@
    "onet_occupations": 7,
    "exposure_2026": {
     "eloundou": 0.4904,
-    "ilo": 0.4567
+    "ilo": 0.4375
    },
    "observed_use_anthropic": 0.1922,
-   "calibration": 0.9796
+   "calibration": 0.9597
   },
   "291": {
    "name": "작가 및 언론 관련 전문가",
@@ -2725,8 +2764,7 @@
    "isco08": [
     2641,
     2642,
-    2643,
-    2656
+    2643
    ],
    "us_examples": [
     "Editors",
@@ -2736,10 +2774,10 @@
    "onet_occupations": 8,
    "exposure_2026": {
     "eloundou": 0.6306,
-    "ilo": 0.5375
+    "ilo": 0.5575
    },
    "observed_use_anthropic": 0.2964,
-   "calibration": 1.1424
+   "calibration": 1.1619
   },
   "292": {
    "name": "학예사‧사서 및 기록물 관리사",
@@ -2749,8 +2787,8 @@
     "25-4031"
    ],
    "isco08": [
-    2621,
     2622,
+    2621,
     3433
    ],
    "us_examples": [
@@ -2761,10 +2799,10 @@
    "onet_occupations": 5,
    "exposure_2026": {
     "eloundou": 0.5285,
-    "ilo": 0.4633
+    "ilo": 0.485
    },
    "observed_use_anthropic": 0.1541,
-   "calibration": 1.2347
+   "calibration": 1.2617
   },
   "293": {
    "name": "연극‧영화 및 영상 전문가",
@@ -2779,9 +2817,12 @@
     "27-4099"
    ],
    "isco08": [
+    3435,
+    3521,
+    2656,
     2654,
     2655,
-    3521
+    5241
    ],
    "us_examples": [
     "Audio and Video Technicians",
@@ -2791,10 +2832,10 @@
    "onet_occupations": 10,
    "exposure_2026": {
     "eloundou": 0.4299,
-    "ilo": 0.3433
+    "ilo": 0.3609
    },
    "observed_use_anthropic": 0.0944,
-   "calibration": 1.0027
+   "calibration": 1.0255
   },
   "294": {
    "name": "시각 및 공연 예술가",
@@ -2810,11 +2851,11 @@
     "27-4021"
    ],
    "isco08": [
-    2651,
     2652,
+    2651,
     2653,
-    2659,
-    3431
+    3431,
+    2659
    ],
    "us_examples": [
     "Photographers",
@@ -2824,10 +2865,10 @@
    "onet_occupations": 7,
    "exposure_2026": {
     "eloundou": 0.4156,
-    "ilo": 0.24
+    "ilo": 0.2406
    },
    "observed_use_anthropic": 0.129,
-   "calibration": 0.9278
+   "calibration": 0.9287
   },
   "295": {
    "name": "디자이너",
@@ -2849,10 +2890,10 @@
    "onet_occupations": 9,
    "exposure_2026": {
     "eloundou": 0.4217,
-    "ilo": 0.4033
+    "ilo": 0.396
    },
    "observed_use_anthropic": 0.1614,
-   "calibration": 1.0033
+   "calibration": 0.9943
   },
   "296": {
    "name": "스포츠 및 레크리에이션 관련 전문가",
@@ -2863,9 +2904,10 @@
     "39-9031"
    ],
    "isco08": [
-    3421,
     3422,
-    3423
+    3423,
+    3421,
+    5164
    ],
    "us_examples": [
     "Exercise Trainers and Group Fitness Instructors",
@@ -2875,10 +2917,10 @@
    "onet_occupations": 4,
    "exposure_2026": {
     "eloundou": 0.1473,
-    "ilo": 0.2833
+    "ilo": 0.283
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.6524
+   "calibration": 0.6519
   },
   "297": {
    "name": "식문화 관련 전문가",
@@ -2901,7 +2943,6 @@
     "13-1011"
    ],
    "isco08": [
-    3332,
     3339
    ],
    "us_examples": [
@@ -2910,10 +2951,10 @@
    "onet_occupations": 1,
    "exposure_2026": {
     "eloundou": 0.5435,
-    "ilo": 0.46
+    "ilo": 0.44
    },
    "observed_use_anthropic": 0.118,
-   "calibration": 1.1951
+   "calibration": 1.1713
   },
   "311": {
    "name": "기획 및 마케팅 사무원",
@@ -2922,8 +2963,7 @@
     "43-6011"
    ],
    "isco08": [
-    3341,
-    3339
+    4419
    ],
    "us_examples": [
     "First-Line Supervisors of Office and Administrative Support Workers",
@@ -2932,10 +2972,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.5284,
-    "ilo": 0.435
+    "ilo": 0.63
    },
    "observed_use_anthropic": 0.1973,
-   "calibration": 1.0538
+   "calibration": 1.2671
   },
   "312": {
    "name": "인사 및 교육‧훈련 사무원",
@@ -2944,7 +2984,8 @@
    ],
    "isco08": [
     4416,
-    3333
+    3341,
+    4419
    ],
    "us_examples": [
     "Human Resources Assistants, Except Payroll and Timekeeping"
@@ -2952,10 +2993,10 @@
    "onet_occupations": 1,
    "exposure_2026": {
     "eloundou": 0.6061,
-    "ilo": 0.495
+    "ilo": 0.565
    },
    "observed_use_anthropic": 0.4046,
-   "calibration": 1.1113
+   "calibration": 1.182
   },
   "321": {
    "name": "자재 및 생산관리 사무원",
@@ -2989,6 +3030,7 @@
    ],
    "isco08": [
     4323,
+    3324,
     3331
    ],
    "us_examples": [
@@ -2999,10 +3041,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.6185,
-    "ilo": 0.535
+    "ilo": 0.5012
    },
    "observed_use_anthropic": 0.1617,
-   "calibration": 1.3232
+   "calibration": 1.2845
   },
   "331": {
    "name": "회계 및 경리 사무원",
@@ -3015,8 +3057,8 @@
    ],
    "isco08": [
     4311,
-    4313,
-    3313
+    3313,
+    4313
    ],
    "us_examples": [
     "Bookkeeping, Accounting, and Auditing Clerks",
@@ -3026,10 +3068,10 @@
    "onet_occupations": 4,
    "exposure_2026": {
     "eloundou": 0.7064,
-    "ilo": 0.58
+    "ilo": 0.595
    },
    "observed_use_anthropic": 0.2667,
-   "calibration": 1.1538
+   "calibration": 1.1672
   },
   "332": {
    "name": "통계‧데이터 관련 사무원",
@@ -3038,8 +3080,10 @@
     "43-9021"
    ],
    "isco08": [
+    4227,
     3314,
-    4312
+    4312,
+    4413
    ],
    "us_examples": [
     "Data Entry Keyers",
@@ -3048,27 +3092,29 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.724,
-    "ilo": 0.605
+    "ilo": 0.5675
    },
    "observed_use_anthropic": 0.6642,
-   "calibration": 1.2615
+   "calibration": 1.2259
   },
   "340": {
    "name": "금융 사무 종사자",
    "soc_prefix": [],
    "isco08": [
-    4211,
     4312,
+    4211,
+    3312,
+    4214,
     3321
    ],
    "us_examples": [],
    "onet_occupations": 0,
    "exposure_2026": {
     "eloundou": 0.644,
-    "ilo": 0.5833
+    "ilo": 0.5792
    },
    "observed_use_anthropic": 0.1418,
-   "calibration": 1.1448
+   "calibration": 1.1409
   },
   "351": {
    "name": "법률 및 감사 사무 종사자",
@@ -3076,8 +3122,9 @@
     "23-2"
    ],
    "isco08": [
-    3411,
-    3342
+    3359,
+    3342,
+    3411
    ],
    "us_examples": [
     "Paralegals and Legal Assistants",
@@ -3086,10 +3133,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.5311,
-    "ilo": 0.47
+    "ilo": 0.415
    },
    "observed_use_anthropic": 0.257,
-   "calibration": 0.8815
+   "calibration": 0.8331
   },
   "352": {
    "name": "정부 행정 사무 종사자",
@@ -3098,10 +3145,13 @@
     "43-4031"
    ],
    "isco08": [
+    3351,
+    3359,
+    3352,
+    4312,
     3353,
     3354,
-    3352,
-    4110
+    4412
    ],
    "us_examples": [
     "Eligibility Interviewers, Government Programs",
@@ -3110,10 +3160,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.6404,
-    "ilo": 0.4925
+    "ilo": 0.4098
    },
    "observed_use_anthropic": 0.0808,
-   "calibration": 1.0997
+   "calibration": 1.0193
   },
   "361": {
    "name": "여행‧안내 및 접수 사무원",
@@ -3124,9 +3174,11 @@
    ],
    "isco08": [
     4221,
+    4222,
+    4223,
     4224,
-    4225,
-    4226
+    4226,
+    4229
    ],
    "us_examples": [
     "Receptionists and Information Clerks",
@@ -3136,10 +3188,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.5218,
-    "ilo": 0.5525
+    "ilo": 0.542
    },
    "observed_use_anthropic": 0.3752,
-   "calibration": 1.192
+   "calibration": 1.1804
   },
   "362": {
    "name": "고객 상담 및 모니터 요원",
@@ -3149,9 +3201,7 @@
     "43-2021"
    ],
    "isco08": [
-    4222,
-    4223,
-    5244
+    4225
    ],
    "us_examples": [
     "Customer Service Representatives",
@@ -3161,10 +3211,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.5697,
-    "ilo": 0.5767
+    "ilo": 0.57
    },
    "observed_use_anthropic": 0.6948,
-   "calibration": 1.1526
+   "calibration": 1.1459
   },
   "371": {
    "name": "총무 사무원 및 대학 행정조교",
@@ -3177,8 +3227,7 @@
    ],
    "isco08": [
     4110,
-    4415,
-    4419
+    3341
    ],
    "us_examples": [
     "Office Clerks, General",
@@ -3188,10 +3237,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.5814,
-    "ilo": 0.5333
+    "ilo": 0.515
    },
    "observed_use_anthropic": 0.4312,
-   "calibration": 1.1892
+   "calibration": 1.1697
   },
   "372": {
    "name": "비서 및 사무 지원 종사자",
@@ -3207,11 +3256,18 @@
     "43-4151"
    ],
    "isco08": [
+    3339,
+    4131,
+    3333,
+    4411,
+    4415,
+    4132,
     4120,
+    3342,
     3343,
     3344,
-    4131,
-    4132
+    4213,
+    4413
    ],
    "us_examples": [
     "Secretaries and Administrative Assistants, Except Legal, Medical, and Executive",
@@ -3221,10 +3277,10 @@
    "onet_occupations": 9,
    "exposure_2026": {
     "eloundou": 0.6443,
-    "ilo": 0.6
+    "ilo": 0.4992
    },
    "observed_use_anthropic": 0.3721,
-   "calibration": 1.265
+   "calibration": 1.1625
   },
   "411": {
    "name": "경찰‧소방 및 교도 관련 종사자",
@@ -3237,8 +3293,8 @@
    ],
    "isco08": [
     5411,
-    5412,
     5413,
+    5412,
     3355
    ],
    "us_examples": [
@@ -3249,10 +3305,10 @@
    "onet_occupations": 16,
    "exposure_2026": {
     "eloundou": 0.2922,
-    "ilo": 0.1725
+    "ilo": 0.1683
    },
    "observed_use_anthropic": 0.0489,
-   "calibration": 0.6816
+   "calibration": 0.6755
   },
   "412": {
    "name": "경호 및 보안 관련 종사자",
@@ -3285,8 +3341,8 @@
     "25-904"
    ],
    "isco08": [
-    5312,
-    5311
+    5311,
+    5312
    ],
    "us_examples": [
     "Teaching Assistants, Special Education",
@@ -3296,10 +3352,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.3879,
-    "ilo": 0.215
+    "ilo": 0.2067
    },
    "observed_use_anthropic": 0.1002,
-   "calibration": 0.807
+   "calibration": 0.7958
   },
   "422": {
    "name": "요양보호사 및 간병인",
@@ -3309,8 +3365,7 @@
     "31-1133"
    ],
    "isco08": [
-    5321,
-    5329
+    5321
    ],
    "us_examples": [
     "Nursing Assistants",
@@ -3320,10 +3375,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.0991,
-    "ilo": 0.145
+    "ilo": 0.14
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.4811
+   "calibration": 0.4712
   },
   "423": {
    "name": "노인 및 장애인 돌봄 종사자",
@@ -3354,7 +3409,7 @@
    ],
    "isco08": [
     5329,
-    3256
+    5322
    ],
    "us_examples": [
     "Medical Assistants",
@@ -3364,10 +3419,10 @@
    "onet_occupations": 14,
    "exposure_2026": {
     "eloundou": 0.3004,
-    "ilo": 0.25
+    "ilo": 0.2
    },
    "observed_use_anthropic": 0.0398,
-   "calibration": 0.9381
+   "calibration": 0.8528
   },
   "431": {
    "name": "미용 관련 서비스 종사자",
@@ -3375,8 +3430,8 @@
     "39-5"
    ],
    "isco08": [
-    5141,
-    5142
+    5142,
+    5141
    ],
    "us_examples": [
     "Hairdressers, Hairstylists, and Cosmetologists",
@@ -3386,10 +3441,10 @@
    "onet_occupations": 6,
    "exposure_2026": {
     "eloundou": 0.097,
-    "ilo": 0.175
+    "ilo": 0.1783
    },
    "observed_use_anthropic": 0.0181,
-   "calibration": 0.6444
+   "calibration": 0.6523
   },
   "432": {
    "name": "혼례 및 장례 종사자",
@@ -3397,8 +3452,9 @@
     "39-4"
    ],
    "isco08": [
+    5169,
     5163,
-    5169
+    2635
    ],
    "us_examples": [
     "Funeral Attendants",
@@ -3408,10 +3464,10 @@
    "onet_occupations": 4,
    "exposure_2026": {
     "eloundou": 0.1587,
-    "ilo": 0.19
+    "ilo": 0.2083
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.7348
+   "calibration": 0.7734
   },
   "433": {
    "name": "동물 관련 서비스 종사자",
@@ -3419,7 +3475,8 @@
     "39-2"
    ],
    "isco08": [
-    5164
+    5164,
+    3240
    ],
    "us_examples": [
     "Animal Caretakers",
@@ -3442,9 +3499,9 @@
     "39-9099"
    ],
    "isco08": [
-    5169,
+    5161,
     5162,
-    5161
+    5169
    ],
    "us_examples": [
     "Recreation Workers",
@@ -3454,10 +3511,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.2773,
-    "ilo": 0.2433
+    "ilo": 0.2575
    },
    "observed_use_anthropic": 0.0225,
-   "calibration": 0.6909
+   "calibration": 0.7097
   },
   "441": {
    "name": "운송 서비스 종사자",
@@ -3476,10 +3533,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.1766,
-    "ilo": 0.235
+    "ilo": 0.2275
    },
    "observed_use_anthropic": 0.0959,
-   "calibration": 0.6394
+   "calibration": 0.6278
   },
   "442": {
    "name": "여가 서비스 종사자",
@@ -3492,8 +3549,11 @@
     "39-7"
    ],
    "isco08": [
+    5169,
     5113,
-    5169
+    5151,
+    9621,
+    4212
    ],
    "us_examples": [
     "Gambling Dealers",
@@ -3503,10 +3563,10 @@
    "onet_occupations": 9,
    "exposure_2026": {
     "eloundou": 0.2361,
-    "ilo": 0.265
+    "ilo": 0.2733
    },
    "observed_use_anthropic": 0.0419,
-   "calibration": 0.7542
+   "calibration": 0.7668
   },
   "451": {
    "name": "조리사",
@@ -3516,7 +3576,7 @@
    ],
    "isco08": [
     5120,
-    3434
+    5246
    ],
    "us_examples": [
     "Cooks, Restaurant",
@@ -3526,10 +3586,10 @@
    "onet_occupations": 7,
    "exposure_2026": {
     "eloundou": 0.199,
-    "ilo": 0.215
+    "ilo": 0.185
    },
    "observed_use_anthropic": 0.0199,
-   "calibration": 0.8351
+   "calibration": 0.7746
   },
   "452": {
    "name": "음료 조리 종사자",
@@ -3538,8 +3598,7 @@
     "35-3023"
    ],
    "isco08": [
-    5132,
-    5246
+    5132
    ],
    "us_examples": [
     "Fast Food and Counter Workers",
@@ -3549,10 +3608,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.1102,
-    "ilo": 0.25
+    "ilo": 0.26
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.9658
+   "calibration": 0.9926
   },
   "453": {
    "name": "식음료 서비스 종사자",
@@ -3562,8 +3621,7 @@
     "35-9099"
    ],
    "isco08": [
-    5131,
-    5246
+    5131
    ],
    "us_examples": [
     "Waiters and Waitresses",
@@ -3572,27 +3630,28 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.1773,
-    "ilo": 0.26
+    "ilo": 0.28
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.9565
+   "calibration": 1.0002
   },
   "510": {
    "name": "영업 종사자",
    "soc_prefix": [],
    "isco08": [
+    5242,
     3322,
-    2433,
-    3321
+    3321,
+    5241
    ],
    "us_examples": [],
    "onet_occupations": 0,
    "exposure_2026": {
     "eloundou": 0.594,
-    "ilo": 0.5067
+    "ilo": 0.4325
    },
    "observed_use_anthropic": 0.4634,
-   "calibration": 1.176
+   "calibration": 1.0967
   },
   "521": {
    "name": "매장 판매 종사자",
@@ -3604,10 +3663,12 @@
     "41-9099"
    ],
    "isco08": [
-    5223,
-    5222,
+    5230,
     5221,
-    5230
+    5222,
+    5211,
+    5223,
+    5246
    ],
    "us_examples": [
     "Retail Salespersons",
@@ -3617,10 +3678,10 @@
    "onet_occupations": 4,
    "exposure_2026": {
     "eloundou": 0.3094,
-    "ilo": 0.39
+    "ilo": 0.3662
    },
    "observed_use_anthropic": 0.2103,
-   "calibration": 0.8385
+   "calibration": 0.81
   },
   "522": {
    "name": "상품 대여 종사자",
@@ -3628,7 +3689,7 @@
     "41-2021"
    ],
    "isco08": [
-    5223
+    5249
    ],
    "us_examples": [
     "Counter and Rental Clerks"
@@ -3647,7 +3708,8 @@
     "41-9041"
    ],
    "isco08": [
-    5244
+    5244,
+    5211
    ],
    "us_examples": [
     "Telemarketers"
@@ -3655,10 +3717,10 @@
    "onet_occupations": 1,
    "exposure_2026": {
     "eloundou": 0.6446,
-    "ilo": 0.61
+    "ilo": 0.5667
    },
    "observed_use_anthropic": 0.2852,
-   "calibration": 1.2211
+   "calibration": 1.179
   },
   "532": {
    "name": "방문 및 노점 판매 종사자",
@@ -3668,8 +3730,8 @@
    ],
    "isco08": [
     5243,
-    5211,
-    5212
+    5212,
+    9520
    ],
    "us_examples": [
     "Demonstrators and Product Promoters",
@@ -3678,10 +3740,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.1497,
-    "ilo": 0.3433
+    "ilo": 0.335
    },
    "observed_use_anthropic": 0.0945,
-   "calibration": 0.6986
+   "calibration": 0.6867
   },
   "611": {
    "name": "작물 재배 종사자",
@@ -3691,9 +3753,10 @@
     "45-2099"
    ],
    "isco08": [
-    6111,
     6112,
-    6114
+    6111,
+    6114,
+    6130
    ],
    "us_examples": [
     "Agricultural Equipment Operators",
@@ -3702,10 +3765,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.1392,
-    "ilo": 0.1733
+    "ilo": 0.1767
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.6888
+   "calibration": 0.6962
   },
   "612": {
    "name": "원예 및 조경 종사자",
@@ -3737,9 +3800,14 @@
     "45-2021"
    ],
    "isco08": [
+    6130,
     6121,
     6122,
-    6129
+    6123,
+    6129,
+    6224,
+    3240,
+    5164
    ],
    "us_examples": [
     "Farmworkers, Farm, Ranch, and Aquacultural Animals",
@@ -3748,10 +3816,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.0653,
-    "ilo": 0.1867
+    "ilo": 0.1776
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.6686
+   "calibration": 0.6445
   },
   "620": {
    "name": "임업 관련 종사자",
@@ -3772,36 +3840,39 @@
    "name": "어업 관련 종사자",
    "soc_prefix": [],
    "isco08": [
+    6221,
     6222,
-    6223,
-    6221
+    6223
    ],
    "us_examples": [],
    "onet_occupations": 0,
    "exposure_2026": {
     "eloundou": 0.044,
-    "ilo": 0.19
+    "ilo": 0.1975
    },
    "observed_use_anthropic": null,
-   "calibration": 1.07
+   "calibration": 1.1043
   },
   "710": {
    "name": "식품 가공 관련 기능 종사자",
    "soc_prefix": [],
    "isco08": [
-    7511,
     7512,
+    7511,
+    7514,
+    7515,
+    7516,
     7513,
-    7514
+    3122
    ],
    "us_examples": [],
    "onet_occupations": 0,
    "exposure_2026": {
     "eloundou": 0.123,
-    "ilo": 0.1675
+    "ilo": 0.1711
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.8298
+   "calibration": 0.84
   },
   "721": {
    "name": "섬유 및 가죽 관련 기능 종사자",
@@ -3811,9 +3882,14 @@
     "51-6093"
    ],
    "isco08": [
-    7535,
+    7532,
+    7533,
     7536,
-    7318
+    7534,
+    7535,
+    3122,
+    7318,
+    7531
    ],
    "us_examples": [
     "Upholsterers",
@@ -3823,10 +3899,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.1952,
-    "ilo": 0.1367
+    "ilo": 0.1628
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 1.0159
+   "calibration": 1.0959
   },
   "722": {
    "name": "의복 제조 관련 기능 종사자",
@@ -3837,8 +3913,7 @@
    ],
    "isco08": [
     7531,
-    7532,
-    7533
+    3122
    ],
    "us_examples": [
     "Pressers, Textile, Garment, and Related Materials",
@@ -3848,45 +3923,48 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.0419,
-    "ilo": 0.1467
+    "ilo": 0.17
    },
    "observed_use_anthropic": 0.0122,
-   "calibration": 0.7184
+   "calibration": 0.8073
   },
   "730": {
    "name": "목재‧가구‧악기 및 간판 관련 기능 종사자",
    "soc_prefix": [],
    "isco08": [
     7522,
+    7312,
     7316,
-    7312
+    7521,
+    7543
    ],
    "us_examples": [],
    "onet_occupations": 0,
    "exposure_2026": {
     "eloundou": 0.105,
-    "ilo": 0.16
+    "ilo": 0.1862
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.6871
+   "calibration": 0.7552
   },
   "740": {
    "name": "금속 성형 관련 기능 종사자",
    "soc_prefix": [],
    "isco08": [
     7212,
-    7213,
-    7214,
-    7221
+    7222,
+    7211,
+    7221,
+    7213
    ],
    "us_examples": [],
    "onet_occupations": 0,
    "exposure_2026": {
     "eloundou": 0.085,
-    "ilo": 0.155
+    "ilo": 0.1617
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.8044
+   "calibration": 0.8267
   },
   "751": {
    "name": "자동차 정비원",
@@ -3926,8 +4004,10 @@
     "49-3042"
    ],
    "isco08": [
+    7233,
     7232,
-    7234
+    7234,
+    7231
    ],
    "us_examples": [
     "Mobile Heavy Equipment Mechanics, Except Engines",
@@ -3937,10 +4017,10 @@
    "onet_occupations": 8,
    "exposure_2026": {
     "eloundou": 0.1054,
-    "ilo": 0.16
+    "ilo": 0.1713
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.796
+   "calibration": 0.8297
   },
   "753": {
    "name": "기계장비 설치 및 정비원",
@@ -3950,7 +4030,9 @@
    ],
    "isco08": [
     7233,
-    7127
+    7412,
+    7127,
+    7215
    ],
    "us_examples": [
     "Maintenance and Repair Workers, General",
@@ -3960,10 +4042,10 @@
    "onet_occupations": 18,
    "exposure_2026": {
     "eloundou": 0.1937,
-    "ilo": 0.19
+    "ilo": 0.1725
    },
    "observed_use_anthropic": 0.0221,
-   "calibration": 0.8812
+   "calibration": 0.841
   },
   "761": {
    "name": "전기‧전자기기 설치 및 수리원",
@@ -3973,8 +4055,11 @@
     "49-9012"
    ],
    "isco08": [
+    7422,
     7412,
-    7421
+    7311,
+    7421,
+    7549
    ],
    "us_examples": [
     "Computer, Automated Teller, and Office Machine Repairers",
@@ -3984,10 +4069,10 @@
    "onet_occupations": 9,
    "exposure_2026": {
     "eloundou": 0.2499,
-    "ilo": 0.21
+    "ilo": 0.2033
    },
    "observed_use_anthropic": 0.0344,
-   "calibration": 0.8867
+   "calibration": 0.8738
   },
   "762": {
    "name": "전기공",
@@ -3996,6 +4081,7 @@
     "49-9051"
    ],
    "isco08": [
+    7412,
     7411,
     7413
    ],
@@ -4006,10 +4092,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.1229,
-    "ilo": 0.17
+    "ilo": 0.1733
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.7794
+   "calibration": 0.7883
   },
   "771": {
    "name": "정보 통신기기 설치 및 수리원",
@@ -4039,8 +4125,7 @@
     "49-2097"
    ],
    "isco08": [
-    7422,
-    7421
+    7422
    ],
    "us_examples": [
     "Audiovisual Equipment Installers and Repairers",
@@ -4049,10 +4134,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.1872,
-    "ilo": 0.245
+    "ilo": 0.24
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 1.0924
+   "calibration": 1.0798
   },
   "781": {
    "name": "건설 구조 관련 기능 종사자",
@@ -4065,10 +4150,8 @@
     "47-2221"
    ],
    "isco08": [
-    7111,
-    7114,
-    7115,
-    7119
+    7214,
+    7111
    ],
    "us_examples": [
     "Carpenters",
@@ -4078,10 +4161,10 @@
    "onet_occupations": 6,
    "exposure_2026": {
     "eloundou": 0.1013,
-    "ilo": 0.115
+    "ilo": 0.1175
    },
    "observed_use_anthropic": 0.0034,
-   "calibration": 0.7992
+   "calibration": 0.8084
   },
   "782": {
    "name": "건설 관련 기능 종사자",
@@ -4095,11 +4178,13 @@
     "47-4"
    ],
    "isco08": [
-    7112,
+    7119,
+    7114,
     7113,
-    7124,
-    7125,
-    7121
+    7115,
+    7112,
+    3123,
+    7111
    ],
    "us_examples": [
     "Construction Laborers",
@@ -4109,10 +4194,10 @@
    "onet_occupations": 16,
    "exposure_2026": {
     "eloundou": 0.074,
-    "ilo": 0.12
+    "ilo": 0.115
    },
    "observed_use_anthropic": 0.0224,
-   "calibration": 0.8693
+   "calibration": 0.8469
   },
   "783": {
    "name": "건축 마감 관련 기능 종사자",
@@ -4130,11 +4215,15 @@
     "47-2181"
    ],
    "isco08": [
-    7122,
+    7121,
     7123,
+    7124,
+    7122,
     7131,
+    7213,
+    7125,
     7132,
-    7133
+    3123
    ],
    "us_examples": [
     "Painters, Construction and Maintenance",
@@ -4144,10 +4233,10 @@
    "onet_occupations": 11,
    "exposure_2026": {
     "eloundou": 0.0504,
-    "ilo": 0.11
+    "ilo": 0.1431
    },
    "observed_use_anthropic": 0.0036,
-   "calibration": 0.9262
+   "calibration": 1.1175
   },
   "784": {
    "name": "채굴 및 토목 관련 기능 종사자",
@@ -4157,9 +4246,12 @@
     "47-2072"
    ],
    "isco08": [
+    9312,
     8111,
-    8113,
-    7542
+    7113,
+    7541,
+    7542,
+    3121
    ],
    "us_examples": [
     "Paving, Surfacing, and Tamping Equipment Operators",
@@ -4169,10 +4261,10 @@
    "onet_occupations": 12,
    "exposure_2026": {
     "eloundou": 0.0227,
-    "ilo": 0.16
+    "ilo": 0.14
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.7196
+   "calibration": 0.6408
   },
   "791": {
    "name": "공예 및 귀금속 세공원",
@@ -4182,9 +4274,9 @@
    ],
    "isco08": [
     7313,
-    7314,
-    7315,
-    7317
+    7317,
+    7319,
+    7318
    ],
    "us_examples": [
     "Jewelers and Precious Stone and Metal Workers",
@@ -4194,10 +4286,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.2125,
-    "ilo": 0.1725
+    "ilo": 0.162
    },
    "observed_use_anthropic": 0.0072,
-   "calibration": 0.7479
+   "calibration": 0.7275
   },
   "792": {
    "name": "배관공",
@@ -4230,8 +4322,15 @@
     "51-9083"
    ],
    "isco08": [
-    7311,
-    7549
+    7133,
+    7544,
+    7314,
+    7315,
+    7321,
+    7323,
+    7224,
+    7316,
+    7322
    ],
    "us_examples": [
     "Medical Equipment Repairers",
@@ -4241,10 +4340,10 @@
    "onet_occupations": 6,
    "exposure_2026": {
     "eloundou": 0.1699,
-    "ilo": 0.175
+    "ilo": 0.1481
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.9768
+   "calibration": 0.9006
   },
   "811": {
    "name": "식품가공 관련 기계 조작원",
@@ -4313,7 +4412,6 @@
    ],
    "isco08": [
     8151,
-    8152,
     8154
    ],
    "us_examples": [
@@ -4324,10 +4422,10 @@
    "onet_occupations": 5,
    "exposure_2026": {
     "eloundou": 0.1177,
-    "ilo": 0.1733
+    "ilo": 0.18
    },
    "observed_use_anthropic": 0.0118,
-   "calibration": 0.7188
+   "calibration": 0.7352
   },
   "822": {
    "name": "직물‧신발 관련 기계 조작원",
@@ -4336,9 +4434,11 @@
     "51-6042"
    ],
    "isco08": [
-    8153,
+    8152,
     8156,
-    8155
+    8153,
+    8155,
+    8159
    ],
    "us_examples": [
     "Sewing Machine Operators",
@@ -4347,10 +4447,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.0816,
-    "ilo": 0.1533
+    "ilo": 0.1578
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 1.0086
+   "calibration": 1.0277
   },
   "823": {
    "name": "세탁 기계 조작원",
@@ -4358,8 +4458,7 @@
     "51-6011"
    ],
    "isco08": [
-    8157,
-    9121
+    8157
    ],
    "us_examples": [
     "Laundry and Dry-Cleaning Workers"
@@ -4367,10 +4466,10 @@
    "onet_occupations": 1,
    "exposure_2026": {
     "eloundou": 0.05,
-    "ilo": 0.15
+    "ilo": 0.16
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.74
+   "calibration": 0.777
   },
   "831": {
    "name": "석유 및 화학물 가공 장치 조작원",
@@ -4383,8 +4482,8 @@
    ],
    "isco08": [
     8131,
-    3133,
-    3134
+    3134,
+    3133
    ],
    "us_examples": [
     "Chemical Equipment Operators and Tenders",
@@ -4394,10 +4493,10 @@
    "onet_occupations": 5,
    "exposure_2026": {
     "eloundou": 0.1527,
-    "ilo": 0.2733
+    "ilo": 0.2567
    },
    "observed_use_anthropic": 0.011,
-   "calibration": 1.0031
+   "calibration": 0.9638
   },
   "832": {
    "name": "화학‧고무 및 플라스틱 제품 생산기 조작원",
@@ -4408,8 +4507,10 @@
     "51-9197"
    ],
    "isco08": [
+    8131,
     8141,
-    8142
+    8142,
+    8219
    ],
    "us_examples": [
     "Mixing and Blending Machine Setters, Operators, and Tenders",
@@ -4419,10 +4520,10 @@
    "onet_occupations": 4,
    "exposure_2026": {
     "eloundou": 0.0937,
-    "ilo": 0.175
+    "ilo": 0.2275
    },
    "observed_use_anthropic": 0.0063,
-   "calibration": 0.8419
+   "calibration": 1.0064
   },
   "841": {
    "name": "주조 및 금속가공 관련 기계 조작원",
@@ -4441,9 +4542,8 @@
     "51-4192"
    ],
    "isco08": [
-    7211,
     8121,
-    7223
+    3135
    ],
    "us_examples": [
     "Cutting, Punching, and Press Machine Setters, Operators, and Tenders, Metal and Plastic",
@@ -4453,10 +4553,10 @@
    "onet_occupations": 11,
    "exposure_2026": {
     "eloundou": 0.0574,
-    "ilo": 0.19
+    "ilo": 0.2636
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.8356
+   "calibration": 1.0842
   },
   "842": {
    "name": "도장 및 도금기 조작원",
@@ -4466,8 +4566,7 @@
     "51-9123"
    ],
    "isco08": [
-    8122,
-    7132
+    8122
    ],
    "us_examples": [
     "Coating, Painting, and Spraying Machine Setters, Operators, and Tenders",
@@ -4477,10 +4576,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.0511,
-    "ilo": 0.16
+    "ilo": 0.2
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.9129
+   "calibration": 1.0859
   },
   "843": {
    "name": "비금속제품 생산기 조작원",
@@ -4490,8 +4589,9 @@
     "51-9032"
    ],
    "isco08": [
+    8181,
     8114,
-    8181
+    8112
    ],
    "us_examples": [
     "Cutting and Slicing Machine Setters, Operators, and Tenders",
@@ -4501,10 +4601,10 @@
    "onet_occupations": 6,
    "exposure_2026": {
     "eloundou": 0.0812,
-    "ilo": 0.2
+    "ilo": 0.19
    },
    "observed_use_anthropic": 0.0165,
-   "calibration": 0.8161
+   "calibration": 0.7871
   },
   "851": {
    "name": "금속 공작 기계 조작원",
@@ -4520,9 +4620,8 @@
     "51-4194"
    ],
    "isco08": [
-    7223,
     7224,
-    7222
+    7223
    ],
    "us_examples": [
     "Machinists",
@@ -4532,10 +4631,10 @@
    "onet_occupations": 9,
    "exposure_2026": {
     "eloundou": 0.2135,
-    "ilo": 0.1833
+    "ilo": 0.175
    },
    "observed_use_anthropic": 0.0085,
-   "calibration": 0.6947
+   "calibration": 0.6801
   },
   "852": {
    "name": "냉난방 관련 설비 조작원",
@@ -4560,7 +4659,7 @@
    "name": "자동 조립라인 및 산업용로봇 조작원",
    "soc_prefix": [],
    "isco08": [
-    8219
+    3139
    ],
    "us_examples": [],
    "onet_occupations": 0,
@@ -4601,8 +4700,7 @@
     "51-2051"
    ],
    "isco08": [
-    8211,
-    8219
+    8211
    ],
    "us_examples": [
     "Engine and Other Machine Assemblers",
@@ -4612,10 +4710,10 @@
    "onet_occupations": 4,
    "exposure_2026": {
     "eloundou": 0.0965,
-    "ilo": 0.295
+    "ilo": 0.27
    },
    "observed_use_anthropic": 0.0003,
-   "calibration": 1.5519
+   "calibration": 1.4528
   },
   "861": {
    "name": "발전 및 배전 장치 조작원",
@@ -4644,7 +4742,7 @@
    "name": "전기 및 전자설비 조작원",
    "soc_prefix": [],
    "isco08": [
-    8212
+    8189
    ],
    "us_examples": [],
    "onet_occupations": 0,
@@ -4661,7 +4759,7 @@
     "51-9141"
    ],
    "isco08": [
-    8212
+    8189
    ],
    "us_examples": [
     "Semiconductor Processing Technicians"
@@ -4726,7 +4824,8 @@
    "isco08": [
     8322,
     8331,
-    8332
+    8332,
+    8321
    ],
    "us_examples": [
     "Heavy and Tractor-Trailer Truck Drivers",
@@ -4736,10 +4835,10 @@
    "onet_occupations": 8,
    "exposure_2026": {
     "eloundou": 0.3073,
-    "ilo": 0.2333
+    "ilo": 0.2413
    },
    "observed_use_anthropic": 0.0033,
-   "calibration": 1.0192
+   "calibration": 1.0341
   },
   "873": {
    "name": "물품 이동 장비 조작원",
@@ -4751,8 +4850,8 @@
     "53-7121"
    ],
    "isco08": [
-    8344,
-    8343
+    8343,
+    8344
    ],
    "us_examples": [
     "Industrial Truck and Tractor Operators",
@@ -4776,8 +4875,9 @@
     "47-5023"
    ],
    "isco08": [
-    8342,
-    8341
+    8113,
+    8341,
+    8342
    ],
    "us_examples": [
     "Operating Engineers and Other Construction Equipment Operators",
@@ -4787,10 +4887,10 @@
    "onet_occupations": 4,
    "exposure_2026": {
     "eloundou": 0.0527,
-    "ilo": 0.125
+    "ilo": 0.1467
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.4941
+   "calibration": 0.5543
   },
   "875": {
    "name": "선박 승무원 및 관련 종사자",
@@ -4836,17 +4936,16 @@
    "name": "재활용 처리 및 소각로 조작원",
    "soc_prefix": [],
    "isco08": [
-    3132,
-    9612
+    3132
    ],
    "us_examples": [],
    "onet_occupations": 0,
    "exposure_2026": {
     "eloundou": 0.152,
-    "ilo": 0.225
+    "ilo": 0.27
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.7998
+   "calibration": 0.8953
   },
   "891": {
    "name": "목재 및 종이 관련 기계 조작원",
@@ -4858,6 +4957,7 @@
    ],
    "isco08": [
     8172,
+    8171,
     8143,
     7523
    ],
@@ -4869,10 +4969,10 @@
    "onet_occupations": 4,
    "exposure_2026": {
     "eloundou": 0.0355,
-    "ilo": 0.18
+    "ilo": 0.205
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.875
+   "calibration": 0.9765
   },
   "892": {
    "name": "인쇄 및 사진 현상 관련 기계 조작원",
@@ -4881,9 +4981,7 @@
     "51-9151"
    ],
    "isco08": [
-    7321,
     7322,
-    7323,
     8132
    ],
    "us_examples": [
@@ -4894,10 +4992,10 @@
    "onet_occupations": 4,
    "exposure_2026": {
     "eloundou": 0.2707,
-    "ilo": 0.28
+    "ilo": 0.26
    },
    "observed_use_anthropic": 0.0124,
-   "calibration": 0.9935
+   "calibration": 0.9574
   },
   "899": {
    "name": "기타 기계 조작원",
@@ -4912,7 +5010,7 @@
    ],
    "isco08": [
     8183,
-    8219
+    8189
    ],
    "us_examples": [
     "Inspectors, Testers, Sorters, Samplers, and Weighers",
@@ -4922,27 +5020,28 @@
    "onet_occupations": 6,
    "exposure_2026": {
     "eloundou": 0.2457,
-    "ilo": 0.27
+    "ilo": 0.22
    },
    "observed_use_anthropic": 0.0188,
-   "calibration": 1.1441
+   "calibration": 1.0332
   },
   "910": {
    "name": "건설 및 광업 단순 종사자",
    "soc_prefix": [],
    "isco08": [
-    9312,
+    9311,
     9313,
-    9311
+    9312,
+    9622
    ],
    "us_examples": [],
    "onet_occupations": 0,
    "exposure_2026": {
     "eloundou": 0.04,
-    "ilo": 0.0967
+    "ilo": 0.1
    },
    "observed_use_anthropic": 0.0207,
-   "calibration": 0.9268
+   "calibration": 0.9494
   },
   "921": {
    "name": "하역‧적재 및 분류 단순 종사자",
@@ -4953,7 +5052,7 @@
    ],
    "isco08": [
     9333,
-    9321
+    4412
    ],
    "us_examples": [
     "Stockers and Order Fillers",
@@ -4963,10 +5062,10 @@
    "onet_occupations": 4,
    "exposure_2026": {
     "eloundou": 0.1078,
-    "ilo": 0.17
+    "ilo": 0.275
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.5218
+   "calibration": 0.719
   },
   "922": {
    "name": "배달원",
@@ -4975,7 +5074,9 @@
    ],
    "isco08": [
     9621,
-    8321
+    8321,
+    8322,
+    4412
    ],
    "us_examples": [
     "Couriers and Messengers"
@@ -4983,26 +5084,27 @@
    "onet_occupations": 1,
    "exposure_2026": {
     "eloundou": 0.3103,
-    "ilo": 0.31
+    "ilo": 0.329
    },
    "observed_use_anthropic": 0.0412,
-   "calibration": 1.0048
+   "calibration": 1.0355
   },
   "930": {
    "name": "제조 관련 단순 종사자",
    "soc_prefix": [],
    "isco08": [
-    9329,
-    9321
+    8219,
+    9321,
+    9329
    ],
    "us_examples": [],
    "onet_occupations": 0,
    "exposure_2026": {
     "eloundou": 0.097,
-    "ilo": 0.16
+    "ilo": 0.24
    },
    "observed_use_anthropic": 0.0101,
-   "calibration": 0.7391
+   "calibration": 0.9692
   },
   "941": {
    "name": "청소 관련 종사자",
@@ -5012,11 +5114,15 @@
     "37-2021"
    ],
    "isco08": [
+    9129,
+    9611,
+    9613,
     9112,
-    9111,
-    9122,
     9123,
-    9129
+    5151,
+    9122,
+    9510,
+    9612
    ],
    "us_examples": [
     "Janitors and Cleaners, Except Maids and Housekeeping Cleaners",
@@ -5025,10 +5131,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.0101,
-    "ilo": 0.112
+    "ilo": 0.118
    },
    "observed_use_anthropic": 0.0019,
-   "calibration": 0.7699
+   "calibration": 0.8077
   },
   "942": {
    "name": "건물 관리원",
@@ -5037,8 +5143,8 @@
     "33-9091"
    ],
    "isco08": [
-    5153,
-    5414
+    5414,
+    5153
    ],
    "us_examples": [
     "Security Guards",
@@ -5059,9 +5165,9 @@
     "37-2012"
    ],
    "isco08": [
+    5311,
     9111,
-    5152,
-    5311
+    5152
    ],
    "us_examples": [
     "Maids and Housekeeping Cleaners",
@@ -5071,10 +5177,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.0534,
-    "ilo": 0.1767
+    "ilo": 0.18
    },
    "observed_use_anthropic": 0.0046,
-   "calibration": 0.7295
+   "calibration": 0.7401
   },
   "952": {
    "name": "음식 관련 단순 종사자",
@@ -5107,9 +5213,10 @@
     "53-6031"
    ],
    "isco08": [
-    9520,
     5245,
-    9334
+    9334,
+    5223,
+    9510
    ],
    "us_examples": [
     "Automotive and Watercraft Service Attendants"
@@ -5117,10 +5224,10 @@
    "onet_occupations": 1,
    "exposure_2026": {
     "eloundou": 0.1304,
-    "ilo": 0.2133
+    "ilo": 0.2467
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.6918
+   "calibration": 0.7589
   },
   "991": {
    "name": "농림어업 관련 단순 종사자",
@@ -5130,11 +5237,13 @@
     "45-2011"
    ],
    "isco08": [
+    9216,
     9211,
     9212,
+    9213,
     9214,
     9215,
-    9216
+    9624
    ],
    "us_examples": [
     "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
@@ -5144,10 +5253,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.1458,
-    "ilo": 0.106
+    "ilo": 0.1056
    },
    "observed_use_anthropic": 0.0178,
-   "calibration": 0.499
+   "calibration": 0.4981
   },
   "992": {
    "name": "계기‧자판기 및 주차 관리 종사자",
@@ -5166,10 +5275,10 @@
    "onet_occupations": 2,
    "exposure_2026": {
     "eloundou": 0.1569,
-    "ilo": 0.335
+    "ilo": 0.35
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 1.1509
+   "calibration": 1.186
   },
   "999": {
    "name": "기타 서비스 관련 단순 종사자",
@@ -5181,9 +5290,10 @@
    "isco08": [
     9629,
     9510,
-    9622,
-    9611,
-    9613
+    9121,
+    9331,
+    9332,
+    9622
    ],
    "us_examples": [
     "Amusement and Recreation Attendants",
@@ -5193,10 +5303,10 @@
    "onet_occupations": 3,
    "exposure_2026": {
     "eloundou": 0.2032,
-    "ilo": 0.152
+    "ilo": 0.2115
    },
    "observed_use_anthropic": 0.0408,
-   "calibration": 0.5119
+   "calibration": 0.5977
   }
  }
 }

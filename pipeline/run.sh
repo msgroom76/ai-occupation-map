@@ -37,6 +37,7 @@ step python3 apply_profiles.py
 step python3 real_small.py
 step python3 isco_occ.py
 step python3 usage_agg.py
+step python3 ksco_isco_official.py
 step python3 real_blend.py
 step python3 update_v3b.py
 

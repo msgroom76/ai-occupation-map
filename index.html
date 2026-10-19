@@ -673,7 +673,7 @@ details.card[open] summary::after{content:"−"}
   <div class="vp" id="vp" tabindex="0" aria-label="AI 점령 지도. 직업 영역을 누르면 그 직업이 선택됩니다.">
     <div class="stack" id="stack">
       <canvas id="fab" width="1800" height="2400"></canvas>
-      <img id="roads" alt="" draggable="false" src="city_roads.png?v=20261019b">
+      <img id="roads" alt="" draggable="false" src="city_roads.png?v=20261019c">
       <canvas id="tb" width="1800" height="2400" hidden></canvas>
       <canvas id="jb" width="1800" height="2400"></canvas>
       <canvas id="grp" width="1800" height="2400"></canvas>
@@ -739,7 +739,7 @@ details.card[open] summary::after{content:"−"}
 
 <script>
 (async function(){
-const W=1800,H=2400, VER='v0.13 베타';let ASOF='2026.10.19';
+const W=1800,H=2400, VER='v0.14 베타';let ASOF='2026.10.19';
 const $=s=>document.querySelector(s);
 const pct=v=>Math.round(v*100);
 const el=(t,cls,txt)=>{const e=document.createElement(t);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
@@ -772,7 +772,7 @@ const binT=(v,T)=>{let c=0;while(c<4&&v>=T[c])c++;return c};
 const lum=c=>(c[0]*.299+c[1]*.587+c[2]*.114);
 
 // ---------- 데이터 ----------
-const cm=await (await fetch('city_meta.json?v=20261019b')).json();
+const cm=await (await fetch('city_meta.json?v=20261019c')).json();
 const getJ=async(u,d)=>{try{const r=await fetch(u,{cache:'no-cache'});if(!r.ok)throw 0;return await r.json()}catch(e){return d}};
 const [FEED,IDX,CFG]=await Promise.all([getJ('feed.json',{items:[]}),getJ('index.json',{weeks:[]}),getJ('config.json',{})]);
 FEED.items.sort((a,b)=>b.ts<a.ts?-1:1);
@@ -820,7 +820,7 @@ const vp=$('#vp'),stack=$('#stack'),fctx=$('#fab').getContext('2d'),octx=$('#ovl
 const out=fctx.createImageData(W,H),out32=new Uint32Array(out.data.buffer);
 const pack=(c,f=1)=>(255<<24)|(Math.min(255,Math.round(c[2]*f))<<16)|(Math.min(255,Math.round(c[1]*f))<<8)|Math.min(255,Math.round(c[0]*f));
 {
-  const img=new Image();img.src='city_index.png?v=20261019b';await img.decode();
+  const img=new Image();img.src='city_index.png?v=20261019c';await img.decode();
   const oc=document.createElement('canvas');oc.width=W;oc.height=H;const ox=oc.getContext('2d',{willReadFrequently:true});ox.drawImage(img,0,0);
   const raw=ox.getImageData(0,0,W,H).data,RJ=new Uint8Array(W*H),GT=new Uint8Array(W*H),BN=new Uint8Array(W*H);
   for(let i=0,k=0;i<W*H;i++,k+=4){RJ[i]=raw[k];GT[i]=raw[k+1];BN[i]=raw[k+2]}
@@ -1164,7 +1164,7 @@ function fbBox(code,sk,title,v){const key='aimap.fb.'+(sk||code);let done=null;t
     x.onclick=()=>{dir=d;row.querySelectorAll('button').forEach(y=>y.setAttribute('aria-pressed',y===x));note.hidden=false;send.hidden=false;note.focus({preventScroll:true})};row.appendChild(x)});
   send.onclick=async()=>{if(!dir)return;const ok=await postForm('/api/feedback',{code,sm:sk||'',title:title||'',dir,shown:Math.round(v*100),note:note.value},out,send);
     if(ok){track('fb',(sk||code)+':'+dir);try{localStorage.setItem(key,dir)}catch(e){}row.remove();note.remove();send.remove()}};
-  b.append(row,note,send,out);return b}
+  b.append(row,note,send,out,el('p','rule','의견은 숫자를 바로 바꾸지 않고, 다시 점검할 직업을 고르는 데 써요. 같은 의견이 반복되지 않게 접속 정보는 그날만 쓰는 암호값으로 바꿔 보관해요.'));return b}
 function jobCard(j){
   const sk=selVia?smOf(j,selVia.k):null,f=(y,s=0)=>sk?occS(sk,y,s):occ(j,y,s);
   const c=el('section','card place'),t_=tw(j),y4=Math.min(yi()+4,2032),v=f(year);
