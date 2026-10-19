@@ -6,6 +6,7 @@
  "web": "https://ai-occupation-map.pages.dev/w/2026-W42",
  "total": 31.4,
  "delta": null,
+ "briefing": false,
  "html": "/mail/2026-W42.html",
  "text": "/mail/2026-W42.txt",
  "sent": false

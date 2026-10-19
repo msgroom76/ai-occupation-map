@@ -32,7 +32,7 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 
 ## 주간 작업이 함께 만드는 파일
 - `python3 tools/weekly.py YYYY-MM-DD` → index.json에 한 주 추가
-- `python3 tools/build_pages.py` → `w/<주>.html` 주간 리포트, `w/index.html` 목록, 직업 페이지 `j/<코드>.html`(중분류 56 + 소분류 154, tools/build_jobs.py), `sitemap.xml`, `robots.txt`, 주간 메일 원고 `mail/<주>.html·.txt·.json`과 `mail/index.json`(tools/build_mail.py, 발송 전 보관용 · 검색 제외 · 수신 거부 링크는 `{{unsubscribe_url}}` 자리표시)
+- `python3 tools/build_pages.py` → `w/<주>.html` 주간 리포트, `w/index.html` 목록, 직업 페이지 `j/<코드>.html`(중분류 56 + 소분류 154, tools/build_jobs.py), `sitemap.xml`, `robots.txt`, 주간 메일 원고 `mail/<주>.html·.txt·.json`과 `mail/index.json`(tools/build_mail.py, 발송 전 보관용 · 브리핑 원고 `mail/brief/<주>.json`이 있으면 브리핑형으로, 형식은 build_mail.py 맨 위 설명 · 지난 호는 다시 만들지 않음 · 검색 제외 · 수신 거부 링크는 `{{unsubscribe_url}}` 자리표시)
 - `python3 tools/build_share.py` → `og/<코드>.png` 미리보기(그 주 숫자로). playwright가 없으면 건너뛴다.
 
 ## 서버 기능 (functions/, Cloudflare Pages Functions)
