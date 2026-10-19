@@ -8,5 +8,7 @@ export async function onRequestGet({ request, env }) {
   const daily = await d.prepare("SELECT day, name, SUM(n) AS n FROM events WHERE day >= date('now','-30 day') GROUP BY day, name ORDER BY day").all();
   const subs = await d.prepare("SELECT COUNT(*) AS n FROM subscribers WHERE unsubscribed IS NULL").first();
   const leads = await d.prepare("SELECT id, name, org, email, kind, msg, created FROM leads ORDER BY id DESC LIMIT 50").all();
-  return json({ ok: true, events: ev.results, daily: daily.results, subscribers: subs.n, leads: leads.results });
+  const fb = await d.prepare("SELECT code, dir, COUNT(*) AS n FROM feedback GROUP BY code, dir ORDER BY code").all();
+  const fbn = await d.prepare("SELECT code, sm, title, dir, shown, note, created FROM feedback WHERE note IS NOT NULL AND note != '' ORDER BY id DESC LIMIT 50").all();
+  return json({ ok: true, feedback: fb.results, feedbackNotes: fbn.results, events: ev.results, daily: daily.results, subscribers: subs.n, leads: leads.results });
 }

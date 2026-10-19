@@ -659,6 +659,13 @@ details.card[open] summary::after{content:"−"}
   .sheet:not(.open) .head .logo{opacity:0;transform:translateY(-38px) scale(.42)}
 }
 @media (prefers-reduced-motion:reduce){.topbar .mark,.sheet .head .logo{transition:none}}
+
+.fb{display:grid;gap:8px;border-top:1px solid var(--hair);padding-top:12px}
+.fbrow{display:flex;flex-wrap:wrap;gap:6px}
+.fbrow .btn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.fb textarea{font:inherit;font-size:13px;padding:8px 10px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);resize:vertical;border-radius:0}
+.fb>.btn{justify-self:start}
+.fb textarea:focus{outline:0;border-color:var(--ink)}
 </style>
 
 </head><body>
@@ -1146,6 +1153,18 @@ function flashCard(){const c=el('section','card place');const top=el('div','top'
   const ul=el('ul','list');rows.slice(0,8).forEach((o,i)=>{const li=el('li'),b=el('button');b.type='button';const vv=el('span','vv');vv.append(`${pct(o.w)}%`,el('small',null,'업무 비중'));
     b.append(el('span','no',String(i+1).padStart(2,'0')),el('span','nm',RJ_[o.j].name),vv);b.onclick=()=>pickJob(o.j);li.appendChild(b);ul.appendChild(li)});c.appendChild(ul);
   c.appendChild(el('div','chips',[...flash].map(r=>RN[r][0]).join(' · ')));return c}
+// "내 일과 비교하면?" — 실제 그 일을 하는 사람의 감각을 모아 숫자 점검 대상을 고른다
+function fbBox(code,sk,title,v){const key='aimap.fb.'+(sk||code);let done=null;try{done=localStorage.getItem(key)}catch(e){}
+  const b=el('div','fb');const l=el('div','lab');l.append(el('span',null,'내 일과 비교하면?'),el('span',null,'익명 · 개인정보 없음'));b.appendChild(l);
+  if(done){b.appendChild(el('p','rule','의견 고마워요. 직업별로 모아 매달 숫자를 점검할 때 살펴봐요.'));return b}
+  b.appendChild(el('p','rule',`실제로 이 일을 하신다면, ${pct(v)}%가 체감과 비슷한지 알려주세요.`));
+  const row=el('div','fbrow'),note=el('textarea');note.maxLength=300;note.rows=2;note.placeholder='어떤 업무 때문에 그렇게 느끼는지 적어주세요 (선택, 300자)';note.hidden=true;note.setAttribute('aria-label','의견 메모');
+  const send=el('button','btn','보내기');send.type='button';send.hidden=true;const out=el('p','fmsg');let dir=null;
+  [['higher','AI가 더 많이 해요'],['same','비슷해요'],['lower','AI가 덜 해요']].forEach(([d,tx])=>{const x=el('button','btn',tx);x.type='button';x.setAttribute('aria-pressed','false');
+    x.onclick=()=>{dir=d;row.querySelectorAll('button').forEach(y=>y.setAttribute('aria-pressed',y===x));note.hidden=false;send.hidden=false;note.focus({preventScroll:true})};row.appendChild(x)});
+  send.onclick=async()=>{if(!dir)return;const ok=await postForm('/api/feedback',{code,sm:sk||'',title:title||'',dir,shown:Math.round(v*100),note:note.value},out,send);
+    if(ok){track('fb',(sk||code)+':'+dir);try{localStorage.setItem(key,dir)}catch(e){}row.remove();note.remove();send.remove()}};
+  b.append(row,note,send,out);return b}
 function jobCard(j){
   const sk=selVia?smOf(j,selVia.k):null,f=(y,s=0)=>sk?occS(sk,y,s):occ(j,y,s);
   const c=el('section','card place'),t_=tw(j),y4=Math.min(yi()+4,2032),v=f(year);
@@ -1193,7 +1212,7 @@ function jobCard(j){
   else{const s=el('div','search');s.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
     const inp=el('input');inp.id='q2';inp.type='search';inp.placeholder='옮겨갈 직업과 비교하기';inp.setAttribute('aria-label','비교할 직업 검색');const res=el('ul','results');res.hidden=true;s.append(inp,res);
     wireSearch(inp,res,k=>{selB=k===j?-1:k;render();schedule()});c.append(s)}
-  c.append(el('p','guard','직업 단위의 경향이에요. 개인 평가나 인원 감축의 근거로 쓸 수 없어요.'));return c}
+  c.append(fbBox(RJ_[j].code,sk,selVia&&selVia.t,f(2026)),el('p','guard','직업 단위의 경향이에요. 개인 평가나 인원 감축의 근거로 쓸 수 없어요.'));return c}
 function taskCard(r){
   const c=el('section','card place'),y4=Math.min(yi()+4,2032),v=pT(r,year);
   const top=el('div','top'),tt=el('div');tt.append(el('h2',null,RN[r][0]),el('div','sub',`${CAT[r[0]][0]} · ${RN[r][1]} (${r})`));
