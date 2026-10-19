@@ -456,6 +456,47 @@ details.card[open] summary::after{content:"−"}
 .lyrh button{border-radius:0;background:none;color:var(--ink)}
 .types button i,.ovs button i{border-radius:0}
 .types button,.ovs button{font-size:11px}
+
+/* ===== 휴대폰: 위 검색 막대 + 가벼운 지도 위 요소 + 낮은 시트 ===== */
+.topbar{display:none}
+@media (max-width:899px){
+  :root{--peek:186px;--tb:calc(62px + env(safe-area-inset-top,0px))}
+  .topbar{display:flex;position:absolute;z-index:9;left:0;right:0;top:0;box-sizing:border-box;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px;gap:10px;align-items:center;background:var(--bg);border-bottom:1px solid var(--rule)}
+  .topbar .mark{display:flex;align-items:center;gap:5px;color:var(--c100);text-decoration:none;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-weight:700;flex:none}
+  .topbar .mark b{font-size:36px;letter-spacing:-.045em;line-height:.8}
+  .topbar .mark span{font-size:11.5px;line-height:1.02;letter-spacing:-.02em}
+  .topbar .search{flex:1;min-width:0;margin:0;position:relative}
+  .topbar .search input{font-size:16px;padding:9px 30px 9px 32px}
+  .topbar .search svg{top:21px;left:11px}
+  .topbar .search::after{top:21px;right:11px}
+  .topbar .results{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:10;max-height:60vh;overflow:auto;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+  .head{margin-bottom:20px}
+  .head .logo{display:none}
+  .head .kicker{display:none}
+  .scroll>#ctx{order:-2}.scroll>.head{order:-1;margin:0 0 12px}
+  #ctx .card:first-child{margin-top:0}
+  .sugg{margin-bottom:28px}
+  .ctl{top:calc(var(--tb) + 10px);right:12px;gap:6px}
+  .ctl .grp:nth-child(2),#zfs{display:none}
+  .ctl button{width:36px;height:36px}
+  .legend{top:calc(var(--tb) + 10px);left:12px;width:auto;max-width:calc(100vw - 80px);padding:6px 8px 5px;gap:3px}
+  .legend b{font-size:10px}
+  .legend .ramp{grid-template-columns:repeat(5,20px);gap:1px}
+  .legend .ramp i{height:5px}
+  .legend .ticks{font-size:9px;gap:6px}
+  .legend .wm{display:none}
+  .legend .row{font-size:10px;gap:6px}.legend .row b{font-size:10px}
+  .timeline{left:12px;right:12px;bottom:calc(var(--peek) + 8px);padding:4px 10px 4px 4px;gap:8px}
+  .timeline .play{width:28px;height:28px}
+  .timeline .yr{font-size:15px;min-width:44px}
+  .timeline .yr small{display:none}
+  .timeline .tk{font-size:9px}
+  .lb.cat{font-size:12.5px;padding:3px 7px 4px}
+  .bign b{font-size:72px}.bign b small{font-size:24px}
+  .scroll{padding-top:4px}
+  #ctx .card:first-child{padding-top:6px}
+  .lb.job{font-size:10.5px!important;padding:3px 5px 3px 4px}
+}
 </style>
 
 </head><body>
@@ -475,6 +516,7 @@ details.card[open] summary::after{content:"−"}
 
   <div class="legend glass" id="legend"></div>
 
+  <div class="topbar" id="topbar"><a class="mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a></div>
   <div class="ctl">
     <div class="grp glass"><button type="button" id="lyrbtn" aria-label="지도 유형" aria-expanded="false" aria-controls="lyr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></button></div>
     <div class="grp glass"><button type="button" id="zin" aria-label="확대"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><button type="button" id="zout" aria-label="축소"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button></div>
@@ -665,7 +707,7 @@ function paint(){
 // 지도를 놓을 영역(패널·시트를 뺀 곳)
 const desk=()=>innerWidth>=900;
 function area(){const w=innerWidth,h=innerHeight;if(desk()){const x0=$('#sheet').getBoundingClientRect().right+12;return {x0,x1:w-70,y0:70,y1:h-80}}
-  const peek=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--peek'))||170;return {x0:8,x1:w-60,y0:60,y1:h-peek-70}}
+  const peek=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--peek'))||170;const lgb=$('#legend').getBoundingClientRect().bottom||0,tbb=$('#topbar').getBoundingClientRect().bottom||0;return {x0:8,x1:w-52,y0:Math.max(lgb,tbb)+8,y1:h-peek-56}}
 function base(){const a=area();return Math.min((a.x1-a.x0)/W,(a.y1-a.y0)/H)}
 function home(){const a=area(),b=base();view={k:1,tx:a.x0+((a.x1-a.x0)-W*b)/2,ty:a.y0+((a.y1-a.y0)-H*b)/2};apply()}
 function apply(){stack.style.transform=`translate(${view.tx}px,${view.ty}px) scale(${base()*view.k})`;vp.classList.toggle('zoomed',view.k>1.01);layoutLabels()}
@@ -692,8 +734,8 @@ function layoutLabels(F){
   const foc=F?L.regL.filter(X=>F.regs.has(X.r)).sort((a,b)=>ws(b)-ws(a)):[];
   foc.forEach(X=>place(X,[0,-1,1,-2,2]));
   L.catL.forEach(X=>{if(!OVL.names||(!X.main&&view.k<1.6)){X.e.classList.add('off');return}place(X,[0,-1,1,-2,2])});
-  const big=F||!OVL.names?[]:L.regL.filter(X=>ws(X)>=100);big.forEach(X=>place(X,[0,-1,1]));
-  L.regL.filter(X=>!foc.includes(X)&&!big.includes(X)).sort((a,b)=>ws(b)-ws(a)).forEach(X=>{if(!OVL.names||(view.k<1.6&&(F||ws(X)<55))){X.e.classList.add('off');return}place(X,[0,-1,1])});
+  const ov=!desk()&&view.k<1.5;const big=F||!OVL.names||ov?[]:L.regL.filter(X=>ws(X)>=100);big.forEach(X=>place(X,[0,-1,1]));
+  L.regL.filter(X=>!foc.includes(X)&&!big.includes(X)).sort((a,b)=>ws(b)-ws(a)).forEach(X=>{if(!OVL.names||ov||(view.k<1.6&&(F||ws(X)<55))){X.e.classList.add('off');return}place(X,[0,-1,1])});
   L.taskL.forEach(X=>{const on=mtype==='cat'&&OVL.names&&view.k>=1.3&&X.n*s*s>2200&&(!F||F.regs.has(X.r));if(!on){X.e.classList.add('off');return}X.v.textContent=pct(ptj(X.r,X.rid,year))+'%';place(X,[0])});
 }
 
@@ -1031,7 +1073,10 @@ const onTheme=()=>{readTheme();swatches();renderLegend();render();schedule()};
 mqD.addEventListener('change',onTheme);new MutationObserver(onTheme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 
 $('#badge').textContent=FEED.updated?`소식 ${fmtT(FEED.updated)} 갱신 · 베타`:`베타 · ${ASOF}`;
-addEventListener('resize',()=>{home()});sheet.addEventListener('transitionend',()=>layoutLabels());
+const sMark=document.createComment('search');$('.search').before(sMark);
+function placeSearch(){const sb=$('.search');$('#q').placeholder=desk()?'직업 이름 검색 (예: 마케터, AE, 간호사)':'직업 검색 (예: 마케터)';if(!desk()){if(sb.parentElement!==$('#topbar'))$('#topbar').appendChild(sb)}else if(sb.parentElement===$('#topbar'))sMark.after(sb)}
+placeSearch();
+addEventListener('resize',()=>{placeSearch();home()});sheet.addEventListener('transitionend',()=>layoutLabels());
 swatches();applyLayers();home();setYear(2026);
 if(MINE){const j=jIdx(MINE.code);if(j>=0){MINE.v=occ(j,2026);MINE.seen=FEED.updated||new Date().toISOString();lsSet(MINE)}}
 {const h=new URLSearchParams(location.hash.slice(1)),c=h.get('j');if(c){const j=jIdx(c);if(j>=0){const q=h.get('q');let via=null;if(q){const m=matches(q).find(e=>e.j===j);via=m&&!m.std?m:{t:q}}pickJob(j,via)}}}
