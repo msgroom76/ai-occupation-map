@@ -6,3 +6,5 @@
   Cache-Control: no-cache
 /mail/*
   X-Robots-Tag: noindex
+/pipeline/*
+  X-Robots-Tag: noindex

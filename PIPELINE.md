@@ -39,3 +39,14 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 - `POST /api/e` 행동 집계(날짜·이벤트·라벨별 횟수만). `POST /api/subscribe` 뉴스레터 구독. `POST /api/contact` 기관·기업 문의. `GET /api/stats?k=…` 운영자 집계 조회.
 - Cloudflare Pages 프로젝트 설정 → 바인딩에 D1 데이터베이스를 `DB` 이름으로 연결해야 저장된다(표는 첫 요청 때 자동 생성). 환경 변수 `STATS_KEY`를 넣어야 집계 조회가 열린다.
 - 바인딩이 없으면 집계는 조용히 건너뛰고, 구독·문의는 '준비 중' 안내를 돌려준다.
+
+## 데이터 파이프라인 (pipeline/)
+지도 데이터(`city_meta.json`, `city_index.png`, `city_roads.png`, `ksco_titles.json`, `ksco_soc_map.json`)를 원자료부터 다시 만드는 스크립트와 입력 자료. 숫자를 고치거나 자료를 새로 받았을 때 여기서 다시 만든다.
+- 실행: `bash pipeline/run.sh` → `pipeline/out/`에 결과(약 40초). 저장소의 실제 파일은 건드리지 않는다. `python3 pipeline/verify.py`로 지금 파일과 비교한 뒤, 바꿀 때만 손으로 복사한다.
+- 순서: 직업명 사전(build_titles) → 중분류 골격(build_v3) → 업무 곡선(real_gwa, real_curves) → 업무 구성(real_profiles2, apply_profiles) → 소분류(real_small, isco_occ, usage_agg, real_blend, update_v3b) → 지도(samples/make19, post19, post20, groups, post21). 자세한 흐름은 `run.sh` 주석.
+- 입력: `pipeline/inputs/` (출처와 이용 조건은 `inputs/SOURCES.md`). O*NET은 쓰는 부분만 뽑아 두었다(`scripts/extract_onet.py`).
+- 고정본: `inputs/bak18/city_meta.json`(옛 시연판, 업무 41개 이름표와 옛 직업 이름만 씀), `inputs/dl_lfs/occ_2025h2.json`(KOSIS 응답을 표로 옮긴 스크립트가 남아 있지 않음).
+- 복원 스크립트: `apply_profiles.py`, `isco_occ.py`, `usage_agg.py`는 당시 대화 중에 바로 실행해 파일로 남지 않은 단계를 다시 쓴 것. 원래 결과와 바이트 단위로 같음을 확인했다.
+- 결과는 값과 픽셀이 지금 파일과 같다. `city_meta.json`만 JSON 키 순서가 다르다(원래 실행은 파이썬 해시 순서가 매번 달랐고, run.sh는 PYTHONHASHSEED=0으로 고정).
+- 필요한 환경: Python 3, numpy, scipy, pandas, openpyxl, Pillow, matplotlib, Noto Sans CJK 글꼴(`/usr/share/fonts/opentype/noto/`, 이름표 위치가 글꼴 크기에 따라 달라짐).
+- 이용 조건: O*NET CC BY 4.0, GPTs-are-GPTs MIT, 고용24 매핑정보 제한 없음, KOSIS·ILO·Anthropic 경제지수(CC BY)는 출처 표시. Microsoft 적용도 자료와 ILO 자료는 재배포 조건을 확인해야 한다.
