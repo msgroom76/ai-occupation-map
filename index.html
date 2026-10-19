@@ -650,6 +650,15 @@ details.card[open] summary::after{content:"−"}
 :root[data-theme="light"] .fold:not(.inv){--fb:color-mix(in srgb,var(--ink) calc(var(--i) * 3.2%),#fff)}
 :root[data-theme="light"] .fold.f-mine,:root[data-theme="light"] .fold.f-job,:root[data-theme="light"] .fold.f-task{--fb:color-mix(in srgb,var(--hot) 7%,#fff)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .fold:not(.inv),:root:not([data-theme="light"]) .fold:not(.inv)>.tab{box-shadow:0 -1px 0 rgba(255,255,255,.08),0 -10px 18px -12px rgba(0,0,0,.6)}}
+
+/* 로고는 한 번만: 데스크톱에서 패널이 열리면 위 막대의 작은 로고가 패널의 큰 로고로 넘어간다 */
+@media (min-width:900px){
+  .topbar .mark{max-width:140px;overflow:hidden;transform-origin:left center;transition:opacity .22s ease,transform .36s cubic-bezier(.2,.8,.2,1),max-width .36s cubic-bezier(.2,.8,.2,1),margin .36s}
+  body.dopen .topbar .mark{opacity:0;max-width:0;margin-right:-14px;transform:translateY(14px) scale(1.8);pointer-events:none}
+  .sheet .head .logo{transform-origin:left top;transition:opacity .3s ease .12s,transform .42s cubic-bezier(.2,.8,.2,1) .06s}
+  .sheet:not(.open) .head .logo{opacity:0;transform:translateY(-38px) scale(.42)}
+}
+@media (prefers-reduced-motion:reduce){.topbar .mark,.sheet .head .logo{transition:none}}
 </style>
 
 </head><body>
