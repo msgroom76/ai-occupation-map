@@ -639,6 +639,17 @@ details.card[open] summary::after{content:"−"}
 .fin>.card:last-child{margin-bottom:8px}
 .sheet .sugg{margin-bottom:20px}
 @media (max-width:899px){.scroll>.sugg{order:-3}}
+
+/* 선명하게: filter 그림자는 휴대폰에서 글자를 흐리게 만들어 box-shadow로 바꾸고, 밝은 모드 면은 흰색에서 시작해 단계적으로 짙어진다 */
+.fold,.fold.inv{filter:none}
+.fold{box-shadow:0 -1px 0 rgba(0,0,0,.07),0 -10px 18px -12px rgba(0,0,0,.22)}
+.fold>.tab{box-shadow:0 -1px 0 rgba(0,0,0,.07),0 -8px 14px -10px rgba(0,0,0,.2)}
+.fold.inv,.fold.inv>.tab{box-shadow:0 -10px 20px -12px rgba(0,0,0,.4)}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .fold:not(.inv){--fb:color-mix(in srgb,var(--ink) calc(var(--i) * 3.2%),#fff)}
+  :root:not([data-theme="dark"]) .fold.f-mine,:root:not([data-theme="dark"]) .fold.f-job,:root:not([data-theme="dark"]) .fold.f-task,:root:not([data-theme="dark"]) .fold.f-flash{--fb:color-mix(in srgb,var(--hot) 7%,#fff)}}
+:root[data-theme="light"] .fold:not(.inv){--fb:color-mix(in srgb,var(--ink) calc(var(--i) * 3.2%),#fff)}
+:root[data-theme="light"] .fold.f-mine,:root[data-theme="light"] .fold.f-job,:root[data-theme="light"] .fold.f-task{--fb:color-mix(in srgb,var(--hot) 7%,#fff)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .fold:not(.inv),:root:not([data-theme="light"]) .fold:not(.inv)>.tab{box-shadow:0 -1px 0 rgba(255,255,255,.08),0 -10px 18px -12px rgba(0,0,0,.6)}}
 </style>
 
 </head><body>
