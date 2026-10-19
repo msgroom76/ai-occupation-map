@@ -503,6 +503,43 @@ details.card[open] summary::after{content:"−"}
   #ctx .card:first-child{padding-top:6px}
   .lb.job{font-size:10.5px!important;padding:3px 5px 3px 4px}
 }
+
+/* ===== 폴더: 주제별 면 + 엇갈린 탭. 그림자·질감·둥근 모서리 없이 겹침과 명도로만 깊이를 만든다 ===== */
+.scroll{padding-bottom:0}
+#ctx,#rest{display:block}
+.fold{position:relative;margin:36px -24px 0;padding:22px 24px 8px;background:color-mix(in srgb,var(--ink) calc(3% + var(--i) * 3.2%),var(--bg));
+  box-shadow:0 -1px 0 var(--hair);filter:drop-shadow(0 -3px 6px rgba(0,0,0,.06));scroll-margin-top:40px}
+.fold:focus-within{z-index:3}
+.fold>.tab{position:absolute;bottom:100%;left:calc(24px + (100% - 48px - 132px) * var(--k));min-width:132px;height:28px;box-sizing:border-box;
+  display:flex;align-items:center;gap:8px;padding:1px 18px 0 16px;border:0;background:inherit;color:var(--ink);font:inherit;font-size:11px;cursor:pointer;
+  clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 100%,0 100%);box-shadow:inset 0 1px 0 var(--hair)}
+.fold>.tab b{font-weight:500;color:var(--ink2);font-feature-settings:"tnum"}
+.fold>.tab span{font-weight:700;letter-spacing:-.01em}
+.fold>.tab:hover span{text-decoration:underline;text-underline-offset:3px}
+.fold>.tab:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+.fold.f-mine,.fold.f-job,.fold.f-task,.fold.f-flash{background:color-mix(in srgb,var(--hot) 9%,var(--bg))}
+.fold.f-mine>.tab b,.fold.f-job>.tab b,.fold.f-task>.tab b{color:var(--hot-ink)}
+/* 폴더 안 카드: 첫 카드는 폴더 가장자리가 선을 대신하고, 이후 카드는 가는 선 */
+.fold>.card{margin:0 0 36px;border-top:1px solid var(--hair);padding-top:12px}
+.fold>.tab+.card{border-top:0;padding-top:0}
+.fold>.card:last-child{margin-bottom:28px}
+.fold .card>.lab:first-child::before{content:"—";font-weight:400;color:var(--ink3)}
+.fold .lab.dup{display:none}
+.fold details.card summary::before{content:"—";font-weight:400;color:var(--ink3)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .fold.inv{--bg:#000;background:#000}}
+:root[data-theme="dark"] .fold.inv{--bg:#000;background:#000}
+/* 마지막 폴더는 어둡게 닫는다(구독·문의) */
+.fold.inv{--bg:#17171B;--ink:#F5F5F7;--ink2:rgba(235,235,245,.66);--ink3:rgba(235,235,245,.4);--fill:rgba(255,255,255,.1);--fill2:rgba(255,255,255,.18);
+  --rule:#F5F5F7;--hair:rgba(245,245,247,.22);--hot:#FF8CCD;--hot-ink:#FF8CCD;--tint:#0A84FF;--warn:#FF9F0A;
+  background:#17171B;color:var(--ink);padding-bottom:calc(48px + env(safe-area-inset-bottom,0px));min-height:40vh;box-shadow:none;filter:drop-shadow(0 -3px 8px rgba(0,0,0,.14))}
+.fold.inv>.tab{box-shadow:none}
+.fold.inv .foot{color:var(--ink3)}
+.fold.inv input,.fold.inv textarea,.fold.inv select{background:rgba(255,255,255,.06);color:var(--ink);border-color:var(--hair)}
+@media (max-width:899px){
+  .fold{margin-top:32px;padding-top:18px}
+  .fold>.tab{min-width:112px;height:26px;padding:1px 14px 0 12px;left:calc(24px + (100% - 48px - 112px) * var(--k))}
+  #ctx>.fold:first-child{margin-top:30px}
+}
 </style>
 
 </head><body>
@@ -1050,11 +1087,19 @@ function taskCard(r){
 function render(){
   const keep=document.activeElement&&document.activeElement.id;
   ctx.innerHTML='';rest.innerHTML='';
-  if(selTask)ctx.appendChild(taskCard(selTask));
-  else if(selA>=0)ctx.appendChild(jobCard(selA));
-  else if(flash){ctx.appendChild(flashCard())}
-  else{[mineCard(),summaryCard(),todayCard(),highlights()].forEach(x=>x&&ctx.appendChild(x))}
-  [newsCard(),subCard(),catsCard(),rankCard(),adSlot(),leadCard(),aboutCard()].forEach(x=>x&&rest.appendChild(x));rest.append(el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024)·ILO(2025) 평균 · 실제 사용 Anthropic(2026) · 업무 O*NET 30.0 · 취업자 국가데이터처(2025년 하반기)`));
+  // 폴더: 주제별로 묶어 탭을 단 면. 뒤 폴더가 앞 폴더 아래쪽을 덮으며 쌓인다.
+  const F=[];
+  if(selTask)F.push(['task','선택한 업무',[taskCard(selTask)],ctx]);
+  else if(selA>=0)F.push(['job','선택한 직업',[jobCard(selA)],ctx]);
+  else if(flash)F.push(['flash','새 소식',[flashCard()],ctx]);
+  else{F.push(['mine','내 직업',[mineCard()],ctx]);F.push(['today','오늘의 지도',[summaryCard(),todayCard(),highlights()],ctx])}
+  F.push(['news','이번 주 소식',[newsCard()],rest]);
+  F.push(['browse','둘러보기',[catsCard(),rankCard(),adSlot()],rest]);
+  F.push(['join','함께하기',[subCard(),leadCard(),aboutCard(),el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024)·ILO(2025) 평균 · 실제 사용 Anthropic(2026) · 업무 O*NET 30.0 · 취업자 국가데이터처(2025년 하반기)`)],rest]);
+  const FL=F.map(f=>[f[0],f[1],f[2].filter(Boolean),f[3]]).filter(f=>f[2].length);
+  FL.forEach(([key,label,kids,box],i)=>{const f=el('section','fold f-'+key+(i===FL.length-1?' inv':''));f.id='f-'+key;f.style.setProperty('--i',i);f.style.setProperty('--k',FL.length>1?i/(FL.length-1):0);
+    const tb=el('button','tab');tb.type='button';tb.setAttribute('aria-label',label+' 구획으로 이동');tb.append(el('b',null,String(i+1).padStart(2,'0')),el('span',null,label));
+    tb.onclick=()=>f.scrollIntoView({behavior:'smooth',block:'start'});f.append(tb,...kids);{const l0=kids[0].querySelector('.lab');if(l0&&l0.textContent.trim().startsWith(label))l0.classList.add('dup')}box.appendChild(f)});
   $('#sugg').hidden=selA>=0||!!selTask;$('#sheet').classList.toggle('ctxmode',selA>=0||!!selTask);
   if(keep==='q2'){const q=$('#q2');if(q)q.focus()}
 }
