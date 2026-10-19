@@ -620,6 +620,25 @@ details.card[open] summary::after{content:"−"}
   .sheet .head .logo{display:grid}
   .scroll>.head{order:-3}
 }
+
+/* 여백·버튼 다듬기 */
+.menu{width:36px;height:36px;border:0;border-radius:0;background:none}
+.menu svg{width:22px;height:22px}
+.menu:hover,.menu[aria-expanded="true"]{background:none;color:var(--ink)}
+.menu[aria-expanded="true"] svg path{d:path("M3 12h18M3 12h12")}
+.menu svg path{transition:d .25s}
+.khead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.khead .kicker{margin-bottom:16px}
+.dclose,.sheet .dclose{position:static;flex:none;width:32px;height:32px;margin:-8px -8px 0 0;border:0;border-radius:0;background:none;color:var(--ink);display:grid;place-items:center;padding:0}
+.dclose svg{width:20px;height:20px}
+.dclose:hover{background:none;color:var(--hot-ink)}
+.dclose:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+.sheet .head{padding-right:0}
+.fold{padding-top:30px;padding-bottom:calc(var(--tabh) + 30px)}
+.fold.closed{padding-top:20px;padding-bottom:calc(var(--tabh) + 22px)}
+.fin>.card:last-child{margin-bottom:8px}
+.sheet .sugg{margin-bottom:20px}
+@media (max-width:899px){.scroll>.sugg{order:-3}}
 </style>
 
 </head><body>
@@ -639,7 +658,7 @@ details.card[open] summary::after{content:"−"}
 
   <div class="legend glass" id="legend"></div>
 
-  <div class="topbar" id="topbar"><button type="button" class="menu" id="menu" aria-label="정보 패널 열기" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h11M4 17h16"/></svg></button><a class="mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a></div>
+  <div class="topbar" id="topbar"><button type="button" class="menu" id="menu" aria-label="정보 패널 열기" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8.5h18M3 15.5h12"/></svg></button><a class="mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a></div>
   <div class="ctl">
     <div class="grp glass"><button type="button" id="lyrbtn" aria-label="지도 유형" aria-expanded="false" aria-controls="lyr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></button></div>
     <div class="grp glass"><button type="button" id="zin" aria-label="확대"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><button type="button" id="zout" aria-label="축소"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button></div>
@@ -671,11 +690,11 @@ details.card[open] summary::after{content:"−"}
   <div class="tip glass" id="tip" hidden></div>
 
   <div class="scrim" id="scrim" aria-hidden="true"></div>
-  <section class="sheet glass" id="sheet" aria-label="정보 패널"><button type="button" class="dclose" id="dclose" aria-label="정보 패널 닫기">←</button>
+  <section class="sheet glass" id="sheet" aria-label="정보 패널">
     <button type="button" class="grab" id="grab" aria-label="패널 크기 바꾸기"></button>
     <div class="scroll" id="scroll">
       <header class="head">
-        <p class="kicker"><b>AI 점령 지도</b> 사람의 일, AI가 어디까지 장악했나?</p>
+        <div class="khead"><p class="kicker"><b>AI 점령 지도</b> 사람의 일, AI가 어디까지 장악했나?</p><button type="button" class="dclose" id="dclose" aria-label="정보 패널 닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12H4.5M10.5 6l-6 6 6 6"/></svg></button></div>
         <div class="logo"><h1 aria-label="AI 점령 지도 · AI Occupied Map"><span class="ai" aria-hidden="true">AI</span><span class="w en" aria-hidden="true">Occupied</span><span class="w en" aria-hidden="true">Map</span></h1></div>
         <span class="badge" id="badge"></span>
       </header>
@@ -1265,6 +1284,7 @@ swatches();applyLayers();home();setYear(2026);
 if(MINE){const j=jIdx(MINE.code);if(j>=0){MINE.v=occ(j,2026);MINE.seen=FEED.updated||new Date().toISOString();lsSet(MINE)}}
 {const h=new URLSearchParams(location.hash.slice(1)),c=h.get('j');if(c){const j=jIdx(c);if(j>=0){const q=h.get('q');let via=null;if(q){const m=matches(q).find(e=>e.j===j);via=m&&!m.std?m:{t:q}}pickJob(j,via)}}}
 if(document.fonts)document.fonts.ready.then(()=>schedule());
+{let seen=null;try{seen=localStorage.getItem('aimap.seen.v1')}catch(e){}if(!seen&&!dOpen){setTimeout(()=>drawer(true,'first'),500)}try{localStorage.setItem('aimap.seen.v1','1')}catch(e){}}
 })();
 </script>
 
