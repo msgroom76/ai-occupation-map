@@ -666,6 +666,9 @@ details.card[open] summary::after{content:"−"}
 .fb textarea{font:inherit;font-size:13px;padding:8px 10px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);resize:vertical;border-radius:0}
 .fb>.btn{justify-self:start}
 .fb textarea:focus{outline:0;border-color:var(--ink)}
+
+/* 검색 결과 목록이 열린 패널 뒤로 숨지 않게: 데스크톱은 위 막대를 패널보다 위에 둔다 */
+@media (min-width:900px){.topbar{z-index:13}}
 </style>
 
 </head><body>
@@ -1268,7 +1271,10 @@ const ENT=[];RJ_.forEach((j,i)=>{ENT.push({t:j.name,j:i,std:true});if(j.full!==j
 let KS={codes:{},titles:[]};try{KS=await (await fetch('ksco_titles.json')).json()}catch(e){}
 Object.entries(KS.codes).forEach(([c,[n,j,d]])=>ENT.push({t:n,j,std:false,k:c,kn:n,d,ks:true}));
 KS.titles.forEach(([t,c])=>{const v=KS.codes[c];if(v)ENT.push({t,j:v[1],std:false,k:c,kn:v[0],d:v[2]})});
-{const KM=new Map();ENT.forEach(e=>{if(e.k&&/^\d/.test(e.k)){const n=norm(e.t);if(!KM.has(n))KM.set(n,e)}});ENT.forEach(e=>{if(!e.std&&!e.k){const m=KM.get(norm(e.t))||(e.d&&KM.get(norm(e.d)));if(m&&m.j===e.j){e.k=m.k;e.kn=m.kn}}})}
+{const KM=new Map();ENT.forEach(e=>{if(e.k&&/^\d/.test(e.k)){const n=norm(e.t);if(!KM.has(n))KM.set(n,e)}});ENT.forEach(e=>{if(!e.std&&!e.k){const m=KM.get(norm(e.t))||(e.d&&KM.get(norm(e.d)));if(m&&m.j===e.j){e.k=m.k;e.kn=m.kn}}})
+  // 일상 이름(예: '기자')이 세부 직업명('신문기자','방송기자')의 공통 꼬리면, 그 직업들이 모두 같은 소분류일 때 그 소분류로 잇는다
+  const KD=new Map();ENT.forEach(x=>{if(x.ks&&x.d){const q=norm(x.d);if(!KD.has(q))KD.set(q,x)}});
+  ENT.forEach(e=>{if(e.std||e.k)return;const q=norm(e.t);if(q.length<2)return;{const m=KD.get(q);if(m&&m.j===e.j){e.k=m.k;e.kn=m.kn;return}}const hit=ENT.filter(x=>x.k&&/^\d/.test(x.k)&&x.j===e.j&&norm(x.t).endsWith(q));const sm=[...new Set(hit.map(x=>String(x.k).slice(0,3)))];if(hit.length&&sm.length===1){const b=hit.find(x=>norm(x.t)===q)||hit[0];e.k=b.k;e.kn=b.kn}})}
 const NT=ENT.length;
 function matches(q){q=norm(q);if(!q)return [];const seen=new Set();
   return ENT.map(e=>{const n=norm(e.t);const sc=n===q?0:n.startsWith(q)?1:n.includes(q)?2:(q.length>=2&&q.includes(n)&&n.length>=2)?3:9;return {...e,sc}}).filter(o=>o.sc<9)
