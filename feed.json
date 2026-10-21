@@ -1,7 +1,95 @@
 {
- "updated": "2026-10-21T11:58:00+09:00",
+ "updated": "2026-10-21T17:55:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-10-21-mokpo-genai-platform",
+   "ts": "2026-10-21T16:28:00+09:00",
+   "src": "남도일보",
+   "url": "https://www.namdonews.com/news/articleView.html?idxno=926821",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "목포시, 전 공직자가 행정 내부망에서 챗GPT·제미나이·클로드 등 언어모델 11종을 쓰는 생성형 AI 업무지원 플랫폼 가동 (개인정보 자동 제거 필터, 11월부터 누리집 13곳 AI 번역 9개 언어로 확대)",
+   "r": [
+    "C5",
+    "B2"
+   ],
+   "st": "pending",
+   "dwa": [
+    [
+     "4.A.4.a.1.I03.D01",
+     "d"
+    ]
+   ],
+   "ind": [
+    "35"
+   ]
+  },
+  {
+   "id": "2026-10-21-shinhanlife-complaint-agent",
+   "ts": "2026-10-21T12:37:00+09:00",
+   "src": "글로벌이코노믹",
+   "url": "https://www.g-enews.com/article/Finance/2026/10/202610211103063107a6e8311f64_1",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "신한라이프, 상담 내용을 글로 바꿔 고객·계약·처리 이력과 함께 분석하고 불편 사항을 유형별로 분류·민원 자동 접수하는 'AI 에이전트' 공개 (11월 시행)",
+   "r": [
+    "B2",
+    "D3"
+   ],
+   "st": "pending",
+   "dwa": [
+    [
+     "4.A.1.a.1.I02.D03",
+     "a"
+    ],
+    [
+     "4.A.4.a.8.I03.D05",
+     "a"
+    ]
+   ],
+   "ind": [
+    "36",
+    "34"
+   ]
+  },
+  {
+   "id": "2026-10-20-agco-agility-digit",
+   "ts": "2026-10-20T21:15:00+09:00",
+   "src": "AGCO·Agility Robotics (GlobeNewswire)",
+   "url": "https://www.globenewswire.com/news-release/2026/10/20/3384385/0/en/agco-and-agility-robotics-advance-smart-manufacturing-with-humanoid-robot-pilot-in-hesston-kansas-facility.html",
+   "tier": "1차 출처",
+   "sig": "도입",
+   "us": true,
+   "hd": "농기계 업체 AGCO, 2027년 미국 캔자스 헤스턴 공장에서 애질리티 로보틱스 휴머노이드 'Digit' 시범 운영 계획 (부품 분류·적재, 보관용 상자 놓기부터; 대수 미공개)",
+   "r": [
+    "C1",
+    "C2"
+   ],
+   "st": "pending",
+   "dwa": [
+    [
+     "4.A.2.a.2.I02.D05",
+     "a"
+    ],
+    [
+     "4.A.3.a.1.I06.D08",
+     "a"
+    ],
+    [
+     "4.A.3.a.1.I10.D04",
+     "a"
+    ]
+   ],
+   "ind": [
+    "85",
+    "93"
+   ]
+  },
   {
    "id": "2026-10-21-hwasun-voice-emr",
    "ts": "2026-10-21T09:28:00+09:00",
