@@ -66,7 +66,7 @@ out = {'dwa': {}, 'sm': {}, 'mid': {}, 'ks': {}, 'occ': {}}
 # 세분류마다 사람이 검토한 목록(ks_onet_curated.json)이 있으면 그것을 쓴다. 첫 번째가 기본 직무.
 import os
 CUR = json.load(open('ks_onet_curated.json')) if os.path.exists('ks_onet_curated.json') else {}
-for k in set(KSO) | set(CUR):
+for k in (set(CUR) if CUR else set(KSO)):  # 검토 목록이 있으면 그 세분류만(직업명 사전에 없는 코드는 화면에서 쓰이지 않음)
     if k in CUR:
         c = [[o, s] for o, s in CUR[k]['o'] if o in occ]
         t = sum(s for _, s in c) or 1; c = [[o, round(s / t, 3)] for o, s in c]
