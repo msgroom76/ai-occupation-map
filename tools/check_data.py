@@ -13,6 +13,8 @@ def warn(m): Wn.append(m)
 
 feed_only = '--feed-only' in sys.argv
 cm = json.load(open('city_meta.json'))
+import os
+TK = json.load(open('tasks.json')) if os.path.exists('tasks.json') else None
 R = cm['R']
 
 # ---------- feed.json ----------
@@ -31,6 +33,11 @@ for n in feed['items']:
     if len(n.get('r', [])) > 3: warn(f'feed {i}: 업무 코드가 3개 초과')
     if n.get('st') == 'pending' and n.get('tier') == '확인 필요': err(f'feed {i}: 확인 필요인데 pending')
     if not n.get('hd'): err(f'feed {i}: 제목 없음')
+    if 'dwa' in n:
+        for x in n['dwa']:
+            if not (isinstance(x, list) and len(x) == 2 and x[1] in ('a', 'd', 'f')): err(f'feed {i}: dwa 형식 이상 {x} (["DWA ID","a|d|f"])')
+            elif TK and x[0] not in TK['dwa']: err(f'feed {i}: 직업 목록에 없는 세부 작업 {x[0]} (tools/find_dwa.py로 찾은 ID만)')
+        if len(n['dwa']) > 6: warn(f'feed {i}: 세부 작업이 6개 초과')
     try: datetime.fromisoformat(n['ts'])
     except Exception: err(f'feed {i}: ts 형식 이상')
 try:

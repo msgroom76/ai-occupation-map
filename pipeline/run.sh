@@ -48,7 +48,10 @@ step python3 post20.py
 step python3 groups.py web/city_meta.json
 step python3 post21.py
 
-cp web/city_meta.json web/city_index.png web/city_roads.png web/ksco_titles.json ksco_soc_map.json "$OUT/"
+# 7. 직업별 세부 작업(O*NET DWA) → tasks.json ('이 발표가 닿는 내 업무')
+step python3 build_tasks.py
+
+cp web/city_meta.json web/city_index.png web/city_roads.png web/ksco_titles.json ksco_soc_map.json tasks.json "$OUT/"
 mkdir -p "$OUT/intermediate"
 cp real_R.json real_gwa_final.json real_detail.json real_profiles2.json real_small.json real_small2.json isco_occ.csv usage_agg.json dl_gpts_gwa.json samples/jobs_v3.json "$OUT/intermediate/"
 echo "완료: $OUT" | tee -a "$LOG"

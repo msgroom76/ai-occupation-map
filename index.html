@@ -669,6 +669,28 @@ details.card[open] summary::after{content:"−"}
 
 /* 검색 결과 목록이 열린 패널 뒤로 숨지 않게: 데스크톱은 위 막대를 패널보다 위에 둔다 */
 @media (min-width:900px){.topbar{z-index:13}}
+
+/* 이 발표가 닿는 내 업무 */
+.mytk{display:grid;gap:10px;border-top:1px solid var(--hair);padding-top:12px}
+.tkopt{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tkopt .rule{width:100%}
+.tkopt .btn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.mytk .lede{margin:6px 0 0}
+.tklist{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.tklist li{display:grid;gap:4px;padding:9px 0;border-bottom:1px solid var(--hair)}
+.tklist label{display:grid;grid-template-columns:18px minmax(0,1fr);gap:8px;align-items:start;cursor:pointer}
+.tklist input{margin:2px 0 0;accent-color:var(--ink)}
+.tklist .nm{font-size:13px;font-weight:500;letter-spacing:-.015em;line-height:1.4}
+.tklist .nm small{font-size:10.5px;color:var(--ink3);font-weight:400}
+.tklist .nv{padding-left:26px;display:grid;gap:3px;font-size:11.5px;line-height:1.45}
+.tklist .nv a{color:var(--ink2);text-decoration:none}
+.tklist .nv a:hover{color:var(--ink);text-decoration:underline}
+.tklist .nv .none{color:var(--ink3)}
+.tklist .lv{font-size:10px;font-weight:700;padding:0 4px;border:1px solid currentColor;margin-right:2px}
+.tklist .lv-f{color:var(--bg);background:var(--hot-ink);border-color:var(--hot-ink)}
+.tklist .lv-d{color:var(--hot-ink)}
+.tklist .lv-a{color:var(--ink2)}
+.tklist li.off .nm,.tklist li.off .nv{opacity:.4}
 </style>
 
 </head><body>
@@ -1168,6 +1190,35 @@ function fbBox(code,sk,title,v){const key='aimap.fb.'+(sk||code);let done=null;t
   send.onclick=async()=>{if(!dir)return;const ok=await postForm('/api/feedback',{code,sm:sk||'',title:title||'',dir,shown:Math.round(v*100),note:note.value},out,send);
     if(ok){track('fb',(sk||code)+':'+dir);try{localStorage.setItem(key,dir)}catch(e){}row.remove();note.remove();send.remove()}};
   b.append(row,note,send,out,el('p','rule','의견은 숫자를 바로 바꾸지 않고, 다시 점검할 직업을 고르는 데 써요. 같은 의견이 반복되지 않게 접속 정보는 그날만 쓰는 암호값으로 바꿔 보관해요.'));return b}
+// ---------- 이 발표가 닿는 내 업무: 세부 작업(O*NET DWA) 단위로 소식을 맞춰 본다 ----------
+let TKP=null;const tkLoad=()=>TKP||(TKP=fetch('tasks.json?v='+(FEED.updated||'')).then(r=>r.ok?r.json():null).catch(()=>null));
+const LV={f:['완성','사람 손 없이 끝까지 해낼 수 있다고 발표'],d:['초안','첫 결과물을 대신 만들어 줌'],a:['보조','사람이 하는 일을 도와줌']},LVR={f:3,d:2,a:1};
+function tkBox(j,sk,k4){const box=el('div','mytk');const l=el('div','lab');l.append(el('span',null,'이 발표가 닿는 내 업무'),el('span',null,'세부 작업 기준'));box.append(l,el('p','rule','불러오는 중…'));
+  tkLoad().then(T=>{box.lastChild.remove();if(!T){box.append(el('p','rule','세부 작업 자료를 불러오지 못했어요.'));return}
+    const key='aimap.tk.'+(k4||sk||RJ_[j].code);let st={};try{st=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+    const save=()=>{try{localStorage.setItem(key,JSON.stringify(st))}catch(e){}};
+    const opts=k4&&T.ks[k4]||null;let list=null,occN=null;
+    const HINT={'ui디자이너':'15-1255.00','ux디자이너':'15-1255.00','ui/ux디자이너':'15-1255.00','웹디자이너':'15-1255.00','앱디자이너':'15-1255.00','프로덕트디자이너':'15-1255.00','게임기획자':'15-1255.01','애니메이터':'27-1014.00','그래픽디자이너':'27-1024.00','편집디자이너':'27-1024.00'},ht=selVia&&selVia.t?HINT[norm(selVia.t)]:null;
+    const pickList=()=>{if(opts){const o=(st.o&&opts.find(x=>x[0]===st.o))?st.o:(ht&&opts.find(x=>x[0]===ht))?ht:opts[0][0];occN=o;return T.occ[o][1]}occN=null;return (sk&&T.sm[sk])||T.mid[RJ_[j].code]||[]};
+    // 소식 → 세부 작업
+    const hits={};FEED.items.filter(n=>n.st!=='hold'&&n.dwa).forEach(n=>n.dwa.forEach(([d,lv])=>{(hits[d]=hits[d]||[]).push({n,lv})}));
+    const body=el('div');box.appendChild(body);
+    const draw=()=>{body.innerHTML='';list=pickList();
+      if(opts&&opts.length>1){const ch=el('div','tkopt');ch.append(el('span','rule','내 일과 가장 가까운 세부 직무'));opts.forEach(([o,s])=>{const b=el('button','btn',T.occ[o][0]);b.type='button';b.setAttribute('aria-pressed',o===occN);b.onclick=()=>{st.o=o;st.off=[];save();track('tk','occ:'+o);draw()};ch.appendChild(b)});body.appendChild(ch)}
+      const off=new Set(st.off||[]);let wOn=0,wHit=0,nHit=0,nOn=0;
+      const ul=el('ul','tklist');
+      list.forEach(([d,w])=>{const on=!off.has(d),hs=(hits[d]||[]).slice().sort((a,b)=>LVR[b.lv]-LVR[a.lv]||(b.n.ts>a.n.ts?1:-1));const top=hs[0];
+        if(on){wOn+=w;nOn++;if(top&&LVR[top.lv]>=2)wHit+=w;if(top)nHit++}
+        const li=el('li',(on?'':'off')+(top?' hit':''));const cb=el('input');cb.type='checkbox';cb.checked=on;cb.setAttribute('aria-label',T.dwa[d]+' — 내가 하는 일');
+        cb.onchange=()=>{cb.checked?off.delete(d):off.add(d);st.off=[...off];save();draw()};
+        const nm=el('div','nm');nm.append(el('span',null,T.dwa[d]||d),el('small',null,` ${Math.round(w*100)}%`));
+        const nv=el('div','nv');if(top){hs.slice(0,2).forEach(h=>{const a=el('a',null,'');a.href=h.n.url;a.target='_blank';a.rel='noopener';a.append(el('b','lv lv-'+h.lv,LV[h.lv][0]),' ',h.n.hd.length>46?h.n.hd.slice(0,46)+'…':h.n.hd);a.title=LV[h.lv][1]+' · '+h.n.src;nv.appendChild(a)})}else nv.append(el('span','none','아직 닿은 소식 없음'));
+        const lab=el('label');lab.append(cb,nm);li.append(lab,nv);ul.appendChild(li)});
+      const share=wOn?wHit/wOn:0;
+      const sum=el('p','lede sm');sum.innerHTML=nOn?`체크한 업무 ${nOn}개 중 <em>${nHit}개</em>에 최근 발표가 닿았어요. 초안 이상을 대신할 수 있다고 발표된 일이 내 업무의 <em>${Math.round(share*100)}%</em>예요.`:'내가 하는 업무를 하나 이상 체크해 주세요.';
+      body.append(sum,ul,el('p','rule','체크를 풀면 내가 하지 않는 일로 보고 계산에서 빼요(이 기기에만 저장). 수준은 발표된 능력 기준이라 실제로 쓰이고 있다는 뜻은 아니에요. 완성: 사람 손 없이 끝냄 · 초안: 첫 결과물을 대신 만듦 · 보조: 하는 일을 도움. 업무 목록과 비중은 미국 O*NET 세부 작업을 한국 직업에 연결한 값이에요.'))};
+    draw()});
+  return box}
 function jobCard(j){
   const sk=selVia?smOf(j,selVia.k):null,f=(y,s=0)=>sk?occS(sk,y,s):occ(j,y,s);
   const c=el('section','card place'),t_=tw(j),y4=Math.min(yi()+4,2032),v=f(year);
@@ -1192,7 +1243,7 @@ function jobCard(j){
   const relBox=el('div');if(rel.length){const rl=el('div','lab');rl.append(el('span',null,'이 직업에 닿은 최근 소식'));const ul=el('ul','news');rel.forEach(n=>ul.appendChild(newsItem(n)));relBox.append(rl,ul)}
   const RT=sk?SMD[sk]:RJ_[j];const rt=el('div','raters');rt.innerHTML=`<div><small>미국 연구</small><b>${pct(RT.e)}%</b></div><div><small>국제노동기구</small><b>${pct(RT.il)}%</b></div><div class="u"><small>실제 사용 확인</small><b>${RT.ob==null?'자료 없음':pct(Math.min(RT.ob,f(2026)))+'%'}</b></div>`;
   const rtn=el('p','rule','2026 노출도는 두 연구 값의 평균이에요. 실제 사용 확인은 AI 사용 기록(Anthropic 경제지수)에서 이미 쓰이는 게 보인 몫이에요.');
-  c.append(top,acts,lede,bn,trend((y,s)=>f(y,s),{ref:.4,refLabel:'40% 선'}),st,rt,rtn,relBox,el('div','lab','노출된 업무의 성격'),sp,lg);
+  c.append(top,acts,lede,bn,trend((y,s)=>f(y,s),{ref:.4,refLabel:'40% 선'}),st,rt,rtn,tkBox(j,sk,selVia&&selVia.k&&/^\d{4}$/.test(String(selVia.k))?String(selVia.k):null),relBox,el('div','lab','노출된 업무의 성격'),sp,lg);
   if(RJ_[j].smalls&&RJ_[j].smalls.length>1){const sl=el('div','lab');sl.append(el('span',null,'이 지역의 세부 직업'),el('span',null,`소분류 · ${yi()} 노출도 · 취업자`));c.append(sl);
     const ul2=el('ul','comp sm2');let thin=false;RJ_[j].smalls.slice(0,8).forEach(([cd,n,k])=>{const d=SMD[cd],a=d?occS(cd,year):occ(j,year);if(d&&d.n<=2)thin=true;const li=el('li',cd===sk?'on':null);
       const nm=el('span','nm',n+(d&&d.n<=2?' *':''));const vv=el('span','vv');vv.append(d?`${pct(a)}%`:`${pct(a)}%`,el('small',null,d?` · ${fw(k/10)}만`:` · ${fw(k/10)}만 · 중분류 값`));
@@ -1273,8 +1324,11 @@ Object.entries(KS.codes).forEach(([c,[n,j,d]])=>ENT.push({t:n,j,std:false,k:c,kn
 KS.titles.forEach(([t,c])=>{const v=KS.codes[c];if(v)ENT.push({t,j:v[1],std:false,k:c,kn:v[0],d:v[2]})});
 {const KM=new Map();ENT.forEach(e=>{if(e.k&&/^\d/.test(e.k)){const n=norm(e.t);if(!KM.has(n))KM.set(n,e)}});ENT.forEach(e=>{if(!e.std&&!e.k){const m=KM.get(norm(e.t))||(e.d&&KM.get(norm(e.d)));if(m&&m.j===e.j){e.k=m.k;e.kn=m.kn}}})
   // 일상 이름(예: '기자')이 세부 직업명('신문기자','방송기자')의 공통 꼬리면, 그 직업들이 모두 같은 소분류일 때 그 소분류로 잇는다
-  const KD=new Map();ENT.forEach(x=>{if(x.ks&&x.d){const q=norm(x.d);if(!KD.has(q))KD.set(q,x)}});
-  ENT.forEach(e=>{if(e.std||e.k)return;const q=norm(e.t);if(q.length<2)return;{const m=KD.get(q);if(m&&m.j===e.j){e.k=m.k;e.kn=m.kn;return}}const hit=ENT.filter(x=>x.k&&/^\d/.test(x.k)&&x.j===e.j&&norm(x.t).endsWith(q));const sm=[...new Set(hit.map(x=>String(x.k).slice(0,3)))];if(hit.length&&sm.length===1){const b=hit.find(x=>norm(x.t)===q)||hit[0];e.k=b.k;e.kn=b.kn}})}
+  const KD=new Map(),KDn=new Map();ENT.forEach(x=>{if(x.ks&&x.d){const q=norm(x.d);KDn.set(q,(KDn.get(q)||0)+1);if(!KD.has(q))KD.set(q,x)}});KDn.forEach((c,q)=>{if(c>1)KD.delete(q)});
+  // 요즘 쓰는 직무명 → 공식 세분류(사전에 없는 것만 보탬)
+  const ALIAS={'ui디자이너':'2955','ux디자이너':'2955','ui/ux디자이너':'2955','웹디자이너':'2955','앱디자이너':'2955','프로덕트디자이너':'2955','편집디자이너':'2954','그래픽디자이너':'2954','브랜드디자이너':'2954','패키지디자이너':'2954','공간디자이너':'2953'};
+  ENT.forEach(e=>{if(e.std)return;const a=ALIAS[norm(e.t)];if(a&&KS.codes[a]&&KS.codes[a][1]===e.j){e.k=a;e.kn=KS.codes[a][0]}});
+  ENT.forEach(e=>{if(e.std||e.k)return;const q=norm(e.t);if(q.length<2)return;{const m=KD.get(q);if(m&&m.j===e.j){e.k=m.k;e.kn=m.kn;return}}const hit=ENT.filter(x=>x.k&&/^\d/.test(x.k)&&x.j===e.j&&norm(x.t).endsWith(q));const sm=[...new Set(hit.map(x=>String(x.k).slice(0,3)))];if(hit.length&&sm.length===1){const ks4=[...new Set(hit.map(x=>String(x.k)))];if(ks4.length===1){const b=hit[0];e.k=b.k;e.kn=b.kn}else{const s=(RJ_[e.j].smalls||[]).find(x=>x[0]===sm[0]);e.k=sm[0];e.kn=s?s[1]:hit[0].kn}}})}
 const NT=ENT.length;
 function matches(q){q=norm(q);if(!q)return [];const seen=new Set();
   return ENT.map(e=>{const n=norm(e.t);const sc=n===q?0:n.startsWith(q)?1:n.includes(q)?2:(q.length>=2&&q.includes(n)&&n.length>=2)?3:9;return {...e,sc}}).filter(o=>o.sc<9)
