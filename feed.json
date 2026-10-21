@@ -1,7 +1,76 @@
 {
- "updated": "2026-10-21T17:55:00+09:00",
+ "updated": "2026-10-22T08:55:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-10-22-claude-duet",
+   "ts": "2026-10-22T06:03:00+09:00",
+   "src": "Engadget",
+   "url": "https://www.engadget.com/2293646/claude-duet-is-anthropics-answer-to-meta-muse-and-openai-dots/",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": true,
+   "hd": "앤트로픽, 연결된 앱을 몇 시간마다 살펴 할 일 브리핑을 만들고 회의 일정 잡기·대시보드·예측 작업을 백그라운드로 하는 개인 에이전트 'Claude Duet' 연구 프리뷰 공개 (행동 전 사용자 확인, 미국 대기자 명단)",
+   "r": [
+    "B9",
+    "C5"
+   ],
+   "st": "pending",
+   "dwa": [
+    [
+     "4.A.2.b.5.I03.D01",
+     "a"
+    ]
+   ],
+   "grp": "personal-agent"
+  },
+  {
+   "id": "2026-10-21-oracle-industry-agent-studio",
+   "ts": "2026-10-21T22:00:00+09:00",
+   "src": "Oracle 뉴스룸",
+   "url": "https://www.oracle.com/news/announcement/oracle-ai-agent-studio-for-industry-applications-helps-accelerate-business-outcomes-2026-10-21/",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "us": true,
+   "hd": "오라클, 건설·소매·금융·외식·공공·유틸리티·통신·숙박 업종용 AI 에이전트를 코딩 없이 만들고 관리하는 'AI Agent Studio for Industry Applications' 발표 (12개월 안에 미국부터 제공)",
+   "r": [
+    "C5",
+    "B2"
+   ],
+   "st": "pending",
+   "grp": "agent-builder"
+  },
+  {
+   "id": "2026-10-21-channeltalk-voice-alf",
+   "ts": "2026-10-21T07:59:00+09:00",
+   "src": "벤처스퀘어",
+   "url": "https://www.venturesquare.net/1121742",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "채널톡, 걸려온 전화의 단순 문의·A/S 접수를 처리하고 상담 신청 고객에게 먼저 전화를 거는 AI 전화 상담 '보이스 알프' 정식 출시 (도입사 린클, 상담원 응대 약 39% 감소)",
+   "r": [
+    "D3",
+    "D6"
+   ],
+   "st": "pending",
+   "dwa": [
+    [
+     "4.A.4.a.3.I03.D11",
+     "a"
+    ],
+    [
+     "4.A.4.a.8.I03.D02",
+     "a"
+    ],
+    [
+     "4.A.1.a.1.I14.D02",
+     "a"
+    ]
+   ],
+   "grp": "voice-bot"
+  },
   {
    "id": "2026-10-21-mokpo-genai-platform",
    "ts": "2026-10-21T16:28:00+09:00",
