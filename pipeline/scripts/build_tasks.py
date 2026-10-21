@@ -62,9 +62,17 @@ def top(cnt):
     s = sum(x for _, x in pick); return [[d, round(x / s, 4)] for d, x in pick]
 out = {'dwa': {}, 'sm': {}, 'mid': {}, 'ks': {}, 'occ': {}}
 # 세분류마다 '세부 직무' 후보(O*NET 직업) — 몫 4% 이상, 최대 6개. 사용자가 가장 가까운 것을 고르면 그 직무의 세부 작업을 보여준다.
-for k, w in KSO.items():
-    tot = sum(v for o, v in w.items() if o in occ) or 1
-    c = [[o, round(v / tot, 3)] for o, v in w.most_common() if o in occ and v / tot >= .04][:6]
+# 연계표만으로 고른 후보는 다른 분야가 섞인다(예: 로봇공학 기술자 → 태양광 엔지니어).
+# 세분류마다 사람이 검토한 목록(ks_onet_curated.json)이 있으면 그것을 쓴다. 첫 번째가 기본 직무.
+import os
+CUR = json.load(open('ks_onet_curated.json')) if os.path.exists('ks_onet_curated.json') else {}
+for k in set(KSO) | set(CUR):
+    if k in CUR:
+        c = [[o, s] for o, s in CUR[k]['o'] if o in occ]
+        t = sum(s for _, s in c) or 1; c = [[o, round(s / t, 3)] for o, s in c]
+    else:
+        w = KSO[k]; tot = sum(v for o, v in w.items() if o in occ) or 1
+        c = [[o, round(v / tot, 3)] for o, v in w.most_common() if o in occ and v / tot >= .04][:6]
     if c: out['ks'][k] = c
     for o, _ in c:
         if o not in out['occ']:
