@@ -50,7 +50,7 @@ for i,w in enumerate(weeks):
 lst=''.join(f'<li><a href="/w/{wk}">{H.escape(t)}</a> <span class="sub">· {d}</span></li>' for wk,t,d in reversed(pages))
 open('w/index.html','w').write(f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>주간 지수 · AI 점령 지도</title><link rel="canonical" href="{BASE}/w/"><style>{CSS}</style></head><body><main><a class="brand" href="/">AI 점령 지도</a><h1>주간 지수</h1><p class="sub">매주 월요일 아침, 지난주 확인된 AI 소식을 반영해 발표해요.</p><ul>{lst or '<li class="sub">첫 발표 전이에요.</li>'}</ul></main></body></html>''')
 exec(open('tools/build_jobs.py').read(),{'__name__':'build_jobs'})
-urls=[BASE+'/',BASE+'/w/']+[f'{BASE}/w/{wk}' for wk,_,_ in pages]+json.load(open('j/_urls.json'))
+urls=[BASE+'/',BASE+'/w/',BASE+'/about',BASE+'/privacy',BASE+'/terms']+[f'{BASE}/w/{wk}' for wk,_,_ in pages]+json.load(open('j/_urls.json'))
 open('sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{u}</loc></url>\n' for u in urls)+'</urlset>\n')
 open('robots.txt','w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n')
 print('weeks',len(pages),'urls',len(urls))
