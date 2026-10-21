@@ -38,6 +38,9 @@ for n in feed['items']:
             if not (isinstance(x, list) and len(x) == 2 and x[1] in ('a', 'd', 'f')): err(f'feed {i}: dwa 형식 이상 {x} (["DWA ID","a|d|f"])')
             elif TK and x[0] not in TK['dwa']: err(f'feed {i}: 직업 목록에 없는 세부 작업 {x[0]} (tools/find_dwa.py로 찾은 ID만)')
         if len(n['dwa']) > 6: warn(f'feed {i}: 세부 작업이 6개 초과')
+        if not n.get('ind'): warn(f'feed {i}: dwa가 있는데 업종(ind)이 없음 — 모든 업종에 퍼짐(범용 발표면 괜찮음)')
+    if 'ind' in n and not (isinstance(n['ind'], list) and all(isinstance(x, str) and x.isdigit() and 1 <= len(x) <= 4 for x in n['ind'])):
+        err(f'feed {i}: ind 형식 이상 {n.get("ind")} (한국표준직업분류 코드 앞자리 문자열 목록, 예: ["27"], ["33","28"])')
     try: datetime.fromisoformat(n['ts'])
     except Exception: err(f'feed {i}: ts 형식 이상')
 try:
