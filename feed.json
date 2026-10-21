@@ -132,6 +132,20 @@
    "note": "법안 발의 단계 · 노출도 수치 영향 없음"
   },
   {
+   "id": "2026-10-20-molit-construction-robot",
+   "ts": "2026-10-20T11:24:00+09:00",
+   "src": "뉴스핌",
+   "url": "https://www.newspim.com/news/view/20261020000498",
+   "tier": "신뢰 매체",
+   "sig": "정책",
+   "us": false,
+   "kr": true,
+   "hd": "국토교통부, 건설로보틱스 혁신포럼 출범…현장 건설로봇 도입 지원 'CO.AX' 사업 585억 원을 내년 예산안에 반영하고 건설로봇 지원법 추진",
+   "r": [],
+   "st": "none",
+   "note": "정책 동향(예산안·입법 계획) · 노출도 수치 영향 없음"
+  },
+  {
    "id": "2026-10-20-seongnam-ai-dutybot",
    "ts": "2026-10-20T10:45:00+09:00",
    "src": "글로벌이코노믹",
@@ -146,36 +160,6 @@
     "C9"
    ],
    "st": "pending"
-  },
-  {
-   "id": "2026-10-20-nh-bank-ai-agents",
-   "ts": "2026-10-20T10:37:00+09:00",
-   "src": "파이낸셜뉴스",
-   "url": "https://www.fnnews.com/news/202610200950526986",
-   "tier": "신뢰 매체",
-   "sig": "도입",
-   "us": false,
-   "kr": true,
-   "hd": "NH농협은행, 마이데이터 기반 포트폴리오 진단·절세 전략을 안내하는 자산관리 AI 에이전트와 전세대출·소비자보호 에이전트 구축 착수 (12월 올원뱅크 첫 적용)",
-   "r": [
-    "D14",
-    "B4"
-   ],
-   "st": "pending"
-  },
-  {
-   "id": "2026-10-20-molit-construction-robot",
-   "ts": "2026-10-20T11:24:00+09:00",
-   "src": "뉴스핌",
-   "url": "https://www.newspim.com/news/view/20261020000498",
-   "tier": "신뢰 매체",
-   "sig": "정책",
-   "us": false,
-   "kr": true,
-   "hd": "국토교통부, 건설로보틱스 혁신포럼 출범…현장 건설로봇 도입 지원 'CO.AX' 사업 585억 원을 내년 예산안에 반영하고 건설로봇 지원법 추진",
-   "r": [],
-   "st": "none",
-   "note": "정책 동향(예산안·입법 계획) · 노출도 수치 영향 없음"
   },
   {
    "id": "2026-10-20-pps-ai-agents",
@@ -208,6 +192,22 @@
    ]
   },
   {
+   "id": "2026-10-20-nh-bank-ai-agents",
+   "ts": "2026-10-20T10:37:00+09:00",
+   "src": "파이낸셜뉴스",
+   "url": "https://www.fnnews.com/news/202610200950526986",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "NH농협은행, 마이데이터 기반 포트폴리오 진단·절세 전략을 안내하는 자산관리 AI 에이전트와 전세대출·소비자보호 에이전트 구축 착수 (12월 올원뱅크 첫 적용)",
+   "r": [
+    "D14",
+    "B4"
+   ],
+   "st": "pending"
+  },
+  {
    "id": "2026-10-20-catch-it-jobs",
    "ts": "2026-10-20T06:00:00+09:00",
    "src": "서울경제",
@@ -220,85 +220,6 @@
    "r": [],
    "st": "none",
    "note": "채용공고 집계·구직자 설문(IT 희망자 117명) · 노출도 수치 영향 없음"
-  },
-  {
-   "id": "2026-10-19-cheonan-patrol-robot",
-   "ts": "2026-10-19T09:35:00+09:00",
-   "src": "중도일보",
-   "url": "https://m.joongdo.co.kr/view.php?key=20261019010004937",
-   "tier": "신뢰 매체",
-   "sig": "도입",
-   "us": false,
-   "kr": true,
-   "hd": "천안시, 천안천·천호지·삼거리공원 보행로에 AI 4족 보행 순찰 로봇 도입 추진 (과기정통부 온디바이스 AI 실증, 규제특례 조건부 승인)",
-   "r": [
-    "A2"
-   ],
-   "st": "pending",
-   "dwa": [
-    [
-     "4.A.1.a.2.I07.D05",
-     "a"
-    ]
-   ],
-   "ind": [
-    "41",
-    "94"
-   ]
-  },
-  {
-   "id": "2026-10-19-elevenlabs-architect",
-   "ts": "2026-10-19T10:53:00+09:00",
-   "src": "파이낸셜뉴스",
-   "url": "https://www.fnnews.com/news/202610191046548529",
-   "tier": "신뢰 매체",
-   "sig": "능력",
-   "us": true,
-   "hd": "일레븐랩스, 대화만으로 음성 상담 에이전트를 만들고 로그 검토·테스트 시뮬레이션까지 하는 'ElevenAgent Architect' 알파 공개",
-   "r": [
-    "C5",
-    "B3"
-   ],
-   "st": "pending",
-   "dwa": [
-    [
-     "4.A.4.a.8.I03.D02",
-     "d"
-    ],
-    [
-     "4.A.4.a.8.I03.D01",
-     "a"
-    ]
-   ]
-  },
-  {
-   "id": "2026-10-16-anthropic-employment",
-   "ts": "2026-10-16T09:00:00+09:00",
-   "src": "Anthropic",
-   "url": "https://www.anthropic.com/research/employment-at-anthropic",
-   "tier": "1차 출처",
-   "sig": "고용",
-   "us": true,
-   "hd": "앤트로픽 사내 고용 보고서: 2025년 초 이후 기술직 신규 채용 중 주니어 비중 27%→9%, AI 에이전트 작업 시간은 직원의 6배",
-   "r": [],
-   "st": "none",
-   "note": "기업 내부 고용 통계 · 노출도 수치 영향 없음"
-  },
-  {
-   "id": "2026-10-16-astra-pro-parallel",
-   "ts": "2026-10-16T09:00:00+09:00",
-   "src": "Lapaas Voice",
-   "url": "https://lapaasvoice.com/openai-upgrades-gpt-6-astra-pro-in-chatgpt-with-faster-responses-and-parallel-agents",
-   "tier": "확인 필요",
-   "sig": "능력",
-   "us": true,
-   "hd": "오픈AI, ChatGPT의 GPT-6 Astra Pro에 여러 에이전트가 한 작업을 나눠 병렬 처리하는 기능 추가 (Pro 사용자)",
-   "r": [
-    "C5",
-    "B5"
-   ],
-   "st": "hold",
-   "note": "원문은 오픈AI X 게시물로 직접 열람 불가 · 요약 매체만 확인"
   },
   {
    "id": "2026-10-19-bitcomputer-bitmate",
@@ -329,6 +250,69 @@
     "24",
     "42"
    ]
+  },
+  {
+   "id": "2026-10-19-elevenlabs-architect",
+   "ts": "2026-10-19T10:53:00+09:00",
+   "src": "파이낸셜뉴스",
+   "url": "https://www.fnnews.com/news/202610191046548529",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": true,
+   "hd": "일레븐랩스, 대화만으로 음성 상담 에이전트를 만들고 로그 검토·테스트 시뮬레이션까지 하는 'ElevenAgent Architect' 알파 공개",
+   "r": [
+    "C5",
+    "B3"
+   ],
+   "st": "pending",
+   "dwa": [
+    [
+     "4.A.4.a.8.I03.D02",
+     "d"
+    ],
+    [
+     "4.A.4.a.8.I03.D01",
+     "a"
+    ]
+   ]
+  },
+  {
+   "id": "2026-10-19-cheonan-patrol-robot",
+   "ts": "2026-10-19T09:35:00+09:00",
+   "src": "중도일보",
+   "url": "https://m.joongdo.co.kr/view.php?key=20261019010004937",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "천안시, 천안천·천호지·삼거리공원 보행로에 AI 4족 보행 순찰 로봇 도입 추진 (과기정통부 온디바이스 AI 실증, 규제특례 조건부 승인)",
+   "r": [
+    "A2"
+   ],
+   "st": "pending",
+   "dwa": [
+    [
+     "4.A.1.a.2.I07.D05",
+     "a"
+    ]
+   ],
+   "ind": [
+    "41",
+    "94"
+   ]
+  },
+  {
+   "id": "2026-10-18-shanghai-humanoid",
+   "ts": "2026-10-18T19:37:00+09:00",
+   "src": "로봇신문",
+   "url": "https://www.irobotnews.com/news/articleView.html?idxno=49043",
+   "tier": "신뢰 매체",
+   "sig": "정책",
+   "us": false,
+   "hd": "중국 상하이시, 지능형 제조 행동계획에서 제조공장에 휴머노이드 로봇 8천 대 배치 목표 제시",
+   "r": [],
+   "st": "none",
+   "note": "정책 동향 · 노출도 수치 영향 없음"
   },
   {
    "id": "2026-10-18-hyundai-polaris",
@@ -364,47 +348,6 @@
    ]
   },
   {
-   "id": "2026-10-16-anthropic-expectations",
-   "ts": "2026-10-16T09:00:00+09:00",
-   "src": "Anthropic",
-   "url": "https://anthropic.com/research/ai-expectations-gap",
-   "tier": "1차 출처",
-   "sig": "고용",
-   "us": true,
-   "hd": "앤트로픽 설문: 미국 근로자는 2030년까지 자기 업무의 약 28%를 AI가 맡을 것으로 예상, 앤트로픽 직원 예상치는 약 75%",
-   "r": [],
-   "st": "none",
-   "note": "고용 전망 설문 · 노출도 수치 영향 없음"
-  },
-  {
-   "id": "2026-10-15-muse-spark-open",
-   "ts": "2026-10-15T09:00:00+09:00",
-   "src": "9to5Mac",
-   "url": "https://9to5mac.com/?p=1074420",
-   "tier": "신뢰 매체",
-   "sig": "능력",
-   "us": true,
-   "hd": "메타, 코딩·에이전트 작업용 오픈 웨이트 모델 'Muse Spark Open' 공개 (애플과 협력해 맥 스튜디오 2대에서 구동)",
-   "r": [
-    "C5",
-    "B5"
-   ],
-   "st": "pending"
-  },
-  {
-   "id": "2026-10-18-shanghai-humanoid",
-   "ts": "2026-10-18T19:37:00+09:00",
-   "src": "로봇신문",
-   "url": "https://www.irobotnews.com/news/articleView.html?idxno=49043",
-   "tier": "신뢰 매체",
-   "sig": "정책",
-   "us": false,
-   "hd": "중국 상하이시, 지능형 제조 행동계획에서 제조공장에 휴머노이드 로봇 8천 대 배치 목표 제시",
-   "r": [],
-   "st": "none",
-   "note": "정책 동향 · 노출도 수치 영향 없음"
-  },
-  {
    "id": "2026-10-18-hyundai-humanoid",
    "ts": "2026-10-18T15:30:00+09:00",
    "src": "아주경제(Aju Press)",
@@ -420,6 +363,76 @@
    ],
    "st": "none",
    "note": "2032년 이후 계획 · 현재 도입 아님"
+  },
+  {
+   "id": "2026-10-14-imf-tax",
+   "ts": "2026-10-18T08:00:00+09:00",
+   "src": "머니투데이",
+   "url": "https://www.mt.co.kr/world/2026/10/18/2026101515475292816",
+   "tier": "신뢰 매체",
+   "sig": "정책",
+   "us": false,
+   "hd": "IMF 패널 \"AI가 노동을 대체하면 세수 3~8% 줄 수 있어\" 과세 체계 재설계 제안",
+   "r": [],
+   "st": "none",
+   "note": "정책 동향 · 노출도 수치 영향 없음"
+  },
+  {
+   "id": "2026-10-16-anthropic-employment",
+   "ts": "2026-10-16T09:00:00+09:00",
+   "src": "Anthropic",
+   "url": "https://www.anthropic.com/research/employment-at-anthropic",
+   "tier": "1차 출처",
+   "sig": "고용",
+   "us": true,
+   "hd": "앤트로픽 사내 고용 보고서: 2025년 초 이후 기술직 신규 채용 중 주니어 비중 27%→9%, AI 에이전트 작업 시간은 직원의 6배",
+   "r": [],
+   "st": "none",
+   "note": "기업 내부 고용 통계 · 노출도 수치 영향 없음"
+  },
+  {
+   "id": "2026-10-16-astra-pro-parallel",
+   "ts": "2026-10-16T09:00:00+09:00",
+   "src": "Lapaas Voice",
+   "url": "https://lapaasvoice.com/openai-upgrades-gpt-6-astra-pro-in-chatgpt-with-faster-responses-and-parallel-agents",
+   "tier": "확인 필요",
+   "sig": "능력",
+   "us": true,
+   "hd": "오픈AI, ChatGPT의 GPT-6 Astra Pro에 여러 에이전트가 한 작업을 나눠 병렬 처리하는 기능 추가 (Pro 사용자)",
+   "r": [
+    "C5",
+    "B5"
+   ],
+   "st": "hold",
+   "note": "원문은 오픈AI X 게시물로 직접 열람 불가 · 요약 매체만 확인"
+  },
+  {
+   "id": "2026-10-16-anthropic-expectations",
+   "ts": "2026-10-16T09:00:00+09:00",
+   "src": "Anthropic",
+   "url": "https://anthropic.com/research/ai-expectations-gap",
+   "tier": "1차 출처",
+   "sig": "고용",
+   "us": true,
+   "hd": "앤트로픽 설문: 미국 근로자는 2030년까지 자기 업무의 약 28%를 AI가 맡을 것으로 예상, 앤트로픽 직원 예상치는 약 75%",
+   "r": [],
+   "st": "none",
+   "note": "고용 전망 설문 · 노출도 수치 영향 없음"
+  },
+  {
+   "id": "2026-10-16-chatgpt-chrome",
+   "ts": "2026-10-16T09:00:00+09:00",
+   "src": "9to5Google",
+   "url": "https://9to5google.com/2026/10/16/chatgpt-gets-deeper-google-chrome-integration-including-control-over-tabs/",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": true,
+   "hd": "오픈AI, ChatGPT 크롬 확장에 탭 제어·브라우저 자동화 추가",
+   "r": [
+    "A1",
+    "C5"
+   ],
+   "st": "pending"
   },
   {
    "id": "2026-10-15-workday-agents",
@@ -452,32 +465,17 @@
    ]
   },
   {
-   "id": "2026-10-13-motie-humanoid",
-   "ts": "2026-10-13T15:00:00+09:00",
-   "src": "파이낸셜뉴스",
-   "url": "https://www.fnnews.com/news/202610131103564249",
+   "id": "2026-10-15-muse-spark-open",
+   "ts": "2026-10-15T09:00:00+09:00",
+   "src": "9to5Mac",
+   "url": "https://9to5mac.com/?p=1074420",
    "tier": "신뢰 매체",
-   "sig": "규제",
-   "us": false,
-   "kr": true,
-   "hd": "산업통상부 규제특례위, 안전펜스 규제 풀어 제조 현장에 이동형 휴머노이드 20대 실증 투입 승인",
-   "r": [],
-   "st": "none",
-   "note": "규제 동향 · 노출도 수치 영향 없음"
-  },
-  {
-   "id": "2026-10-16-gemini4-argon",
-   "ts": "2026-10-13T09:00:00+09:00",
-   "src": "Google Cloud 블로그",
-   "url": "https://cloud.google.com/blog/products/ai-machine-learning/gemini-4-argon-available-on-google-cloud",
-   "tier": "1차 출처",
    "sig": "능력",
    "us": true,
-   "hd": "구글, Gemini 4 Argon을 Google Cloud 전체 고객에게 제공 시작 (기업용 Gemini·API 포함)",
+   "hd": "메타, 코딩·에이전트 작업용 오픈 웨이트 모델 'Muse Spark Open' 공개 (애플과 협력해 맥 스튜디오 2대에서 구동)",
    "r": [
-    "B2",
-    "B9",
-    "C5"
+    "C5",
+    "B5"
    ],
    "st": "pending"
   },
@@ -493,21 +491,6 @@
    "r": [
     "C9",
     "D15"
-   ],
-   "st": "pending"
-  },
-  {
-   "id": "2026-10-16-chatgpt-chrome",
-   "ts": "2026-10-16T09:00:00+09:00",
-   "src": "9to5Google",
-   "url": "https://9to5google.com/2026/10/16/chatgpt-gets-deeper-google-chrome-integration-including-control-over-tabs/",
-   "tier": "신뢰 매체",
-   "sig": "능력",
-   "us": true,
-   "hd": "오픈AI, ChatGPT 크롬 확장에 탭 제어·브라우저 자동화 추가",
-   "r": [
-    "A1",
-    "C5"
    ],
    "st": "pending"
   },
@@ -572,19 +555,6 @@
    "note": "고용 신호 · 노출도 수치 영향 없음"
   },
   {
-   "id": "2026-10-14-imf-tax",
-   "ts": "2026-10-18T08:00:00+09:00",
-   "src": "머니투데이",
-   "url": "https://www.mt.co.kr/world/2026/10/18/2026101515475292816",
-   "tier": "신뢰 매체",
-   "sig": "정책",
-   "us": false,
-   "hd": "IMF 패널 \"AI가 노동을 대체하면 세수 3~8% 줄 수 있어\" 과세 체계 재설계 제안",
-   "r": [],
-   "st": "none",
-   "note": "정책 동향 · 노출도 수치 영향 없음"
-  },
-  {
    "id": "2026-10-13-audit-youth",
    "ts": "2026-10-13T15:38:00+09:00",
    "src": "아주경제",
@@ -597,6 +567,36 @@
    "r": [],
    "st": "none",
    "note": "국내 고용 신호 · 노출도 수치 영향 없음"
+  },
+  {
+   "id": "2026-10-13-motie-humanoid",
+   "ts": "2026-10-13T15:00:00+09:00",
+   "src": "파이낸셜뉴스",
+   "url": "https://www.fnnews.com/news/202610131103564249",
+   "tier": "신뢰 매체",
+   "sig": "규제",
+   "us": false,
+   "kr": true,
+   "hd": "산업통상부 규제특례위, 안전펜스 규제 풀어 제조 현장에 이동형 휴머노이드 20대 실증 투입 승인",
+   "r": [],
+   "st": "none",
+   "note": "규제 동향 · 노출도 수치 영향 없음"
+  },
+  {
+   "id": "2026-10-16-gemini4-argon",
+   "ts": "2026-10-13T09:00:00+09:00",
+   "src": "Google Cloud 블로그",
+   "url": "https://cloud.google.com/blog/products/ai-machine-learning/gemini-4-argon-available-on-google-cloud",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "us": true,
+   "hd": "구글, Gemini 4 Argon을 Google Cloud 전체 고객에게 제공 시작 (기업용 Gemini·API 포함)",
+   "r": [
+    "B2",
+    "B9",
+    "C5"
+   ],
+   "st": "pending"
   },
   {
    "id": "2026-10-08-gemini-agent",
@@ -623,6 +623,59 @@
      "4.A.2.b.5.I01.D04",
      "a"
     ]
+   ]
+  },
+  {
+   "id": "2026-06-18-lunit-regional-hospitals",
+   "ts": "2026-06-18T09:00:00+09:00",
+   "src": "바이오스펙테이터",
+   "url": "https://www.biospectator.com/news/view/29075",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "루닛, 보건복지부 'AI 기반 의료체계 지원사업' 지역 책임의료기관 6곳에 흉부 엑스레이·유방촬영 판독 보조 AI 공급 (폐암·유방암 의심 부위 표시)",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.2.a.4.I06.D03",
+     "a"
+    ]
+   ],
+   "ind": [
+    "24"
+   ]
+  },
+  {
+   "id": "2026-04-20-seocho-edge-ai-cctv",
+   "ts": "2026-04-20T09:00:00+09:00",
+   "src": "헤럴드경제",
+   "url": "https://www.heraldk.com/article/2026042000362751427",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "서초구, 방범 CCTV에 AI 영상분석 확대 — 배회·쓰러짐·침입·폭행 등 이상행동을 실시간 감지해 관제요원에게 즉시 알림",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.a.3.I05.D02",
+     "d"
+    ],
+    [
+     "4.A.4.a.2.I08.D01",
+     "a"
+    ]
+   ],
+   "ind": [
+    "41",
+    "94"
    ]
   },
   {
@@ -674,6 +727,274 @@
    ]
   },
   {
+   "id": "2026-02-26-posco-enc-night-cleaning-robot",
+   "ts": "2026-02-26T09:00:00+09:00",
+   "src": "포스코이앤씨 뉴스룸",
+   "url": "https://newsroom.posco.com/kr/?p=127931",
+   "tier": "1차 출처",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "포스코이앤씨, 신반포 21차 준공 청소에 자율주행 청소로봇 투입 — 야간 무인으로 공용부 청소, 엘리베이터 스스로 호출·자동 충전",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.a.1.I03.D11",
+     "d"
+    ],
+    [
+     "4.A.3.a.1.I03.D12",
+     "a"
+    ]
+   ],
+   "ind": [
+    "94"
+   ]
+  },
+  {
+   "id": "2026-02-19-db-insurance-claims-agent",
+   "ts": "2026-02-19T09:00:00+09:00",
+   "src": "SBS Biz",
+   "url": "https://biz.sbs.co.kr/amp/article/20000292137",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "DB손해보험, 삼성SDS와 보험금 청구 AI 에이전트 출시 — 자동차 사고 접수 30분 안에 첫 안내와 사고 정보 수집, 장기보험은 담보별 필요 서류 안내",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.1.a.1.I14.D03",
+     "f"
+    ],
+    [
+     "4.A.4.a.1.I02.D04",
+     "f"
+    ],
+    [
+     "4.A.2.a.3.I03.D04",
+     "a"
+    ]
+   ],
+   "ind": [
+    "34",
+    "28"
+   ]
+  },
+  {
+   "id": "2026-01-02-neovision-ai-lens-inspection",
+   "ts": "2026-01-02T09:00:00+09:00",
+   "src": "헤럴드경제",
+   "url": "https://www.heraldk.com/article/2026010214000000638",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "콘택트렌즈 제조사 네오비젼 오송공장, AI 비전 검사로 하루 약 50만 개 렌즈의 기포·흠집·깨짐 실시간 판정 (1인당 검사량 약 3천→2만 5천 개)",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.1.b.2.I06.D08",
+     "d"
+    ],
+    [
+     "4.A.2.a.1.I05.D03",
+     "d"
+    ]
+   ],
+   "ind": [
+    "83",
+    "93"
+   ]
+  },
+  {
+   "id": "2025-12-26-daedong-level4-ai-tractor",
+   "ts": "2025-12-26T09:00:00+09:00",
+   "src": "바이라인네트워크",
+   "url": "https://byline.network/2025/12/26-515/",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": false,
+   "kr": true,
+   "hd": "대동, 4단계 자율작업 AI 트랙터 시연 — 앱 터치로 무인 경작 시작, 비전 AI로 농지·작업기 인식하고 장애물 앞에서 멈췄다 재개",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.a.3.I11.D04",
+     "d"
+    ],
+    [
+     "4.A.3.a.1.I17.D07",
+     "a"
+    ]
+   ],
+   "ind": [
+    "61"
+   ]
+  },
+  {
+   "id": "2025-12-01-jeju-school-ai-cooking-robot",
+   "ts": "2025-12-01T09:00:00+09:00",
+   "src": "서울신문",
+   "url": "https://m.seoul.co.kr/news/2025/12/01/20251201500278",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "제주도교육청, 제주여상 급식실에 AI 조리로봇 시범 도입 — 튀김·볶음·면 삶기·소스 조리를 맡고 불 세기·조리 시간 자동 조절",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.a.2.I03.D07",
+     "a"
+    ],
+    [
+     "4.A.3.a.3.I06.D06",
+     "a"
+    ]
+   ],
+   "ind": [
+    "45",
+    "95"
+   ]
+  },
+  {
+   "id": "2025-11-03-allianz-project-nemo",
+   "ts": "2025-11-03T09:00:00+09:00",
+   "src": "Allianz",
+   "url": "https://www.allianz.com/en/mediacenter/news/articles/251103-when-the-storm-clears-so-should-the-claim-queue.html",
+   "tier": "1차 출처",
+   "sig": "도입",
+   "us": false,
+   "kr": false,
+   "hd": "알리안츠 호주, AI 에이전트 7개가 소액 식품 변질 보험금 청구의 보장 여부·기상 확인·사기 점검·지급액 계산까지 처리 — 최종 지급 결정은 사람이 함",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.2.a.3.I03.D04",
+     "d"
+    ],
+    [
+     "4.A.1.b.3.I03.D01",
+     "d"
+    ],
+    [
+     "4.A.2.a.2.I01.D01",
+     "d"
+    ]
+   ],
+   "ind": [
+    "34",
+    "28"
+   ]
+  },
+  {
+   "id": "2025-09-18-autodesk-neural-cad",
+   "ts": "2025-09-18T09:00:00+09:00",
+   "src": "Digital Engineering 24/7",
+   "url": "https://www.digitalengineering247.com/article/autodesk-to-release-3d-generative-ai-foundation-models-for-autodesk-fusion-forma",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "오토데스크, 글 지시로 CAD 형상을 만드는 생성형 AI 모델 'neural CAD'를 Fusion·Forma에 넣겠다고 발표",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.2.b.2.I21.D01",
+     "d"
+    ],
+    [
+     "4.A.2.b.2.I18.D18",
+     "a"
+    ],
+    [
+     "4.A.2.b.2.I11.D04",
+     "a"
+    ]
+   ],
+   "ind": [
+    "23"
+   ]
+  },
+  {
+   "id": "2025-07-17-cj-logistics-mobile-palletizer",
+   "ts": "2025-07-17T09:00:00+09:00",
+   "src": "CJ뉴스룸 (CJ대한통운 보도자료)",
+   "url": "https://cjnews.cj.net/cj%eb%8c%80%ed%95%9c%ed%86%b5%ec%9a%b4-%eb%b0%95%ec%8a%a4-%ec%8c%93%ea%b8%b0%eb%8f%84-%ec%b2%99%ec%b2%99-%ec%9d%b4%eb%8f%99%ed%98%95-%eb%a1%9c%eb%b4%87-%ed%8c%94%eb%a0%88%ed%83%80/",
+   "tier": "1차 출처",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "CJ대한통운, 인천GDC에 AI 비전 이동형 로봇 팔레타이저 도입 — 박스를 알아보고 도착지별로 나눠 파렛트에 적재 (랩 포장은 사람)",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.a.1.I06.D08",
+     "f"
+    ],
+    [
+     "4.A.2.a.2.I02.D02",
+     "f"
+    ]
+   ],
+   "ind": [
+    "92"
+   ]
+  },
+  {
+   "id": "2025-07-07-samsung-hyundai-ec-material-robot",
+   "ts": "2025-07-07T09:00:00+09:00",
+   "src": "비즈워치",
+   "url": "https://news.bizwatch.co.kr/article/real_estate/2025/07/07/0005",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": false,
+   "kr": true,
+   "hd": "삼성물산·현대건설, 공동 개발한 건설 자재 운반 로봇 청라 현장 첫 시연 — 3D 영상으로 팔레트를 알아보고 집어 스스로 길을 찾아 운반 (현장 실증 예정)",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.a.1.I10.D10",
+     "a"
+    ],
+    [
+     "4.A.3.a.3.I08.D01",
+     "a"
+    ]
+   ],
+   "ind": [
+    "91"
+   ]
+  },
+  {
    "id": "2025-07-01-superlawyer-longform",
    "ts": "2025-07-01T10:21:00+09:00",
    "src": "유니콘팩토리",
@@ -707,6 +1028,810 @@
    "ind": [
     "27",
     "351"
+   ]
+  },
+  {
+   "id": "2025-06-26-quickbooks-agents",
+   "ts": "2025-06-26T09:00:00+09:00",
+   "src": "Accounting Today",
+   "url": "https://www.accountingtoday.com/news/intuit-debuts-ai-agents-for-quickbooks",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "인튜이트, QuickBooks에 장부 기록·거래 분류를 자동으로 하고 계정 대사를 돕는 회계 에이전트와 청구서 발송·독촉 에이전트 도입 (미국, 2025.7)",
+   "r": [
+    "C9",
+    "B2"
+   ],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.b.6.I10.D03",
+     "d"
+    ],
+    [
+     "4.A.2.a.2.I04.D01",
+     "a"
+    ],
+    [
+     "4.A.3.b.6.I01.D02",
+     "a"
+    ]
+   ],
+   "ind": [
+    "28",
+    "33"
+   ]
+  },
+  {
+   "id": "2025-05-28-lgcns-devon-aidd",
+   "ts": "2025-05-28T09:00:00+09:00",
+   "src": "CIO Korea",
+   "url": "https://www.cio.com/article/3996315/lg-cns-%ec%83%9d%ec%84%b1%ed%98%95-ai-%ea%b8%b0%eb%b0%98-%ea%b0%9c%eb%b0%9c-%ec%b2%b4%ea%b3%84-%ec%a0%84%eb%a9%b4-%eb%8f%84%ec%9e%85ax-%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8-%ec%83%9d%ec%82%b0.html",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "LG CNS, 코드 생성·테스트 케이스 자동 생성·오류 수정을 반복하는 코딩 에이전트 'DevOn AIDD'를 시스템 개발 전 과정에 적용",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.b.1.I01.D03",
+     "d"
+    ],
+    [
+     "4.A.2.b.4.I03.D15",
+     "d"
+    ],
+    [
+     "4.A.1.b.2.I08.D02",
+     "d"
+    ],
+    [
+     "4.A.4.b.6.I04.D02",
+     "d"
+    ],
+    [
+     "4.A.2.b.2.I02.D07",
+     "a"
+    ]
+   ],
+   "ind": [
+    "22"
+   ]
+  },
+  {
+   "id": "2025-05-23-uk-humphrey-minute-councils",
+   "ts": "2025-05-23T09:00:00+09:00",
+   "src": "Computer Weekly",
+   "url": "https://www.computerweekly.com/news/366624753/Labour-puts-Humphrey-AI-to-work-for-council-admin",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": false,
+   "hd": "영국 정부, 지방의회 25곳에서 AI 회의록 도구 'Minute' 시범 — 회의 내용을 생성형 AI로 요약 노트로 만들고 담당자가 수정",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.b.6.I08.D29",
+     "a"
+    ]
+   ],
+   "ind": [
+    "35"
+   ]
+  },
+  {
+   "id": "2025-05-20-google-flow-veo3",
+   "ts": "2025-05-20T09:00:00+09:00",
+   "src": "Google",
+   "url": "https://blog.google/technology/ai/google-flow-veo-ai-filmmaking-tool/",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "구글, 글로 쓴 지시만으로 영화 같은 영상 클립·장면을 만들고 카메라 움직임·장면 이어붙이기를 하는 AI 영화 제작 도구 'Flow' 공개",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.2.b.2.I18.D17",
+     "d"
+    ],
+    [
+     "4.A.2.b.1.I11.D01",
+     "a"
+    ]
+   ],
+   "ind": [
+    "29"
+   ]
+  },
+  {
+   "id": "2025-05-16-openai-codex-agent",
+   "ts": "2025-05-16T09:00:00+09:00",
+   "src": "OpenAI",
+   "url": "https://openai.com/index/introducing-codex/",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "오픈AI, 클라우드 샌드박스에서 기능 구현·버그 수정·테스트 실행을 하고 풀 리퀘스트를 제안하는 코딩 에이전트 'Codex' 공개",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.b.1.I01.D03",
+     "d"
+    ],
+    [
+     "4.A.2.b.2.I02.D01",
+     "d"
+    ],
+    [
+     "4.A.1.b.2.I08.D02",
+     "d"
+    ],
+    [
+     "4.A.4.b.6.I04.D02",
+     "d"
+    ],
+    [
+     "4.A.2.b.2.I02.D07",
+     "a"
+    ]
+   ],
+   "ind": [
+    "22"
+   ]
+  },
+  {
+   "id": "2025-05-07-amazon-vulcan-touch-robot",
+   "ts": "2025-05-07T09:00:00+09:00",
+   "src": "Engadget",
+   "url": "https://engadget.com/big-tech/amazons-newest-fulfillment-robot-has-a-sense-of-touch-120050449.html?src=rss",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": true,
+   "kr": false,
+   "hd": "아마존, 촉각(힘 감지) 센서를 단 물류 로봇 '벌컨' 공개 — 미국 스포캔·독일 함부르크 물류센터에서 선반 맨 위·아래 칸 상품 넣고 꺼내기",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.a.2.I37.D01",
+     "a"
+    ],
+    [
+     "4.A.3.a.1.I10.D04",
+     "a"
+    ]
+   ],
+   "ind": [
+    "92"
+   ]
+  },
+  {
+   "id": "2025-05-01-aurora-driverless-trucking-texas",
+   "ts": "2025-05-01T09:00:00+09:00",
+   "src": "Business Wire (Aurora 보도자료)",
+   "url": "https://www.businesswire.com/news/home/20250501031863/en/Aurora-Begins-Commercial-Driverless-Trucking-in-Texas-Ushering-in-a-New-Era-of-Freight",
+   "tier": "1차 출처",
+   "sig": "도입",
+   "us": true,
+   "kr": false,
+   "hd": "오로라, 미국 텍사스 댈러스~휴스턴 구간에서 운전자 없는 자율주행 트럭 화물 운송 상업 서비스 시작 (첫 고객 우버 프레이트·허쉬바흐)",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.a.4.I01.D06",
+     "d"
+    ],
+    [
+     "4.A.3.a.4.I01.D10",
+     "d"
+    ]
+   ],
+   "ind": [
+    "87"
+   ]
+  },
+  {
+   "id": "2025-04-03-asan-ai-voice-emr",
+   "ts": "2025-04-03T09:00:00+09:00",
+   "src": "메디게이트뉴스",
+   "url": "https://www.medigatenews.com/news/2700789126",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "서울아산병원, 진료 대화를 실시간으로 받아 적고 증상·질병 분류·요약을 전자의무기록에 저장하는 AI 음성인식을 16개 진료과·응급실·병동에서 사용",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.b.6.I11.D04",
+     "d"
+    ],
+    [
+     "4.A.3.b.6.I11.D05",
+     "d"
+    ]
+   ],
+   "ind": [
+    "24"
+   ]
+  },
+  {
+   "id": "2025-03-30-hmgma-ai-quality-inspection",
+   "ts": "2025-03-30T09:00:00+09:00",
+   "src": "코리아헤럴드",
+   "url": "https://v.daum.net/v/20250330110453515",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": true,
+   "kr": true,
+   "hd": "현대차 미국 조지아 공장(HMGMA), 4족 로봇 스팟이 용접 뒤 차체를 검사하고 AI 비전으로 품질 관리, 무인 운반차가 패널·차량 운반",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.1.b.2.I06.D06",
+     "d"
+    ],
+    [
+     "4.A.3.a.1.I10.D11",
+     "f"
+    ]
+   ],
+   "ind": [
+    "85",
+    "74",
+    "93"
+   ]
+  },
+  {
+   "id": "2025-03-03-microsoft-dragon-copilot",
+   "ts": "2025-03-03T09:00:00+09:00",
+   "src": "Microsoft 보도자료 (PR Newswire 전재)",
+   "url": "https://www.stocktitan.net/news/MSFT/microsoft-dragon-copilot-provides-the-healthcare-industry-s-first-tev7yk8wwjmy.html",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "마이크로소프트, 의료진용 음성 AI 'Dragon Copilot' 발표 — 진료 대화로 진료 기록 작성, 의뢰서·진료 후 요약문 초안, 말로 하는 처방 입력",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.b.6.I11.D04",
+     "d"
+    ],
+    [
+     "4.A.3.b.6.I06.D04",
+     "d"
+    ],
+    [
+     "4.A.4.a.5.I01.D02",
+     "a"
+    ]
+   ],
+   "ind": [
+    "24"
+   ]
+  },
+  {
+   "id": "2025-02-19-google-ai-co-scientist",
+   "ts": "2025-02-19T09:00:00+09:00",
+   "src": "Google Research",
+   "url": "https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "구글, 연구 목표를 주면 새 가설·연구 개요·실험 계획을 만드는 다중 에이전트 'AI 공동과학자' 공개… 백혈병 약물 재활용 후보는 실험에서 효과 확인",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.2.b.2.I23.D04",
+     "d"
+    ],
+    [
+     "4.A.2.b.2.I26.D01",
+     "a"
+    ],
+    [
+     "4.A.4.a.2.I02.D01",
+     "a"
+    ]
+   ],
+   "ind": [
+    "21"
+   ]
+  },
+  {
+   "id": "2025-01-28-miso-flippy-fry-station",
+   "ts": "2025-01-28T09:00:00+09:00",
+   "src": "The Robot Report",
+   "url": "https://www.therobotreport.com/miso-robotics-refines-flippy-fry-station-with-ai-partners/",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": true,
+   "kr": false,
+   "hd": "미소 로보틱스 AI 튀김 로봇 '플리피', 화이트캐슬 시범 이어 잭인더박스 매장에 도입 — 감자튀김·치킨 등 튀김 바스켓 조리",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.a.3.I06.D06",
+     "d"
+    ],
+    [
+     "4.A.3.a.2.I03.D07",
+     "a"
+    ]
+   ],
+   "ind": [
+    "45",
+    "95"
+   ]
+  },
+  {
+   "id": "2025-01-06-deere-autonomy-ces2025",
+   "ts": "2025-01-06T09:00:00+09:00",
+   "src": "DTN/Progressive Farmer",
+   "url": "https://www.dtnpf.com/agriculture/web/ag/equipment/article/2025/01/07/deere-reveals-newest-autonomous-ces",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "존디어, CES 2025서 2세대 자율주행 키트 공개 — 무인 트랙터로 경운·곡물 운반, 과수원 방제 살포, 조경 잔디 깎기 수행",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.a.3.I11.D04",
+     "d"
+    ],
+    [
+     "4.A.3.a.1.I17.D07",
+     "a"
+    ],
+    [
+     "4.A.3.a.2.I33.D05",
+     "a"
+    ],
+    [
+     "4.A.3.a.1.I17.D03",
+     "a"
+    ]
+   ],
+   "ind": [
+    "61",
+    "99"
+   ]
+  },
+  {
+   "id": "2024-11-29-moe-ai-digital-textbook-76",
+   "ts": "2024-11-29T09:00:00+09:00",
+   "src": "뉴시스",
+   "url": "https://mobile.newsis.com/view/NISX20241129_0002977846",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "교육부, 2025년 3월 도입할 AI 디지털교과서 76종 심사 합격 공고 — 학생 수준 진단·맞춤 학습 제공 (이후 지위가 '교육자료'로 바뀜)",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.2.a.1.I03.D01",
+     "d"
+    ],
+    [
+     "4.A.3.b.6.I12.D04",
+     "d"
+    ],
+    [
+     "4.A.4.b.3.I02.D10",
+     "a"
+    ]
+   ],
+   "ind": [
+    "26"
+   ]
+  },
+  {
+   "id": "2024-11-26-seoul-dawn-autonomous-bus",
+   "ts": "2024-11-26T09:00:00+09:00",
+   "src": "뉴시스",
+   "url": "https://mobile.newsis.com/view/NISX20241126_0002972583",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "서울시, 도봉산~영등포역 25.7km 구간 새벽 3시 30분 첫차 자율주행버스(A160) 평일 운행 시작 (운영 오토노머스에이투지)",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.a.4.I01.D14",
+     "a"
+    ],
+    [
+     "4.A.3.a.4.I01.D04",
+     "a"
+    ]
+   ],
+   "ind": [
+    "87"
+   ]
+  },
+  {
+   "id": "2024-11-18-shinhan-ai-branch",
+   "ts": "2024-11-18T09:00:00+09:00",
+   "src": "스마트투데이",
+   "url": "https://www.smarttoday.co.kr/ko-kr/articles/64688",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "신한은행, 서소문에 'AI 브랜치' 개점 — 생성형 AI 은행원이 입구에서 고객을 창구로 안내하고 계좌 개설·외화 환전 등 자주 쓰는 업무를 처리",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.4.a.5.I10.D02",
+     "f"
+    ],
+    [
+     "4.A.4.a.5.I01.D01",
+     "f"
+    ],
+    [
+     "4.A.4.c.1.I03.D04",
+     "d"
+    ]
+   ],
+   "ind": [
+    "34"
+   ]
+  },
+  {
+   "id": "2024-11-13-estsoft-ai-video-translator",
+   "ts": "2024-11-13T09:00:00+09:00",
+   "src": "전자신문",
+   "url": "https://m.etnews.com/20241113000346",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": false,
+   "kr": true,
+   "hd": "이스트소프트, 영상 속 말을 29개 언어로 옮겨 화자 목소리로 더빙하고 입모양까지 맞추는 'AI 비디오 트랜슬레이터' 출시",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.4.a.1.I03.D01",
+     "d"
+    ],
+    [
+     "4.A.2.b.1.I11.D01",
+     "d"
+    ]
+   ],
+   "ind": [
+    "29"
+   ]
+  },
+  {
+   "id": "2024-10-29-linkedin-hiring-assistant",
+   "ts": "2024-10-29T09:00:00+09:00",
+   "src": "HR Brew",
+   "url": "https://www.hr-brew.com/stories/2024/10/29/linkedin-launches-new-ai-assistant-for-hiring-to-help-ta-pros-get-back-to-strategic-work",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "링크드인, 채용 AI 에이전트 'Hiring Assistant' 공개 — 직무 요건을 정리해 후보자를 찾고 지원자를 검토해 추천 명단과 이유를 만들며, 맞춤 연락 메시지 초안 작성",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.4.c.2.I01.D05",
+     "d"
+    ],
+    [
+     "4.A.2.a.1.I01.D03",
+     "d"
+    ],
+    [
+     "4.A.4.c.2.I01.D08",
+     "d"
+    ]
+   ],
+   "ind": [
+    "31",
+    "28"
+   ]
+  },
+  {
+   "id": "2024-09-26-wellspan-hippocratic-ana",
+   "ts": "2024-09-26T09:00:00+09:00",
+   "src": "Becker's Hospital Review",
+   "url": "https://www.beckershospitalreview.com/telehealth/why-a-health-system-is-launching-a-generative-ai-agent.html",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": true,
+   "kr": false,
+   "hd": "미국 웰스팬 헬스, Hippocratic AI 음성 에이전트 'Ana'로 대장암 검진 대상자 전화 문진·대장내시경 전 준비·다음 날 회복 확인 (필요하면 사람 연결)",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.4.b.6.I01.D02",
+     "a"
+    ],
+    [
+     "4.A.1.a.2.I05.D03",
+     "a"
+    ]
+   ],
+   "ind": [
+    "24"
+   ]
+  },
+  {
+   "id": "2024-09-23-kt-aicc-ai-agent",
+   "ts": "2024-09-23T09:00:00+09:00",
+   "src": "이투데이",
+   "url": "https://www.etoday.co.kr/news/view/2402232",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "KT 고객센터, 음성봇이 FAQ형 문의를 직접 응대하고 LLM이 통화를 실시간으로 받아 적어 상담사에게 답변을 추천하며 상담 후 요약·분류를 자동화",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.4.a.3.I03.D11",
+     "f"
+    ],
+    [
+     "4.A.4.a.8.I03.D01",
+     "a"
+    ],
+    [
+     "4.A.3.b.6.I08.D05",
+     "d"
+    ]
+   ],
+   "ind": [
+    "36"
+   ]
+  },
+  {
+   "id": "2024-09-05-naver-clova-carecall-128",
+   "ts": "2024-09-05T09:00:00+09:00",
+   "src": "메트로신문",
+   "url": "https://www.metroseoul.co.kr/article/20240905500135",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "네이버 AI 안부전화 '클로바 케어콜', 전국 128개 시군구 약 3만 명 이용 — 혼자 사는 노인·중장년에게 전화해 안부 확인, 이상 신호는 담당 공무원 연결",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.1.a.1.I23.D08",
+     "a"
+    ],
+    [
+     "4.A.4.b.6.I10.D03",
+     "a"
+    ]
+   ],
+   "ind": [
+    "25",
+    "42"
+   ]
+  },
+  {
+   "id": "2024-08-26-salesforce-einstein-sdr",
+   "ts": "2024-08-26T09:00:00+09:00",
+   "src": "Salesforce",
+   "url": "https://www.salesforce.com/ap/news/press-releases/2024/08/26/meet-einstein-sdr-and-einstein-sales-coach-two-new-autonomous-ai-sales-agents-to-scale-your-sales-team/",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "세일즈포스, 영업 AI 에이전트 'Einstein SDR' 공개 — 유입 잠재 고객의 제품 질문에 답하고 반론에 대응하며, 리드를 선별해 영업 담당자와 미팅을 잡음",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.4.a.8.I03.D03",
+     "f"
+    ],
+    [
+     "4.A.2.b.5.I03.D03",
+     "d"
+    ],
+    [
+     "4.A.1.b.1.I02.D02",
+     "d"
+    ]
+   ],
+   "ind": [
+    "51",
+    "53"
+   ]
+  },
+  {
+   "id": "2024-08-14-kaiser-abridge-ambient-notes",
+   "ts": "2024-08-14T09:00:00+09:00",
+   "src": "Kaiser Permanente 보도자료",
+   "url": "https://about.kaiserpermanente.org/news/press-release-archive/kaiser-permanente-improves-member-experience-with-ai-enabled-clinical-technology",
+   "tier": "1차 출처",
+   "sig": "도입",
+   "us": true,
+   "kr": false,
+   "hd": "미국 카이저 퍼머넌트, 병원 40곳·진료소 600여 곳 의료진에 Abridge AI 기록 도구 도입 — 진료 대화를 듣고 진료 기록 초안 작성 (의료진 검토)",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.b.6.I11.D04",
+     "d"
+    ],
+    [
+     "4.A.3.b.6.I11.D05",
+     "d"
+    ]
+   ],
+   "ind": [
+    "24"
+   ]
+  },
+  {
+   "id": "2024-08-06-bmw-figure-humanoid-trial",
+   "ts": "2024-08-06T09:00:00+09:00",
+   "src": "BMW Group 보도자료",
+   "url": "https://www.press.bmwgroup.com/usa/article/detail/T0444268EN_US/successful-test-of-humanoid-robots-at-bmw-group-plant-spartanburg",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "BMW 스파턴버그 공장 차체 공정에서 피규어 휴머노이드가 몇 주간 시험 운영 — 판금 부품을 지그(고정 틀)에 끼우는 작업 (양산 투입 일정은 없음)",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.3.a.2.I06.D03",
+     "a"
+    ],
+    [
+     "4.A.3.a.2.I41.D04",
+     "a"
+    ]
+   ],
+   "ind": [
+    "85",
+    "93"
+   ]
+  },
+  {
+   "id": "2024-06-12-mois-ai-admin-pilot",
+   "ts": "2024-06-12T09:00:00+09:00",
+   "src": "파이낸셜뉴스",
+   "url": "https://www.fnnews.com/news/202406121139179033",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "행정안전부, 공무원 약 60명 대상 정부 전용 생성형 AI 시범 운영 — 문서 요약·보도자료 초안·법령 검색·정보공개 청구 답변 초안 지원",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.1.a.1.I05.D02",
+     "a"
+    ],
+    [
+     "4.A.4.c.1.I01.D04",
+     "a"
+    ],
+    [
+     "4.A.4.a.8.I03.D06",
+     "a"
+    ]
+   ],
+   "ind": [
+    "35"
+   ]
+  },
+  {
+   "id": "2024-06-09-jeonnam-hyodol-care-robot",
+   "ts": "2024-06-09T09:00:00+09:00",
+   "src": "아주경제",
+   "url": "https://www.ajunews.com/view/20240609135103808",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "전라남도, 고령 가구 1,100곳에 AI 돌봄로봇 '효돌' 보급 — 기상·식사·복약 알림, 대화 기록으로 우울 징후 확인, 응급 시 상담원 연결",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.4.b.5.I02.D04",
+     "a"
+    ],
+    [
+     "4.A.4.a.5.I09.D09",
+     "a"
+    ]
+   ],
+   "ind": [
+    "42"
    ]
   },
   {
@@ -746,39 +1871,128 @@
    ]
   },
   {
-   "id": "2025-06-26-quickbooks-agents",
-   "ts": "2025-06-26T09:00:00+09:00",
-   "src": "Accounting Today",
-   "url": "https://www.accountingtoday.com/news/intuit-debuts-ai-agents-for-quickbooks",
+   "id": "2024-04-05-woori-ai-banker",
+   "ts": "2024-04-05T09:00:00+09:00",
+   "src": "스마트투데이",
+   "url": "https://www.smarttoday.co.kr/ko-kr/articles/47385",
    "tier": "신뢰 매체",
-   "sig": "능력",
-   "us": true,
-   "kr": false,
-   "hd": "인튜이트, QuickBooks에 장부 기록·거래 분류를 자동으로 하고 계정 대사를 돕는 회계 에이전트와 청구서 발송·독촉 에이전트 도입 (미국, 2025.7)",
-   "r": [
-    "C9",
-    "B2"
-   ],
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "우리은행, 앱 챗봇에 생성형 AI '뱅커' 도입 — 고객 상황에 맞는 예·적금 상품을 추천하고 세후 이자를 계산해 상담",
+   "r": [],
    "st": "none",
    "base": true,
    "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
    "dwa": [
     [
-     "4.A.3.b.6.I10.D03",
+     "4.A.4.b.6.I02.D04",
      "d"
     ],
     [
-     "4.A.2.a.2.I04.D01",
-     "a"
+     "4.A.1.b.3.I03.D01",
+     "d"
     ],
     [
-     "4.A.3.b.6.I01.D02",
+     "4.A.4.a.1.I01.D03",
+     "d"
+    ]
+   ],
+   "ind": [
+    "34"
+   ]
+  },
+  {
+   "id": "2024-02-29-klarna-ai-assistant",
+   "ts": "2024-02-29T09:00:00+09:00",
+   "src": "CX Today",
+   "url": "https://www.cxtoday.com/contact-center/klarna-claims-its-new-ai-assistant-does-the-work-of-700-full-time-agents/",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": false,
+   "hd": "클라르나 AI 상담 비서, 출시 한 달 만에 고객 상담 채팅의 3분의 2 처리 — 환불·반품·결제 문의를 35개 언어로 응대, 상담원 700명 몫이라고 회사 측 설명",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.4.a.8.I03.D01",
+     "f"
+    ],
+    [
+     "4.A.4.a.3.I03.D04",
+     "f"
+    ],
+    [
+     "4.A.4.a.8.I03.D03",
+     "f"
+    ]
+   ],
+   "ind": [
+    "36",
+    "34"
+   ]
+  },
+  {
+   "id": "2024-02-05-limbic-access-nhs-intake",
+   "ts": "2024-02-05T09:00:00+09:00",
+   "src": "MIT Technology Review",
+   "url": "https://www.technologyreview.com/2024/02/05/1087690/a-chatbot-helped-more-people-access-mental-health-services/",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": false,
+   "hd": "영국 NHS 심리치료 서비스 28곳, 챗봇 'Limbic Access'가 신청자 증상을 묻고 흔한 정신건강 문제 8가지 중 하나로 분류해 의뢰서 작성 (평가·치료는 사람)",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.1.a.1.I23.D08",
+     "d"
+    ],
+    [
+     "4.A.4.c.2.I02.D03",
+     "d"
+    ],
+    [
+     "4.A.4.a.5.I01.D04",
      "a"
     ]
    ],
    "ind": [
-    "28",
-    "33"
+    "25"
+   ]
+  },
+  {
+   "id": "2024-01-09-chosun-ai-article-assistant",
+   "ts": "2024-01-09T09:00:00+09:00",
+   "src": "기자협회보",
+   "url": "https://journalist.or.kr/news/article.html?no=55009",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "조선일보, 헤드라인·발제문을 넣으면 10초 안에 스트레이트 기사 초안을 쓰는 'AI 기사 작성 어시스턴트'를 온라인 속보에 쓰기 시작",
+   "r": [],
+   "st": "none",
+   "base": true,
+   "note": "기준 발표: 지수 기준 시점 이전이라 숫자에는 이미 들어 있어요. 세부 작업 매칭에만 써요.",
+   "dwa": [
+    [
+     "4.A.4.a.3.I02.D07",
+     "d"
+    ],
+    [
+     "4.A.3.b.6.I12.D05",
+     "d"
+    ]
+   ],
+   "ind": [
+    "29"
    ]
   }
  ]
