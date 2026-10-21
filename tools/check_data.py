@@ -39,6 +39,8 @@ for n in feed['items']:
             elif TK and x[0] not in TK['dwa']: err(f'feed {i}: 직업 목록에 없는 세부 작업 {x[0]} (tools/find_dwa.py로 찾은 ID만)')
         if len(n['dwa']) > 6: warn(f'feed {i}: 세부 작업이 6개 초과')
         if not n.get('ind'): warn(f'feed {i}: dwa가 있는데 업종(ind)이 없음 — 모든 업종에 퍼짐(범용 발표면 괜찮음)')
+    if 'grp' in n and not (isinstance(n['grp'], str) and n['grp']): err(f'feed {i}: grp 형식 이상')
+    if n.get('st') == 'pending' and n.get('r') and not n.get('grp'): warn(f'feed {i}: 반영 대기 소식에 묶음(grp)이 없음 — 같은 기능 제품이 중복 반영될 수 있음')
     if 'ind' in n and not (isinstance(n['ind'], list) and all(isinstance(x, str) and x.isdigit() and 1 <= len(x) <= 4 for x in n['ind'])):
         err(f'feed {i}: ind 형식 이상 {n.get("ind")} (한국표준직업분류 코드 앞자리 문자열 목록, 예: ["27"], ["33","28"])')
     try: datetime.fromisoformat(n['ts'])
@@ -101,7 +103,14 @@ if not feed_only:
     if len(wk) >= 2:
         a, b = wk[-2], wk[-1]
         d = (tot(b['adj']) - tot(a['adj'])) * 100
-        if abs(d) > .5: err(f'index {b["week"]}: 전체가 한 주에 {d:+.2f}%p 움직임 (0.5%p 초과)')
+        lim = .2 if b.get('rules') == 'v2' else .5   # v2 규칙: 주당 0.15%p 상한 + 반올림 여유
+        if abs(d) > lim: err(f'index {b["week"]}: 전체가 한 주에 {d:+.2f}%p 움직임 ({lim}%p 초과)')
+        if b.get('ledger') is not None:  # 반영 원장으로 adj를 다시 만들 수 있어야 한다
+            re_ = dict(a['adj'])
+            for e in b['ledger']:
+                for r in e['r']: re_[r] = min(1.0, re_.get(r, 0) + e['w'])
+            bad = [r for r in set(re_) | set(b['adj']) if abs(re_.get(r, 0) - b['adj'].get(r, 0)) > .002]
+            if bad: err(f'index {b["week"]}: 반영 원장(ledger)으로 다시 계산한 adj와 다름 {bad}')
         for j in J:
             dj = (occ(j, 2026, b['adj']) - occ(j, 2026, a['adj'])) * 100
             if abs(dj) > 3: warn(f'index {b["week"]} {j["name"]}: 한 주에 {dj:+.1f}%p')

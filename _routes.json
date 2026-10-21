@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "include": ["/*"],
+  "exclude": [
+    "/city_index.png",
+    "/city_roads.png",
+    "/city_meta.json",
+    "/config.json",
+    "/feed.json",
+    "/index.json",
+    "/tasks.json",
+    "/ksco_titles.json",
+    "/ksco_soc_map.json",
+    "/og.png",
+    "/og/*",
+    "/mail/img/*"
+  ]
+}

@@ -849,7 +849,7 @@ const binT=(v,T)=>{let c=0;while(c<4&&v>=T[c])c++;return c};
 const lum=c=>(c[0]*.299+c[1]*.587+c[2]*.114);
 
 // ---------- 데이터 ----------
-const cm=await (await fetch('city_meta.json?v=20261019c')).json();
+const cmr=await fetch('city_meta.json?v=20261019c');if(!cmr.ok)throw new Error('city_meta '+cmr.status);const cm=await cmr.json();
 const getJ=async(u,d)=>{try{const r=await fetch(u,{cache:'no-cache'});if(!r.ok)throw 0;return await r.json()}catch(e){return d}};
 const [FEED,IDX,CFG]=await Promise.all([getJ('feed.json',{items:[]}),getJ('index.json',{weeks:[]}),getJ('config.json',{})]);
 FEED.items.sort((a,b)=>b.ts<a.ts?-1:1);FEED.base=FEED.items.filter(n=>n.base);FEED.items=FEED.items.filter(n=>!n.base);  // 기준 발표(base)는 세부 작업 매칭에만
@@ -1444,13 +1444,17 @@ $('#badge').textContent=FEED.updated?`소식 ${fmtT(FEED.updated)} 갱신 · 베
 const sMark=document.createComment('search');$('.search').before(sMark);
 function placeSearch(){const sb=$('.search');$('#q').placeholder=desk()?'직업 이름 검색 (예: 마케터, AE, 간호사)':'직업 검색 (예: 마케터)';if(sb.parentElement!==$('#topbar'))$('#topbar').appendChild(sb)}
 placeSearch();
-addEventListener('resize',()=>{placeSearch();home()});sheet.addEventListener('transitionend',()=>layoutLabels());
+// 휴대폰은 주소창이 접히거나 키보드가 뜰 때도 resize가 와서, 너비·방향이 바뀔 때만 지도를 처음 화면으로 맞춘다
+{let lw=innerWidth,lp=innerWidth>innerHeight,tm=0;addEventListener('resize',()=>{placeSearch();clearTimeout(tm);tm=setTimeout(()=>{const p=innerWidth>innerHeight;if(Math.abs(innerWidth-lw)>40||p!==lp){lw=innerWidth;lp=p;home()}},150)})}sheet.addEventListener('transitionend',()=>layoutLabels());
 swatches();applyLayers();home();setYear(2026);
 if(MINE){const j=jIdx(MINE.code);if(j>=0){MINE.v=occ(j,2026);MINE.seen=FEED.updated||new Date().toISOString();lsSet(MINE)}}
 {const h=new URLSearchParams(location.hash.slice(1)),c=h.get('j');if(c){const j=jIdx(c);if(j>=0){const q=h.get('q');let via=null;if(q){const m=matches(q).find(e=>e.j===j);via=m&&!m.std?m:{t:q}}pickJob(j,via)}}}
 if(document.fonts)document.fonts.ready.then(()=>schedule());
 {let seen=null;try{seen=localStorage.getItem('aimap.seen.v1')}catch(e){}if(!seen&&!dOpen){setTimeout(()=>drawer(true,'first'),500)}try{localStorage.setItem('aimap.seen.v1','1')}catch(e){}}
-})();
+})().catch(e=>{console.error(e);const l=document.getElementById('loading');if(!l)return;
+  // 핵심 자료(지도 정보·지도 그림)를 못 받으면 '그리는 중'에 멈춰 있지 않고 다시 시도할 길을 준다
+  l.innerHTML='<div style="text-align:center;padding:24px;max-width:320px;background:var(--bg);border:1px solid var(--ink)"><p style="margin:0 0 12px;font-size:15px;color:var(--ink)">지도 자료를 불러오지 못했어요.</p><p style="margin:0 0 16px;font-size:13px">연결이 잠시 불안정했을 수 있어요.</p><button type="button" style="min-height:44px;padding:0 18px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);font:inherit;font-weight:600;cursor:pointer">다시 시도</button> <a href="/w/" style="display:inline-block;margin:12px 0 0 12px;font-size:13px;color:var(--ink)">주간 리포트 보기</a></div>';
+  l.querySelector('button').onclick=()=>location.reload()});
 </script>
 
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8eb4d903bad84bb89dd088032173bafb"}'></script><!-- End Cloudflare Web Analytics -->

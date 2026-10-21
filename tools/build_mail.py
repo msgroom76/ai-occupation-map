@@ -10,7 +10,7 @@
                "jobs": [중분류 코드…], "sources": [{"name","url"}]}],   ← 3~4개
    "closing": 맺음 한두 문장}
   숫자(점령률·변화·직업별 노출도·다음 주 전망)는 여기서 계산해 넣는다. 원고에는 숫자를 지어 넣지 않는다.
-  tag가 '다음 주 예고'인 포인트의 직업 칩에는 대기 중인 소식을 반영했을 때의 전망 변화가 붙는다.
+  '다음 주 예고' 포인트에도 전망 숫자는 붙이지 않는다(대기 소식은 주간 반영 규칙 v2로 줄어들거나 빠질 수 있음).
 원고가 없으면 소식 목록 위주의 기본형으로 만든다.
 
 결과: mail/<주>.html(메일용 HTML, 인라인 스타일) · mail/<주>.txt(텍스트판) · mail/<주>.json(제목·미리보기 문구)
@@ -59,16 +59,8 @@ for i,w in enumerate(weeks):
     mv=[x for x in reversed(mv) if x[0]>=0.005][:5]
     ap=[items[x] for x in w.get('applied',[]) if x in items]
     end=date.fromisoformat(w['date']);start=date.fromisoformat(prev['date']) if prev else end-timedelta(days=7)
-    # 다음 주 전망: 이 주가 최신일 때만, 지금 대기 중인 소식을 그대로 반영한다고 가정
-    NA=dict(A);pend=[]
-    if last:
-        for n in feed['items']:
-            if n.get('st')!='pending' or not n.get('r'):continue
-            sh=SHIFT.get(n['tier'],0)*(.5 if n.get('us') else 1)
-            if sh<=0:continue
-            pend.append(n)
-            for r in n['r']:NA[r]=NA.get(r,0)+sh
-    nt=tot(NA) if pend else None
+    # 다음 주 전망 숫자는 내지 않는다(2026-10-21 검증: 반영 규칙상 대기 소식이 그대로 반영되지 않고, 예측처럼 읽혀 오해를 부름)
+    NA=dict(A);pend=[];nt=None
     dtxt=('첫 주간 지수예요' if dt is None else f'지난주보다 {dt:+.2f}%p' if abs(dt)<0.1 else f'지난주보다 {dt:+.1f}%p')
     bp=f'mail/brief/{wk}.json';B=json.load(open(bp)) if os.path.exists(bp) else None
     url=f'{BASE}/w/{wk}'

@@ -122,7 +122,8 @@
    "ind": [
     "24",
     "42"
-   ]
+   ],
+   "grp": "medical-scribe"
   },
   {
    "id": "2026-10-21-gemini-for-government",
@@ -151,7 +152,8 @@
    "ind": [
     "35",
     "27"
-   ]
+   ],
+   "grp": "google-gemini-agent"
   },
   {
    "id": "2026-10-20-openai-cobol-migration",
@@ -174,7 +176,8 @@
    ],
    "ind": [
     "22"
-   ]
+   ],
+   "grp": "coding-model"
   },
   {
    "id": "2026-10-20-notion-24h-agents",
@@ -188,7 +191,8 @@
    "r": [
     "C5"
    ],
-   "st": "pending"
+   "st": "pending",
+   "grp": "long-running-agent"
   },
   {
    "id": "2026-10-20-mistral-voxtral3",
@@ -203,7 +207,8 @@
     "D3",
     "C9"
    ],
-   "st": "pending"
+   "st": "pending",
+   "grp": "speech-model"
   },
   {
    "id": "2026-10-20-public-ai-employment-bill",
@@ -247,7 +252,8 @@
     "D3",
     "C9"
    ],
-   "st": "pending"
+   "st": "pending",
+   "grp": "voice-bot"
   },
   {
    "id": "2026-10-20-pps-ai-agents",
@@ -277,7 +283,8 @@
    ],
    "ind": [
     "35"
-   ]
+   ],
+   "grp": "gov-agent"
   },
   {
    "id": "2026-10-20-nh-bank-ai-agents",
@@ -293,7 +300,8 @@
     "D14",
     "B4"
    ],
-   "st": "pending"
+   "st": "pending",
+   "grp": "bank-agent"
   },
   {
    "id": "2026-10-20-catch-it-jobs",
@@ -337,7 +345,8 @@
    "ind": [
     "24",
     "42"
-   ]
+   ],
+   "grp": "medical-scribe"
   },
   {
    "id": "2026-10-19-elevenlabs-architect",
@@ -362,7 +371,8 @@
      "4.A.4.a.8.I03.D01",
      "a"
     ]
-   ]
+   ],
+   "grp": "agent-builder"
   },
   {
    "id": "2026-10-19-cheonan-patrol-robot",
@@ -387,7 +397,8 @@
    "ind": [
     "41",
     "94"
-   ]
+   ],
+   "grp": "patrol-robot"
   },
   {
    "id": "2026-10-18-shanghai-humanoid",
@@ -433,7 +444,8 @@
     "32",
     "7",
     "8"
-   ]
+   ],
+   "grp": "factory-agent"
   },
   {
    "id": "2026-10-18-hyundai-humanoid",
@@ -520,7 +532,8 @@
     "A1",
     "C5"
    ],
-   "st": "pending"
+   "st": "pending",
+   "grp": "browser-agent"
   },
   {
    "id": "2026-10-15-workday-agents",
@@ -550,7 +563,8 @@
     "12",
     "31",
     "33"
-   ]
+   ],
+   "grp": "system-agent"
   },
   {
    "id": "2026-10-15-muse-spark-open",
@@ -565,7 +579,8 @@
     "C5",
     "B5"
    ],
-   "st": "pending"
+   "st": "pending",
+   "grp": "coding-model"
   },
   {
    "id": "2026-10-16-copilot-studio",
@@ -580,7 +595,8 @@
     "C9",
     "D15"
    ],
-   "st": "pending"
+   "st": "pending",
+   "grp": "agent-builder"
   },
   {
    "id": "2026-10-16-vertafore",
@@ -612,7 +628,8 @@
    ],
    "ind": [
     "34"
-   ]
+   ],
+   "grp": "system-agent"
   },
   {
    "id": "2026-10-16-servicenow",
@@ -627,7 +644,8 @@
     "D15",
     "C9"
    ],
-   "st": "pending"
+   "st": "pending",
+   "grp": "agent-builder"
   },
   {
    "id": "2026-10-14-deloitte-uk",
@@ -684,7 +702,8 @@
     "B9",
     "C5"
    ],
-   "st": "pending"
+   "st": "pending",
+   "grp": "google-gemini-model"
   },
   {
    "id": "2026-10-08-gemini-agent",
@@ -711,7 +730,8 @@
      "4.A.2.b.5.I01.D04",
      "a"
     ]
-   ]
+   ],
+   "grp": "google-gemini-agent"
   },
   {
    "id": "2026-06-18-lunit-regional-hospitals",
