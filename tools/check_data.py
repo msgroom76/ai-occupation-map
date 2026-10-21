@@ -45,7 +45,8 @@ try:
     age = (datetime.now(KST) - up).total_seconds() / 3600
     if age > 36: warn(f'feed: 마지막 갱신이 {age:.0f}시간 전 (소식 갱신 작업이 멈췄을 수 있음)')
 except Exception: err('feed: updated 형식 이상')
-if len(feed['items']) > 60: warn(f'feed: 항목 {len(feed["items"])}개 (60개 초과)')
+_nb = [n for n in feed['items'] if not n.get('base')]
+if len(_nb) > 60: warn(f'feed: 기준 발표를 뺀 항목 {len(_nb)}개 (60개 초과)')
 
 if not feed_only:
     # ---------- city_meta.json ----------
