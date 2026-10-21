@@ -4,7 +4,7 @@ import json,math,os,base64,io,asyncio,html as H
 import numpy as np
 from PIL import Image
 from playwright.async_api import async_playwright
-BASE='https://ai-occupation-map.pages.dev'
+BASE='https://aijido.org'
 m=json.load(open('city_meta.json'));idx=json.load(open('index.json'))
 R=m['R'];ADJ=idx['weeks'][-1]['adj']
 p=lambda r,y:R[r][2]/(1+math.exp(-R[r][1]*(y-R[r][0]+ADJ.get(r,0))))

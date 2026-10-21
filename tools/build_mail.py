@@ -17,7 +17,7 @@
       mail/index.json(전체 목록). 발송은 아직 안 함. 발송 도구를 붙이면 {{unsubscribe_url}}만 바꿔 넣으면 된다."""
 import json,math,os,html as H
 from datetime import date,timedelta
-BASE='https://ai-occupation-map.pages.dev'
+BASE='https://aijido.org'
 cm=json.load(open('city_meta.json'));idx=json.load(open('index.json'));feed=json.load(open('feed.json'))
 R=cm['R'];J=cm['jobs'];WS=sum(j['ws'] for j in J);JC={j['code']:j for j in J}
 def p(r,y,a):m,k,K=R[r];return K/(1+math.exp(-k*(y-m+a.get(r,0))))

@@ -12,8 +12,8 @@
 - 노출 상위: IT·정보통신 전문가 57% · 73만 명
 - 노출 상위: 상담·안내 접수 56% · 36만 명
 
-내 직업 찾아보기: https://ai-occupation-map.pages.dev/
-웹에서 보기: https://ai-occupation-map.pages.dev/w/2026-W42
+내 직업 찾아보기: https://aijido.org/
+웹에서 보기: https://aijido.org/w/2026-W42
 
 노출도는 AI가 해낼 수 있는 몫이며, 일자리가 그만큼 사라진다는 뜻은 아니에요. 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요.
 수신 거부: {{unsubscribe_url}}

@@ -3,7 +3,7 @@
 사용: python3 tools/build_jobs.py   (저장소 루트에서. build_pages.py가 끝에서 자동으로 부른다)"""
 import json,math,os,html as H
 from urllib.parse import quote
-BASE='https://ai-occupation-map.pages.dev'
+BASE='https://aijido.org'
 m=json.load(open('city_meta.json'));idx=json.load(open('index.json'))
 R=m['R'];RN=m['RN'];J=m['jobs'];SM=m.get('sm',{})
 W=idx['weeks'][-1];ADJ=W.get('adj',{});ASOF=W.get('date','')

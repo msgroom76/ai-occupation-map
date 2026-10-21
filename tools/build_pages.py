@@ -1,7 +1,7 @@
 """주간 리포트 페이지(w/), 사이트맵, robots.txt를 만든다. 표준 라이브러리만 쓴다.
 사용: python3 tools/build_pages.py   (저장소 루트에서, weekly.py 다음에)"""
 import json,math,os,html as H
-BASE='https://ai-occupation-map.pages.dev'
+BASE='https://aijido.org'
 cm=json.load(open('city_meta.json'));idx=json.load(open('index.json'));feed=json.load(open('feed.json'))
 R=cm['R'];J=cm['jobs'];WS=sum(j['ws'] for j in J)
 def p(r,y,a):m,k,K=R[r];return K/(1+math.exp(-k*(y-m+a.get(r,0))))

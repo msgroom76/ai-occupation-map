@@ -54,8 +54,8 @@ AI가 '비서'에서 '동료'로 넘어가는 주
 
 AI가 동료가 되면, 사람에게 남는 일은 '무엇을 맡길지 정하고 결과를 책임지는 일'이에요. 내 일에서 그런 부분이 얼마나 되는지, 지도에서 업무별로 한번 확인해 보세요.
 
-내 직업 찾아보기: https://ai-occupation-map.pages.dev/
-웹에서 보기: https://ai-occupation-map.pages.dev/w/2026-W43
+내 직업 찾아보기: https://aijido.org/
+웹에서 보기: https://aijido.org/w/2026-W43
 
 노출도는 AI가 해낼 수 있는 몫이며, 일자리가 그만큼 사라진다는 뜻은 아니에요. 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요.
 수신 거부: {{unsubscribe_url}}
