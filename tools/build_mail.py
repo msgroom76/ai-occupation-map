@@ -14,7 +14,7 @@
 원고가 없으면 소식 목록 위주의 기본형으로 만든다.
 
 결과: mail/<주>.html(메일용 HTML, 인라인 스타일) · mail/<주>.txt(텍스트판) · mail/<주>.json(제목·미리보기 문구)
-      mail/index.json(전체 목록). 발송은 아직 안 함. 발송 도구를 붙이면 {{unsubscribe_url}}만 바꿔 넣으면 된다."""
+      mail/index.json(전체 목록). 발송은 아직 안 함. 발송 도구를 붙이면 {{unsubscribe_url}}을 구독자별 https://aijido.org/api/unsub?t=<token>으로 바꿔 넣고, 헤더 List-Unsubscribe와 List-Unsubscribe-Post: List-Unsubscribe=One-Click을 같은 주소로 붙인다. status='active'인 구독자에게만 보낸다."""
 import json,math,os,html as H
 from datetime import date,timedelta
 BASE='https://aijido.org'
@@ -125,8 +125,8 @@ for i,w in enumerate(weeks):
     rows.append(row('',f'40px 0 0;border-bottom:1px solid {INK}'))
     rows.append(para('읽는 법 · 노출도는 그 직업이 하는 일 가운데 AI가 해낼 수 있는 몫이에요. 일자리가 그만큼 사라진다는 뜻은 아니에요. 소식은 1차 출처의 발표·도입이면 도달 시점을 3개월, 신뢰 매체 보도면 1개월 앞당기고, 미국 발표는 절반만 반영해요.',MUT,12,'12px 0 0'))
     rows.append(para(f'노출도: Eloundou 외(2024, Science)·ILO Gmyrek 외(2025) 평균 · 업무: O*NET 30.0 · 취업자: 국가데이터처 지역별고용조사 2025년 하반기. 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요.',MUT,12))
-    rows.append(para(f'{a(url,"웹에서 보기",MUT)} · {a("{{unsubscribe_url}}","수신 거부",MUT)}<br>이 메일은 AI 점령 지도에서 주간 지수 받기를 신청한 분께 보내요.',MUT,12))
-    txt+=['',f'내 직업 찾아보기: {BASE}/',f'웹에서 보기: {url}','','노출도는 AI가 해낼 수 있는 몫이며, 일자리가 그만큼 사라진다는 뜻은 아니에요. 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요.','수신 거부: {{unsubscribe_url}}']
+    rows.append(para(f'{a(url,"웹에서 보기",MUT)} · {a("{{unsubscribe_url}}","수신 거부",MUT)}<br>이 메일은 AI 점령 지도에서 주간 지수 받기를 신청하고 확인 메일로 구독을 확인한 분께 보내요.<br>보내는 곳: 포스트오피스(AI 점령 지도 운영) · 문의 msgr@post-office.kr · {a(f"{BASE}/privacy","개인정보처리방침",MUT)}',MUT,12))
+    txt+=['',f'내 직업 찾아보기: {BASE}/',f'웹에서 보기: {url}','','노출도는 AI가 해낼 수 있는 몫이며, 일자리가 그만큼 사라진다는 뜻은 아니에요. 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요.','수신 거부: {{unsubscribe_url}}','보내는 곳: 포스트오피스(AI 점령 지도 운영) · 문의 msgr@post-office.kr · 개인정보처리방침 '+BASE+'/privacy']
     html_=f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="robots" content="noindex"><title>{e(subject)}</title></head>
 <body style="margin:0;padding:0;background:{BG}"><div style="display:none;max-height:0;overflow:hidden;opacity:0">{e(pre)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{BG}"><tr><td align="center" style="padding:24px 12px">

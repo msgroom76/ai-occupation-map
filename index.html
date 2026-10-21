@@ -432,6 +432,8 @@ details.card[open] summary::after{content:"−"}
 .mine .sub,.mine .vv small{font-size:11px}
 .ad .adbox{border-radius:0;font-size:11px}
 .foot{font-size:10.5px;text-align:left;border-top:1px solid var(--rule);padding-top:8px}
+.foot.legal{font-size:13px;color:var(--ink2);border-top:0;padding-top:0;margin-top:0}.foot.legal a{display:inline-block;padding:10px 0;color:inherit}
+.rule a{color:inherit}
 /* 지도 위: 각진 면, 가는 선, 작은 글자 */
 .lb.job{border-radius:0;box-shadow:none;font-size:11.5px!important;font-weight:600;padding:4px 7px 4px 5px;letter-spacing:-.01em}
 .lb.job i{border-radius:0;width:7px;height:7px}
@@ -1180,7 +1182,8 @@ const track=(n,l='')=>{try{const b=JSON.stringify({n,l:String(l).slice(0,40)});i
 async function postForm(url,data,out,btn){btn.disabled=true;out.textContent='보내는 중…';out.className='fmsg';
   try{const r=await fetch(url,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(data)});const j=await r.json().catch(()=>({}));out.textContent=j.msg||(r.ok?'접수했어요.':'잠시 후 다시 시도해 주세요.');out.className='fmsg '+(r.ok&&j.ok!==false?'ok':'err');return r.ok&&j.ok!==false}
   catch(e){out.textContent='연결이 끊겼어요. 잠시 후 다시 시도해 주세요.';out.className='fmsg err';return false}finally{btn.disabled=false}}
-const PRIV=t=>el('p','rule',t);
+const PRIV=t=>{const p=el('p','rule',t+' ');const a=el('a',null,'개인정보처리방침');a.href='/privacy';a.target='_blank';a.rel='noopener';p.appendChild(a);return p};
+const legalLinks=()=>{const p=el('p','foot legal');[['소개','/about'],['개인정보처리방침','/privacy'],['이용약관','/terms']].forEach(([t,h],i)=>{if(i)p.append(' · ');const a=el('a',null,t);a.href=h;p.appendChild(a)});p.append(' · 운영 포스트오피스');return p};
 function subCard(){const c=el('section','card');const lab=el('div','lab');lab.append(el('span',null,'주간 지수를 메일로'),el('span',null,'매주 월요일'));c.appendChild(lab);
   c.appendChild(el('p','lede sm','한 주 동안 AI가 건드린 업무와 지수 변화를 월요일 아침에 보내드려요.'));
   const f=el('form','fm');f.noValidate=true;const em=el('input');em.type='email';em.placeholder='이메일 주소';em.autocomplete='email';em.required=true;em.setAttribute('aria-label','이메일 주소');
@@ -1189,7 +1192,7 @@ function subCard(){const c=el('section','card');const lab=el('div','lab');lab.ap
   const cs=el('label','ck');const cc=el('input');cc.type='checkbox';cs.append(cc,' 개인정보 수집·이용에 동의해요');
   const bt=el('button','btn','구독하기');bt.type='submit';const out=el('p','fmsg');
   f.append(em,hp,jb,cs,bt,out);f.onsubmit=async e=>{e.preventDefault();const ok=await postForm('/api/subscribe',{email:em.value,consent:cc.checked,job:jc.checked&&MINE?(MINE.k||MINE.code):'',src:'site',website:hp.value},out,bt);if(ok){track('sub');em.value=''}};
-  c.append(f,PRIV('수집 항목: 이메일, 선택한 직업. 목적: 주간 지수 뉴스레터 발송. 보유 기간: 구독 해지 때까지. 메일마다 있는 해지 링크로 언제든 끊을 수 있어요. 동의하지 않으면 구독할 수 없어요.'));return c}
+  c.append(f,PRIV('수집 항목: 이메일, 선택한 직업. 목적: 구독 확인 메일과 주간 지수 메일 발송. 신청하면 확인 메일을 먼저 보내고, 메일의 링크를 눌러야 구독이 시작돼요. 보유 기간: 수신 거부 후 30일(확인하지 않은 신청도 30일 뒤 삭제). 메일마다 있는 수신 거부 링크로 언제든 끊을 수 있어요. 미국 서버(Cloudflare·Resend)에 저장·처리돼요. 동의하지 않으면 구독할 수 없어요.'));return c}
 function leadCard(){const d=el('details','card');d.innerHTML='<summary>기관·기업 리포트 문의</summary>';const m=el('div','meth');
   m.appendChild(el('p',null,'우리 조직의 직무별 AI 노출 분석 리포트, 임직원·교육생 대상 워크숍, 언론·기관 공동 리포트를 만들어 드려요.'));
   const f=el('form','fm');f.noValidate=true;const mk=(ph,ty='text',ac='')=>{const i=el('input');i.type=ty;i.placeholder=ph;i.setAttribute('aria-label',ph);if(ac)i.autocomplete=ac;return i};
@@ -1200,7 +1203,7 @@ function leadCard(){const d=el('details','card');d.innerHTML='<summary>기관·�
   const cs=el('label','ck');const cc=el('input');cc.type='checkbox';cs.append(cc,' 개인정보 수집·이용에 동의해요');
   const bt=el('button','btn','문의 보내기');bt.type='submit';const out=el('p','fmsg');
   f.append(nm,og,em,kd,ms,hp,cs,bt,out);f.onsubmit=async e=>{e.preventDefault();const ok=await postForm('/api/contact',{name:nm.value,org:og.value,email:em.value,kind:kd.value,msg:ms.value,consent:cc.checked,website:hp.value},out,bt);if(ok){track('lead',kd.value);ms.value=''}};
-  m.append(f,PRIV('수집 항목: 이름, 소속, 이메일, 문의 내용. 목적: 문의 답변과 견적 안내. 보유 기간: 문의 처리 후 1년. 동의하지 않으면 문의를 보낼 수 없어요. 문의처: 포스트오피스.'));d.appendChild(m);
+  m.append(f,PRIV('수집 항목: 이름, 소속, 이메일, 문의 내용. 목적: 문의 답변과 견적 안내. 보유 기간: 접수 후 1년. 미국 서버(Cloudflare)에 저장돼요. 동의하지 않으면 문의를 보낼 수 없어요. 문의처: 포스트오피스.'));d.appendChild(m);
   d.addEventListener('toggle',()=>{if(d.open)track('lead','open')});return d}
 function aboutCard(){
   const d=el('details','card');d.innerHTML=`<summary>이 지도에 대해 · 인용하기</summary>`;const m=el('div','meth');
@@ -1232,7 +1235,7 @@ function flashCard(){const c=el('section','card place');const top=el('div','top'
   c.appendChild(el('div','chips',[...flash].map(r=>RN[r][0]).join(' · ')));return c}
 // "내 일과 비교하면?" — 실제 그 일을 하는 사람의 감각을 모아 숫자 점검 대상을 고른다
 function fbBox(code,sk,title,v){const key='aimap.fb.'+(sk||code);let done=null;try{done=localStorage.getItem(key)}catch(e){}
-  const b=el('div','fb');const l=el('div','lab');l.append(el('span',null,'내 일과 비교하면?'),el('span',null,'익명 · 개인정보 없음'));b.appendChild(l);
+  const b=el('div','fb');const l=el('div','lab');l.append(el('span',null,'내 일과 비교하면?'),el('span',null,'익명 · 이름·연락처 없음'));b.appendChild(l);
   if(done){b.appendChild(el('p','rule','의견 고마워요. 직업별로 모아 매달 숫자를 점검할 때 살펴봐요.'));return b}
   b.appendChild(el('p','rule',`실제로 이 일을 하신다면, ${pct(v)}%가 체감과 비슷한지 알려주세요.`));
   const row=el('div','fbrow'),note=el('textarea');note.maxLength=300;note.rows=2;note.placeholder='어떤 업무 때문에 그렇게 느끼는지 적어주세요 (선택, 300자)';note.hidden=true;note.setAttribute('aria-label','의견 메모');
@@ -1241,7 +1244,7 @@ function fbBox(code,sk,title,v){const key='aimap.fb.'+(sk||code);let done=null;t
     x.onclick=()=>{dir=d;row.querySelectorAll('button').forEach(y=>y.setAttribute('aria-pressed',y===x));note.hidden=false;send.hidden=false;note.focus({preventScroll:true})};row.appendChild(x)});
   send.onclick=async()=>{if(!dir)return;const ok=await postForm('/api/feedback',{code,sm:sk||'',title:title||'',dir,shown:Math.round(v*100),note:note.value},out,send);
     if(ok){track('fb',(sk||code)+':'+dir);try{localStorage.setItem(key,dir)}catch(e){}row.remove();note.remove();send.remove()}};
-  b.append(row,note,send,out,el('p','rule','의견은 숫자를 바로 바꾸지 않고, 다시 점검할 직업을 고르는 데 써요. 같은 의견이 반복되지 않게 접속 정보는 그날만 쓰는 암호값으로 바꿔 보관해요.'));return b}
+  b.append(row,note,send,out,el('p','rule','의견은 숫자를 바로 바꾸지 않고, 다시 점검할 직업을 고르는 데 써요. 같은 의견이 반복되지 않게 접속 주소를 그날만 쓰는 암호값으로 바꿔 이틀만 보관하고, 메모는 1년 뒤 지워요. 메모에 이름·연락처는 적지 말아 주세요.'));return b}
 // ---------- 이 발표가 닿는 내 업무: 세부 작업(O*NET DWA) 단위로 소식을 맞춰 본다 ----------
 let TKP=null;const tkLoad=()=>TKP||(TKP=fetch('tasks.json?v='+(FEED.updated||'')).then(r=>r.ok?r.json():null).catch(()=>null));
 const LV={f:['완성','사람 손 없이 끝까지 해낼 수 있다고 발표'],d:['초안','첫 결과물을 대신 만들어 줌'],a:['보조','사람이 하는 일을 도와줌']},LVR={f:3,d:2,a:1};
@@ -1354,7 +1357,7 @@ function render(){
   else{F.push(['mine','내 직업',[mineCard()],ctx]);F.push(['today','오늘의 지도',[summaryCard(),todayCard(),highlights()],ctx])}
   F.push(['news','이번 주 소식',[newsCard()],rest]);
   F.push(['browse','둘러보기',[catsCard(),rankCard(),adSlot()],rest]);
-  F.push(['join','함께하기',[subCard(),leadCard(),aboutCard(),el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024)·ILO(2025) 평균 · 실제 사용 Anthropic(2026) · 업무 O*NET 30.0 · 취업자 국가데이터처(2025년 하반기)`)],rest]);
+  F.push(['join','함께하기',[subCard(),leadCard(),aboutCard(),el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024)·ILO(2025) 평균 · 실제 사용 Anthropic(2026) · 업무 O*NET 30.0 · 취업자 국가데이터처(2025년 하반기)`),legalLinks()],rest]);
   const FL=F.map(f=>[f[0],f[1],f[2].filter(Boolean),f[3]]).filter(f=>f[2].length),CL=foldGet();
   const txt=(k,s)=>{const e=k.querySelector(s);return e?e.textContent.trim():''};
   const sumOf=(key,k)=>key==='mine'?[txt(k,'.nm')+(txt(k,'.sub')?' · '+txt(k,'.sub'):''),txt(k,'.num')]

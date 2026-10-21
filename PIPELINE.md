@@ -58,7 +58,11 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 - `python3 tools/build_share.py` → `og/<코드>.png` 미리보기(그 주 숫자로). playwright가 없으면 건너뛴다.
 
 ## 서버 기능 (functions/, Cloudflare Pages Functions)
-- `POST /api/e` 행동 집계(날짜·이벤트·라벨별 횟수만). `POST /api/subscribe` 뉴스레터 구독. `POST /api/contact` 기관·기업 문의. `GET /api/stats?k=…` 운영자 집계 조회.
+- `POST /api/e` 행동 집계(날짜·이벤트·라벨별 횟수만). `POST /api/subscribe` 뉴스레터 구독 신청(확인 전 pending으로 저장). `GET /api/confirm?t=` 구독 확인(active). `GET·POST /api/unsub?t=` 수신 거부(메일의 원클릭 해지도 POST). `POST /api/contact` 기관·기업 문의. `GET /api/stats` 운영자 집계 조회(`Authorization: Bearer <STATS_KEY>`, 예전 `?k=`도 당분간 됨).
+- 모든 POST는 우리 사이트에서 온 요청만 받는다(Origin 검사). 메일 발송은 `MAIL_ENABLED=1`, `RESEND_API_KEY`, `MAIL_FROM` 셋이 모두 있을 때만 일어난다. 의견 해시용 비밀값은 `IP_SALT`(없으면 STATS_KEY를 씀).
+- 표 구조 변경은 `functions/_db.js`의 MIGRATIONS에 번호 순서로 더한다(meta 표의 schema에 적용 번호가 남음). 보관 기간 정리(접속 해시 2일, 의견 메모 1년, 해지 구독 30일, 확인 안 한 신청 30일, 문의 1년, 이벤트 400일)는 하루 한 번 첫 요청 때 돈다 — 개인정보처리방침(/privacy)과 같은 기간이므로 함께 고친다.
+- 메일을 보낼 때는 status='active'인 구독자에게만, 본문의 `{{unsubscribe_url}}`을 `https://aijido.org/api/unsub?t=<token>`으로 바꾸고 `List-Unsubscribe`·`List-Unsubscribe-Post: List-Unsubscribe=One-Click` 헤더를 붙인다.
+- 개인정보처리방침·이용약관·소개 페이지는 `python3 tools/build_legal.py`로 만든다.
 - Cloudflare Pages 프로젝트 설정 → 바인딩에 D1 데이터베이스를 `DB` 이름으로 연결해야 저장된다(표는 첫 요청 때 자동 생성). 환경 변수 `STATS_KEY`를 넣어야 집계 조회가 열린다.
 - 바인딩이 없으면 집계는 조용히 건너뛰고, 구독·문의는 '준비 중' 안내를 돌려준다.
 

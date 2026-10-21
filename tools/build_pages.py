@@ -44,7 +44,7 @@ for i,w in enumerate(weeks):
 {'<h2>이번 주 많이 오른 직업</h2><table><tr><th>직업</th><th class="n">노출도</th><th class="n">변화</th></tr>'+rows+'</table>' if rows else ''}
 <h2>가장 많이 노출된 직업</h2><table><tr><th>직업</th><th class="n">노출도</th><th class="n">취업자</th></tr>{toprows}</table>
 <a class="cta" href="/">내 직업 찾아보기</a>
-<p class="foot">노출도: Eloundou 외(2024, Science)·ILO Gmyrek 외(2025) 평균 · 업무: O*NET 30.0 · 취업자: 국가데이터처 지역별고용조사 2025년 하반기. 연도별 경로와 소식 반영은 AI 점령 지도의 추정이에요. 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요. <a href="/w/">지난 주간 지수</a></p>
+<p class="foot">노출도: Eloundou 외(2024, Science)·ILO Gmyrek 외(2025) 평균 · 업무: O*NET 30.0 · 취업자: 국가데이터처 지역별고용조사 2025년 하반기. 연도별 경로와 소식 반영은 AI 점령 지도의 추정이에요. 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요. <a href="/w/">지난 주간 지수</a> · <a href="/about">소개</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p>
 </main></body></html>'''
     open(f'w/{wk}.html','w').write(body);pages.append((wk,title,w['date']))
 lst=''.join(f'<li><a href="/w/{wk}">{H.escape(t)}</a> <span class="sub">· {d}</span></li>' for wk,t,d in reversed(pages))

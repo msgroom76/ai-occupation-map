@@ -1,6 +1,7 @@
 // 기관·기업 리포트 문의 접수.
-import { db, json, kst, clip, isEmail } from '../_db.js';
+import { db, json, kst, clip, isEmail, sameOrigin } from '../_db.js';
 export async function onRequestPost({ request, env }) {
+  if (!sameOrigin(request)) return json({ ok: false, msg: '요청 형식이 잘못됐어요.' }, 403);
   let b = {}; try { b = await request.json(); } catch (e) { return json({ ok: false, msg: '요청 형식이 잘못됐어요.' }, 400); }
   if (b.website) return json({ ok: true });
   const email = clip(b.email, 254).toLowerCase();
