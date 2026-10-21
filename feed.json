@@ -25,7 +25,8 @@
    ],
    "ind": [
     "35"
-   ]
+   ],
+   "grp": "gov-genai-platform"
   },
   {
    "id": "2026-10-21-shinhanlife-complaint-agent",
@@ -55,7 +56,8 @@
    "ind": [
     "36",
     "34"
-   ]
+   ],
+   "grp": "contact-center-agent"
   },
   {
    "id": "2026-10-20-agco-agility-digit",
@@ -88,7 +90,8 @@
    "ind": [
     "85",
     "93"
-   ]
+   ],
+   "grp": "humanoid-factory"
   },
   {
    "id": "2026-10-21-hwasun-voice-emr",
