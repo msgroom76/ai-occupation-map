@@ -18,7 +18,10 @@ async function kosis(env, url) {
   return { rows: j };
 }
 
-export async function onRequestGet({ request, env }) {
+export async function onRequestGet(ctx) {
+  try { return await handle(ctx); } catch (e) { return json({ ok: false, msg: 'KOSIS 조회 중 오류: ' + String(e.message || e).slice(0, 120) }, 502); }
+}
+async function handle({ request, env }) {
   const u = new URL(request.url), org = u.searchParams.get('org') || '', tbl = u.searchParams.get('tbl') || '', type = u.searchParams.get('type') || '';
   const d = await db(env); const today = kst().slice(0, 10);
   const used = d ? +((await getMeta(d, 'kosis_day')) || '').split('|')[1] || 0 : 0;
