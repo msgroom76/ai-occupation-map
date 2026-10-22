@@ -1,66 +1,107 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>운영 · 주간 메일 · AI 점령 지도</title><meta name="robots" content="noindex,nofollow">
-<style>*{box-sizing:border-box}:root{--bg:#f3f3f6;--ink:#1c1c1e;--ink2:rgba(60,60,67,.8);--hair:rgba(28,28,30,.16);--hot:#a3206f;--ok:#1d7a3a;--bad:#b3261e;color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--bg:#0b0c10;--ink:#f5f5f7;--ink2:rgba(235,235,245,.72);--hair:rgba(245,245,247,.18);--hot:#ff8ccd;--ok:#6fd38d;--bad:#ff8a80;color-scheme:dark}}
+<title>운영 · AI 점령 지도</title><meta name="robots" content="noindex,nofollow">
+<style>*{box-sizing:border-box}:root{--bg:#f3f3f6;--ink:#1c1c1e;--ink2:rgba(60,60,67,.8);--hair:rgba(28,28,30,.16);--hot:#a3206f;--ok:#1d7a3a;--bad:#b3261e;--warn:#9a5b00;--card:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0b0c10;--ink:#f5f5f7;--ink2:rgba(235,235,245,.72);--hair:rgba(245,245,247,.18);--hot:#ff8ccd;--ok:#6fd38d;--bad:#ff8a80;--warn:#ffc266;--card:#16171c;color-scheme:dark}}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-size:15px;line-height:1.6}
-main{max-width:860px;margin:0 auto;padding:28px 20px 72px}.top{display:flex;justify-content:space-between;border-bottom:1px solid var(--ink);padding-bottom:10px;font-size:13px}
-.top b{color:var(--hot)}h1{font-size:26px;letter-spacing:-.03em;margin:28px 0 4px}h2{font-size:15px;border-top:1px solid var(--ink);padding-top:10px;margin:32px 0 10px}
-p{margin:6px 0}.note{color:var(--ink2);font-size:13px}label{display:block;font-size:13px;color:var(--ink2);margin:10px 0 4px}
-input,select,button{font:inherit;min-height:44px;padding:0 12px;border:1px solid var(--ink);background:transparent;color:var(--ink)}input,select{width:100%;max-width:420px}
-button{font-weight:600;cursor:pointer;margin-top:10px}button.p{background:var(--ink);color:var(--bg)}button:disabled{opacity:.4;cursor:default}
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:end}.stat{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--hair);margin:10px 0}
-.stat div{padding:8px 10px;border-left:1px solid var(--hair)}.stat div:first-child{border-left:0;padding-left:0}.stat small{display:block;font-size:12px;color:var(--ink2)}.stat b{font-size:24px;letter-spacing:-.03em}
-iframe{width:100%;height:640px;border:1px solid var(--hair);background:#fff}.msg{min-height:1.6em;font-weight:600}.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}
+main{max-width:960px;margin:0 auto;padding:28px 20px 72px}.top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:10px;font-size:13px}
+.top b{color:var(--hot)}.top a,.top button{color:inherit;font-size:13px}h1{font-size:26px;letter-spacing:-.03em;margin:28px 0 4px}
+h2{font-size:15px;border-top:1px solid var(--ink);padding-top:10px;margin:40px 0 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+h2 small{font-weight:400;color:var(--ink2);font-size:12px}p{margin:6px 0}.note{color:var(--ink2);font-size:13px}
+input,button{font:inherit;min-height:44px;padding:0 14px;border:1px solid var(--ink);background:transparent;color:var(--ink);border-radius:0}input{width:100%}button{font-weight:600;cursor:pointer;white-space:nowrap}button.p{background:var(--ink);color:var(--bg)}button.link{border:0;min-height:auto;padding:0;text-decoration:underline;font-weight:400}button:disabled{opacity:.4;cursor:default}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>.grow{flex:1 1 240px;max-width:400px}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--hair)}.kpi div{padding:6px 12px 10px;border-left:1px solid var(--hair)}.kpi div:first-child{border-left:0;padding-left:0}
+.kpi small{display:block;font-size:12px;color:var(--ink2)}.kpi b{font-size:30px;letter-spacing:-.04em;font-weight:600;font-feature-settings:"tnum"}.kpi .on b{color:var(--hot)}
+@media (max-width:640px){.kpi{grid-template-columns:repeat(2,1fr)}.kpi div:nth-child(3){border-left:0;padding-left:0}}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:9px 10px 9px 0;border-bottom:1px solid var(--hair);text-align:left;vertical-align:middle}th{font-weight:500;font-size:12px;color:var(--ink2)}td.n,th.n{text-align:right;font-feature-settings:"tnum"}
+tr.sel td{background:color-mix(in srgb,var(--hot) 9%,transparent)}tr.click{cursor:pointer}tr.click:hover td{background:color-mix(in srgb,var(--ink) 5%,transparent)}.wrap{overflow-x:auto}
+.tag{display:inline-block;font-size:12px;padding:0 6px;border:1px solid currentColor;white-space:nowrap}.t-new{color:var(--ink2)}.t-asked{color:var(--warn)}.t-approved{color:var(--hot)}.t-done{color:var(--ok)}
+.panel{background:var(--card);border:1px solid var(--hair);padding:16px;margin-top:14px}.panel .lab{font-size:12px;color:var(--ink2);margin:14px 0 4px}
+iframe{width:100%;height:620px;border:1px solid var(--hair);background:#fff;margin-top:12px}
+.msg{min-height:1.5em;font-size:14px;font-weight:600;margin:6px 0 0}.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}details summary{cursor:pointer;color:var(--ink2);font-size:13px;margin-top:20px}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:14px 0 0;border-top:1px solid var(--hair)}.flow div{padding:8px 10px 8px 0;font-size:13px;color:var(--ink2)}.flow b{display:block;color:var(--ink);font-size:13px}
+@media (max-width:640px){.flow{grid-template-columns:1fr 1fr}}
+#recent td{white-space:nowrap}
 </style></head><body><main>
-<div class="top"><span><b>AI</b> 점령 지도 · 운영</span><a href="/" style="color:inherit">사이트로</a></div>
-<h1>주간 메일 보내기</h1>
-<p class="note">이 화면은 검색에 나오지 않고, 운영 키(STATS_KEY)가 있어야 동작해요. 키는 이 브라우저 탭에만 잠시 보관돼요.</p>
+<div class="top"><span><b>AI</b> 점령 지도 · 운영</span><span class="row" style="gap:16px"><a href="/">사이트로</a><button class="link" id="out" hidden type="button">로그아웃</button></span></div>
 
-<h2>1. 운영 키</h2>
-<div class="row"><div style="flex:0 1 420px"><label for="k">STATS_KEY</label><input id="k" type="password" autocomplete="off"></div><button id="login" class="p" type="button">열기</button></div>
-<p class="msg" id="m0"></p>
+<section id="login" hidden>
+<h1>운영 화면</h1>
+<p class="note">운영자 메일로 로그인 링크를 보내 드려요. 링크를 누르면 그 기기에서 30일 동안 로그인이 유지돼요.</p>
+<div class="row" style="margin-top:16px"><button class="p" id="mail" type="button">로그인 링크 받기</button></div>
+<p class="msg" id="lm"></p>
+<details><summary>운영 키(STATS_KEY)로 들어가기</summary><div class="row" style="margin-top:8px"><div class="grow"><input id="k" type="password" autocomplete="off" aria-label="운영 키"></div><button id="kgo" type="button">열기</button></div></details>
+</section>
 
-<div id="app" hidden>
-<h2>2. 보낼 호 고르기</h2>
-<label for="wk">주</label><select id="wk"></select>
-<div class="stat"><div><small>확인한 구독자</small><b id="sa">–</b></div><div><small>이번 호 보낸 사람</small><b id="ss">–</b></div><div><small>실패</small><b id="sf">–</b></div></div>
-<p><b id="subj"></b></p><p class="note" id="pre"></p>
-<p class="note" id="onoff"></p>
-<iframe id="pv" title="메일 미리보기"></iframe>
-
-<h2>3. 확인 전 신청자에게 확인 메일</h2>
-<p class="note">구독 신청은 확인 메일의 링크를 눌러야 시작돼요. 발송을 켜기 전에 받아 둔 신청은 아직 확인 메일을 못 받았으니, 처음 한 번 보내 주세요. 한 사람에게 한 번만 가요.</p>
-<p>확인 전 신청 <b id="sp">–</b>명</p><button id="cp" type="button">확인 메일 보내기</button><p class="msg" id="m3"></p>
-
-<h2>4. 시험 발송</h2>
-<p class="note">먼저 내 메일로 보내 보고 휴대폰·PC에서 모양과 링크를 확인하세요. 제목 앞에 [시험]이 붙어요.</p>
-<div class="row"><div style="flex:0 1 420px"><label for="to">받을 주소</label><input id="to" type="email" placeholder="msgr@post-office.kr"></div><button id="test" type="button">시험 메일 보내기</button></div>
-<p class="msg" id="m1"></p>
-
-<h2>5. 구독자에게 발송</h2>
-<p class="note">확인 메일로 구독을 확인한 사람에게만 가요. 한 번에 최대 50명씩 보내고, 남은 사람이 있으면 이어서 보내요. 같은 사람에게 같은 호를 두 번 보내지 않아요. Resend 무료 요금은 하루 100통·한 달 3,000통이에요.</p>
-<label for="cf">확인을 위해 보낼 주를 그대로 입력하세요 (예: 2026-W44)</label><input id="cf" autocomplete="off">
-<div><button id="send" class="p" type="button">발송 시작</button></div>
-<p class="msg" id="m2"></p>
+<section id="app" hidden>
+<h1>구독자와 주간 메일</h1>
+<p class="note" id="status"></p>
+<div class="flow">
+  <div><b>① 신청</b>확인 메일이 자동으로 가요</div>
+  <div><b>② 확인 클릭</b>환영 메일과 최근 호를 바로 보내요</div>
+  <div><b>③ 월요일 새 호</b>운영자에게 승인 요청 메일이 가요</div>
+  <div><b>④ 승인</b>구독자 전원에게 자동 발송</div>
 </div>
+
+<h2>구독자 <small>확인 링크를 누른 사람만 주간 메일을 받아요</small></h2>
+<div class="kpi"><div class="on"><small>구독 중</small><b id="ca">–</b></div><div><small>확인 대기</small><b id="cp">–</b></div><div><small>수신 거부</small><b id="cu">–</b></div><div><small>확인 메일 보낸 수</small><b id="cm">–</b></div></div>
+<div class="row" style="margin-top:12px"><span class="note" style="flex:1 1 240px">확인 메일을 못 받은 대기자에게 한 번 더 보내려면</span><button id="resend" type="button">확인 메일 다시 보내기</button></div>
+<p class="msg" id="m3"></p>
+<p class="lab note" style="margin-top:14px">최근 30일</p>
+<div class="wrap"><table><thead><tr><th>날짜</th><th class="n">신청</th><th class="n">확인</th><th class="n">수신 거부</th></tr></thead><tbody id="daily"></tbody></table></div>
+
+<h2>주간 메일 <small>호를 누르면 미리보기·승인·시험 발송</small></h2>
+<div class="wrap"><table><thead><tr><th>호</th><th>만든 날</th><th>상태</th><th class="n">보냄</th><th class="n">실패</th></tr></thead><tbody id="iss"></tbody></table></div>
+<div class="panel" id="pane" hidden>
+  <p><b id="subj"></b></p>
+  <p class="note" id="sinfo"></p>
+  <div class="row" style="margin-top:10px"><button class="p" id="approve" type="button">승인하고 발송</button><button id="pvbtn" type="button">미리보기</button><button id="ask" type="button">승인 요청 메일 다시 받기</button></div>
+  <p class="msg" id="m2"></p>
+  <p class="lab">시험 메일 받을 주소</p>
+  <div class="row"><div class="grow"><input id="to" type="email" aria-label="시험 메일 받을 주소" value="msgr@post-office.kr"></div><button id="test" type="button">시험 메일 보내기</button></div>
+  <p class="msg" id="m1"></p>
+  <iframe id="pv" title="메일 미리보기" hidden></iframe>
+</div>
+
+<h2>최근 신청자 <small>주소 일부는 가려서 보여요</small></h2>
+<div class="wrap"><table><thead><tr><th>주소</th><th>상태</th><th>신청</th><th>확인</th></tr></thead><tbody id="recent"></tbody></table></div>
+</section>
 <script>
 const $=s=>document.querySelector(s);let KEY='';try{KEY=sessionStorage.getItem('aimap.admin')||''}catch(e){}
-const api=async(path,opt={})=>{const r=await fetch(path,{...opt,headers:{authorization:'Bearer '+KEY,'content-type':'application/json',...(opt.headers||{})}});const t=await r.text();let j={};try{j=JSON.parse(t)}catch(e){j={raw:t}}return {r,j}};
+const api=async(path,opt={})=>{const h={'content-type':'application/json'};if(KEY)h.authorization='Bearer '+KEY;const r=await fetch(path,{credentials:'same-origin',...opt,headers:{...h,...(opt.headers||{})}});const t=await r.text();let j={};try{j=JSON.parse(t)}catch(e){j={raw:t}}return {r,j}};
 const say=(el,t,ok)=>{el.textContent=t;el.className='msg '+(ok?'ok':'bad')};
-async function open_(){const {r,j}=await api('/api/admin/mail');if(r.status===403){say($('#m0'),'키가 맞지 않아요.',false);return}
-  if(!j.ok){say($('#m0'),j.msg||'열지 못했어요.',false);return}try{sessionStorage.setItem('aimap.admin',KEY)}catch(e){}
-  $('#m0').textContent='';$('#app').hidden=false;$('#wk').innerHTML='';[...j.issues].sort((a,b)=>a.week<b.week?1:-1).forEach(i=>{const o=document.createElement('option');o.value=i.week;o.textContent=`${i.week} · ${i.date} · ${i.subject}`;$('#wk').appendChild(o)});
-  $('#onoff').textContent=j.mailOn?'메일 발송: 켜짐':'메일 발송: 꺼짐 — Pages 설정에 MAIL_ENABLED=1, RESEND_API_KEY, MAIL_FROM을 넣어야 보낼 수 있어요.';load()}
-async function load(){const w=$('#wk').value;if(!w)return;const {j}=await api('/api/admin/mail?week='+w);if(!j.ok){say($('#m2'),j.msg||'',false);return}
-  $('#sa').textContent=j.active;$('#sp').textContent=j.pending;$('#ss').textContent=j.sends.sent||0;$('#sf').textContent=j.sends.failed||0;$('#subj').textContent=j.subject;$('#pre').textContent=j.preheader||'';
-  const h=await api('/api/admin/mail?week='+w+'&view=html');$('#pv').srcdoc=h.j.raw||''}
-$('#login').onclick=()=>{KEY=$('#k').value.trim();open_()};$('#k').onkeydown=e=>{if(e.key==='Enter')$('#login').click()};$('#wk').onchange=load;
-$('#test').onclick=async()=>{const b=$('#test');b.disabled=true;say($('#m1'),'보내는 중…',true);const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({week:$('#wk').value,mode:'test',to:$('#to').value})});say($('#m1'),j.msg||'실패',!!j.ok);b.disabled=false};
-$('#send').onclick=async()=>{const w=$('#wk').value;if($('#cf').value.trim()!==w){say($('#m2'),'확인 칸에 '+w+'를 그대로 입력하세요.',false);return}
-  const b=$('#send');b.disabled=true;let total=0;
-  for(let i=0;i<40;i++){say($('#m2'),`보내는 중… (${total}명 완료)`,true);const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({week:w,mode:'send',confirm:w,limit:50})});
-    if(!j.ok){say($('#m2'),(j.msg||'실패')+` (이번에 ${total}명 보냄)`,false);break}total+=j.sent||0;if(!j.remaining){say($('#m2'),`끝났어요. 이번에 ${total}명에게 보냈어요.`,true);break}}
-  b.disabled=false;load()};
-$('#cp').onclick=async()=>{const b=$('#cp');b.disabled=true;say($('#m3'),'보내는 중…',true);const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({mode:'confirm-pending',limit:50})});say($('#m3'),j.msg||'실패',!!j.ok);b.disabled=false;load()};
-if(KEY){$('#k').value=KEY;open_()}
+const ST={new:'새 호',asked:'승인 대기',approved:'발송 중',done:'발송 완료'};
+const td=(t,c)=>{const e=document.createElement('td');if(c)e.className=c;e.textContent=t;return e};
+const ts=s=>(s||'').slice(5,16).replace('T',' ');
+let D=null,SEL=null;
+async function boot(){let r,j;try{({r,j}=await api('/api/admin/mail'))}catch(e){$('#login').hidden=false;say($('#lm'),'연결하지 못했어요.',false);return}
+  if(r.status===403||!j.ok){$('#login').hidden=false;$('#app').hidden=true;$('#out').hidden=true;if(r.status!==403)say($('#lm'),j.msg||'열지 못했어요.',false);return}
+  D=j;$('#login').hidden=true;$('#app').hidden=false;$('#out').hidden=false;
+  $('#status').textContent=(j.mailOn?'메일 발송 켜짐':'메일 발송 꺼짐 — Pages 설정의 MAIL_ENABLED·RESEND_API_KEY·MAIL_FROM을 확인하세요')+(j.adminTo?` · 승인 요청은 ${j.adminTo}로 가요`:'');
+  $('#ca').textContent=j.counts.active;$('#cp').textContent=j.counts.pending;$('#cu').textContent=j.counts.unsub;$('#cm').textContent=(j.confirmMails&&j.confirmMails.sent)||0;
+  const dl=$('#daily');dl.innerHTML='';if(!j.daily.length){const tr=document.createElement('tr');const c=td('최근 30일 기록이 없어요','note');c.colSpan=4;tr.appendChild(c);dl.appendChild(tr)}
+  j.daily.forEach(x=>{const tr=document.createElement('tr');tr.append(td(x.day),td(x.signup||0,'n'),td(x.confirmed||0,'n'),td(x.unsub||0,'n'));dl.appendChild(tr)});
+  const it=$('#iss');it.innerHTML='';j.issues.forEach(x=>{const tr=document.createElement('tr');tr.className='click';tr.dataset.w=x.week;const st=document.createElement('td');const s=document.createElement('span');s.className='tag t-'+x.state;s.textContent=ST[x.state]||x.state;st.appendChild(s);
+    tr.append(td(x.week),td(x.date),st,td(x.sent,'n'),td(x.failed,'n'));tr.onclick=()=>pick(x.week);it.appendChild(tr)});
+  if(j.issues.length)pick(SEL&&j.issues.some(i=>i.week===SEL)?SEL:j.issues[0].week,!!SEL);
+  const rc=$('#recent');rc.innerHTML='';const SS={active:'구독 중',pending:'확인 대기',unsub:'수신 거부'};
+  if(!j.recent.length){const tr=document.createElement('tr');const c=td('아직 신청자가 없어요','note');c.colSpan=4;tr.appendChild(c);rc.appendChild(tr)}
+  j.recent.forEach(x=>{const tr=document.createElement('tr');tr.append(td(x.email),td(SS[x.status]||x.status),td(ts(x.at)),td(ts(x.confirmed_at)||'–'));rc.appendChild(tr)});
+  try{const v=localStorage.getItem('aimap.admin.to');if(v)$('#to').value=v}catch(e){}}
+function pick(w,keep){SEL=w;const x=D.issues.find(i=>i.week===w);[...$('#iss').children].forEach(tr=>tr.classList.toggle('sel',tr.dataset.w===w));
+  $('#pane').hidden=false;$('#subj').textContent=`${x.week} · ${x.subject}`;
+  $('#sinfo').textContent=x.state==='done'?`구독자 모두에게 보냈어요 (${x.sent}명${x.last?', 마지막 '+ts(x.last):''}).`:x.state==='approved'?`승인됨 · ${x.sent}명에게 보냈어요. 남은 분들은 사이트 방문 때 50명씩 자동으로 이어서 보내요.`:x.state==='asked'?'승인 요청 메일을 보냈어요. 메일의 버튼이나 여기서 승인하면 발송이 시작돼요.':'아직 승인 요청 전이에요. 사이트 방문이 있으면 승인 요청 메일이 자동으로 가요.';
+  const done=x.state==='approved'||x.state==='done';const b=$('#approve');b.disabled=done||!D.mailOn;b.dataset.arm='';
+  b.textContent=x.state==='done'?'모두 보냈어요':x.state==='approved'?'발송 중이에요':`승인하고 발송 · 구독자 ${D.counts.active}명`;$('#ask').hidden=done;
+  if(!keep){$('#pv').hidden=true;$('#pvbtn').textContent='미리보기';$('#m1').textContent='';$('#m2').textContent=''}}
+$('#pvbtn').onclick=async()=>{const f=$('#pv');if(!f.hidden){f.hidden=true;$('#pvbtn').textContent='미리보기';return}const {j}=await api('/api/admin/mail?week='+SEL+'&view=html');f.srcdoc=j.raw||'';f.hidden=false;$('#pvbtn').textContent='미리보기 닫기'};
+$('#approve').onclick=async()=>{const b=$('#approve');if(!b.dataset.arm){b.dataset.arm='1';b.textContent=`한 번 더 누르면 ${D.counts.active}명에게 보내요`;setTimeout(()=>{if(b.dataset.arm)pick(SEL,true)},6000);return}
+  b.dataset.arm='';b.disabled=true;say($('#m2'),'보내는 중…',true);const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({mode:'approve',week:SEL})});await boot();say($('#m2'),j.msg||'실패',!!j.ok)};
+$('#ask').onclick=async()=>{say($('#m2'),'보내는 중…',true);const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({mode:'ask',week:SEL})});await boot();say($('#m2'),j.msg||'실패',!!j.ok)};
+$('#test').onclick=async()=>{const to=$('#to').value.trim();if(!to){say($('#m1'),'받을 주소를 입력하세요.',false);$('#to').focus();return}try{localStorage.setItem('aimap.admin.to',to)}catch(e){}
+  const b=$('#test');b.disabled=true;say($('#m1'),'보내는 중…',true);const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({mode:'test',week:SEL,to})});say($('#m1'),j.msg||'실패',!!j.ok);b.disabled=false};
+$('#resend').onclick=async()=>{const b=$('#resend');b.disabled=true;say($('#m3'),'보내는 중…',true);const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({mode:'confirm-pending'})});await boot();say($('#m3'),j.msg||'실패',!!j.ok);b.disabled=false};
+$('#mail').onclick=async()=>{const b=$('#mail');b.disabled=true;say($('#lm'),'보내는 중…',true);const {j}=await api('/api/admin/login',{method:'POST',body:'{}'});say($('#lm'),j.msg||'실패',!!j.ok);setTimeout(()=>b.disabled=false,5000)};
+$('#kgo').onclick=()=>{KEY=$('#k').value.trim();try{sessionStorage.setItem('aimap.admin',KEY)}catch(e){}boot()};$('#k').onkeydown=e=>{if(e.key==='Enter')$('#kgo').click()};
+$('#out').onclick=async()=>{await fetch('/api/admin/login',{method:'DELETE'});KEY='';try{sessionStorage.removeItem('aimap.admin')}catch(e){}$('#lm').textContent='';boot()};
+boot();
 </script></main></body></html>
