@@ -50,7 +50,7 @@ export async function onRequestPost({ request, env }) {
   const one = (to, tok, test) => {
     const unsub = tok ? `${base}/api/unsub?t=${tok}` : `${base}/`;
     return {
-      from: env.MAIL_FROM, to: [to], subject: (test ? '[시험] ' : '') + m.subject,
+      from: env.MAIL_FROM, ...(env.MAIL_REPLY_TO ? { reply_to: env.MAIL_REPLY_TO } : {}), to: [to], subject: (test ? '[시험] ' : '') + m.subject,
       html: personal(m.htmlBody, unsub), text: personal(m.textBody, unsub),
       headers: tok ? { 'List-Unsubscribe': `<${unsub}>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' } : {}
     };
@@ -72,7 +72,7 @@ export async function onRequestPost({ request, env }) {
     const rows = (await d.prepare("SELECT email, token FROM subscribers WHERE status = 'pending' AND NOT EXISTS (SELECT 1 FROM sends x WHERE x.week = 'confirm' AND x.email = subscribers.email AND x.status = 'sent') LIMIT ?1").bind(Math.max(1, Math.min(100, +b.limit || 50))).all()).results;
     if (!rows.length) return json({ ok: true, sent: 0, remaining: 0, msg: '확인 메일을 보낼 신청자가 없어요.' });
     for (const x of rows) if (!x.token) { x.token = token(); await d.prepare("UPDATE subscribers SET token = ?2 WHERE email = ?1").bind(x.email, x.token).run(); }
-    const r = await call(rows.map(x => ({ from: env.MAIL_FROM, to: [x.email], ...confirmMail(base, x.token) })));
+    const r = await call(rows.map(x => ({ from: env.MAIL_FROM, ...(env.MAIL_REPLY_TO ? { reply_to: env.MAIL_REPLY_TO } : {}), to: [x.email], ...confirmMail(base, x.token) })));
     const now = kst();
     await d.batch(rows.map((x, i) => d.prepare("INSERT INTO sends (week, email, status, at, id, err) VALUES ('confirm', ?1, ?2, ?3, ?4, ?5) ON CONFLICT(week, email) DO UPDATE SET status = excluded.status, at = excluded.at, id = excluded.id, err = excluded.err").bind(x.email, r.ok ? 'sent' : 'failed', now, r.ids[i] || null, r.err)));
     return json({ ok: r.ok, sent: r.ok ? rows.length : 0, msg: r.ok ? `확인 메일 ${rows.length}통을 보냈어요.` : `보내지 못했어요 (${r.status}) ${r.err || ''}` }, r.ok ? 200 : 502);

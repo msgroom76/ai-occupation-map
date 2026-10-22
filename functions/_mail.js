@@ -1,12 +1,12 @@
 // 메일 보내기(Resend). 세 가지가 모두 설정돼 있을 때만 실제로 보낸다 — 운영자가 발송을 켜기 전에는 아무 메일도 나가지 않는다.
-//   MAIL_ENABLED = "1", RESEND_API_KEY (비밀값), MAIL_FROM (예: "AI 점령 지도 <news@send.aijido.org>")
+//   MAIL_ENABLED = "1", RESEND_API_KEY (비밀값), MAIL_FROM (예: "AI 점령 지도 <news@aijido.org>"). 답장 받을 곳은 MAIL_REPLY_TO(선택).
 export const mailOn = env => env.MAIL_ENABLED === '1' && !!env.RESEND_API_KEY && !!env.MAIL_FROM;
 export async function sendMail(env, { to, subject, html, text, headers }) {
   if (!mailOn(env)) return { sent: false, reason: 'off' };
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { 'authorization': `Bearer ${env.RESEND_API_KEY}`, 'content-type': 'application/json' },
-    body: JSON.stringify({ from: env.MAIL_FROM, to: [to], subject, html, text, headers })
+    body: JSON.stringify({ from: env.MAIL_FROM, to: [to], subject, html, text, headers, ...(env.MAIL_REPLY_TO ? { reply_to: env.MAIL_REPLY_TO } : {}) })
   });
   if (!r.ok) { console.error(JSON.stringify({ at: 'sendMail', status: r.status, body: (await r.text()).slice(0, 300) })); return { sent: false, reason: 'error' }; }
   return { sent: true };
