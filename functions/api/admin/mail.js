@@ -1,13 +1,14 @@
 // 운영 화면(/admin)용 API. 로그인 쿠키(메일 로그인 링크) 또는 'Authorization: Bearer <STATS_KEY>'가 있어야 열린다.
 // GET                      → 구독자 현황, 최근 30일 신규·확인·해지, 호별 발송 현황, 최근 구독자(주소 일부 가림), 자동 발송 설정 상태
 // GET ?week=…&view=html    → 그 호 미리보기
+// GET ?week=…&view=evidence → 그 호 숫자의 근거(반영 소식·기여·독립 검토 결과)
 // POST {mode:'test', week, to}          → 한 주소에 시험 발송([시험])
 // POST {mode:'approve', week}           → 승인하고 발송 시작(승인 요청 메일의 버튼과 같음)
 // POST {mode:'ask', week}               → 승인 요청 메일 다시 보내기
 // POST {mode:'confirm-pending'}         → 확인 전 신청자에게 확인 메일(한 사람에 한 번)
 import { db, json, kst, token } from '../../_db.js';
 import { mailOn, confirmMail } from '../../_mail.js';
-import { WEEK, issues, draft, personal, issueMail, batch, issueState, setMeta, sendNext, askApproval, adminTo } from '../../_issue.js';
+import { WEEK, issues, draft, personal, issueMail, batch, issueState, setMeta, sendNext, askApproval, adminTo, evidence } from '../../_issue.js';
 import { authed } from '../../_admin.js';
 const mask = e => { const [a, b] = String(e).split('@'); return (a.length <= 2 ? a[0] + '*' : a.slice(0, 2) + '*'.repeat(Math.min(6, a.length - 2))) + '@' + b; };
 
@@ -18,6 +19,7 @@ export async function onRequestGet({ request, env }) {
     const m = await draft(env, origin, week); if (!m) return new Response('원고가 없어요', { status: 404 });
     return new Response(personal(m.htmlBody, '#'), { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'x-robots-tag': 'noindex' } });
   }
+  if (WEEK.test(week) && u.searchParams.get('view') === 'evidence') return json({ ok: true, ev: await evidence(env, origin, week) });
   const d = await db(env); if (!d) return json({ ok: false, msg: 'DB 연결 전' }, 503);
   const st = Object.fromEntries((await d.prepare("SELECT COALESCE(status,'pending') AS s, COUNT(*) AS n FROM subscribers GROUP BY 1").all()).results.map(r => [r.s, r.n]));
   const daily = (await d.prepare(`SELECT day, SUM(newn) AS signup, SUM(conf) AS confirmed, SUM(un) AS unsub FROM (

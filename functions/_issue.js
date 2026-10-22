@@ -63,15 +63,46 @@ export async function sendNext(env, d, origin, week, limit = 50) {
   return { ok: r.ok, status: r.status, sent: r.ok ? rows.length : 0, remaining: left, err: r.err };
 }
 
-// 승인 요청 메일: 실제 메일 위에 승인 안내 띠를 얹어서 보낸다
+// 이번 호의 근거: index.json의 그 주 반영 원장(ledger)과 feed.json 제목을 묶는다(승인할 때 숫자의 근거를 같이 보게)
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+export async function evidence(env, origin, week) {
+  const get = async p => { try { const r = await env.ASSETS.fetch(new URL(p, origin)); return r.ok ? r.json() : null; } catch (e) { return null; } };
+  const [idx, feed] = await Promise.all([get('/index.json'), get('/feed.json')]);
+  const ws = idx?.weeks || []; const i = ws.findIndex(w => w.week === week); if (i < 0) return null;
+  const w = ws[i], prev = ws[i - 1];
+  const by = Object.fromEntries((feed?.items || []).map(n => [n.id, n]));
+  const rows = (w.ledger || (w.applied || []).map(id => ({ id, w: null })))
+    .map(e => ({ id: e.id, dp: e.dp ?? null, why: e.why || '', hd: by[e.id]?.hd || e.id, src: by[e.id]?.src || '', url: by[e.id]?.url || '', rv: by[e.id]?.rv || '', on: e.w == null || e.w > 0 }))
+    .filter(e => e.on).sort((a, b) => (b.dp ?? 0) - (a.dp ?? 0));
+  return { week, total: w.total, delta: prev?.total != null && w.total != null ? w.total - prev.total : null, scale: w.scale ?? null, review: w.review || null, rows };
+}
+const pp = x => Math.abs(x) < 5e-6 ? (x > 0 ? '<0.001%p' : '0') : (x >= 0 ? '+' : '') + (x * 100).toFixed(3) + '%p';
+export function evidenceHtml(ev) {
+  if (!ev) return '';
+  const rv = ev.review;
+  const rvLine = !rv ? '독립 검토 기록 없음(규칙 도입 전 호)' : rv.by === 'skipped' ? '⚠ 독립 검토 없이 발표됨' :
+    `${rv.by === 'independent' ? '독립 검토' : '⚠ 자체 검토'}: 확인 ${rv.ok} · 수정 ${rv.fix} · 보류 ${rv.hold}${rv.late?.length ? ` · 다음 주로 ${rv.late.length}` : ''}`;
+  const head = `이번 주 ${ev.total != null ? (ev.total * 100).toFixed(2) + '%' : ''}${ev.delta != null ? ` (${pp(ev.delta)})` : ''} · 반영 소식 ${ev.rows.length}건${ev.scale != null && ev.scale < 1 ? ` · 주간 상한으로 ×${ev.scale} 축소` : ''}`;
+  const li = ev.rows.slice(0, 12).map(e => `<tr><td style="padding:6px 8px 6px 0;border-bottom:1px solid #e5e5ea;vertical-align:top;white-space:nowrap;font-variant-numeric:tabular-nums;color:#a3206f">${e.dp != null ? pp(e.dp) : '–'}</td><td style="padding:6px 0;border-bottom:1px solid #e5e5ea">${e.url ? `<a href="${esc(e.url)}" style="color:#1c1c1e">${esc(e.hd)}</a>` : esc(e.hd)}<br><span style="color:#6b6b70;font-size:12px">${esc(e.src)}${e.why ? ' · ' + esc(e.why) : ''}${e.rv ? ' · 검토: ' + esc(e.rv) : ''}</span></td></tr>`).join('');
+  return `<div style="font:14px/1.55 -apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#1c1c1e;background:#fff;border:1px solid #d1d1d6;padding:14px 16px;margin:0 0 16px"><b>숫자의 근거</b><br><span style="color:#3a3a3c">${esc(head)}</span><br><span style="color:#3a3a3c">${esc(rvLine)}</span>${li ? `<table style="width:100%;border-collapse:collapse;margin-top:8px;font-size:13px">${li}</table>` : ''}${ev.rows.length > 12 ? `<p style="color:#6b6b70;font-size:12px;margin:6px 0 0">외 ${ev.rows.length - 12}건은 운영 화면에서 볼 수 있어요.</p>` : ''}</div>`;
+}
+export function evidenceText(ev) {
+  if (!ev) return '';
+  const rv = ev.review; const lines = [`[숫자의 근거] ${ev.total != null ? (ev.total * 100).toFixed(2) + '%' : ''}${ev.delta != null ? ` (${pp(ev.delta)})` : ''} · 반영 ${ev.rows.length}건` + (rv && rv.by !== 'skipped' ? ` · 검토 확인 ${rv.ok}/수정 ${rv.fix}/보류 ${rv.hold}${rv.by !== 'independent' ? '(자체)' : ''}` : rv ? ' · 독립 검토 없음' : '')];
+  for (const e of ev.rows.slice(0, 12)) lines.push(`- ${e.dp != null ? pp(e.dp) : '–'} ${e.hd} (${e.src})`);
+  return lines.join('\n') + '\n\n';
+}
+
+// 승인 요청 메일: 실제 메일 위에 승인 안내 띠와 '숫자의 근거'를 얹어서 보낸다
 export async function askApproval(env, d, origin, it) {
   const to = adminTo(env); if (!to) return false;
   const m = await draft(env, origin, it.week); if (!m) return false;
   const n = (await d.prepare("SELECT COUNT(*) AS n FROM subscribers WHERE status = 'active'").first()).n;
   const link = `${origin}/api/approve?w=${it.week}&s=${await sign(env, 'approve|' + it.week)}`;
   const band = `<div style="font:15px/1.6 -apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#1c1c1e;color:#fff;padding:18px 20px;margin:0 0 16px"><b>[승인 요청] ${it.week} 주간 메일</b><br>아래가 구독자 ${n}명에게 갈 메일이에요. 내용을 확인하고 승인하면 바로 발송을 시작해요.<br><a href="${link}" style="display:inline-block;margin-top:10px;padding:10px 16px;background:#ff8ccd;color:#1c1c1e;font-weight:700;text-decoration:none">승인 화면 열기</a></div>`;
-  const body = /<body[^>]*>/i.test(m.htmlBody) ? m.htmlBody.replace(/<body([^>]*)>/i, `<body$1>${band}`) : band + m.htmlBody;
-  const r = await batch(env, [{ from: env.MAIL_FROM, to: [to], subject: `[승인 요청] ${m.subject}`, html: personal(body, `${origin}/`), text: `[승인 요청] ${it.week} 주간 메일 · 구독자 ${n}명\n승인 화면: ${link}\n\n` + personal(m.textBody, `${origin}/`) }]);
+  const ev = await evidence(env, origin, it.week); const top = band + `<div style="max-width:640px;margin:0 auto">${evidenceHtml(ev)}</div>`;
+  const body = /<body[^>]*>/i.test(m.htmlBody) ? m.htmlBody.replace(/<body([^>]*)>/i, `<body$1>${top}`) : top + m.htmlBody;
+  const r = await batch(env, [{ from: env.MAIL_FROM, to: [to], subject: `[승인 요청] ${m.subject}`, html: personal(body, `${origin}/`), text: `[승인 요청] ${it.week} 주간 메일 · 구독자 ${n}명\n승인 화면: ${link}\n\n` + evidenceText(ev) + personal(m.textBody, `${origin}/`) }]);
   return r.ok;
 }
 

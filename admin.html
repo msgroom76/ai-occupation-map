@@ -18,6 +18,7 @@ tr.sel td{background:color-mix(in srgb,var(--hot) 9%,transparent)}tr.click{curso
 .panel{background:var(--card);border:1px solid var(--hair);padding:16px;margin-top:14px}.panel .lab{font-size:12px;color:var(--ink2);margin:14px 0 4px}
 iframe{width:100%;height:620px;border:1px solid var(--hair);background:#fff;margin-top:12px}
 .msg{min-height:1.5em;font-size:14px;font-weight:600;margin:6px 0 0}.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}details summary{cursor:pointer;color:var(--ink2);font-size:13px;margin-top:20px}
+.ev details summary{margin-top:8px}.ev{margin-top:14px;border-top:1px solid var(--hair);padding-top:10px}.ev .h{font-size:13px}.ev .h b{margin-right:6px}.ev .warn{color:var(--warn);font-weight:600}.ev td.dp{color:var(--hot);white-space:nowrap;width:1%}.ev td a{color:inherit}.ev small{display:block;color:var(--ink2);font-size:12px}
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:14px 0 0;border-top:1px solid var(--hair)}.flow div{padding:8px 10px 8px 0;font-size:13px;color:var(--ink2)}.flow b{display:block;color:var(--ink);font-size:13px}
 @media (max-width:640px){.flow{grid-template-columns:1fr 1fr}}
 #recent td{white-space:nowrap}
@@ -56,6 +57,7 @@ iframe{width:100%;height:620px;border:1px solid var(--hair);background:#fff;marg
   <p class="note" id="sinfo"></p>
   <div class="row" style="margin-top:10px"><button class="p" id="approve" type="button">승인하고 발송</button><button id="pvbtn" type="button">미리보기</button><button id="ask" type="button">승인 요청 메일 다시 받기</button></div>
   <p class="msg" id="m2"></p>
+  <div id="ev"></div>
   <p class="lab">시험 메일 받을 주소</p>
   <div class="row"><div class="grow"><input id="to" type="email" aria-label="시험 메일 받을 주소" value="msgr@post-office.kr"></div><button id="test" type="button">시험 메일 보내기</button></div>
   <p class="msg" id="m1"></p>
@@ -92,7 +94,21 @@ function pick(w,keep){SEL=w;const x=D.issues.find(i=>i.week===w);[...$('#iss').c
   $('#sinfo').textContent=x.state==='done'?`구독자 모두에게 보냈어요 (${x.sent}명${x.last?', 마지막 '+ts(x.last):''}).`:x.state==='approved'?`승인됨 · ${x.sent}명에게 보냈어요. 남은 분들은 사이트 방문 때 50명씩 자동으로 이어서 보내요.`:x.state==='asked'?'승인 요청 메일을 보냈어요. 메일의 버튼이나 여기서 승인하면 발송이 시작돼요.':'아직 승인 요청 전이에요. 사이트 방문이 있으면 승인 요청 메일이 자동으로 가요.';
   const done=x.state==='approved'||x.state==='done';const b=$('#approve');b.disabled=done||!D.mailOn;b.dataset.arm='';
   b.textContent=x.state==='done'?'모두 보냈어요':x.state==='approved'?'발송 중이에요':`승인하고 발송 · 구독자 ${D.counts.active}명`;$('#ask').hidden=done;
+  loadEv(w);
   if(!keep){$('#pv').hidden=true;$('#pvbtn').textContent='미리보기';$('#m1').textContent='';$('#m2').textContent=''}}
+const pp=x=>Math.abs(x)<5e-6?(x>0?'<0.001%p':'0'):(x>=0?'+':'')+(x*100).toFixed(3)+'%p';
+async function loadEv(w){const box=$('#ev');box.innerHTML='';const {j}=await api('/api/admin/mail?week='+w+'&view=evidence');const ev=j.ev;if(SEL!==w||!ev)return;
+  const d=document.createElement('div');d.className='ev';const h=document.createElement('p');h.className='h';const b=document.createElement('b');b.textContent='숫자의 근거';h.appendChild(b);
+  h.append(`${ev.total!=null?(ev.total*100).toFixed(2)+'%':''}${ev.delta!=null?' ('+pp(ev.delta)+')':''} · 반영 소식 ${ev.rows.length}건${ev.scale!=null&&ev.scale<1?' · 주간 상한으로 ×'+ev.scale+' 축소':''}`);d.appendChild(h);
+  const r=ev.review,rl=document.createElement('p');rl.className='h';
+  if(!r)rl.textContent='독립 검토 기록 없음(규칙 도입 전 호)';else if(r.by==='skipped'){rl.textContent='독립 검토 없이 발표됨';rl.classList.add('warn')}
+  else{rl.textContent=`${r.by==='independent'?'독립 검토':'자체 검토(독립 아님)'}: 확인 ${r.ok} · 수정 ${r.fix} · 보류 ${r.hold}${r.late&&r.late.length?' · 검토 뒤 들어와 다음 주로 '+r.late.length:''}`;if(r.by!=='independent')rl.classList.add('warn')}
+  d.appendChild(rl);
+  const row=e=>{const tr=document.createElement('tr');tr.appendChild(td(e.dp!=null?pp(e.dp):'–','n dp'));const c=document.createElement('td');
+    const a=document.createElement(e.url?'a':'span');a.textContent=e.hd;if(e.url){a.href=e.url;a.target='_blank';a.rel='noopener'}c.appendChild(a);const sm=document.createElement('small');sm.textContent=[e.src,e.why,e.rv&&('검토: '+e.rv)].filter(Boolean).join(' · ');c.appendChild(sm);tr.appendChild(c);return tr};
+  if(ev.rows.length){const t=document.createElement('table');ev.rows.slice(0,5).forEach(e=>t.appendChild(row(e)));d.appendChild(t);
+    if(ev.rows.length>5){const det=document.createElement('details');const su=document.createElement('summary');su.textContent=`나머지 ${ev.rows.length-5}건 보기`;det.appendChild(su);const t2=document.createElement('table');ev.rows.slice(5).forEach(e=>t2.appendChild(row(e)));det.appendChild(t2);d.appendChild(det)}}
+  box.appendChild(d)}
 $('#pvbtn').onclick=async()=>{const f=$('#pv');if(!f.hidden){f.hidden=true;$('#pvbtn').textContent='미리보기';return}const {j}=await api('/api/admin/mail?week='+SEL+'&view=html');f.srcdoc=j.raw||'';f.hidden=false;$('#pvbtn').textContent='미리보기 닫기'};
 $('#approve').onclick=async()=>{const b=$('#approve');if(!b.dataset.arm){b.dataset.arm='1';b.textContent=`한 번 더 누르면 ${D.counts.active}명에게 보내요`;setTimeout(()=>{if(b.dataset.arm)pick(SEL,true)},6000);return}
   b.dataset.arm='';b.disabled=true;say($('#m2'),'보내는 중…',true);const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({mode:'approve',week:SEL})});await boot();say($('#m2'),j.msg||'실패',!!j.ok)};

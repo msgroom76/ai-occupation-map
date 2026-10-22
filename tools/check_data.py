@@ -115,6 +115,27 @@ if not feed_only:
             dj = (occ(j, 2026, b['adj']) - occ(j, 2026, a['adj'])) * 100
             if abs(dj) > 3: warn(f'index {b["week"]} {j["name"]}: 한 주에 {dj:+.1f}%p')
         if not b.get('applied') and abs(d) > .001: err(f'index {b["week"]}: 반영 소식이 없는데 숫자가 움직임')
+    # 독립 검토(2026-W44부터): 지수를 움직인 소식은 모두 검토 파일에서 ok|fix 판정을 받았어야 한다
+    import glob
+    for w in idx['weeks']:
+        if w.get('rules') != 'v2' or w['week'] < '2026-W44': continue
+        rv = w.get('review')
+        if not rv: err(f'index {w["week"]}: 독립 검토 기록(review)이 없음'); continue
+        if rv.get('by') == 'skipped': warn(f'index {w["week"]}: 독립 검토 없이 발표함(--no-review)'); continue
+        if rv.get('by') != 'independent': warn(f'index {w["week"]}: 검토를 같은 작업이 함(by={rv.get("by")}) — 독립 검토가 아님')
+        f = f'review/{w["week"]}.json'
+        if not os.path.exists(f): err(f'index {w["week"]}: {f} 없음'); continue
+        V = {x.get('id'): x.get('v') for x in json.load(open(f)).get('items', [])}
+        miss = [e['id'] for e in w.get('ledger', []) if e.get('w', 0) > 0 and V.get(e['id']) not in ('ok', 'fix')]
+        if miss: err(f'index {w["week"]}: 검토 통과 없이 반영된 소식 {miss}')
+    for f in glob.glob('review/*.json'):
+        if f.endswith('.queue.json'): continue
+        try: X = json.load(open(f))
+        except Exception as ex: err(f'{f}: JSON 아님 {ex}'); continue
+        if X.get('by') not in ('independent', 'self'): err(f'{f}: by 값이 independent|self가 아님')
+        for x in X.get('items', []):
+            if x.get('v') not in ('ok', 'fix', 'hold'): err(f'{f}: {x.get("id")} 판정 값 이상 {x.get("v")}')
+            if x.get('v') in ('fix', 'hold') and not x.get('note'): warn(f'{f}: {x.get("id")} {x.get("v")} 사유(note)가 없음')
     for w in idx['weeks']:
         if any(v > 1.5 for v in w['adj'].values()): warn(f'index {w["week"]}: 한 업무가 1.5년 넘게 앞당겨짐 — 누적 반영 점검')
 

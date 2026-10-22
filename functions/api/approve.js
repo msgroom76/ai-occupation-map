@@ -4,7 +4,7 @@
 // POST: 승인 → 바로 최대 100명(50명×2) 발송, 남은 사람은 사이트 방문 때 50명씩 이어서(하루 한도에 걸리면 다음 날)
 import { db, html, kst } from '../_db.js';
 import { mailOn } from '../_mail.js';
-import { WEEK, verify, draft, personal, issueState, setMeta, sendNext } from '../_issue.js';
+import { WEEK, verify, draft, personal, issueState, setMeta, sendNext, evidence, evidenceHtml } from '../_issue.js';
 async function check(request, env) {
   const u = new URL(request.url), w = u.searchParams.get('w') || '', s = u.searchParams.get('s') || '';
   if (!WEEK.test(w) || !(await verify(env, 'approve|' + w, s))) return null;
@@ -21,10 +21,11 @@ export async function onRequestGet({ request, env }) {
   const sent = (await d.prepare("SELECT COUNT(*) AS n FROM sends WHERE week = ?1 AND status = 'sent'").bind(c.w).first()).n;
   const pv = `<iframe src="/api/approve?w=${c.w}&s=${c.s}&view=html" title="미리보기" style="width:100%;height:560px;border:1px solid rgba(128,128,128,.4);background:#fff;margin:12px 0"></iframe>`;
   const head = `<p><b>${esc(m.subject)}</b></p><p>받을 사람: 확인한 구독자 ${n}명 · 지금까지 보낸 사람 ${sent}명</p>`;
+  const evh = evidenceHtml(await evidence(env, origin, c.w));
   if (st === 'approved' || st === 'done')
-    return html('이미 승인한 호예요', head + `<p>${st === 'done' ? '모두 보냈어요.' : '발송 중이에요. 남은 분들은 사이트 방문이 있을 때 50명씩 이어서 보내요.'}</p>` + pv);
-  if (!mailOn(env)) return html('메일 발송이 꺼져 있어요', head + '<p>Pages 설정의 MAIL_ENABLED·RESEND_API_KEY·MAIL_FROM을 확인하세요.</p>' + pv);
-  return html(`${c.w} 주간 메일 승인`, head + `<form method="post"><button class="b" type="submit">승인하고 발송</button></form><p style="font-size:13px">승인하면 바로 보내기 시작해요. Resend 무료 요금은 하루 100통이라, 더 많으면 다음 날 이어서 보내요.</p>` + pv);
+    return html('이미 승인한 호예요', head + `<p>${st === 'done' ? '모두 보냈어요.' : '발송 중이에요. 남은 분들은 사이트 방문이 있을 때 50명씩 이어서 보내요.'}</p>` + evh + pv);
+  if (!mailOn(env)) return html('메일 발송이 꺼져 있어요', head + '<p>Pages 설정의 MAIL_ENABLED·RESEND_API_KEY·MAIL_FROM을 확인하세요.</p>' + evh + pv);
+  return html(`${c.w} 주간 메일 승인`, head + `<form method="post"><button class="b" type="submit">승인하고 발송</button></form><p style="font-size:13px">승인하면 바로 보내기 시작해요. Resend 무료 요금은 하루 100통이라, 더 많으면 다음 날 이어서 보내요.</p>` + evh + pv);
 }
 export async function onRequestPost({ request, env }) {
   const c = await check(request, env); if (!c) return html('링크가 올바르지 않아요', '<p>승인 요청 메일의 링크를 다시 눌러 주세요.</p>', 403);
