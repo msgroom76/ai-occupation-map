@@ -349,20 +349,6 @@
    "grp": "speech-model"
   },
   {
-   "id": "2026-10-20-public-ai-employment-bill",
-   "ts": "2026-10-20T15:36:00+09:00",
-   "src": "에너지데일리",
-   "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
-   "tier": "신뢰 매체",
-   "sig": "규제",
-   "us": false,
-   "kr": true,
-   "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
-   "r": [],
-   "st": "none",
-   "note": "법안 발의 단계 · 노출도 수치 영향 없음"
-  },
-  {
    "id": "2026-10-20-molit-construction-robot",
    "ts": "2026-10-20T11:24:00+09:00",
    "src": "뉴스핌",
@@ -818,13 +804,13 @@
    "src": "파이낸셜뉴스",
    "url": "https://www.fnnews.com/news/202610131103564249",
    "tier": "신뢰 매체",
-   "sig": "규제",
+   "sig": "정책",
    "us": false,
    "kr": true,
    "hd": "산업통상부 규제특례위, 안전펜스 규제 풀어 제조 현장에 이동형 휴머노이드 20대 실증 투입 승인",
    "r": [],
    "st": "none",
-   "note": "규제 동향 · 노출도 수치 영향 없음"
+   "note": "규제 완화(AI 쪽 지원) · 노출도 수치 영향 없음"
   },
   {
    "id": "2026-10-16-gemini4-argon",
@@ -2240,6 +2226,313 @@
    "ind": [
     "29"
    ]
+  }
+ ],
+ "front": [
+  {
+   "id": "2026-10-20-public-ai-employment-bill",
+   "ts": "2026-10-20T15:36:00+09:00",
+   "src": "에너지데일리",
+   "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+   "tier": "신뢰 매체",
+   "kr": true,
+   "sig": "저항",
+   "kind": "법·규제",
+   "fx": "약",
+   "ind": [],
+   "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+   "note": "공공기관 AI 도입 전 고용영향 사전평가·재교육 의무화 추진 · 발의 단계",
+   "st": "none"
+  },
+  {
+   "id": "2026-10-02-inquirer-union-ai",
+   "ts": "2026-10-02T09:00:00+09:00",
+   "src": "The Philadelphia Inquirer",
+   "url": "https://www.inquirer.com/business/philadelphia-inquirer-new-union-contract-ai-20261002.html",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "hd": "필라델피아 인콰이어러 노조, 2029년까지 단협 비준(156/160 찬성) — AI로 기자 흉내 내기·실사형 AI 이미지 사용 금지",
+   "fx": "중",
+   "kind": "노사",
+   "ind": [
+    "29"
+   ],
+   "note": "미국 일간지 단협 · 본인 동의 없는 AI 모방 금지, AI 산출물에 노조원 참여 의무, 월례 AI 자문위 신설",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-09-30-us-physicians-ai-statement",
+   "ts": "2026-09-30T09:00:00+09:00",
+   "src": "Medical Economics",
+   "url": "https://www.medicaleconomics.com/view/six-physician-groups-push-back-on-claims-that-ai-is-better-informed-than-doctors",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "hd": "미국의사협회(AMA) 등 의사단체 6곳 공동성명: 'AI가 의사보다 낫다'는 주장은 전문성을 깎고 환자 신뢰를 해친다",
+   "fx": "약",
+   "kind": "직능단체",
+   "ind": [
+    "24"
+   ],
+   "note": "보건복지부 장관의 'AI 2차 소견' 발언에 대한 반박 · 임상 판단은 의사의 몫이라는 입장",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-09-30-california-no-robo-bosses",
+   "ts": "2026-09-30T09:00:00+09:00",
+   "src": "Epstein Becker Green",
+   "url": "https://www.ebglaw.com/insights/publications/four-new-california-laws-reshape-the-rules-for-workplace-ai",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "hd": "캘리포니아 주지사, 'No Robo Bosses Act'(SB 947) 등 직장 AI 법 4건 서명 — AI 판단만으로 징계·해고 금지, 사람 확인 의무",
+   "fx": "강",
+   "kind": "법·규제",
+   "ind": [
+    "31",
+    "12"
+   ],
+   "note": "자동화 의사결정 사람 검증 의무(2027.7 시행) · AI로 인한 대량해고는 WARN 통지에 공개(SB 951)",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-09-14-hyundai-motor-ai-agreement",
+   "ts": "2026-09-14T09:00:00+09:00",
+   "src": "주간경향",
+   "url": "https://weekly.khan.co.kr/article/202609140600001?nv=stand",
+   "tier": "신뢰 매체",
+   "kr": true,
+   "hd": "현대차 노사, 8월 31일 임단협에서 AI 도입 '공동 대응' 합의 — 신기술 정보 공유, '인간 중심·노동 친화적' 도입",
+   "fx": "중",
+   "kind": "노사",
+   "ind": [
+    "85",
+    "14"
+   ],
+   "note": "완성차 노사가 AI 도입 원칙을 단협에 넣음 · 선언적이고 하청·비정규직은 적용 대상 아님",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-09-14-blizzard-union-ai",
+   "ts": "2026-09-14T09:00:00+09:00",
+   "src": "뉴스토마토",
+   "url": "https://newstomato.com/ReadNews.aspx?no=1313595",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "hd": "블리자드 직원 약 1,900명, 마이크로소프트와 단협 비준 — 업무에 AI를 쓸 때 노조와 협의하고 영향을 함께 평가·교섭",
+   "fx": "중",
+   "kind": "노사",
+   "ind": [
+    "22"
+   ],
+   "note": "게임 개발·QA 직군 · AI 사용 자체를 막지는 않고 협의·교섭 의무를 둠",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-09-05-quebec-courts-ai",
+   "ts": "2026-09-05T09:00:00+09:00",
+   "src": "CP24 (The Canadian Press)",
+   "url": "https://cp24.com/news/canada/2026/09/05/quebec-courts-say-generative-ai-cannot-replace-judges-reasoning",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "hd": "캐나다 퀘벡주 법원들 공동 지침 — 판사는 법적 추론·증거 판단·판결 결론 초안에 생성형 AI를 쓸 수 없다",
+   "fx": "중",
+   "kind": "법·규제",
+   "ind": [
+    "27"
+   ],
+   "note": "'재판은 인간의 책임' 명시 · 교정·번역 같은 보조 용도만 허용",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-09-03-moel-ai-bargaining-guide",
+   "ts": "2026-09-03T09:00:00+09:00",
+   "src": "헤럴드경제",
+   "url": "https://www.heraldk.com/article/2026090222004679023",
+   "tier": "신뢰 매체",
+   "kr": true,
+   "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+   "fx": "중",
+   "kind": "법·규제",
+   "ind": [],
+   "note": "AI 전환에 따른 근로조건 변화에 교섭 의무 · 사무직 포함 전 업종, 도입 결정 자체는 제외",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-09-02-nyc-schools-ai-moratorium",
+   "ts": "2026-09-02T09:00:00+09:00",
+   "src": "Akin Gump",
+   "url": "https://www.akingump.com/print/v2/content/1136959/new-york-city-announces-one-year-moratorium-on-student-facing-generative-ai-in-schools.pdf",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "hd": "뉴욕시, 2026-27학년도 2-K~8학년 학생용 생성형 AI 1년 중단(약 60만 명) — 교사의 수업 준비용 AI는 허용",
+   "fx": "강",
+   "kind": "사용 거부",
+   "ind": [
+    "26"
+   ],
+   "note": "미국 최대 공립학교 시스템의 사용 중단 결정 · 컴패니언 챗봇은 전 학년 금지",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-08-05-hyundai-steel-job-security",
+   "ts": "2026-08-05T09:00:00+09:00",
+   "src": "머니투데이",
+   "url": "https://www.mt.co.kr/industry/2026/08/05/2026080517041825111",
+   "tier": "신뢰 매체",
+   "kr": true,
+   "hd": "현대제철 노조, 임단협 잠정합의안 가결(56.61%) — AI 기술혁신 등 산업 변화에도 전 사업장 조합원 고용을 정년까지 보장",
+   "fx": "중",
+   "kind": "노사",
+   "ind": [
+    "84",
+    "14"
+   ],
+   "note": "AI 전환을 명시하고 고용 보장을 단협에 넣음 · 현 조합원만 해당",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-08-01-chaekdoduk-ai-translation",
+   "ts": "2026-08-01T09:00:00+09:00",
+   "src": "뉴시스",
+   "url": "https://www.newsis.com/view/NISX20260731_0003732277",
+   "tier": "신뢰 매체",
+   "kr": true,
+   "hd": "고전문학 앱 '책도둑', AI 번역 사용 인정·사과하고 전액 환불·판매 중단 — 일부 출판사는 번역 계약에 AI 고지 조항",
+   "fx": "중",
+   "kind": "사용 거부",
+   "ind": [
+    "29"
+   ],
+   "note": "AI 번역을 숨긴 서비스가 판매 중단 · 출판계는 AI 고지 기준을 번역·삽화로 넓히는 방안 검토",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-07-28-us-states-ai-therapy-laws",
+   "ts": "2026-07-28T09:00:00+09:00",
+   "src": "Becker's Behavioral Health",
+   "url": "https://www.beckersbehavioralhealth.com/?p=11726",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "hd": "미국 5개 주, 2026년 AI 심리치료 챗봇 제한법 제정 — 테네시 7.1, 메인 7.29, 콜로라도 8.12 시행",
+   "fx": "강",
+   "kind": "법·규제",
+   "ind": [
+    "24",
+    "25"
+   ],
+   "note": "상담·치료를 AI로 대신하는 것을 법으로 제한 · 버몬트(6.17), 로드아일랜드(2027.1) 포함",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-07-14-japan-voice-rights",
+   "ts": "2026-07-14T09:00:00+09:00",
+   "src": "Adnkronos",
+   "url": "https://english.adnkronos.com/2026/07/14/japan-to-protect-rights-of-voices-over-generative-ai-use/",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "hd": "일본 법무성, 유명인 목소리를 생성형 AI 무단 이용에서 초상처럼 보호하자는 보고서 초안 제출",
+   "fx": "약",
+   "kind": "법·규제",
+   "ind": [
+    "29"
+   ],
+   "note": "성우 목소리 무단 AI 복제의 민사 책임 기준 · 초안 단계",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-07-11-kma-medical-ai-law",
+   "ts": "2026-07-11T09:00:00+09:00",
+   "src": "머니투데이",
+   "url": "https://www.mt.co.kr/article/2026071115132426925",
+   "tier": "신뢰 매체",
+   "kr": true,
+   "hd": "대한의사협회, 의료 AI '데이터특별법' 제정 국회 건의 예고 — AI 오진 책임과 의료 데이터 생산자 권리",
+   "fx": "약",
+   "kind": "직능단체",
+   "ind": [
+    "24"
+   ],
+   "note": "의사 단체가 'AI 의사'의 책임·수가·면허 문제 제기 · 건의 예고 단계",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-06-25-gm-korea-union-ai-agent",
+   "ts": "2026-06-25T09:00:00+09:00",
+   "src": "헤럴드경제",
+   "url": "https://www.heraldk.com/article/2026062502000080321",
+   "tier": "신뢰 매체",
+   "kr": true,
+   "hd": "한국GM 노조, 사무직 AI 에이전트 활용 범위를 노사가 함께 정하자고 요구 — AI로 근로자 평가·감시에도 반대",
+   "fx": "약",
+   "kind": "노사",
+   "ind": [
+    "31",
+    "37"
+   ],
+   "note": "사무용 AI 도입도 노사 협의 대상이라는 요구 · 금속노조 공동요구(사전 통보·공동 평가)",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-06-23-lsa-ai-dismissal-bill",
+   "ts": "2026-06-23T09:00:00+09:00",
+   "src": "국민참여입법센터",
+   "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+   "tier": "1차 출처",
+   "kr": true,
+   "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+   "fx": "약",
+   "kind": "법·규제",
+   "ind": [],
+   "note": "'노동영역 인공지능시스템' 사전 고지·설명 요청권 · 9.1 환노위 상정, 소위 회부",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-06-05-sag-aftra-ai-actors",
+   "ts": "2026-06-05T09:00:00+09:00",
+   "src": "Spectrum News",
+   "url": "https://spectrumlocalnews.com/ca/california/entertainment/2026/06/05/actors-union-approves-contract-studios-streamers",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "hd": "미국 배우노조 SAG-AFTRA, 90% 넘는 찬성으로 4년 계약 승인 — AI 배우는 실제 배우보다 '상당한 부가가치'가 있을 때만",
+   "fx": "중",
+   "kind": "노사",
+   "ind": [
+    "29"
+   ],
+   "note": "할리우드 TV·영화 배우 계약(2030년까지) · AI 연기자 사용을 최소화하는 조건",
+   "sig": "저항",
+   "st": "none"
+  },
+  {
+   "id": "2026-06-03-sbs-union-ai-clause",
+   "ts": "2026-06-03T09:00:00+09:00",
+   "src": "기자협회보",
+   "url": "https://journalist.or.kr/news/article.html?no=61004",
+   "tier": "신뢰 매체",
+   "kr": true,
+   "hd": "SBS 노사 단협 체결 — AI로 직무가 바뀌면 교육·재배치, 직원의 AI 목소리·초상은 본인 동의 필수",
+   "fx": "중",
+   "kind": "노사",
+   "ind": [
+    "29"
+   ],
+   "note": "방송사 단협에 AI 조항 · 퇴직 후 AI 목소리·초상 무단 사용 금지, 2년 적용",
+   "sig": "저항",
+   "st": "none"
   }
  ]
 }

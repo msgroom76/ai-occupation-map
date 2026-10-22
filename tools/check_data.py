@@ -53,6 +53,29 @@ except Exception: err('feed: updated 형식 이상')
 _nb = [n for n in feed['items'] if not n.get('base')]
 if len(_nb) > 60: warn(f'feed: 기준 발표를 뺀 항목 {len(_nb)}개 (60개 초과)')
 
+# ---------- 저항·쟁점 (feed.front) ----------
+JOBC = {j['code'] for j in cm['jobs']} | set(cm['sm'])
+FK = {'법·규제', '판결·소송', '사용 거부', '노사', '직능단체', '여론'}
+fr = feed.get('front', [])
+fids = [n.get('id') for n in fr]
+if len(fids) != len(set(fids)): err('front: id 중복')
+if set(fids) & set(ids): err('front: items와 id가 겹침 ' + str(sorted(set(fids) & set(ids))))
+if len(fr) > 150: warn(f'front: {len(fr)}건 (150건 초과)')
+for n in fr:
+    i = n.get('id', '?')
+    if n.get('sig') != '저항': err(f'front {i}: sig는 저항')
+    if n.get('st') != 'none': err(f'front {i}: st는 none (지수에 반영하지 않음)')
+    if n.get('tier') not in ('1차 출처', '신뢰 매체'): err(f'front {i}: tier는 1차 출처·신뢰 매체만')
+    if n.get('fx') not in ('강', '중', '약'): err(f'front {i}: fx 값 이상 {n.get("fx")}')
+    if n.get('kind') not in FK: err(f'front {i}: kind 값 이상 {n.get("kind")}')
+    if not str(n.get('url', '')).startswith('https://'): err(f'front {i}: url이 https가 아님')
+    if not n.get('hd'): err(f'front {i}: 제목 없음')
+    bad = [c for c in n.get('ind', []) if c not in JOBC]
+    if bad: err(f'front {i}: 없는 직업 코드 {bad}')
+    if not re.match(r'^\d{4}-\d{2}-\d{2}T', str(n.get('ts', ''))): err(f'front {i}: ts 형식 이상')
+for n in feed['items']:
+    if n.get('sig') == '저항': err(f'feed {n.get("id")}: 저항 소식은 items가 아니라 front에')
+
 if not feed_only:
     # ---------- city_meta.json ----------
     J = cm['jobs']

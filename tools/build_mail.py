@@ -119,6 +119,17 @@ for i,w in enumerate(weeks):
     rows.append(para('지금 가장 많이 노출된 직업',MUT,13,'16px 0 0'))
     rows.append(table(['직업','노출도','취업자'],[[a(f'{BASE}/j/{j["code"]}',j['name'],INK),f'{occ(j,A)*100:.0f}%',f'{j["ws"]:.0f}만 명'] for j in top]))
     txt+=['','■ 숫자로 보는 이번 주']+[f'- 오름: {j["name"]} {occ(j,A)*100:.0f}% (+{d:.2f}%p)' for d,j in mv]+[f'- 노출 상위: {j["name"]} {occ(j,A)*100:.0f}% · {j["ws"]:.0f}만 명' for j in top]
+    # 이번 주 전선: 사람·제도의 저항 소식(feed.front). 지수에는 반영하지 않지만 '어디서 막히고 있나'를 같이 보여준다
+    FX={'강':'효력 강','중':'효력 중','약':'효력 약'}
+    fr=[n for n in feed.get('front',[]) if start<date.fromisoformat(n['ts'][:10])<=end]
+    fr.sort(key=lambda n:({'강':0,'중':1,'약':2}.get(n.get('fx'),3),n['ts']))
+    if fr:
+        rows.append(kicker(f'{k+1:02d} — 이번 주 전선'))
+        rows.append(para('AI가 할 수 있어도 법·노사·기관의 결정이 대체를 막거나 늦춘 소식이에요. 지수에는 반영하지 않아요.',MUT,13,'0 0 4px'))
+        for n in fr[:5]:
+            jn=', '.join(j['name'] for j in J if any(c.startswith(j['code']) for c in n.get('ind',[]))) or '모든 직업'
+            rows.append(para(f'<b style="color:{PINK}">{FX.get(n.get("fx"),"")}</b> · {e(n.get("kind",""))}<br>{a(n["url"],n["hd"],INK)}<br><span style="color:{MUT};font-size:13px">{e(n["src"])} · 닿는 직업: {e(jn)}</span>','8px 0'))
+        txt+=['','■ 이번 주 전선 (지수에는 반영하지 않음)']+[f'- [{FX.get(n.get("fx"),"")}·{n.get("kind","")}] {n["hd"]} ({n["src"]}) {n["url"]}' for n in fr[:5]]
     if B and B.get('closing'):
         rows.append(para(e(B['closing']),INK,16,'32px 0 0'));txt+=['',B['closing']]
     rows.append(row(f'<a href="{BASE}/" style="display:inline-block;background:{INK};color:#fff;font:700 15px {F};padding:13px 22px;text-decoration:none">내 직업 찾아보기 →</a>','24px 0 0'))

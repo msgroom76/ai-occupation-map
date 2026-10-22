@@ -797,6 +797,13 @@ details.card[open] summary::after{content:"−"}
 .fold .join .jn{padding-top:0}
 .fold.inv .join .ja{color:#ff8ccd}
 @media (max-width:899px){.fold .join{margin:4px 0 28px}}
+
+/* ===== 저항·쟁점 */
+.fxb{font-size:10.5px;font-weight:700;padding:0 5px;border:1px solid var(--ink);color:var(--ink);white-space:nowrap}
+.fxb.f3{background:var(--ink);color:var(--bg)}
+.fxb.f1{border-style:dashed;color:var(--ink2);border-color:var(--ink3)}
+.news .fj{font-size:11px;color:var(--ink2);display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;margin-top:2px}
+.news .fj .show{all:unset;cursor:pointer;color:var(--ink);text-decoration:underline;text-underline-offset:2px;font-size:11px}
 </style>
 
 </head><body>
@@ -1227,6 +1234,33 @@ function newsCard(){
   c.append(ul);
   if(FEED.items.length>5){const mb=el('button','more',newsAll?'접기':`${FEED.items.length}개 모두 보기`);mb.type='button';mb.onclick=()=>{newsAll=!newsAll;render()};c.appendChild(mb)}
   c.append(el('p','rule','하루 세 번(8시·12시·18시) 소식을 모으고, 숫자는 매주 월요일 한 번에 움직여요. 1차 출처 발표는 해당 업무의 도달 시점을 3개월, 신뢰 매체는 1개월 앞당기고 미국 발표는 절반만 반영해요. "확인 필요"는 원 출처를 확인할 때까지 반영하지 않아요.'));return c}
+// ---------- 저항·쟁점(feed.front): 사람과 제도가 AI의 일 대체를 막거나 늦추는 사건. 노출도에는 반영하지 않는다 ----------
+const FXW={'강':3,'중':2,'약':1},FXL={'강':'효력 강','중':'효력 중','약':'효력 약'};
+const FRONT=()=>(FEED.front||[]).slice().sort((a,b)=>a.ts<b.ts?1:-1);
+const frontFor=code=>FRONT().filter(n=>(n.ind||[]).some(c=>c.startsWith(code)||code.startsWith(c)));
+function frontItem(n,skip){const li=el('li','fr'),b=el('div','nb');
+  const m=el('div','m');m.append(el('span','fxb f'+(FXW[n.fx]||1),FXL[n.fx]||n.fx),`${fmtD(n.ts)} · ${n.src} · ${n.kind} · ${n.kr?'국내':'해외'}`);
+  const hd=el('a','hd',n.hd);hd.href=n.url;hd.target='_blank';hd.rel='noopener';b.append(m,hd);
+  if(n.note)b.append(el('div','eff',n.note));
+  const js_=(n.ind||[]).map(c=>jIdx(c.slice(0,2))).filter((k,i,a)=>k>=0&&a.indexOf(k)===i&&RJ_[k].code!==skip);
+  if(js_.length){const w=el('div','fj');w.append('닿는 직업 ');js_.forEach(k=>{const bt=el('button','show',RJ_[k].name);bt.type='button';bt.onclick=()=>{track('front','job:'+RJ_[k].code);pickJob(k)};w.appendChild(bt)});b.append(w)}
+  else if(!(n.ind||[]).length)b.append(el('div','fj','모든 직업에 걸려요'));
+  li.appendChild(b);return li}
+let frontAll=false;
+function frontCard(){const L=FRONT();if(!L.length)return null;
+  const c=el('section','card'),lab=el('div','lab');lab.append(el('span',null,'사람과 제도의 저항'),el('span',null,`${L.length}건 · 지수에는 반영 안 함`));c.append(lab);
+  c.append(el('p','lede sm','AI가 할 수 있어도, 법·노사·기관의 결정이 대체를 막거나 늦추는 곳이 있어요.'));
+  const ul=el('ul','news');(frontAll?L:L.slice(0,4)).forEach(n=>ul.appendChild(frontItem(n)));c.append(ul);
+  if(L.length>4){const mb=el('button','more',frontAll?'접기':`${L.length}개 모두 보기`);mb.type='button';mb.onclick=()=>{frontAll=!frontAll;track('front','all');render()};c.appendChild(mb)}
+  c.append(el('p','rule','효력 강: 시행 중인 법·판결·구속력 있는 금지 · 중: 노사 합의·공식 지침·정부안 · 약: 성명·소송 제기·법안 발의·여론조사. 노출도는 AI가 할 수 있는 몫이라 이 소식으로 숫자가 바뀌지 않아요. 2026년 10월부터 모으고 있어요.'));return c}
+function frontBox(code,sk){const box=el('div'),L=frontFor(sk||code),G=FRONT().filter(n=>!(n.ind||[]).length);
+  const lab=el('div','lab');lab.append(el('span',null,'이 직업의 쟁점'),el('span',null,'사람·제도의 저항'));box.append(lab);
+  if(L.length){const w=L.reduce((s,n)=>s+(FXW[n.fx]||1),0),cnt=k=>L.filter(n=>n.fx===k).length;
+    box.append(el('p','lede sm',`이 직업에 걸린 저항 ${L.length}건 · 무게 ${w} (강 ${cnt('강')} · 중 ${cnt('중')} · 약 ${cnt('약')})`));
+    const ul=el('ul','news');L.slice(0,6).forEach(n=>ul.appendChild(frontItem(n,code)));box.append(ul)}
+  else box.append(el('p','rule','아직 이 직업에 기록된 저항 소식이 없어요. 2026년 10월부터 모으고 있어요.'));
+  if(G.length){const gl=el('div','lab');gl.append(el('span',null,'모든 직업에 걸린 쟁점'));const ul=el('ul','news');G.slice(0,3).forEach(n=>ul.appendChild(frontItem(n,code)));box.append(gl,ul)}
+  box.append(el('p','rule','무게는 효력 강 3 · 중 2 · 약 1을 더한 값이에요. 기사 수가 아니라 실제 효력으로 따져요. AI가 할 수 있는 몫(노출도)과는 별개예요.'));return box}
 function adSlot(){if(!(CFG.ads&&CFG.ads.enabled)&&!/[?&]ads=1/.test(location.search))return null;
   const a=el('aside','card ad');a.setAttribute('aria-label','광고');a.append(el('div','lab','광고'));const box=el('div','adbox');
   if(CFG.ads&&CFG.ads.html)box.innerHTML=CFG.ads.html;else box.textContent='광고 자리';a.appendChild(box);
@@ -1393,7 +1427,8 @@ function jobCard(j){
   const RT=sk?SMD[sk]:RJ_[j];const rt=el('div','raters');rt.innerHTML=`<div><small>미국 연구</small><b>${pct(RT.e)}%</b></div><div><small>국제노동기구</small><b>${pct(RT.il)}%</b></div><div class="u"><small>실제 사용 확인</small><b>${RT.ob==null?'자료 없음':pct(Math.min(RT.ob,f(2026)))+'%'}</b></div>`;
   const rtn=el('p','rule','2026 노출도는 두 연구 값의 평균이에요. 실제 사용 확인은 AI 사용 기록(Anthropic 경제지수)에서 이미 쓰이는 게 보인 몫이에요.');
   c.append(top,acts,lede,bn,trend((y,s)=>f(y,s),{ref:.4,refLabel:'40% 선'}),st);
-  const P=jobTabs(c,[['my','내 업무'],['why','근거'],['sm','세부 직업',RJ_[j].smalls&&RJ_[j].smalls.length>1],['tasks','주요 업무'],['move','옮겨가기']]);
+  const nF=frontFor(sk||RJ_[j].code).length;const P=jobTabs(c,[['my','내 업무'],['why','근거'],['front',nF?`쟁점 ${nF}`:'쟁점'],['sm','세부 직업',RJ_[j].smalls&&RJ_[j].smalls.length>1],['tasks','주요 업무'],['move','옮겨가기']]);
+  P.front.append(frontBox(RJ_[j].code,sk));
   P.my.append(tkBox(j,sk,selVia&&selVia.k&&/^\d{4}$/.test(String(selVia.k))?String(selVia.k):null));P.why.append(rt,rtn,el('div','lab','노출된 업무의 성격'),sp,lg,relBox);
   if(RJ_[j].smalls&&RJ_[j].smalls.length>1){const sl=el('div','lab');sl.append(el('span',null,'이 지역의 세부 직업'),el('span',null,`소분류 · ${yi()} 노출도 · 취업자`));P.sm.append(sl);
     const ul2=el('ul','comp sm2');let thin=false;RJ_[j].smalls.slice(0,8).forEach(([cd,n,k])=>{const d=SMD[cd],a=d?occS(cd,year):occ(j,year);if(d&&d.n<=2)thin=true;const li=el('li',cd===sk?'on':null);
@@ -1438,7 +1473,7 @@ function render(){
   else if(selA>=0)F.push(['job','선택한 직업',[jobCard(selA)],ctx]);
   else if(flash)F.push(['flash','새 소식',[flashCard()],ctx]);
   else{F.push(['mine','내 직업',[mineCard()],ctx]);F.push(['today','오늘의 지도',[summaryCard(),todayCard(),highlights()],ctx])}
-  F.push(['news','이번 주 소식',[newsCard()],rest]);
+  F.push(['news','이번 주 소식',[newsCard(),frontCard()],rest]);
   F.push(['browse','둘러보기',[catsCard(),rankCard(),adSlot()],rest]);
   F.push(['join','함께하기',[joinBlock('bottom'),aboutCard(),el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024)·ILO(2025) 평균 · 실제 사용 Anthropic(2026) · 업무 O*NET 30.0 · 취업자 국가데이터처(2025년 하반기)`),legalLinks()],rest]);
   const FL=F.map(f=>[f[0],f[1],f[2].filter(Boolean),f[3]]).filter(f=>f[2].length),CL=foldGet();
