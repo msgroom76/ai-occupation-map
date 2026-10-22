@@ -63,6 +63,7 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 - 표 구조 변경은 `functions/_db.js`의 MIGRATIONS에 번호 순서로 더한다(meta 표의 schema에 적용 번호가 남음). 보관 기간 정리(접속 해시 2일, 의견 메모 1년, 해지 구독 30일, 확인 안 한 신청 30일, 문의 1년, 이벤트 400일)는 하루 한 번 첫 요청 때 돈다 — 개인정보처리방침(/privacy)과 같은 기간이므로 함께 고친다.
 - 메일을 보낼 때는 status='active'인 구독자에게만, 본문의 `{{unsubscribe_url}}`을 `https://aijido.org/api/unsub?t=<token>`으로 바꾸고 `List-Unsubscribe`·`List-Unsubscribe-Post: List-Unsubscribe=One-Click` 헤더를 붙인다.
 - 개인정보처리방침·이용약관·소개 페이지는 `python3 tools/build_legal.py`로 만든다.
+- 주간 메일 발송은 운영 화면 https://aijido.org/admin (STATS_KEY 필요, 검색 제외)에서 사람이 한다: 호 고르기 → 미리보기 → 시험 발송(내 메일) → 확인 문구로 주를 입력하고 발송. `functions/api/admin/mail.js`가 mail/<주>.json·html·txt를 읽어 확인한 구독자(active)에게만 50명씩 Resend batch로 보내고, `sends` 표에 남겨 같은 호를 두 번 보내지 않는다. 처음 켤 때 '확인 전 신청자에게 확인 메일'을 한 번 보낸다. Resend 무료 요금은 하루 100통·한 달 3,000통. 정기 작업은 메일을 보내지 않는다.
 - Cloudflare Pages 프로젝트 설정 → 바인딩에 D1 데이터베이스를 `DB` 이름으로 연결해야 저장된다(표는 첫 요청 때 자동 생성). 환경 변수 `STATS_KEY`를 넣어야 집계 조회가 열린다.
 - 바인딩이 없으면 집계는 조용히 건너뛰고, 구독·문의는 '준비 중' 안내를 돌려준다.
 

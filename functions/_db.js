@@ -19,7 +19,9 @@ export const MIGRATIONS = [
    // 이전 구독 신청은 확인 메일을 거치지 않았으므로 '확인 전'으로 둔다(첫 발송 전에 확인 메일부터 보낸다)
    "UPDATE subscribers SET status = CASE WHEN unsubscribed IS NULL THEN 'pending' ELSE 'unsub' END, unsub_at = unsubscribed WHERE status IS NULL",
    "CREATE UNIQUE INDEX IF NOT EXISTS sub_token ON subscribers(token)",
-   "CREATE INDEX IF NOT EXISTS fb_ih_day ON feedback(ih, created)"]
+   "CREATE INDEX IF NOT EXISTS fb_ih_day ON feedback(ih, created)"],
+  // 3: 주간 메일 발송 기록(같은 주에 같은 사람에게 두 번 보내지 않게, 중간에 멈춰도 이어서 보내게)
+  ["CREATE TABLE IF NOT EXISTS sends (week TEXT NOT NULL, email TEXT NOT NULL, status TEXT NOT NULL, at TEXT NOT NULL, id TEXT, err TEXT, PRIMARY KEY (week, email))"]
 ];
 async function migrate(DB) {
   await DB.batch(SCHEMA.map(s => DB.prepare(s)));
@@ -27,7 +29,7 @@ async function migrate(DB) {
   let v = row ? +row.v : 0;
   if (!row) {  // meta가 새로 생긴 경우: 이미 있는 표에 status 열이 있는지로 판단
     const cols = (await DB.prepare("PRAGMA table_info(subscribers)").all()).results.map(c => c.name);
-    v = cols.includes('status') ? MIGRATIONS.length : 1;
+    v = cols.includes('status') ? 2 : 1;
   }
   for (let i = v; i < MIGRATIONS.length; i++) {
     for (const s of MIGRATIONS[i]) { try { await DB.prepare(s).run(); } catch (e) { if (!/duplicate column/i.test(String(e))) throw e; } }
@@ -54,6 +56,7 @@ async function maintain(DB) {
     DB.prepare("DELETE FROM subscribers WHERE status = 'pending' AND COALESCE(consent_at, created) < date('now', '+9 hours', '-30 day')"),  // 확인 안 한 신청: 30일 뒤 삭제
     DB.prepare("DELETE FROM leads WHERE created < date('now', '+9 hours', '-1 year')"),                                       // 문의: 1년
     DB.prepare("DELETE FROM events WHERE day < date('now', '+9 hours', '-400 day')"),
+    DB.prepare("DELETE FROM sends WHERE at < date('now', '+9 hours', '-1 year')"),                                            // 발송 기록: 1년
     DB.prepare("INSERT INTO meta (k, v) VALUES ('cleanup', ?1) ON CONFLICT(k) DO UPDATE SET v = excluded.v").bind(day)
   ]);
 }
