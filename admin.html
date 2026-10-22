@@ -80,6 +80,11 @@ iframe{width:100%;height:620px;border:1px solid var(--hair);background:#fff;marg
 <p class="msg" id="m4"></p>
 <div class="wrap"><table class="srct"><thead><tr><th>자료</th><th>지금 쓰는 판</th><th>확인 방법</th><th>상태</th><th></th></tr></thead><tbody id="src"></tbody></table></div>
 
+<h2 id="orgsec">조직 진단 요청 <small>/org 자가 진단에서 보고서를 요청한 곳</small></h2>
+<p class="note">직무·인원을 함께 보낸 요청은 [설정 파일]로 reports/&lt;id&gt;.json을 받아 <code>python3 tools/build_report.py</code>에 바로 넣을 수 있어요. 동종사 파일과 회사 조사(facts)는 따로 채워요.</p>
+<p class="msg" id="m5"></p>
+<div class="wrap"><table class="srct"><thead><tr><th>요청</th><th>직무·인원</th><th>범위</th><th>상태</th><th></th></tr></thead><tbody id="orgs"></tbody></table></div>
+
 <h2>최근 신청자 <small>주소 일부는 가려서 보여요</small></h2>
 <div class="wrap"><table><thead><tr><th>주소</th><th>상태</th><th>신청</th><th>확인</th></tr></thead><tbody id="recent"></tbody></table></div>
 </section>
@@ -93,7 +98,7 @@ const ts=s=>(s||'').slice(5,16).replace('T',' ');
 let D=null,SEL=null;
 async function boot(){let r,j;try{({r,j}=await api('/api/admin/mail'))}catch(e){$('#login').hidden=false;say($('#lm'),'연결하지 못했어요.',false);return}
   if(r.status===403||!j.ok){$('#login').hidden=false;$('#app').hidden=true;$('#out').hidden=true;if(r.status!==403)say($('#lm'),j.msg||'열지 못했어요.',false);return}
-  D=j;$('#login').hidden=true;$('#app').hidden=false;$('#out').hidden=false;cov();srcLoad();
+  D=j;$('#login').hidden=true;$('#app').hidden=false;$('#out').hidden=false;cov();srcLoad();orgLoad();
   $('#status').textContent=(j.mailOn?'메일 발송 켜짐':'메일 발송 꺼짐 — Pages 설정의 MAIL_ENABLED·RESEND_API_KEY·MAIL_FROM을 확인하세요')+(j.adminTo?` · 승인 요청은 ${j.adminTo}로 가요`:'');
   $('#ca').textContent=j.counts.active;$('#cp').textContent=j.counts.pending;$('#cu').textContent=j.counts.unsub;$('#cm').textContent=(j.confirmMails&&j.confirmMails.sent)||0;
   const dl=$('#daily');dl.innerHTML='';if(!j.daily.length){const tr=document.createElement('tr');const c=td('최근 30일 기록이 없어요','note');c.colSpan=4;tr.appendChild(c);dl.appendChild(tr)}
@@ -137,6 +142,19 @@ $('#kgo').onclick=()=>{KEY=$('#k').value.trim();try{sessionStorage.setItem('aima
 $('#out').onclick=async()=>{await fetch('/api/admin/login',{method:'DELETE'});KEY='';try{sessionStorage.removeItem('aimap.admin')}catch(e){}$('#lm').textContent='';boot()};
 // 소식 수집 현황: 공개 파일(feed.json·city_meta.json)만 읽는다
 const isoWk=t=>{const d=new Date(t.slice(0,10)+'T00:00:00Z');const day=(d.getUTCDay()+6)%7;d.setUTCDate(d.getUTCDate()-day+3);const y=d.getUTCFullYear();const f=new Date(Date.UTC(y,0,4));return y+'-W'+String(1+Math.round(((d-f)/864e5-3+((f.getUTCDay()+6)%7))/7)).padStart(2,'0')};
+// 조직 진단 요청
+const OST={new:'접수',doing:'진행',sent:'전달',hold:'보류'};
+async function orgLoad(){const {j}=await api('/api/admin/org');const L=j.list||[],tb=$('#orgs');tb.innerHTML='';
+  if(!L.length){const tr=document.createElement('tr');const c=td('아직 요청이 없어요','note');c.colSpan=5;tr.appendChild(c);tb.appendChild(tr);return}
+  L.forEach(x=>{const tr=document.createElement('tr');
+    const c1=document.createElement('td');c1.append(document.createTextNode(`#${x.id} ${x.org||''}`));const s1=document.createElement('small');s1.textContent=`${x.name||''} · ${x.email} · ${ts(x.created)}`;c1.append(s1);if(x.msg){const s2=document.createElement('small');s2.textContent=x.msg.slice(0,140);c1.append(s2)}
+    const c2=td(x.roles?`직무 ${x.roles}개 · ${x.n.toLocaleString()}명`:'미제공');if(x.roles){const s=document.createElement('small');s.textContent=[x.industry?'업종 '+x.industry:'',x.payroll?'급여 총액 '+x.payroll+'억':''].filter(Boolean).join(' · ');c2.append(s)}
+    const c4=document.createElement('td');const sel=document.createElement('select');Object.entries(OST).forEach(([k,v])=>{const o=new Option(v,k);if(k===x.status)o.selected=true;sel.append(o)});
+    sel.onchange=async()=>{const {j}=await api('/api/admin/org',{method:'POST',body:JSON.stringify({id:x.id,status:sel.value})});say($('#m5'),j.msg||'실패',!!j.ok)};c4.append(sel);
+    const c5=document.createElement('td');if(x.roles){const b=document.createElement('button');b.type='button';b.textContent='설정 파일';
+      b.onclick=async()=>{const h={};if(KEY)h.authorization='Bearer '+KEY;const r=await fetch(`/api/admin/org?id=${x.id}&fmt=config`,{credentials:'same-origin',headers:h});if(!r.ok){say($('#m5'),'받지 못했어요',false);return}
+        const a=document.createElement('a');a.href=URL.createObjectURL(await r.blob());a.download=`org${x.id}.json`;a.click()};c5.append(b)}
+    tr.append(c1,c2,td(x.scope||''),c4,c5);tb.appendChild(tr)})}
 // 자료 출처 관리
 const SST={new:['새 판 나옴','snew'],due:['확인할 때','sdue'],soon:['곧 확인','ssoon'],ok:['최신','sok'],wait:['확인일 전','ssoon'],fixed:['고정본','sfixed']};
 const AUTO={onet:'자동 · 공개 페이지',hf:'자동 · API',hff:'자동 · API',gh:'자동 · API',kosis:'자동 · KOSIS API',law:'자동 · 법령 API'};

@@ -8,7 +8,7 @@ import { adminTo, batch } from '../_issue.js';
 import { mailHtml, esc, link, textFoot } from '../_tpl.js';
 const KINDS = ['후원', '제휴·공동 콘텐츠', '조직 리포트', '워크숍·강연', '언론 취재', '공동 리포트·연구', '기타'];
 const RECEIPT_DAY = 20, ALERT_DAY = 30;
-async function bump(d, key, cap, today) {
+export async function bump(d, key, cap, today) {
   const v = (await d.prepare("SELECT v FROM meta WHERE k = ?1").bind(key).first())?.v || '';
   const n = v.startsWith(today + ':') ? +v.split(':')[1] : 0;
   if (n >= cap) return false;

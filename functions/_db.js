@@ -21,7 +21,9 @@ export const MIGRATIONS = [
    "CREATE UNIQUE INDEX IF NOT EXISTS sub_token ON subscribers(token)",
    "CREATE INDEX IF NOT EXISTS fb_ih_day ON feedback(ih, created)"],
   // 3: 주간 메일 발송 기록(같은 주에 같은 사람에게 두 번 보내지 않게, 중간에 멈춰도 이어서 보내게)
-  ["CREATE TABLE IF NOT EXISTS sends (week TEXT NOT NULL, email TEXT NOT NULL, status TEXT NOT NULL, at TEXT NOT NULL, id TEXT, err TEXT, PRIMARY KEY (week, email))"]
+  ["CREATE TABLE IF NOT EXISTS sends (week TEXT NOT NULL, email TEXT NOT NULL, status TEXT NOT NULL, at TEXT NOT NULL, id TEXT, err TEXT, PRIMARY KEY (week, email))"],
+  // 4: 조직 자가 진단(/org)에서 들어온 보고서 요청. config는 담당자가 함께 보내기로 동의한 직무·인원(JSON)
+  ["CREATE TABLE IF NOT EXISTS org_requests (id INTEGER PRIMARY KEY AUTOINCREMENT, created TEXT NOT NULL, name TEXT, org TEXT, email TEXT NOT NULL, scope TEXT, msg TEXT, config TEXT, status TEXT NOT NULL DEFAULT 'new', updated TEXT)"]
 ];
 async function migrate(DB) {
   await DB.batch(SCHEMA.map(s => DB.prepare(s)));
@@ -55,6 +57,7 @@ async function maintain(DB) {
     DB.prepare("DELETE FROM subscribers WHERE status = 'unsub' AND COALESCE(unsub_at, unsubscribed) < date('now', '+9 hours', '-30 day')"), // 해지: 30일 뒤 삭제
     DB.prepare("DELETE FROM subscribers WHERE status = 'pending' AND COALESCE(consent_at, created) < date('now', '+9 hours', '-30 day')"),  // 확인 안 한 신청: 30일 뒤 삭제
     DB.prepare("DELETE FROM leads WHERE created < date('now', '+9 hours', '-1 year')"),                                       // 문의: 1년
+    DB.prepare("DELETE FROM org_requests WHERE created < date('now', '+9 hours', '-1 year')"),                                // 조직 진단 요청: 1년
     DB.prepare("DELETE FROM events WHERE day < date('now', '+9 hours', '-400 day')"),
     DB.prepare("DELETE FROM sends WHERE at < date('now', '+9 hours', '-1 year')"),                                            // 발송 기록: 1년
     DB.prepare("INSERT INTO meta (k, v) VALUES ('cleanup', ?1) ON CONFLICT(k) DO UPDATE SET v = excluded.v").bind(day)

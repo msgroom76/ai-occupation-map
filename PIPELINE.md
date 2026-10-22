@@ -204,3 +204,11 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 - 회사 파일에 `office`, `groups`, `readers`, `payroll_note`, `op_profit`, `kpi_rows`, `facts`(finance·headcount·bullets·ai_moves), `sources`, `asks`, `law_rows`를 넣을 수 있다(스크립트 머리말 참고). 동종사 파일 항목에 `biz`, `ai`, `n_note`.
 - `checks.json`: 인원 합계, 같은 직업 분류로 묶인 직무, 급여 근거, 빠진 자료. 문서로 옮기기 전에 0건이 되거나 본문에 밝혀야 한다.
 - 순서: 조사(회사·동종사 에이전트) → 회사·동종사 파일 → build_report → 작성 자리 채우기 → Docs(섹션별 replace, 그림은 asset→blob) → 숫자 대조.
+
+## 조직 자가 진단(/org) — 베타, 링크로만 공개
+- 화면: `org.html`(마스터는 작업 폴더 web/org.html, build_site.py가 지도 검색 코드를 주입). noindex, 지도 메뉴에는 아직 연결 안 함.
+- 계산: `org_engine.js` — tools/org_report.py와 같은 식. 바꾸면 `node tools/test_engine.mjs`로 네 회사 일치 확인(인건비는 0.01억 차이 허용).
+- 업종 평균: `org_bench.json` ← `python3 tools/build_org_data.py`(reports/industry_bench.json의 업종별 직업 구성). 업종 평균 노출도는 브라우저가 이번 주 보정으로 다시 계산. 원자료(DT_1ES3B33J)는 자료 출처 관리 'ind_mix'.
+- 입력값은 브라우저에만(localStorage, 공유 링크는 주소 # 뒤). 서버 저장은 보고서 요청 때만: `/api/org-request` → org_requests(+leads, 1년 보관).
+- 운영 화면 '조직 진단 요청' → [설정 파일] = reports/<id>.json 형식 → 동종사 파일·facts를 채워 `python3 tools/build_report.py`.
+- 이벤트: org/start·add·paste·pick·template·result·share·print·csv·request·open-shared.
