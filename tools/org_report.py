@@ -84,7 +84,15 @@ def run(path):
            'fte': round(sum(r['fte'] for r in rows), 1), 'fte30': round(sum(r['fte30'] for r in rows), 1), 'cost': round(sum(r['cost_m'] for r in rows), 1),
            'payroll': round(sum(r['n'] * (r['wage_k'] or 0) * 12 / 1e5 for r in rows), 1),
            'sub': round(sum(r['fte'] * r['sub'] for r in rows) / max(sum(r['fte'] for r in rows), 1e-9), 3)}
+    if C.get('payroll_actual'):   # 감사보고서 등 실제 급여 총액(억 원)이 있으면 직종 평균 임금 대신 그 규모에 맞춰 환산
+        k = C['payroll_actual'] / max(org['payroll'], 1e-9); org['payroll_est'] = org['payroll']
+        for r in rows: r['cost_m'] = round(r['cost_m'] * k, 2)
+        org['cost'] = round(sum(r['cost_m'] for r in rows), 1); org['payroll'] = C['payroll_actual']; org['payroll_basis'] = 'actual'
     org['stage'] = stg(org['e26']); org['stage30'] = stg(org['e30'])
+    # 직업 대분류 구성(업종 비교용)
+    mix = {}
+    for r in rows: mix[r['code'][0]] = mix.get(r['code'][0], 0) + r['n']
+    org['mix'] = {k: round(v / N, 4) for k, v in sorted(mix.items())}
     # 조직 전체에서 AI가 가장 많이 해낼 업무(인원 가중)
     agg = {}
     for r in rows:

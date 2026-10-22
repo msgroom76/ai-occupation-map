@@ -36,3 +36,31 @@ ax.set_yticks(range(len(T))); ax.set_yticklabels([t['name'] for t in T], fontsiz
 ax.set_xlim(0, max(t['fte'] for t in T) * 1.45)
 fig.tight_layout(); fig.savefig(f'{od}/chart_tasks.png', facecolor=BG); plt.close(fig)
 print('charts ok')
+# 3. 직업 대분류 구성: 회사 vs 업종(지역별고용조사)
+MJN = {'1': '관리자', '2': '전문가', '3': '사무', '4': '서비스', '5': '판매', '6': '농림어업', '7': '기능원', '8': '장치·조립', '9': '단순노무'}
+peers_path = os.path.join('reports', M['company']['id'] + '_peers.json')
+if os.path.exists(peers_path):
+    P = json.load(open(peers_path)); IB = json.load(open('reports/industry_bench.json'))
+    ind = IB['industry'][P['industry']]; mix = o['mix']
+    ks = [k for k in MJN if mix.get(k, 0) > 0 or ind['mix'].get(k, 0) > .02]
+    fig, ax = plt.subplots(figsize=(8, 3.4), dpi=200); fig.patch.set_facecolor(BG); style(ax)
+    import numpy as np
+    x = np.arange(len(ks)); w = .38
+    ax.bar(x - w/2, [mix.get(k, 0) * 100 for k in ks], w, color=INK, label=M['company']['name'])
+    ax.bar(x + w/2, [ind['mix'].get(k, 0) * 100 for k in ks], w, color=SOFT, label=P['industry'].split('(')[0].replace(' ', '').split('.')[-1] + ' 평균')
+    for i, k in enumerate(ks):
+        ax.text(i - w/2, mix.get(k, 0) * 100 + .8, f"{mix.get(k,0)*100:.0f}", ha='center', fontsize=8, color=TXT)
+        ax.text(i + w/2, ind['mix'].get(k, 0) * 100 + .8, f"{ind['mix'].get(k,0)*100:.0f}", ha='center', fontsize=8, color=MUT)
+    ax.set_xticks(x); ax.set_xticklabels([MJN[k] for k in ks], fontsize=10, color=TXT); ax.set_yticks([])
+    ax.legend(frameon=False, fontsize=9, loc='upper left'); ax.set_ylabel('인원 비중(%)', color=MUT, fontsize=9)
+    fig.tight_layout(); fig.savefig(f'{od}/chart_mix.png', facecolor=BG); plt.close(fig)
+    # 4. 1인당 매출(같은 해 인원만)
+    Q = [p for p in P['peers'] if p.get('n') and not p.get('nodate')]
+    Q.sort(key=lambda p: p['rev'] / p['n'])
+    fig, ax = plt.subplots(figsize=(8, 2.6), dpi=200); fig.patch.set_facecolor(BG); style(ax)
+    v = [p['rev'] / p['n'] / 100 for p in Q]
+    ax.barh(range(len(Q)), v, color=[INK if p.get('self') else SOFT for p in Q], height=.6)
+    for i, p in enumerate(Q): ax.text(v[i] + .1, i, f"{v[i]:.1f}억 원 · {p['n']:,}명", va='center', fontsize=9, color=TXT)
+    ax.set_yticks(range(len(Q))); ax.set_yticklabels([p['name'] for p in Q], fontsize=11, color=TXT); ax.set_xticks([]); ax.set_xlim(0, max(v) * 1.35)
+    fig.tight_layout(); fig.savefig(f'{od}/chart_peers.png', facecolor=BG); plt.close(fig)
+    print('peer charts ok')
