@@ -192,7 +192,7 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 
 - 입력: reports/<회사>.json (직무·인원·직업 코드·그림). 인원은 회사 자료가 없으면 추정이고, 리포트에 추정이라고 밝힌다.
 - 계산: `python3 tools/org_report.py reports/<회사>.json` → reports/out/<회사>/metrics.json (지도와 같은 노출도, 대체형 비중, 명분·인건비 환산, 사내 옮겨가기, 자격·AI 기본법·노조·미국 비교, 관련 소식·쟁점).
-- 그림: `python3 tools/build_lineup.py reports/out/<회사>/metrics.json` (직무 군상, 사람마다 자기 물 높이) · `python3 tools/report_charts.py … <사무 직무 id들>` (두 집단·업무 도표). `reports/<회사>_peers.json`이 있으면 업종 직업 구성 비교와 동종사 그림도 만든다. 동종사 인원과 매출의 시점이 다르면 `"metric":"margin"`을 넣어 1인당 매출 대신 매출 규모·영업이익률을 그린다(무신사·에쓰푸드). 매출·영업이익은 백만 원 단위.
+- 그림: `python3 tools/build_lineup.py reports/out/<회사>/metrics.json` (직무 군상, 사람마다 자기 물 높이) · `python3 tools/report_charts.py … <사무 직무 id들>` (두 집단·업무 도표). `reports/<회사>_peers.json`이 있으면 업종 직업 구성 비교와 동종사 그림도 만든다. 동종사 인원과 매출의 시점이 다르면 `"metric":"margin"`을 넣어 1인당 매출 대신 매출 규모·영업이익률을 그린다(무신사·에쓰푸드). 매출·영업이익은 백만 원 단위. 두 집단 이름은 세 번째 인자로 바꿀 수 있다(예: 프레인 `"컨설팅·지원,제작·현장"`).
 - 사람 그림: pipeline/inputs/illo/figs/<이름>.png (AI로 만든 흑백 바탕, dither.py로 그림체 통일).
 - 임금: labor.json(KOSIS DT_118N_LCE306). KOSIS 표는 /api/kosis로 읽는다(서버의 KOSIS_KEY, 고용 통계만, 하루 저장).
 - reports/는 사이트로 열리지 않는다(_middleware 허용 목록 밖).

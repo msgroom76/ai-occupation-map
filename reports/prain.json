@@ -1,0 +1,108 @@
+{
+ "id": "prain",
+ "name": "(주)프레인글로벌",
+ "asof": "2026-10-22",
+ "headcount": 320,
+ "basis": "국민연금 가입자 320명(2026.10). 직무 구성은 서비스 영역·채용 공고·매출 구성(홍보 836억·출연 119억)으로 추정",
+ "payroll_actual": 165.0,
+ "roles": [
+  {
+   "id": "exec",
+   "name": "임원·본부장·팀장",
+   "n": 20,
+   "code": "122",
+   "fig": "exec"
+  },
+  {
+   "id": "pr",
+   "name": "PR 컨설턴트(언론·기업)",
+   "n": 108,
+   "code": "283",
+   "fig": "pr"
+  },
+  {
+   "id": "digital",
+   "name": "디지털·소셜 PR",
+   "n": 45,
+   "code": "283",
+   "fig": "marketer"
+  },
+  {
+   "id": "research",
+   "name": "리서치·데이터 분석",
+   "n": 8,
+   "code": "224",
+   "fig": "data"
+  },
+  {
+   "id": "global",
+   "name": "글로벌 PR·번역",
+   "n": 15,
+   "code": "291",
+   "fig": "writer"
+  },
+  {
+   "id": "content",
+   "name": "콘텐츠 에디터·카피",
+   "n": 15,
+   "code": "291",
+   "fig": "writer"
+  },
+  {
+   "id": "design",
+   "name": "디자이너",
+   "n": 15,
+   "code": "295",
+   "fig": "designer"
+  },
+  {
+   "id": "video",
+   "name": "영상 PD·편집",
+   "n": 10,
+   "code": "293",
+   "fig": "video"
+  },
+  {
+   "id": "event",
+   "name": "행사·스포츠 마케팅",
+   "n": 25,
+   "code": "298",
+   "fig": "event"
+  },
+  {
+   "id": "mgmt",
+   "name": "선수·아티스트 매니지먼트",
+   "n": 35,
+   "code": "298",
+   "fig": "sales"
+  },
+  {
+   "id": "acct",
+   "name": "재무·회계",
+   "n": 8,
+   "code": "331",
+   "fig": "accountant"
+  },
+  {
+   "id": "plan",
+   "name": "경영기획",
+   "n": 4,
+   "code": "281",
+   "fig": "admin"
+  },
+  {
+   "id": "hr",
+   "name": "인사",
+   "n": 6,
+   "code": "312",
+   "fig": "admin"
+  },
+  {
+   "id": "admin",
+   "name": "총무·비서",
+   "n": 6,
+   "code": "372",
+   "fig": "cs"
+  }
+ ]
+}

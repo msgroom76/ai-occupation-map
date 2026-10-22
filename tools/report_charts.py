@@ -1,4 +1,4 @@
-"""조직 리포트 도표(그림체와 같은 잉크 한 색). python3 tools/report_charts.py reports/out/<회사>/metrics.json <사무 직무 id,...>"""
+"""조직 리포트 도표(그림체와 같은 잉크 한 색). python3 tools/report_charts.py reports/out/<회사>/metrics.json <사무 직무 id,...> [집단 이름 두 개, 쉼표]"""
 import json, os, sys
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -9,11 +9,12 @@ plt.rcParams['font.family'] = 'Noto Sans CJK JP'
 INK = '#8a085a'; SOFT = '#e2b3cd'; TXT = '#16161a'; MUT = '#6b6b76'; BG = '#f6f6f8'; HAIR = '#d9d9de'
 M = json.load(open(sys.argv[1])); od = os.path.dirname(sys.argv[1]); R = M['roles']; o = M['org']
 off = set(sys.argv[2].split(',')) if len(sys.argv) > 2 else set()
+GL = sys.argv[3].split(',') if len(sys.argv) > 3 else ['사무·기술', '현장']   # 두 집단 이름(선택)
 def style(ax):
     for s in ('top', 'right', 'left'): ax.spines[s].set_visible(False)
     ax.spines['bottom'].set_color(HAIR); ax.tick_params(colors=MUT, length=0); ax.set_facecolor(BG)
 # 1. 두 집단: 인원 vs AI가 해낼 수 있는 업무량(명분), 2026·2030
-G = [('사무·기술', [r for r in R if r['id'] in off]), ('현장', [r for r in R if r['id'] not in off])] if off else []
+G = [(GL[0], [r for r in R if r['id'] in off]), (GL[1], [r for r in R if r['id'] not in off])] if off else []
 if G:
     fig, ax = plt.subplots(figsize=(8, 3.2), dpi=200); fig.patch.set_facecolor(BG); style(ax)
     y = [1, 0]
