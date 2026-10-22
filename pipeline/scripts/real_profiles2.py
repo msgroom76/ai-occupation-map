@@ -1,6 +1,6 @@
 import csv,json,collections,math
 exec(open('soc_map.py').read())
-D='dl_onet/db_30_0_text/';G='gpts/'  # 원래 /home/claude/openai/gpts-are-gpts/data/ (파이프라인: inputs/gpts)
+D='dl_onet/db_text/';G='gpts/'  # 원래 /home/claude/openai/gpts-are-gpts/data/ (파이프라인: inputs/gpts)
 RN=json.load(open('bak18/city_meta.json'))['RN']
 E2R={r['Element ID']:[k for k,v in RN.items() if v[1].lower()==r['Element Name'].lower()][0] for r in csv.DictReader(open(D+'Work Activities.txt'),delimiter='\t')}
 dwa2g={r['DWA ID']:E2R[r['Element ID']] for r in csv.DictReader(open(D+'DWA Reference.txt'),delimiter='\t')}

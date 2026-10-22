@@ -6,7 +6,7 @@
 import json, sys, csv, collections, os
 T = json.load(open('tasks.json'))
 EN = {}
-ref = 'pipeline/inputs/dl_onet/db_30_0_text/DWA Reference.txt'
+ref = 'pipeline/inputs/dl_onet/db_text/DWA Reference.txt'
 if os.path.exists(ref):
     for r in csv.DictReader(open(ref, encoding='utf-8'), delimiter='\t'): EN[r['DWA ID']] = r['DWA Title']
 use = collections.Counter()

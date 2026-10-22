@@ -883,7 +883,7 @@ details.card[open] summary::after{content:"−"}
 
 <script>
 (async function(){
-const W=1800,H=2400, VER='v0.14 베타';let ASOF='2026.10.19';
+const W=1800,H=2400, VER='v0.15 베타';let ASOF='2026.10.22';
 const $=s=>document.querySelector(s);
 const pct=v=>Math.round(v*100);
 const el=(t,cls,txt)=>{const e=document.createElement(t);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
@@ -1352,7 +1352,7 @@ function aboutCard(){
    <div><dt>무엇을 재나요</dt><dd>AI 노출도. 일의 몇 %를 생성형 AI(언어 모델과 그 위에 만든 소프트웨어)가 사람 수준으로 해내거나 시간을 절반 이상 줄일 수 있는지예요. 실제로 일자리가 사라진 비율이 아니고, 도입 비용·규제·실제 도입 속도는 반영하지 않았어요. 로봇·자율주행 같은 물리 자동화는 이 지표에 거의 잡히지 않아요.</dd></div>
    <div><dt>노출도 출처 (두 연구의 평균)</dt><dd>① Eloundou·Manning·Mishkin·Rock, 「GPTs are GPTs」(Science, 2024). 미국 O*NET 업무 약 1만 9천 개를 하나씩 평가한 공개 데이터(MIT 라이선스). 직업 단위 β(직접 노출 + 도구가 있으면 노출의 절반)를 써요. ② 국제노동기구(ILO) Gmyrek 외, 「Generative AI and Jobs: A Refined Global Index」(2025, Working Paper 140). 국제표준직업분류(ISCO-08) 427개 직업의 업무 3,265개 점수(CC BY 4.0). 한국 표준직업분류는 국제분류를 바탕으로 하므로 소분류마다 해당 국제 직업을 연결했어요(저희 연결, 국가데이터처 공식 연계표로 교체 예정). 두 연구는 소분류 단위에서 상관계수 0.88로 대체로 일치하고, 2026년 값은 둘의 평균이에요.</dd></div>
    <div><dt>실제 사용 확인</dt><dd>Anthropic 경제지수(2026.3, CC BY) 직업별 관측 노출도. 노출된 업무 중 실제 업무용 Claude 대화에서 확인된 것만 센 값이에요(자동화는 1, 보조는 0.5). 한 회사 이용자 기준이라 실제보다 낮게 잡혀요. 노출도보다 높게 나오면 노출도에 맞춰 표시해요. Microsoft Copilot 사용 기반 적용도(Tomlinson 외, 2025)와 중분류 단위 상관계수 0.76으로 교차 확인했어요.</dd></div>
-   <div><dt>업무 구성</dt><dd>미국 O*NET 30.0의 직업별 업무 목록과 중요도를 41개 일반업무활동으로 묶었어요. 한국 소분류(163개)마다 해당하는 미국 직업을 연결하고(148개 연결, 나머지 15개는 중분류 값 사용) 미국 고용(OEWS 2021) 비중으로 합쳤어요. 중분류 값은 소분류 값을 한국 취업자 수로 가중 평균해요. 연결표(미국·국제 분류): <a href="ksco_soc_map.json" target="_blank" rel="noopener">ksco_soc_map.json</a></dd></div>
+   <div><dt>업무 구성</dt><dd>미국 O*NET 31.0의 직업별 업무 목록과 중요도를 41개 일반업무활동으로 묶었어요. 한국 소분류(163개)마다 해당하는 미국 직업을 연결하고(148개 연결, 나머지 15개는 중분류 값 사용) 미국 고용(OEWS 2021) 비중으로 합쳤어요. 중분류 값은 소분류 값을 한국 취업자 수로 가중 평균해요. 연결표(미국·국제 분류): <a href="ksco_soc_map.json" target="_blank" rel="noopener">ksco_soc_map.json</a></dd></div>
    <div><dt>직업과 전체</dt><dd>직업 노출도 = 41개 업무 비중 × 업무 노출도, 연구의 직업 단위 값에 맞춰 보정. 전체 = 한국 실제 취업자 수로 가중 평균.</dd></div>
    <div><dt>시간 축 (가정)</dt><dd>업무마다 2023년 = 언어 모델 단독(α), 2026년 = 도구까지 쓴 경우(β), 상한 = 모든 보조 소프트웨어가 갖춰진 경우(γ)로 놓고 S자 곡선을 그렸어요. 2026년 값과 앞으로의 경로는 연구값을 시간에 놓은 저희의 가정이에요. 범위는 도달 시점을 ±1.5년 흔든 값이에요.</dd></div>
    <div><dt>대체형·보완형</dt><dd>AI가 그 일을 대신하는 업무와, 사람이 AI와 함께 더 하게 되는 업무를 나눈 저희의 분류예요.</dd></div>
@@ -1362,7 +1362,7 @@ function aboutCard(){
    <div><dt>지도</dt><dd>실제 지역이 아닌 가상의 도시예요. 큰 구역 = 표준직업분류 대분류(9개), 테두리 영역 = 중분류(56개), 넓이 = 실제 취업자 수.</dd></div></dl>`;
   
   m.appendChild(el('p','guard','직업 단위의 경향이에요. 개인 평가나 인원 감축의 근거로 쓸 수 없어요.'));
-  const cite=`출처: AI 점령 지도(포스트오피스), ${ASOF} 기준, ${VER}. 노출도: Eloundou 외(2024, Science)와 ILO Gmyrek 외(2025)의 평균, 실제 사용: Anthropic 경제지수(2026), 업무 구성: 미국 O*NET 30.0, 취업자 수: 국가데이터처 지역별고용조사 2025년 하반기. 연도별 경로는 AI 점령 지도의 추정.`;
+  const cite=`출처: AI 점령 지도(포스트오피스), ${ASOF} 기준, ${VER}. 노출도: Eloundou 외(2024, Science)와 ILO Gmyrek 외(2025)의 평균, 실제 사용: Anthropic 경제지수(2026), 업무 구성: 미국 O*NET 31.0, 취업자 수: 국가데이터처 지역별고용조사 2025년 하반기. 연도별 경로는 AI 점령 지도의 추정.`;
   const cb=el('div','cite',cite),btn=el('button','btn','인용문 복사');btn.type='button';
   btn.onclick=async()=>{try{await navigator.clipboard.writeText(cite);btn.textContent='복사했어요'}catch(e){const r=document.createRange();r.selectNodeContents(cb);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='선택했어요. 복사해 주세요'}setTimeout(()=>btn.textContent='인용문 복사',2500)};
   m.append(cb,btn);d.appendChild(m);return d}
@@ -1499,7 +1499,7 @@ function render(){
   else{F.push(['mine','내 직업',[mineCard()],ctx]);F.push(['today','오늘의 지도',[summaryCard(),todayCard(),highlights()],ctx])}
   F.push(['news','이번 주 소식',[newsCard(),frontCard()],rest]);
   F.push(['browse','둘러보기',[catsCard(),rankCard(),adSlot()],rest]);
-  F.push(['join','함께하기',[joinBlock('bottom'),aboutCard(),el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024)·ILO(2025) 평균 · 실제 사용 Anthropic(2026) · 업무 O*NET 30.0 · 취업자 국가데이터처(2025년 하반기)`),legalLinks()],rest]);
+  F.push(['join','함께하기',[joinBlock('bottom'),aboutCard(),el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024)·ILO(2025) 평균 · 실제 사용 Anthropic(2026) · 업무 O*NET 31.0 · 취업자 국가데이터처(2025년 하반기)`),legalLinks()],rest]);
   const FL=F.map(f=>[f[0],f[1],f[2].filter(Boolean),f[3]]).filter(f=>f[2].length),CL=foldGet();
   const txt=(k,s)=>{const e=k.querySelector(s);return e?e.textContent.trim():''};
   const sumOf=(key,k)=>key==='mine'?[txt(k,'.nm')+(txt(k,'.sub')?' · '+txt(k,'.sub'):''),txt(k,'.num')]

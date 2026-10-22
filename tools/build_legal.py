@@ -135,7 +135,7 @@ page('about','소개','AI 점령 지도를 누가, 왜, 어떤 자료로 만드�
 <tr><td><a href="https://www.ilo.org/">국제노동기구(ILO) Gmyrek 외(2025)</a> 생성형 AI 노출 점수</td><td>노출도(국제노동기구)</td><td>CC BY 4.0</td></tr>
 <tr><td><a href="https://www.anthropic.com/economic-index">Anthropic 경제지수(2026.3)</a></td><td>실제 사용 확인</td><td>CC BY</td></tr>
 <tr><td><a href="https://github.com/microsoft/working-with-ai">Microsoft, Tomlinson 외(2025) AI 적용도</a></td><td>교차 확인용(사이트 숫자에는 쓰지 않음)</td><td>CC BY 4.0</td></tr>
-<tr><td><a href="https://www.onetcenter.org/">O*NET 30.0</a>(미국 노동부)</td><td>업무 구성, 세부 작업</td><td>CC BY 4.0</td></tr>
+<tr><td><a href="https://www.onetcenter.org/">O*NET 31.0</a>(미국 노동부)</td><td>업무 구성, 세부 작업</td><td>CC BY 4.0</td></tr>
 <tr><td>국가데이터처 한국표준직업분류–ISCO 연계표(2025.11), 한국고용정보원 고용24 직업코드 매핑(2026.4)</td><td>한국 직업 연결, 직업명 검색</td><td>출처 표시</td></tr>
 <tr><td>국가데이터처 지역별고용조사 2025년 하반기(KOSIS)</td><td>지도 넓이, 취업자 가중</td><td>출처 표시</td></tr></table></div>
 <p class="note">계산 방법과 한계는 지도 화면의 '근거' 탭과 직업 페이지의 질문·답변에 적었습니다. 숫자 오류를 발견하면 메일로 알려 주세요.</p>

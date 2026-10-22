@@ -139,7 +139,7 @@ $('#out').onclick=async()=>{await fetch('/api/admin/login',{method:'DELETE'});KE
 const isoWk=t=>{const d=new Date(t.slice(0,10)+'T00:00:00Z');const day=(d.getUTCDay()+6)%7;d.setUTCDate(d.getUTCDate()-day+3);const y=d.getUTCFullYear();const f=new Date(Date.UTC(y,0,4));return y+'-W'+String(1+Math.round(((d-f)/864e5-3+((f.getUTCDay()+6)%7))/7)).padStart(2,'0')};
 // 자료 출처 관리
 const SST={new:['새 판 나옴','snew'],due:['확인할 때','sdue'],soon:['곧 확인','ssoon'],ok:['최신','sok'],wait:['확인일 전','ssoon'],fixed:['고정본','sfixed']};
-const AUTO={onet:'자동 · 공개 페이지',hf:'자동 · API',gh:'자동 · API',kosis:'자동 · KOSIS API',law:'자동 · 법령 API'};
+const AUTO={onet:'자동 · 공개 페이지',hf:'자동 · API',hff:'자동 · API',gh:'자동 · API',kosis:'자동 · KOSIS API',law:'자동 · 법령 API'};
 async function srcLoad(){const {j}=await api('/api/admin/mail?view=sources');const L=j.list||[],tb=$('#src');tb.innerHTML='';
   const ord={new:0,due:1,soon:2,wait:3,ok:4,fixed:5};L.sort((a,b)=>ord[a.st]-ord[b.st]);
   L.forEach(x=>{const tr=document.createElement('tr');

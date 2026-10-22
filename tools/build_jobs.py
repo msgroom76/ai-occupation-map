@@ -62,7 +62,7 @@ def page(path,title,desc,img,body,ld):
 <style>{CSS}</style></head><body><main>
 <div class="top"><a class="brand" href="/"><b>AI</b> 점령 지도 — Occupied Map</a><a href="/w/">주간 지수 →</a></div>
 {body}
-<p class="foot">노출도: Eloundou 외(2024, Science, MIT)와 ILO Gmyrek 외(2025, CC BY 4.0)의 평균 · 실제 사용: Anthropic 경제지수(2026, CC BY) · 업무 구성: O*NET 30.0(미국 노동부, CC BY 4.0) · 취업자: 국가데이터처 지역별고용조사 2025년 하반기 · 연도별 경로는 AI 점령 지도의 추정 · 기준 {ASOF} · 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요. · <a href="/about">소개</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p>
+<p class="foot">노출도: Eloundou 외(2024, Science, MIT)와 ILO Gmyrek 외(2025, CC BY 4.0)의 평균 · 실제 사용: Anthropic 경제지수(2026, CC BY) · 업무 구성: O*NET 31.0(미국 노동부, CC BY 4.0) · 취업자: 국가데이터처 지역별고용조사 2025년 하반기 · 연도별 경로는 AI 점령 지도의 추정 · 기준 {ASOF} · 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요. · <a href="/about">소개</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p>
 </main></body></html>''')
 def faq(name,v,u):
     qa=[(f'AI가 {name}을(를) 대체하나요?',f'이 지도의 숫자는 일자리가 사라지는 비율이 아니라, {name}이(가) 하는 일 가운데 생성형 AI가 사람 수준으로 해내거나 시간을 절반 넘게 줄일 수 있는 몫(노출도)이에요. 2026년 기준 {pc(v)}%예요. 도입 비용·규제·실제 도입 속도는 반영하지 않았어요.'),

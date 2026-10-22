@@ -1,5 +1,5 @@
 import csv,json,collections
-D='dl_onet/db_30_0_text/';G='gpts/'  # 원래 /home/claude/openai/gpts-are-gpts/data/ (파이프라인: inputs/gpts)
+D='dl_onet/db_text/';G='gpts/'  # 원래 /home/claude/openai/gpts-are-gpts/data/ (파이프라인: inputs/gpts)
 RN=json.load(open('bak18/city_meta.json'))['RN']
 E2R={}
 for r in csv.DictReader(open(D+'Work Activities.txt'),delimiter='\t'):

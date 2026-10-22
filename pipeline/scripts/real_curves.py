@@ -1,5 +1,5 @@
 import csv,json,collections,math
-D='dl_onet/db_30_0_text/';G='gpts/'  # 원래 /home/claude/openai/gpts-are-gpts/data/ (파이프라인: inputs/gpts)
+D='dl_onet/db_text/';G='gpts/'  # 원래 /home/claude/openai/gpts-are-gpts/data/ (파이프라인: inputs/gpts)
 gwa=json.load(open('dl_gpts_gwa.json'))
 lab={}
 for r in csv.DictReader(open(G+'full_labelset.tsv'),delimiter='\t'):

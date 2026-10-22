@@ -4,7 +4,7 @@
 # 소식은 이 세부 작업 단위로 분류하고(feed.json의 dwa), 직업 카드는 이 목록으로 '이 발표가 닿는 내 업무'를 보여준다.
 import csv, json, collections
 exec(open('soc_map_small.py').read()); exec(open('soc_map.py').read())
-O = 'dl_onet/db_30_0_text/'
+O = 'dl_onet/db_text/'
 rd = lambda f: csv.DictReader(open(O + f, encoding='utf-8'), delimiter='\t')
 EMP = {}
 for r in csv.DictReader(open('gpts/national_May2021_dl.csv', encoding='utf-8-sig')):

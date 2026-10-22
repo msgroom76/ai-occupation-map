@@ -5,6 +5,7 @@
 // 확인 방법(check)
 //   onet  : O*NET 데이터베이스 안내 페이지의 최신 판 번호 (열쇠 필요 없음)
 //   hf    : Hugging Face 데이터셋 API의 release_YYYY_MM_DD 폴더 중 가장 새것 (열쇠 필요 없음)
+//   hff   : Hugging Face 데이터셋의 파일 하나가 바뀌었는지(파일 해시, have에 지금 쓰는 파일의 해시) (열쇠 필요 없음)
 //   gh    : GitHub 저장소 API의 마지막 반영 시각, 처음 본 값을 기준으로 바뀌면 알림 (열쇠 필요 없음)
 //   kosis : KOSIS 오픈API의 수록 기간 중 가장 새것 (Cloudflare 비밀값 KOSIS_KEY 필요)
 //   law   : 국가법령정보 오픈API로 protect.json의 법령이 개정됐는지 (Cloudflare 환경변수 LAW_OC 필요, 하루 15개씩 돌아가며)
@@ -12,10 +13,10 @@
 import { kst } from './_db.js';
 
 export const SOURCES = [
-  { id: 'aei', name: 'Anthropic 경제지수(실제 사용 확인)', used: '직업 화면의 실제 사용 확인 값', have: 'release_2026_03_24', every: 6, due: '2026-09-24',
-    check: { type: 'hf', repo: 'Anthropic/EconomicIndex' }, url: 'https://huggingface.co/datasets/Anthropic/EconomicIndex',
-    how: '새 release 폴더의 job_exposure를 pipeline/inputs/dl2/에 넣고 run.sh로 다시 계산' },
-  { id: 'onet', name: 'O*NET 데이터베이스(업무·작업 목록)', used: '업무 41개 비중, 직업별 세부 작업', have: '30.0', every: 6, due: '2026-08-31',
+  { id: 'aei', name: 'Anthropic 경제지수 직업별 관측 노출도', used: '직업 화면의 실제 사용 확인 값', have: 'aae568975228d5850a1913c0d09f6ce8437e7253', haveLabel: '2026.3 판(job_exposure.csv)', every: 6, due: '2027-03-24',
+    check: { type: 'hff', repo: 'Anthropic/EconomicIndex', path: 'labor_market_impacts/job_exposure.csv' }, url: 'https://huggingface.co/datasets/Anthropic/EconomicIndex/tree/main/labor_market_impacts',
+    how: '이 파일이 바뀌면 pipeline/inputs/dl2/job_exposure.csv로 넣고 run.sh로 다시 계산. release_ 폴더(사용 기록 원자료)가 새로 나와도 이 파일이 그대로면 반영할 것 없음' },
+  { id: 'onet', name: 'O*NET 데이터베이스(업무·작업 목록)', used: '업무 41개 비중, 직업별 세부 작업', have: '31.0', every: 6, due: '2027-02-28',
     check: { type: 'onet' }, url: 'https://www.onetcenter.org/database.html',
     how: '새 판 텍스트 묶음에서 extract_onet.py로 쓰는 부분만 뽑아 dl_onet/에 넣고 run.sh. 업무 비중이 조금 바뀔 수 있어 변경 기록 필요' },
   { id: 'lfs', name: '지역별고용조사 직업 소분류 취업자', used: '지도 넓이(직업별 일하는 사람 수)', have: '202502', haveLabel: '2025년 하반기', every: 6, due: '2026-10-15',
@@ -61,6 +62,12 @@ async function checkOne(env, d, s, origin) {
     const j = await get(`https://huggingface.co/api/datasets/${c.repo}`);
     const v = [...new Set((j.siblings || []).map(x => x.rfilename.split('/')[0]).filter(x => /^release_\d{4}_\d{2}_\d{2}$/.test(x)))].sort().pop();
     if (!v) throw new Error('release 폴더가 없음'); return { latest: v };
+  }
+  if (c.type === 'hff') {
+    const dir = c.path.split('/').slice(0, -1).join('/');
+    const j = await get(`https://huggingface.co/api/datasets/${c.repo}/tree/main/${dir}`);
+    const f = (Array.isArray(j) ? j : []).find(x => x.path === c.path); if (!f) throw new Error('파일이 없어짐: ' + c.path);
+    return { latest: f.oid };
   }
   if (c.type === 'gh') {
     const j = await get(`https://api.github.com/repos/${c.repo}`);
@@ -125,7 +132,7 @@ export async function sourceStatus(env, d) {
     if (autoOk && s.check.type === 'law') { if ((r.changed || []).length) { st = 'new'; why = r.changed.map(x => `${x.name}(${x.kind || '개정'}, ${x.ef ? x.ef.slice(0, 4) + '.' + x.ef.slice(4, 6) + '.' + x.ef.slice(6) + ' 시행' : ''})`).join(', '); } }
     else if (autoOk) {
       const fresh = s.check.type === 'gh' ? r.latest !== r.base : (s.check.type === 'kosis' ? prd(r.latest) > prd(s.have) : r.latest !== s.have);
-      if (fresh && !(ack && ack.latest === r.latest)) { st = 'new'; why = `새 판 ${r.latest}`; }
+      if (fresh && !(ack && ack.latest === r.latest)) { st = 'new'; why = s.check.type === 'hff' ? '쓰고 있는 파일이 바뀌었어요' : `새 판 ${r.latest}`; }
     }
     if (st !== 'new' && !autoOk) {
       if (!s.every) st = 'fixed';
@@ -136,7 +143,7 @@ export async function sourceStatus(env, d) {
       }
     }
     out.push({ id: s.id, name: s.name, used: s.used, have: s.haveLabel || s.have, url: s.url, how: s.how, auto: s.check ? s.check.type : null,
-      st, why, next, at: r ? r.at : null, latest: r && r.ok ? r.latest : null, err: r && !r.ok ? r.err : null, ack: ack ? ack.at : null });
+      st, why, next, at: r ? r.at : null, latest: r && r.ok ? (s.check.type === 'hff' ? (r.latest === s.have ? '지금 쓰는 파일과 같음' : '바뀐 파일 ' + r.latest.slice(0, 7)) : r.latest) : null, err: r && !r.ok ? r.err : null, ack: ack ? ack.at : null });
   }
   return out;
 }

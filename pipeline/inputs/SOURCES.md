@@ -4,7 +4,7 @@
 
 | 경로 | 무엇 | 출처 · 이용 조건 |
 |---|---|---|
-| `dl_onet/db_30_0_text/` | O*NET 30.0 일부. `Work Activities.txt`, `Task Ratings.txt`는 중요도(IM) 줄과 쓰는 열만 남김(`scripts/extract_onet.py`). 나머지 4개는 원본 그대로 | 미국 노동부 O*NET, https://www.onetcenter.org/dl_files/database/db_30_0_text.zip · CC BY 4.0 |
+| `dl_onet/db_text/` | O*NET 31.0(2026.8) 일부. 31.0부터 바뀐 DWA 파일 형식은 30.0 형식·옛 ID로 바꿔 둔다(`dwa_ids_30.tsv`). `Work Activities.txt`, `Task Ratings.txt`는 중요도(IM) 줄과 쓰는 열만 남김(`scripts/extract_onet.py`). 나머지 4개는 원본 그대로 | 미국 노동부 O*NET, https://www.onetcenter.org/dl_files/database/db_31_0_text.zip · CC BY 4.0 |
 | `gpts/full_labelset.tsv`, `gpts/occ_level.csv` | 업무·직업별 언어 모델 노출도(α·β·γ) | Eloundou 외(2024) GPTs are GPTs, https://github.com/openai/GPTs-are-GPTs · MIT (`gpts/LICENSE`) |
 | `gpts/national_May2021_dl.csv` | 미국 직업별 고용(OEWS 2021년 5월) | 같은 저장소에 포함. 원자료는 미국 노동통계국(공공 저작물) |
 | `dl_konet/konet.csv` | 직업명 6,713개 ↔ 한국표준직업분류 8차 세분류 | 한국고용정보원 고용24 직업코드 직업분류코드 매핑정보(2026.04.09) · 이용허락범위 제한 없음 |

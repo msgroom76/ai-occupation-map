@@ -135,7 +135,7 @@ for i,w in enumerate(weeks):
     rows.append(row(f'<a href="{BASE}/" style="display:inline-block;background:{INK};color:#fff;font:700 15px {F};padding:13px 22px;text-decoration:none">내 직업 찾아보기 →</a>','24px 0 0'))
     rows.append(row('',f'40px 0 0;border-bottom:1px solid {INK}'))
     rows.append(para('읽는 법 · 노출도는 그 직업이 하는 일 가운데 AI가 해낼 수 있는 몫이에요. 일자리가 그만큼 사라진다는 뜻은 아니에요. 소식은 1차 출처의 발표·도입이면 도달 시점을 3개월, 신뢰 매체 보도면 1개월 앞당기고, 미국 발표는 절반만 반영해요.',MUT,12,'12px 0 0'))
-    rows.append(para(f'노출도: Eloundou 외(2024, Science)·ILO Gmyrek 외(2025) 평균 · 업무: O*NET 30.0 · 취업자: 국가데이터처 지역별고용조사 2025년 하반기. 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요.',MUT,12))
+    rows.append(para(f'노출도: Eloundou 외(2024, Science)·ILO Gmyrek 외(2025) 평균 · 업무: O*NET 31.0 · 취업자: 국가데이터처 지역별고용조사 2025년 하반기. 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요.',MUT,12))
     rows.append(para(f'{a(url,"웹에서 보기",MUT)} · {a("{{unsubscribe_url}}","수신 거부",MUT)}<br>이 메일은 AI 점령 지도에서 주간 지수 받기를 신청하고 확인 메일로 구독을 확인한 분께 보내요.<br>보내는 곳: 포스트오피스(AI 점령 지도 운영) · 문의 msgr@post-office.kr · {a(f"{BASE}/privacy","개인정보처리방침",MUT)}',MUT,12))
     txt+=['',f'내 직업 찾아보기: {BASE}/',f'웹에서 보기: {url}','','노출도는 AI가 해낼 수 있는 몫이며, 일자리가 그만큼 사라진다는 뜻은 아니에요. 직업 단위의 경향이며 개인 평가나 인원 감축의 근거로 쓸 수 없어요.','수신 거부: {{unsubscribe_url}}','보내는 곳: 포스트오피스(AI 점령 지도 운영) · 문의 msgr@post-office.kr · 개인정보처리방침 '+BASE+'/privacy']
     html_=f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="robots" content="noindex"><title>{e(subject)}</title></head>
