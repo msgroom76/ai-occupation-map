@@ -54,6 +54,18 @@ if os.path.exists(peers_path):
     ax.set_xticks(x); ax.set_xticklabels([MJN[k] for k in ks], fontsize=10, color=TXT); ax.set_yticks([])
     ax.legend(frameon=False, fontsize=9, loc='upper left'); ax.set_ylabel('인원 비중(%)', color=MUT, fontsize=9)
     fig.tight_layout(); fig.savefig(f'{od}/chart_mix.png', facecolor=BG); plt.close(fig)
+    # 4-b. 인원과 매출 시점이 달라 1인당 매출을 낼 수 없을 때: 매출 규모 + 영업이익률
+    if P.get('metric') == 'margin':
+        Q = sorted(P['peers'], key=lambda p: p['rev'])
+        fig, ax = plt.subplots(figsize=(8, 2.8), dpi=200); fig.patch.set_facecolor(BG); style(ax)
+        v = [p['rev'] / 100 for p in Q]
+        ax.barh(range(len(Q)), v, color=[INK if p.get('self') else SOFT for p in Q], height=.6)
+        for i, p in enumerate(Q):
+            mg = p['op'] / p['rev'] * 100
+            ax.text(v[i] + max(v) * .01, i, f"{v[i]:,.0f}억 원 · 영업이익률 {mg:+.1f}%", va='center', fontsize=9, color=TXT)
+        ax.set_yticks(range(len(Q))); ax.set_yticklabels([p['name'] for p in Q], fontsize=11, color=TXT); ax.set_xticks([]); ax.set_xlim(0, max(v) * 1.55)
+        fig.tight_layout(); fig.savefig(f'{od}/chart_peers.png', facecolor=BG); plt.close(fig)
+        print('peer charts ok (margin)'); sys.exit(0)
     # 4. 1인당 매출(같은 해 인원만)
     Q = [p for p in P['peers'] if p.get('n') and not p.get('nodate')]
     Q.sort(key=lambda p: p['rev'] / p['n'])

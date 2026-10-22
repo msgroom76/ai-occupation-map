@@ -1,18 +1,109 @@
-{"id":"sfood","name":"에쓰푸드(주)","eng":"SFOOD INC.","asof":"2026-10-22",
- "about":"델리미트·햄·소시지·베이컨 등 육가공(존쿡 델리미트), HMR·소스·베이커리·치즈로 확장, 글로벌 프랜차이즈 ODM. 경기 안성 본사·공장. 2025년 매출 2,820억 원, 영업이익 177억 원(감사보고서). 2025년 미국 OWP 지분 70% 인수.",
- "basis":"국민연금 기준 약 575명(2026.8)과, 급여의 약 74%가 판관비 밖(생산 원가)에 있다는 감사보고서 구성을 바탕으로 한 직무 구성 추정. 회사 확인이 필요하다.",
- "roles":[
-  {"id":"exec","name":"경영진","n":8,"code":"112","fig":"exec"},
-  {"id":"line","name":"생산 라인(가공·조작)","n":269,"code":"811","fig":"foodworker"},
-  {"id":"pack","name":"포장·생산 보조","n":90,"code":"930","fig":"foodworker"},
-  {"id":"maint","name":"설비 보전","n":25,"code":"753","fig":"technician"},
-  {"id":"qc","name":"품질·위생(HACCP)","n":35,"code":"213","fig":"researcher"},
-  {"id":"rnd","name":"제품 개발(R&D)","n":15,"code":"211","fig":"foodrnd"},
-  {"id":"pm","name":"생산관리","n":15,"code":"321","fig":"admin"},
-  {"id":"scm","name":"구매·SCM","n":20,"code":"321","fig":"scm"},
-  {"id":"log","name":"물류·출하","n":20,"code":"873","fig":"logistics"},
-  {"id":"drv","name":"배송","n":10,"code":"872","fig":"driver"},
-  {"id":"sales","name":"영업(B2B·유통)","n":35,"code":"510","fig":"sales"},
-  {"id":"mkt","name":"마케팅","n":8,"code":"283","fig":"marketer"},
-  {"id":"acct","name":"재무·회계","n":12,"code":"331","fig":"accountant"},
-  {"id":"hr","name":"인사·총무","n":13,"code":"371","fig":"admin"}]}
+{
+ "id": "sfood",
+ "name": "에쓰푸드(주)",
+ "eng": "SFOOD INC.",
+ "asof": "2026-10-22",
+ "about": "델리미트·햄·소시지·베이컨 등 육가공(존쿡 델리미트), HMR·소스·베이커리·치즈로 확장, 글로벌 프랜차이즈 ODM. 경기 안성 본사·공장. 2025년 매출 2,820억 원, 영업이익 177억 원(감사보고서). 2025년 미국 OWP 지분 70% 인수.",
+ "basis": "국민연금 기준 약 575명(2026.8)과, 급여의 약 74%가 판관비 밖(생산 원가)에 있다는 감사보고서 구성을 바탕으로 한 직무 구성 추정. 회사 확인이 필요하다.",
+ "roles": [
+  {
+   "id": "exec",
+   "name": "경영진",
+   "n": 8,
+   "code": "112",
+   "fig": "exec"
+  },
+  {
+   "id": "line",
+   "name": "생산 라인(가공·조작)",
+   "n": 269,
+   "code": "811",
+   "fig": "foodworker"
+  },
+  {
+   "id": "pack",
+   "name": "포장·생산 보조",
+   "n": 90,
+   "code": "930",
+   "fig": "foodworker"
+  },
+  {
+   "id": "maint",
+   "name": "설비 보전",
+   "n": 25,
+   "code": "753",
+   "fig": "technician"
+  },
+  {
+   "id": "qc",
+   "name": "품질·위생(HACCP)",
+   "n": 35,
+   "code": "213",
+   "fig": "researcher"
+  },
+  {
+   "id": "rnd",
+   "name": "제품 개발(R&D)",
+   "n": 15,
+   "code": "211",
+   "fig": "foodrnd"
+  },
+  {
+   "id": "pm",
+   "name": "생산관리",
+   "n": 15,
+   "code": "321",
+   "fig": "admin"
+  },
+  {
+   "id": "scm",
+   "name": "구매·SCM",
+   "n": 20,
+   "code": "321",
+   "fig": "scm"
+  },
+  {
+   "id": "log",
+   "name": "물류·출하",
+   "n": 20,
+   "code": "873",
+   "fig": "logistics"
+  },
+  {
+   "id": "drv",
+   "name": "배송",
+   "n": 10,
+   "code": "872",
+   "fig": "driver"
+  },
+  {
+   "id": "sales",
+   "name": "영업(B2B·유통)",
+   "n": 35,
+   "code": "510",
+   "fig": "sales"
+  },
+  {
+   "id": "mkt",
+   "name": "마케팅",
+   "n": 8,
+   "code": "283",
+   "fig": "marketer"
+  },
+  {
+   "id": "acct",
+   "name": "재무·회계",
+   "n": 12,
+   "code": "331",
+   "fig": "accountant"
+  },
+  {
+   "id": "hr",
+   "name": "인사·총무",
+   "n": 13,
+   "code": "371",
+   "fig": "admin"
+  }
+ ],
+ "payroll_actual": 401.8
+}
