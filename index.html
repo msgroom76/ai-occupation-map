@@ -145,6 +145,7 @@ button,input{font:inherit;color:inherit}
 .sugg{display:flex;flex-wrap:wrap;gap:6px}
 .sugg button{all:unset;cursor:pointer;font-size:13px;padding:6px 12px;border-radius:999px;background:var(--fill);color:var(--ink)}
 .sugg button:hover{background:var(--fill2)}
+.tlink{display:inline-block;margin-top:10px;font-size:13px;color:var(--ink2);text-decoration:none}.tlink b{color:var(--hot-ink);font-weight:700}.tlink:hover b{text-decoration:underline}
 .card{background:var(--fill);border-radius:var(--r-card);padding:14px 14px 15px;display:grid;gap:10px}
 .card .lab{font-size:12px;font-weight:600;color:var(--ink2);display:flex;justify-content:space-between;align-items:center;gap:8px}
 .card .lab .more{all:unset;cursor:pointer;color:var(--tint);font-weight:500;font-size:13px}
@@ -874,6 +875,7 @@ details.card[open] summary::after{content:"−"}
         <ul class="results" id="results" hidden></ul>
       </div>
       <div class="sugg" id="sugg"></div>
+      <a class="tlink" href="/test">내 직업은 언제 소멸될까? <b>물때 테스트 →</b></a>
       <section class="join" id="join" aria-label="주간 메일 구독과 협력 문의"></section>
       <div id="ctx"></div>
       <div id="rest"></div>

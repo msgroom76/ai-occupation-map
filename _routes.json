@@ -1,6 +1,8 @@
 {
   "version": 1,
-  "include": ["/*"],
+  "include": [
+    "/*"
+  ],
   "exclude": [
     "/city_index.png",
     "/city_roads.png",
@@ -13,6 +15,8 @@
     "/ksco_soc_map.json",
     "/og.png",
     "/og/*",
-    "/mail/img/*"
+    "/mail/img/*",
+    "/img/*",
+    "/us_kr.json"
   ]
 }

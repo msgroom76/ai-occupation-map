@@ -1,0 +1,224 @@
+{
+ "asof": "2026-10-22",
+ "note": "미국과 한국의 제도 차이를 직업별로 나란히 보이기 위한 자료. 숫자를 서로 더하거나 노출도에 반영하지 않는다. 미국 직업군은 한국 직업에 가장 가까운 BLS 분류를 손으로 골랐고, rough는 대응이 거친 경우.",
+ "us": {
+  "mgmt": {
+   "name": "관리직(Management)",
+   "union": 4.1,
+   "license": 18.0
+  },
+  "bizfin": {
+   "name": "경영·금융 실무(Business & financial)",
+   "union": 4.7,
+   "license": 17.3
+  },
+  "cmp": {
+   "name": "컴퓨터·수학",
+   "union": 3.7,
+   "license": 6.4
+  },
+  "eng": {
+   "name": "건축·공학",
+   "union": 6.4,
+   "license": 19.1
+  },
+  "sci": {
+   "name": "생명·물리·사회과학",
+   "union": 10.7,
+   "license": 21.6
+  },
+  "soc": {
+   "name": "지역사회·사회복지",
+   "union": 14.5,
+   "license": 36.1
+  },
+  "legal": {
+   "name": "법률",
+   "union": 7.3,
+   "license": 59.8
+  },
+  "edu": {
+   "name": "교육·훈련·도서관",
+   "union": 32.5,
+   "license": 48.3
+  },
+  "arts": {
+   "name": "예술·디자인·미디어",
+   "union": 6.6,
+   "license": 9.8
+  },
+  "hp": {
+   "name": "보건 전문·기술",
+   "union": 12.0,
+   "license": 71.3
+  },
+  "hs": {
+   "name": "보건 보조",
+   "union": 8.7,
+   "license": 33.4
+  },
+  "prot": {
+   "name": "보호 서비스(경찰·소방·경비)",
+   "union": 31.3,
+   "license": 32.7
+  },
+  "food": {
+   "name": "조리·음식 서비스",
+   "union": 3.7,
+   "license": 7.1
+  },
+  "clean": {
+   "name": "건물·시설 청소·관리",
+   "union": 8.2,
+   "license": 6.9
+  },
+  "pers": {
+   "name": "개인 돌봄·서비스",
+   "union": 4.0,
+   "license": 30.4
+  },
+  "svc": {
+   "name": "서비스 전체",
+   "union": 9.5,
+   "license": 19.3
+  },
+  "sales": {
+   "name": "판매",
+   "union": 2.5,
+   "license": 14.7
+  },
+  "office": {
+   "name": "사무·행정 지원",
+   "union": 8.7,
+   "license": 8.9
+  },
+  "farm": {
+   "name": "농림어업",
+   "union": 2.4,
+   "license": 8.7
+  },
+  "cons": {
+   "name": "건설·채굴",
+   "union": 16.4,
+   "license": 16.3
+  },
+  "inst": {
+   "name": "설치·정비·수리",
+   "union": 12.5,
+   "license": 18.8
+  },
+  "prod": {
+   "name": "생산",
+   "union": 11.9,
+   "license": 8.6
+  },
+  "trans": {
+   "name": "운송·자재 운반",
+   "union": 12.8,
+   "license": 15.6
+  }
+ },
+ "map": {
+  "11": "mgmt",
+  "12": "mgmt",
+  "13": "mgmt",
+  "14": "mgmt",
+  "15": "mgmt",
+  "21": "sci",
+  "22": "cmp",
+  "23": "eng",
+  "24": "hp",
+  "25": "soc",
+  "26": "edu",
+  "27": "legal",
+  "28": "bizfin",
+  "29": "arts",
+  "31": "office",
+  "32": "office",
+  "33": "office",
+  "34": "office",
+  "35": "office",
+  "36": "office",
+  "37": "office",
+  "41": "prot",
+  "42": "hs",
+  "43": "pers",
+  "44": "svc",
+  "45": "food",
+  "51": "sales",
+  "52": "sales",
+  "53": "sales",
+  "61": "farm",
+  "62": "farm",
+  "63": "farm",
+  "71": "prod",
+  "72": "prod",
+  "73": "prod",
+  "74": "prod",
+  "75": "inst",
+  "76": "inst",
+  "77": "inst",
+  "78": "cons",
+  "79": "prod",
+  "81": "prod",
+  "82": "prod",
+  "83": "prod",
+  "84": "prod",
+  "85": "prod",
+  "86": "prod",
+  "87": "trans",
+  "88": "prod",
+  "89": "prod",
+  "91": "cons",
+  "92": "trans",
+  "93": "prod",
+  "94": "clean",
+  "95": "food",
+  "99": "farm"
+ },
+ "rough": [
+  "28",
+  "33",
+  "44",
+  "76",
+  "94",
+  "95",
+  "99"
+ ],
+ "src": {
+  "us_union": {
+   "name": "미국 노동통계국 Union Members 2025, 표 3(임금근로자, 2025년 10월 조사 빠짐)",
+   "url": "https://www.bls.gov/news.release/union2.t03.htm",
+   "year": 2025
+  },
+  "us_license": {
+   "name": "미국 노동통계국 CPS 연평균 표 53, 정부 발급 면허 보유율(전체 취업자)",
+   "url": "https://www.bls.gov/cps/cpsaat53.htm",
+   "year": 2025
+  },
+  "kr_union": {
+   "name": "고용노동부 고용형태별근로실태조사(2025), 직종 대분류별 노조 가입률",
+   "url": "https://kosis.kr/statHtml/statHtml.do?orgId=118&tblId=DT_118N_LCE310",
+   "year": 2025
+  },
+  "epl": {
+   "name": "OECD 고용보호법제 지표(정규직 개별 해고, 0~6, 높을수록 엄격)",
+   "url": "https://www.oecd.org/en/data/datasets/oecd-indicators-of-employment-protection.html",
+   "year": 2025
+  }
+ },
+ "epl": {
+  "kr": 2.37,
+  "us": 0.75,
+  "oecd": 2.16,
+  "oecd_year": 2024
+ },
+ "dismiss": {
+  "kr": "정당한 이유 없이 해고할 수 없고(근로기준법 제23조), 경영상 해고는 긴박한 필요·회피 노력·50일 전 협의가 필요해요(제24조).",
+  "us": "대부분의 주에서 이유를 대지 않고 해고할 수 있어요(임의고용). 차별 금지 등 예외만 있어요."
+ },
+ "ai": {
+  "kr": "AI 기본법(2026.1.22 시행): 채용·대출 심사·의료 등 고영향 AI에 위험관리·설명·사람 감독 의무.",
+  "us": "연방법은 없어요. 뉴욕시(채용 AI 편향 감사, 2023.7), 일리노이(차별적 AI 금지, 2026.1), 캘리포니아(자동화 결정 규칙, 2025.10) 같은 주·도시 규칙만 있어요."
+ }
+}

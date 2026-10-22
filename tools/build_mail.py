@@ -81,6 +81,10 @@ for i,w in enumerate(weeks):
     # 숫자 상자
     nxt=f'<br><span style="font:13px/1.5 {F};color:{MUT}">대기 중인 소식 {len(pend)}건이 그대로 반영되면 다음 주 약 {nt*100:.1f}% ({(nt-t)*100:+.1f}%p)</span>' if nt is not None and abs(nt-t)>=0.0005 else ''
     rows.append(row(f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{SOFT}"><tr><td style="padding:18px 20px"><div style="font:600 13px {F};color:{MUT}">이번 주 AI 점령률</div><div style="font:800 52px/1.1 {F};letter-spacing:-.03em;color:{PINK}">{t*100:.1f}%</div><div style="font:15px/1.6 {F};color:{INK}">{dtxt} · 한국 취업자 2,904만 명이 하는 일 가운데 AI가 이미 해낼 수 있는 몫{nxt}</div></td></tr></table>'))
+    # 물때 그림: 그 주 한국 일자리 전체 노출도에 맞는 높이(물때 테스트와 같은 그림체·단계)
+    sn=sum(t>=x for x in (.2,.35,.5,.65));SN=['발목','무릎','허리','가슴','목까지'][sn]
+    rows.append(row(f'<a href="{BASE}/test" style="text-decoration:none"><img src="{BASE}/img/water/crowd-s{sn+1}-mail.png" width="600" alt="여러 직업의 사람들이 서 있고 물이 {SN} 높이까지 차 있는 그림" style="display:block;border:0;width:100%;max-width:600px;height:auto;background:{BG}"></a>','20px 0 0'))
+    rows.append(para(f'한국 일자리 전체의 물때는 지금 <b style="color:{PINK}">{SN}</b>이에요. {a(BASE+"/test","내 직업의 물때 알아보기 →",PINK,700)}',MUT,13,'6px 0 0'))
     txt=[subject,'']
     if B:
         rows.append(para(e(B['intro']),INK,16,'20px 0 0'))
@@ -88,7 +92,7 @@ for i,w in enumerate(weeks):
             rows.append(kicker('30초 요약'))
             li=''.join(f'<tr><td valign="top" width="22" style="font:700 15px/1.7 {F};color:{PINK}">{k+1}</td><td style="padding:0 0 6px;font:15px/1.7 {F};color:{INK}">{e(s)}</td></tr>' for k,s in enumerate(B['tldr']))
             rows.append(row(f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid {INK};border-bottom:1px solid {INK}"><tr><td style="padding:12px 0 6px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">{li}</table></td></tr></table>'))
-        txt+=[B['headline'],'',f'이번 주 AI 점령률 {t*100:.1f}% ({dtxt})'+(f' · 다음 주 전망 약 {nt*100:.1f}%' if nxt else ''),'',B['intro'],'','■ 30초 요약']+[f'{k+1}. {s}' for k,s in enumerate(B.get('tldr',[]))]
+        txt+=[B['headline'],'',f'이번 주 AI 점령률 {t*100:.1f}% ({dtxt})'+(f' · 다음 주 전망 약 {nt*100:.1f}%' if nxt else '')+f' · 한국 일자리 전체의 물때: {SN} (내 직업의 물때: {BASE}/test)','',B['intro'],'','■ 30초 요약']+[f'{k+1}. {s}' for k,s in enumerate(B.get('tldr',[]))]
         for k,pt in enumerate(B['points']):
             fut=pt.get('tag')=='다음 주 예고'
             rows.append(kicker(f'{k+1:02d} — {e(pt.get("tag",""))}'))
@@ -104,7 +108,7 @@ for i,w in enumerate(weeks):
             txt+=[f'출처: {s["name"]} {s["url"]}' for s in pt.get('sources',[])]
         k=len(B['points'])+1
     else:
-        txt+=[f'이번 주 AI 점령률 {t*100:.1f}% ({dtxt})','','■ 이번 주 숫자를 움직인 소식']+([f'- {n["hd"]} ({n["src"]}) {n["url"]}' for n in ap] or ['- 없음'])
+        txt+=[f'이번 주 AI 점령률 {t*100:.1f}% ({dtxt}) · 한국 일자리 전체의 물때: {SN} (내 직업의 물때: {BASE}/test)','','■ 이번 주 숫자를 움직인 소식']+([f'- {n["hd"]} ({n["src"]}) {n["url"]}' for n in ap] or ['- 없음'])
         rows.append(kicker('01 — 이번 주 숫자를 움직인 소식'))
         if ap:
             for n in ap:rows.append(para(f'{a(n["url"],n["hd"],INK)}<br><span style="color:{MUT};font-size:13px">{e(n["src"])} · {e(n["tier"])}</span>'))
