@@ -804,6 +804,10 @@ details.card[open] summary::after{content:"−"}
 .fxb.f1{border-style:dashed;color:var(--ink2);border-color:var(--ink3)}
 .news .fj{font-size:11px;color:var(--ink2);display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;margin-top:2px}
 .news .fj .show{all:unset;cursor:pointer;color:var(--ink);text-decoration:underline;text-underline-offset:2px;font-size:11px}
+
+.aiact{padding:10px 0;border-top:1px solid var(--hair);font-size:13px}
+.aiact a{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.aiact .eff{font-size:12px;color:var(--ink2);margin-top:2px}
 </style>
 
 </head><body>
@@ -1253,7 +1257,23 @@ function frontCard(){const L=FRONT();if(!L.length)return null;
   const ul=el('ul','news');(frontAll?L:L.slice(0,4)).forEach(n=>ul.appendChild(frontItem(n)));c.append(ul);
   if(L.length>4){const mb=el('button','more',frontAll?'접기':`${L.length}개 모두 보기`);mb.type='button';mb.onclick=()=>{frontAll=!frontAll;track('front','all');render()};c.appendChild(mb)}
   c.append(el('p','rule','효력 강: 시행 중인 법·판결·구속력 있는 금지 · 중: 노사 합의·공식 지침·정부안 · 약: 성명·소송 제기·법안 발의·여론조사. 노출도는 AI가 할 수 있는 몫이라 이 소식으로 숫자가 바뀌지 않아요. 2026년 10월부터 모으고 있어요.'));return c}
+// 구조적 보호막(protect.json): 법이 그 일을 자격자에게 맡기거나 자격자를 두게 한 곳. 뉴스와 별개로 오래 유지된다
+let PRP=null;const prLoad=()=>PRP||(PRP=fetch('protect.json?v='+(FEED.updated||'')).then(r=>r.ok?r.json():null).catch(()=>null));
+const PTY={'독점':['업무 독점',3],'자격':['자격 요건',2],'배치':['배치 의무',1]};
+function protectBox(code,sk){const w=el('div');const hit=c=>sk?c===sk:c.startsWith(code);
+  prLoad().then(P=>{if(!P)return;const L=(P.licenses||[]).filter(l=>l.sm.some(([c])=>hit(c))),A=((P.ai_act||{}).areas||[]).filter(a=>a.sm.some(hit));
+    const lab=el('div','lab');lab.append(el('span',null,'법으로 정한 보호막'),el('span',null,'뉴스와 별개로 오래 가는 것'));w.append(lab);
+    if(!L.length&&!A.length){w.append(el('p','rule','이 직업에는 법으로 정한 자격 독점이나 AI 기본법 고영향 영역이 확인되지 않았어요.'));return}
+    if(L.length){const ul=el('ul','news'),SL=L.slice().sort((a,b)=>PTY[b.type][1]-PTY[a.type][1]);SL.forEach((l,ix)=>{const li=el('li','fr'),b=el('div','nb');const part=l.sm.filter(([c])=>hit(c)).every(([,cv])=>cv==='일부');
+        const m=el('div','m');m.append(el('span','fxb f'+PTY[l.type][1],PTY[l.type][0]),`${l.law} ${l.article}${part?' · 이 직업 중 일부':''}`);
+        const hd=el('a','hd',l.name);hd.href=l.url;hd.target='_blank';hd.rel='noopener';b.append(m,hd,el('div','eff',l.reserved));li.appendChild(b);if(ix>=4)li.hidden=true;ul.appendChild(li)});w.append(ul);
+      if(SL.length>4){const mb=el('button','more',`자격 ${SL.length-4}개 더 보기`);mb.type='button';mb.onclick=()=>{[...ul.children].forEach(x=>x.hidden=false);mb.remove()};w.append(mb)}}
+    if(A.length){const li=el('div','aiact');const a=el('a',null,`AI 기본법 고영향 영역 (${P.ai_act.enforce.slice(0,4)}.${+P.ai_act.enforce.slice(5,7)} 시행)`);a.href=P.ai_act.url;a.target='_blank';a.rel='noopener';
+      li.append(a,el('div','eff',A.map(x=>x.text).join(' · ')),el('p','rule',P.ai_act.what));w.append(li)}
+    w.append(el('p','rule','업무 독점: 자격이 없으면 그 일을 못 해요 · 자격 요건: 그 자리에는 자격자만 · 배치 의무: 자격자를 두어야 하지만 다른 사람도 일은 할 수 있어요. 법 조항은 2026년 10월 현행 법령 기준이에요.'))});
+  return w}
 function frontBox(code,sk){const box=el('div'),L=frontFor(sk||code),G=FRONT().filter(n=>!(n.ind||[]).length);
+  box.append(protectBox(code,sk));
   const lab=el('div','lab');lab.append(el('span',null,'이 직업의 쟁점'),el('span',null,'법·노사·기관의 결정'));box.append(lab);
   if(L.length){const w=L.reduce((s,n)=>s+(FXW[n.fx]||1),0),cnt=k=>L.filter(n=>n.fx===k).length;
     box.append(el('p','lede sm',`이 직업의 쟁점 ${L.length}건 · 무게 ${w} (강 ${cnt('강')} · 중 ${cnt('중')} · 약 ${cnt('약')})`));

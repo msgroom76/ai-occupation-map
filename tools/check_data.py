@@ -95,6 +95,18 @@ for r in RN_:
 if len(RN_) >= 6 and all(r.get('front', {}).get('q', 0) == 0 for r in RN_[:6]):
     warn('runs: 최근 6회 연속 쟁점 검색을 하지 않음')
 
+# ---------- 구조적 보호막 (protect.json) ----------
+if os.path.exists('protect.json'):
+    PR = json.load(open('protect.json'))
+    for L in PR.get('licenses', []):
+        if L.get('type') not in ('독점', '자격', '배치'): err(f'protect {L.get("name")}: type 값 이상')
+        if not str(L.get('url', '')).startswith('https://'): err(f'protect {L.get("name")}: url 이상')
+        bad = [c for c, cov in L.get('sm', []) if c not in cm['sm'] or cov not in ('전부', '일부')]
+        if bad: err(f'protect {L.get("name")}: 소분류 코드·범위 이상 {bad}')
+    for A in PR.get('ai_act', {}).get('areas', []):
+        bad = [c for c in A.get('sm', []) if c not in cm['sm']]
+        if bad: err(f'protect AI기본법 {A.get("item")}: 없는 소분류 {bad}')
+
 if not feed_only:
     # ---------- city_meta.json ----------
     J = cm['jobs']

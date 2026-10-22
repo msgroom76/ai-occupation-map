@@ -7,7 +7,7 @@ import { tick } from './_issue.js';
 const MOVE = new Set(['www.aijido.org', 'ai-occupation-map.pages.dev']);
 const PUBLIC_FILES = new Set(['/', '/index.html', '/404.html', '/robots.txt', '/sitemap.xml', '/og.png',
   '/city_index.png', '/city_roads.png', '/city_meta.json', '/config.json', '/feed.json', '/index.json',
-  '/ksco_titles.json', '/ksco_soc_map.json', '/tasks.json', '/favicon.ico',
+  '/ksco_titles.json', '/ksco_soc_map.json', '/tasks.json', '/protect.json', '/favicon.ico',
   '/privacy', '/privacy.html', '/terms', '/terms.html', '/about', '/about.html', '/admin', '/admin.html']);
 const PUBLIC_DIRS = ['/j/', '/w/', '/og/', '/mail/img/', '/api/'];
 const isPublic = p => PUBLIC_FILES.has(p) || PUBLIC_DIRS.some(d => p.startsWith(d)) || p === '/j' || p === '/w';
