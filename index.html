@@ -756,7 +756,9 @@ details.card[open] summary::after{content:"−"}
 .join .jr input{flex:1;min-width:0;box-sizing:border-box;height:40px;border:1px solid var(--hair);border-radius:0;background:var(--fill);color:var(--ink);font:inherit;font-size:16px;padding:0 12px}
 .join .jr input:focus{outline:0;border-color:var(--ink);background:var(--bg)}
 .jbtn{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:40px;padding:0 14px;font-size:14px;font-weight:600;letter-spacing:-.01em;border:1px solid var(--ink);color:var(--ink);white-space:nowrap}
-.jbtn.h{background:var(--c100);border-color:var(--c100);color:var(--bg)}
+.jbtn.h{background:var(--c100);border-color:var(--c100);color:#0b0c10}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .jbtn.h,:root:not([data-theme="dark"]) .jdlg .card .fm .btn{color:#fff}}
+:root[data-theme="light"] .jbtn.h,:root[data-theme="light"] .jdlg .card .fm .btn{color:#fff}
 .jbtn:focus-visible,.join .ja:focus-visible,.jdlg .jdx:focus-visible{outline:2px solid var(--tint);outline-offset:2px}
 .jbtn:disabled{opacity:.5;cursor:default}
 .jbtn svg{width:16px;height:16px;flex:none}
@@ -790,6 +792,11 @@ details.card[open] summary::after{content:"−"}
   .join .jm .jbtn{height:46px;padding:0 8px}
   .jdlg{margin:auto 0 0;width:100vw;max-width:100vw;border:0;border-top:1px solid var(--ink);padding:16px 20px calc(24px + env(safe-area-inset-bottom,0px));max-height:88vh;overflow:auto}
 }
+
+.fold .join{border-top:0;margin:0 0 36px}
+.fold .join .jn{padding-top:0}
+.fold.inv .join .ja{color:#ff8ccd}
+@media (max-width:899px){.fold .join{margin:4px 0 28px}}
 </style>
 
 </head><body>
@@ -1260,25 +1267,26 @@ function partBody(){const w=el('div');w.appendChild(el('p','jintro','기업·기
   [['후원','지도와 주간 메일에 후원사를 밝히고, 지도는 누구나 무료로 계속 볼 수 있게 해요'],['제휴','언론·플랫폼과 데이터 협력, 공동 콘텐츠'],['조직 리포트','우리 조직 직무 구성으로 본 AI 노출 분석'],['워크숍·강연','임직원·교육생 대상']].forEach(([k,v])=>{const li=el('li');li.append(el('b',null,k),el('span',null,v));ul.appendChild(li)});
   w.append(ul,...leadForm('top'));return w}
 const MAIL_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13"/><path d="m3.5 6.5 8.5 7 8.5-7"/></svg>',HAND_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 8.5 8l3 1.5L15 7l5 5-6.5 6.5L9 14"/><path d="m11.5 9.5-3 3 1.5 1.5"/></svg>';
-function joinOpen(kind){const dl=document.getElementById('jdlg'),b=document.getElementById('jdb');if(!dl)return;b.innerHTML='';
+function joinOpen(kind,src){const dl=document.getElementById('jdlg'),b=document.getElementById('jdb');if(!dl)return;b.innerHTML='';
   document.getElementById('jdt').textContent=kind==='news'?'매주 월요일, AI 지수를 메일로':'AI 점령 지도를 함께 만들어요';
-  b.appendChild(kind==='news'?subCard():partBody());try{dl.showModal()}catch(e){dl.setAttribute('open','')}track('join',kind)}
-function joinInit(){const j=document.getElementById('join'),dl=document.getElementById('jdlg');if(!j||j.childElementCount)return;
-  // 넓은 화면: 이메일만 받는 짧은 양식(동의 체크 포함). 직업은 받지 않는다
+  b.appendChild(kind==='news'?subCard():partBody());try{dl.showModal()}catch(e){dl.setAttribute('open','')}track('join',kind+(src?'·'+src:''))}
+// 구독·협력 블록 하나를 첫 화면(top)과 맨 아래 '함께하기'(bottom)에서 같이 쓴다
+function joinBlock(src){const box=el('section','join');box.setAttribute('aria-label','주간 메일 구독과 협력 문의');
   const n=el('div','jn');const k=el('div','jk');k.append(el('b',null,'매주 월요일, AI 지수를 메일로'),el('span',null,'무료 · 언제든 해지'));
   const f=el('form');f.noValidate=true;const r=el('div','jr');const em=el('input');em.type='email';em.placeholder='이메일 주소';em.autocomplete='email';em.setAttribute('aria-label','구독할 이메일 주소');
   const bt=el('button','jbtn h','구독');bt.type='submit';r.append(em,bt);
   const hp=el('input');hp.name='website';hp.tabIndex=-1;hp.autocomplete='off';hp.className='hp';hp.setAttribute('aria-hidden','true');
   const cs=el('label','jc');const cc=el('input');cc.type='checkbox';const pv=el('a',null,'처리방침');pv.href='/privacy';pv.target='_blank';pv.rel='noopener';cs.append(cc,' 개인정보 수집·이용에 동의해요 · ',pv);
   const out=el('p','fmsg');f.append(r,hp,cs,out);
-  f.onsubmit=async e=>{e.preventDefault();const ok=await postForm('/api/subscribe',{email:em.value,consent:cc.checked,job:'',src:'top',website:hp.value},out,bt);if(ok){track('sub','top');em.value=''}};
+  f.onsubmit=async e=>{e.preventDefault();const ok=await postForm('/api/subscribe',{email:em.value,consent:cc.checked,job:'',src,website:hp.value},out,bt);if(ok){track('sub',src);em.value=''}};
   n.append(k,f);
   const pp=el('div','jp');const tx=el('div');tx.append(el('b',null,'기업·기관과 함께 만들어요'),el('span',null,'후원 · 제휴 · 조직 리포트 · 워크숍'));
-  const pa=el('button','ja','제안하기 →');pa.type='button';pa.onclick=()=>joinOpen('part');pp.append(tx,pa);
-  // 좁은 화면: 두 버튼 → 아래에서 올라오는 창
-  const m=el('div','jm');const b1=el('button','jbtn h');b1.type='button';b1.innerHTML=MAIL_SVG;b1.append(' 주간 메일 받기');b1.onclick=()=>joinOpen('news');
-  const b2=el('button','jbtn');b2.type='button';b2.innerHTML=HAND_SVG;b2.append(' 후원·제휴');b2.onclick=()=>joinOpen('part');m.append(b1,b2);
-  j.append(n,pp,m);
+  const pa=el('button','ja','제안하기 →');pa.type='button';pa.onclick=()=>joinOpen('part',src);pp.append(tx,pa);
+  const m=el('div','jm');const b1=el('button','jbtn h');b1.type='button';b1.innerHTML=MAIL_SVG;b1.append(' 주간 메일 받기');b1.onclick=()=>joinOpen('news',src);
+  const b2=el('button','jbtn');b2.type='button';b2.innerHTML=HAND_SVG;b2.append(' 후원·제휴');b2.onclick=()=>joinOpen('part',src);m.append(b1,b2);
+  box.append(n,pp,m);return box}
+function joinInit(){const j=document.getElementById('join'),dl=document.getElementById('jdlg');if(!j||j.childElementCount)return;
+  j.append(...joinBlock('top').childNodes);
   if(dl){document.getElementById('jdx').onclick=()=>dl.close();dl.addEventListener('click',e=>{if(e.target===dl)dl.close()})}}
 function aboutCard(){
   const d=el('details','card');d.innerHTML=`<summary>이 지도에 대해 · 인용하기</summary>`;const m=el('div','meth');
@@ -1432,7 +1440,7 @@ function render(){
   else{F.push(['mine','내 직업',[mineCard()],ctx]);F.push(['today','오늘의 지도',[summaryCard(),todayCard(),highlights()],ctx])}
   F.push(['news','이번 주 소식',[newsCard()],rest]);
   F.push(['browse','둘러보기',[catsCard(),rankCard(),adSlot()],rest]);
-  F.push(['join','함께하기',[subCard(),leadCard(),aboutCard(),el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024)·ILO(2025) 평균 · 실제 사용 Anthropic(2026) · 업무 O*NET 30.0 · 취업자 국가데이터처(2025년 하반기)`),legalLinks()],rest]);
+  F.push(['join','함께하기',[joinBlock('bottom'),aboutCard(),el('p','foot',`${VER} · 기준일 ${ASOF} · 노출도 Eloundou 외(2024)·ILO(2025) 평균 · 실제 사용 Anthropic(2026) · 업무 O*NET 30.0 · 취업자 국가데이터처(2025년 하반기)`),legalLinks()],rest]);
   const FL=F.map(f=>[f[0],f[1],f[2].filter(Boolean),f[3]]).filter(f=>f[2].length),CL=foldGet();
   const txt=(k,s)=>{const e=k.querySelector(s);return e?e.textContent.trim():''};
   const sumOf=(key,k)=>key==='mine'?[txt(k,'.nm')+(txt(k,'.sub')?' · '+txt(k,'.sub'):''),txt(k,'.num')]

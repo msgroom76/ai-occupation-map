@@ -7,6 +7,7 @@ import { db, json, html, kst, token, sameOrigin } from '../../_db.js';
 import { mailOn } from '../../_mail.js';
 import { sign, verify, adminTo, batch, setMeta } from '../../_issue.js';
 import { COOKIE, makeSession } from '../../_admin.js';
+import { mailHtml } from '../../_tpl.js';
 async function linkOk(env, d, e, n, s) {
   if (!/^\d+$/.test(e) || +e < Date.now() / 1000 || !/^[0-9a-f]{48}$/.test(n) || !(await verify(env, `login|${e}|${n}`, s))) return false;
   return !!d && (await d.prepare("SELECT v FROM meta WHERE k = 'admin_login_nonce'").first())?.v === n;
@@ -33,8 +34,11 @@ export async function onRequestPost({ request, env }) {
   await setMeta(d, 'admin_login_nonce', nonce);
   const link = `${origin}/api/admin/login?e=${exp}&n=${nonce}&s=${await sign(env, `login|${exp}|${nonce}`)}`;
   const r = await batch(env, [{ from: env.MAIL_FROM, to: [to], subject: '[AI 점령 지도] 운영 화면 로그인 링크',
-    text: `운영 화면에 로그인하려면 15분 안에 아래 주소를 여세요.\n${link}\n\n직접 요청하지 않았다면 무시하세요. ${kst()}`,
-    html: `<div style="font:15px/1.7 -apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#1c1c1e"><p>AI 점령 지도 운영 화면 로그인 링크예요. 15분 동안만 쓸 수 있어요.</p><p><a href="${link}" style="display:inline-block;padding:12px 18px;background:#1c1c1e;color:#fff;text-decoration:none;font-weight:600">운영 화면 열기</a></p><p style="color:#6b6b70;font-size:13px">직접 요청하지 않았다면 이 메일은 무시하세요.</p></div>` }]);
+    text: `운영 화면에 로그인하려면 15분 안에 아래 주소를 열고 [로그인]을 누르세요. 링크는 한 번만 쓸 수 있어요.\n${link}\n\n직접 요청하지 않았다면 무시하세요. 요청 시각 ${kst().slice(0, 16).replace('T', ' ')}`,
+    html: mailHtml({ base: origin, label: 'ADMIN', title: '운영 화면 로그인', pre: '15분 안에 한 번만 쓸 수 있는 로그인 링크예요.',
+      blocks: [{ p: '아래 버튼을 열고 [로그인]을 누르면 이 기기에서 30일 동안 로그인돼요. 링크는 15분 동안 한 번만 쓸 수 있고, 새 링크를 받으면 이 링크는 쓸 수 없어요.' },
+        { cta: { url: link, text: '운영 화면 열기' } }],
+      foot: `직접 요청하지 않았다면 이 메일은 무시하세요. 요청 시각 ${kst().slice(0, 16).replace('T', ' ')}` }) }]);
   const m = to.replace(/^(.{2}).*@/, '$1***@');
   return json({ ok: r.ok, msg: r.ok ? `${m}로 로그인 링크를 보냈어요. 15분 안에 눌러 주세요.` : '메일을 보내지 못했어요.' }, r.ok ? 200 : 502);
 }

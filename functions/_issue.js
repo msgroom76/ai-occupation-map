@@ -7,6 +7,7 @@
 // 상태는 meta 표에 issue:<주> = asked | approved | done, 하루 한도 멈춤은 issue_pause = 날짜.
 import { kst, safeEq } from './_db.js';
 import { mailOn, confirmMail } from './_mail.js';
+import { mailHtml, link, textFoot } from './_tpl.js';
 export const WEEK = /^\d{4}-W\d{2}$/;
 const reply = env => env.MAIL_REPLY_TO ? { reply_to: env.MAIL_REPLY_TO } : {};
 export const adminTo = env => env.ADMIN_EMAIL || env.MAIL_REPLY_TO || '';
@@ -146,8 +147,12 @@ export async function welcome(env, d, origin, email, tok) {
   const list = []; let wk = null;
   for (const it of await issues(env, origin)) { const st = await issueState(d, it.week); if (st === 'approved' || st === 'done') { wk = it.week; break; } }
   const w = { from: env.MAIL_FROM, ...reply(env), to: [email], subject: '[AI 점령 지도] 구독을 시작했어요',
-    text: `구독을 시작했어요. 매주 월요일 아침에 AI 점령 지도 주간 메일을 보내드려요.${wk ? '\n가장 최근 호를 바로 이어서 보내드릴게요.' : ''}\n\n내 직업 찾아보기: ${origin}/\n수신 거부: ${unsub}\n보내는 곳: 포스트오피스(AI 점령 지도 운영) · 개인정보처리방침 ${origin}/privacy`,
-    html: `<div style="font:15px/1.7 -apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#1c1c1e;max-width:520px"><p><b>AI 점령 지도</b> 구독을 시작했어요.</p><p>매주 월요일 아침, 한 주 동안 AI가 건드린 업무와 지수 변화를 정리해 보내드려요.${wk ? ' 가장 최근 호를 바로 이어서 보내드릴게요.' : ''}</p><p><a href="${origin}/" style="display:inline-block;padding:12px 18px;background:#1c1c1e;color:#fff;text-decoration:none;font-weight:600">내 직업 찾아보기</a></p><p style="color:#6b6b70;font-size:13px">보내는 곳: 포스트오피스(AI 점령 지도 운영) · <a href="${origin}/privacy" style="color:#6b6b70">개인정보처리방침</a> · <a href="${unsub}" style="color:#6b6b70">수신 거부</a></p></div>`,
+    text: `구독을 시작했어요. 매주 월요일 아침에 AI 점령 지도 주간 메일을 보내드려요.${wk ? '\n가장 최근 호를 바로 이어서 보내드릴게요.' : ''}\n\n지도에서 내 직업을 찾아 저장하면, 그 직업에 닿은 AI 소식을 함께 볼 수 있어요.\n내 직업 찾아보기: ${origin}/\n수신 거부: ${unsub}` + textFoot(origin),
+    html: mailHtml({ base: origin, label: 'WELCOME', title: '구독을 시작했어요', pre: '매주 월요일 아침, AI가 건드린 업무와 지수 변화를 보내드려요.',
+      blocks: [{ p: `매주 월요일 아침, 한 주 동안 AI가 건드린 업무와 지수 변화, 그 숫자의 근거를 정리해 보내드려요.${wk ? ' 가장 최근 호는 이 메일 바로 다음에 이어서 보내드릴게요.' : ''}` },
+        { box: '<b>이렇게 써 보세요</b><br>지도에서 내 직업을 찾아 저장하면, 그 직업에 닿은 AI 소식과 내 업무 중 AI가 해낼 수 있는 몫을 함께 볼 수 있어요.' },
+        { cta: { url: `${origin}/`, text: '내 직업 찾아보기 →' } }],
+      foot: `이 메일은 AI 점령 지도에서 주간 메일을 신청하고 구독을 확인한 분께 보내요. · ${link(unsub, '수신 거부')}` }),
     headers: { 'List-Unsubscribe': `<${unsub}>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' } };
   list.push(w);
   let m = null;
