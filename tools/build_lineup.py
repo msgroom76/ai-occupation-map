@@ -24,12 +24,15 @@ def panel(fig, e, name, n, e30, stg, w=300):
     h = img.height; out = Image.new('RGB', (w, h + 118), PAPER); out.paste(img, (0, 0)); d = ImageDraw.Draw(out)
     d.text((6, h + 10), name, font=font(FB, 22), fill=INK)
     d.text((6, h + 42), f'{round(e*100)}%', font=font(FB, 34), fill=INK_LIGHT)
-    d.text((6 + d.textlength(f'{round(e*100)}%', font=font(FB, 34)) + 10, h + 56), f'{stg} · {n}명', font=font(FR, 18), fill=MUT)
+    d.text((6 + d.textlength(f'{round(e*100)}%', font=font(FB, 34)) + 10, h + 56), f'노출 {stg} · {n}명', font=font(FR, 18), fill=MUT)
     d.text((6, h + 88), f'2030년 {round(e30*100)}%', font=font(FR, 17), fill=MUT)
     return out
 
-def lineup(M, per_row=7, w=300, gap=14):
-    R = M['roles']; ST = [s[0] for s in M['stages']]
+TIER = ['낮음', '보통', '상당', '높음', '매우 높음']   # 리포트용 노출 수준(물때 5단계와 같은 경계: 20·35·50·65%)
+def lineup(M, per_row=None, w=300, gap=14):
+    R = M['roles']; ST = TIER
+    import math
+    if not per_row: per_row = math.ceil(len(R) / math.ceil(len(R) / 7))   # 줄마다 고르게(외톨이 줄 없게)
     ps = [panel(r['fig'], r['e26'], r['name'], r['n'], r['e30'], ST[r['stage']], w) for r in R]
     rows = [ps[i:i + per_row] for i in range(0, len(ps), per_row)]
     H = sum(max(p.height for p in row) + gap for row in rows) + 40

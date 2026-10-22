@@ -25,13 +25,13 @@ if G:
         ax.text(f / 2, y[i], f'{f:.1f}', va='center', ha='center', color='white', fontsize=11, fontweight='bold')
         ax.text(f + (f30 - f) / 2, y[i], f'{f30:.1f}', va='center', ha='center', color=INK, fontsize=10)
     ax.set_yticks(y); ax.set_yticklabels([g[0] for g in G], fontsize=12, color=TXT); ax.set_xlim(0, max(sum(r['n'] for r in S) for _, S in G) * 1.15)
-    ax.set_xlabel('사람 수(명) · 진한 칸: 2026년 AI가 해낼 수 있는 업무량(명분) · 옅은 칸: 2030년', color=MUT, fontsize=9)
+    ax.set_xlabel('테두리: 인원(명) · 진한 막대: AI 수행 가능 업무량 2026(FTE) · 옅은 막대: 2030(FTE)', color=MUT, fontsize=9)
     fig.tight_layout(); fig.savefig(f'{od}/chart_groups.png', facecolor=BG); plt.close(fig)
 # 2. 조직 전체에서 AI가 해낼 업무 상위(명분), 대체형 진하게·보완형 옅게
 T = o['tasks'][::-1]
 fig, ax = plt.subplots(figsize=(8, 3.8), dpi=200); fig.patch.set_facecolor(BG); style(ax)
 ax.barh(range(len(T)), [t['fte'] for t in T], color=[INK if t['type'] == '대체형' else SOFT for t in T], height=.62)
-for i, t in enumerate(T): ax.text(t['fte'] + .05, i, f"{t['fte']:.1f}명분 · {t['type']}", va='center', fontsize=9, color=TXT if t['type'] == '대체형' else MUT)
+for i, t in enumerate(T): ax.text(t['fte'] + .05, i, f"{t['fte']:.1f} FTE · {t['type']}", va='center', fontsize=9, color=TXT if t['type'] == '대체형' else MUT)
 ax.set_yticks(range(len(T))); ax.set_yticklabels([t['name'] for t in T], fontsize=11, color=TXT); ax.set_xticks([])
 ax.set_xlim(0, max(t['fte'] for t in T) * 1.45)
 fig.tight_layout(); fig.savefig(f'{od}/chart_tasks.png', facecolor=BG); plt.close(fig)

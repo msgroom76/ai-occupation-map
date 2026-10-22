@@ -1,0 +1,1495 @@
+{
+ "company": {
+  "id": "sfood",
+  "name": "에쓰푸드(주)",
+  "eng": "SFOOD INC.",
+  "asof": "2026-10-22",
+  "about": "델리미트·햄·소시지·베이컨 등 육가공(존쿡 델리미트), HMR·소스·베이커리·치즈로 확장, 글로벌 프랜차이즈 ODM. 경기 안성 본사·공장. 2025년 매출 2,820억 원, 영업이익 177억 원(감사보고서). 2025년 미국 OWP 지분 70% 인수.",
+  "basis": "국민연금 기준 약 575명(2026.8)과, 급여의 약 74%가 판관비 밖(생산 원가)에 있다는 감사보고서 구성을 바탕으로 한 직무 구성 추정. 회사 확인이 필요하다."
+ },
+ "org": {
+  "n": 575,
+  "e26": 0.239,
+  "e30": 0.3588,
+  "kr26": 0.3154,
+  "kr30": 0.4689,
+  "fte": 137.4,
+  "fte30": 206.3,
+  "cost": 68.1,
+  "payroll": 268.0,
+  "sub": 0.433,
+  "stage": 1,
+  "stage30": 2,
+  "tasks": [
+   {
+    "id": "C9",
+    "name": "기록·문서화",
+    "fte": 31.82,
+    "type": "대체형"
+   },
+   {
+    "id": "B5",
+    "name": "결정·문제 풀기",
+    "fte": 12.56,
+    "type": "보완형"
+   },
+   {
+    "id": "B2",
+    "name": "정보 처리하기",
+    "fte": 7.45,
+    "type": "대체형"
+   },
+   {
+    "id": "C3",
+    "name": "기계·공정 제어",
+    "fte": 7.12,
+    "type": "대체형"
+   },
+   {
+    "id": "D12",
+    "name": "지휘하기",
+    "fte": 6.69,
+    "type": "보완형"
+   },
+   {
+    "id": "B4",
+    "name": "데이터 분석",
+    "fte": 6.46,
+    "type": "보완형"
+   },
+   {
+    "id": "A4",
+    "name": "장비·재료 점검",
+    "fte": 6.18,
+    "type": "보완형"
+   },
+   {
+    "id": "A1",
+    "name": "정보 찾아 모으기",
+    "fte": 5.87,
+    "type": "보완형"
+   }
+  ]
+ },
+ "roles": [
+  {
+   "id": "acct",
+   "name": "재무·회계",
+   "n": 12,
+   "code": "331",
+   "fig": "accountant",
+   "job": "회계·경리 사무",
+   "sm": "회계 및 경리 사무원",
+   "e26": 0.6518,
+   "e30": 0.8411,
+   "stage": 4,
+   "stage30": 4,
+   "sub": 0.84,
+   "ob": 0.2667,
+   "ob_raw": 0.2667,
+   "tasks": [
+    {
+     "id": "C9",
+     "name": "기록·문서화",
+     "share": 0.192,
+     "type": "대체형"
+    },
+    {
+     "id": "B2",
+     "name": "정보 처리하기",
+     "share": 0.185,
+     "type": "대체형"
+    },
+    {
+     "id": "C5",
+     "name": "컴퓨터로 일하기",
+     "share": 0.078,
+     "type": "대체형"
+    },
+    {
+     "id": "A5",
+     "name": "수량·비용 가늠",
+     "share": 0.036,
+     "type": "대체형"
+    }
+   ],
+   "wage_k": 4516,
+   "hours": 152.1,
+   "fte": 7.82,
+   "fte30": 10.09,
+   "cost_m": 4.24,
+   "union_kr": 11.1,
+   "union_us": 8.7,
+   "lic_us": 8.9,
+   "licenses": [],
+   "aiact": [],
+   "news": [
+    {
+     "hd": "워크데이, AI 에이전트가 화면 없이 인사·재무 시스템 업무를 직접 처리하도록 개방하고 사용량 기반 과금 예고",
+     "src": "The Register",
+     "url": "https://www.theregister.com/saas/2026/10/15/workday-wants-a-slice-of-customers-labour-budget-that-its-ai-agents-could-replace/5303281",
+     "ts": "2026-10-16"
+    },
+    {
+     "hd": "인튜이트, QuickBooks에 장부 기록·거래 분류를 자동으로 하고 계정 대사를 돕는 회계 에이전트와 청구서 발송·독촉 에이전트 도입 (미국, 2025.7)",
+     "src": "Accounting Today",
+     "url": "https://www.accountingtoday.com/news/intuit-debuts-ai-agents-for-quickbooks",
+     "ts": "2025-06-26"
+    },
+    {
+     "hd": "더존비즈온, 세무회계사무소용 AI 비서 'ONE AI'에 세법·예규 안내, 서식 작성 지원, 민원서류 25종 발급·자동 전송 기능",
+     "src": "CIO Korea",
+     "url": "https://www.cio.com/article/3521072/%EB%8D%94%EC%A1%B4%EB%B9%84%EC%A6%88%EC%98%A8-%EC%84%B8%EB%AC%B4%ED%9A%8C%EA%B3%84-%EC%A0%84%EB%AC%B8-ai-%EB%B9%84%EC%84%9C-%EC%9B%90ai-%EA%B3%A0%EB%8F%84%ED%99%94%C2%B7%C2%B7%C2%B7.html",
+     "ts": "2024-05-03"
+    }
+   ],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+     "src": "에너지데일리",
+     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-10-20",
+     "all": true
+    }
+   ],
+   "moves": [
+    {
+     "to": "인사·총무",
+     "sim": 0.73,
+     "gap": 0.103
+    }
+   ]
+  },
+  {
+   "id": "hr",
+   "name": "인사·총무",
+   "n": 13,
+   "code": "371",
+   "fig": "admin",
+   "job": "일반 사무 지원",
+   "sm": "총무 사무원 및 대학 행정조교",
+   "e26": 0.5488,
+   "e30": 0.7629,
+   "stage": 3,
+   "stage30": 4,
+   "sub": 0.616,
+   "ob": 0.4312,
+   "ob_raw": 0.4312,
+   "tasks": [
+    {
+     "id": "C9",
+     "name": "기록·문서화",
+     "share": 0.135,
+     "type": "대체형"
+    },
+    {
+     "id": "B2",
+     "name": "정보 처리하기",
+     "share": 0.07,
+     "type": "대체형"
+    },
+    {
+     "id": "D15",
+     "name": "행정 처리",
+     "share": 0.062,
+     "type": "대체형"
+    },
+    {
+     "id": "B3",
+     "name": "기준 충족 평가",
+     "share": 0.043,
+     "type": "보완형"
+    }
+   ],
+   "wage_k": 4516,
+   "hours": 152.1,
+   "fte": 7.13,
+   "fte30": 9.92,
+   "cost_m": 3.87,
+   "union_kr": 11.1,
+   "union_us": 8.7,
+   "lic_us": 8.9,
+   "licenses": [],
+   "aiact": [],
+   "news": [],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "한국GM 노조, 사무직 AI 에이전트 활용 범위를 노사가 함께 정하자고 요구 — AI로 근로자 평가·감시에도 반대",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026062502000080321",
+     "fx": "약",
+     "kind": "노사",
+     "ts": "2026-06-25",
+     "all": false
+    }
+   ],
+   "moves": []
+  },
+  {
+   "id": "mkt",
+   "name": "마케팅",
+   "n": 8,
+   "code": "283",
+   "fig": "marketer",
+   "job": "경영·금융·마케팅 전문가",
+   "sm": "상품 기획‧홍보 및 조사 전문가",
+   "e26": 0.5174,
+   "e30": 0.8239,
+   "stage": 3,
+   "stage30": 4,
+   "sub": 0.161,
+   "ob": 0.5174,
+   "ob_raw": 0.5176,
+   "tasks": [
+    {
+     "id": "B4",
+     "name": "데이터 분석",
+     "share": 0.081,
+     "type": "보완형"
+    },
+    {
+     "id": "B6",
+     "name": "창의적으로 생각하기",
+     "share": 0.051,
+     "type": "보완형"
+    },
+    {
+     "id": "C9",
+     "name": "기록·문서화",
+     "share": 0.049,
+     "type": "대체형"
+    },
+    {
+     "id": "D2",
+     "name": "동료와 소통",
+     "share": 0.046,
+     "type": "보완형"
+    }
+   ],
+   "wage_k": 4761,
+   "hours": 151.0,
+   "fte": 4.14,
+   "fte30": 6.59,
+   "cost_m": 2.36,
+   "union_kr": 9.1,
+   "union_us": 4.7,
+   "lic_us": 17.3,
+   "licenses": [],
+   "aiact": [],
+   "news": [
+    {
+     "hd": "DB손해보험, 삼성SDS와 보험금 청구 AI 에이전트 출시 — 자동차 사고 접수 30분 안에 첫 안내와 사고 정보 수집, 장기보험은 담보별 필요 서류 안내",
+     "src": "SBS Biz",
+     "url": "https://biz.sbs.co.kr/amp/article/20000292137",
+     "ts": "2026-02-19"
+    },
+    {
+     "hd": "알리안츠 호주, AI 에이전트 7개가 소액 식품 변질 보험금 청구의 보장 여부·기상 확인·사기 점검·지급액 계산까지 처리 — 최종 지급 결정은 사람이 함",
+     "src": "Allianz",
+     "url": "https://www.allianz.com/en/mediacenter/news/articles/251103-when-the-storm-clears-so-should-the-claim-queue.html",
+     "ts": "2025-11-03"
+    },
+    {
+     "hd": "인튜이트, QuickBooks에 장부 기록·거래 분류를 자동으로 하고 계정 대사를 돕는 회계 에이전트와 청구서 발송·독촉 에이전트 도입 (미국, 2025.7)",
+     "src": "Accounting Today",
+     "url": "https://www.accountingtoday.com/news/intuit-debuts-ai-agents-for-quickbooks",
+     "ts": "2025-06-26"
+    }
+   ],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+     "src": "에너지데일리",
+     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-10-20",
+     "all": true
+    }
+   ],
+   "moves": [
+    {
+     "to": "품질·위생(HACCP)",
+     "sim": 0.69,
+     "gap": 0.139
+    }
+   ]
+  },
+  {
+   "id": "sales",
+   "name": "영업(B2B·유통)",
+   "n": 35,
+   "code": "510",
+   "fig": "sales",
+   "job": "영업직",
+   "sm": "영업 종사자",
+   "e26": 0.5132,
+   "e30": 0.7858,
+   "stage": 3,
+   "stage30": 4,
+   "sub": 0.286,
+   "ob": 0.4634,
+   "ob_raw": 0.4634,
+   "tasks": [
+    {
+     "id": "C9",
+     "name": "기록·문서화",
+     "share": 0.105,
+     "type": "대체형"
+    },
+    {
+     "id": "D6",
+     "name": "팔고 설득하기",
+     "share": 0.049,
+     "type": "보완형"
+    },
+    {
+     "id": "D1",
+     "name": "풀어 설명하기",
+     "share": 0.042,
+     "type": "보완형"
+    },
+    {
+     "id": "D14",
+     "name": "상담·조언",
+     "share": 0.041,
+     "type": "보완형"
+    }
+   ],
+   "wage_k": 3108,
+   "hours": 137.0,
+   "fte": 17.96,
+   "fte30": 27.5,
+   "cost_m": 6.7,
+   "union_kr": 4.8,
+   "union_us": 2.5,
+   "lic_us": 14.7,
+   "licenses": [
+    {
+     "name": "보험 모집 자격",
+     "type": "독점",
+     "law": "보험업법",
+     "article": "제83조제1항"
+    }
+   ],
+   "aiact": [],
+   "news": [
+    {
+     "hd": "세일즈포스, 영업 AI 에이전트 'Einstein SDR' 공개 — 유입 잠재 고객의 제품 질문에 답하고 반론에 대응하며, 리드를 선별해 영업 담당자와 미팅을 잡음",
+     "src": "Salesforce",
+     "url": "https://www.salesforce.com/ap/news/press-releases/2024/08/26/meet-einstein-sdr-and-einstein-sales-coach-two-new-autonomous-ai-sales-agents-to-scale-your-sales-team/",
+     "ts": "2024-08-26"
+    }
+   ],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+     "src": "에너지데일리",
+     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-10-20",
+     "all": true
+    }
+   ],
+   "moves": []
+  },
+  {
+   "id": "pm",
+   "name": "생산관리",
+   "n": 15,
+   "code": "321",
+   "fig": "admin",
+   "job": "생산·물류 사무",
+   "sm": "자재 및 생산관리 사무원",
+   "e26": 0.4624,
+   "e30": 0.673,
+   "stage": 2,
+   "stage30": 4,
+   "sub": 0.43,
+   "ob": 0.0282,
+   "ob_raw": 0.0282,
+   "tasks": [
+    {
+     "id": "C9",
+     "name": "기록·문서화",
+     "share": 0.165,
+     "type": "대체형"
+    },
+    {
+     "id": "B4",
+     "name": "데이터 분석",
+     "share": 0.064,
+     "type": "보완형"
+    },
+    {
+     "id": "D12",
+     "name": "지휘하기",
+     "share": 0.045,
+     "type": "보완형"
+    },
+    {
+     "id": "B5",
+     "name": "결정·문제 풀기",
+     "share": 0.039,
+     "type": "보완형"
+    }
+   ],
+   "wage_k": 4516,
+   "hours": 152.1,
+   "fte": 6.94,
+   "fte30": 10.1,
+   "cost_m": 3.76,
+   "union_kr": 11.1,
+   "union_us": 8.7,
+   "lic_us": 8.9,
+   "licenses": [],
+   "aiact": [],
+   "news": [
+    {
+     "hd": "현대차, 울산 EV 공장에서 생산·품질·설비 데이터를 분석하는 제조 AI 에이전트 '폴라리스' 9월부터 시범 운영",
+     "src": "서울신문",
+     "url": "https://www.seoul.co.kr/news/economy/car/2026/10/19/20261019029002",
+     "ts": "2026-10-18"
+    }
+   ],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+     "src": "에너지데일리",
+     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-10-20",
+     "all": true
+    }
+   ],
+   "moves": [
+    {
+     "to": "설비 보전",
+     "sim": 0.56,
+     "gap": 0.28
+    }
+   ]
+  },
+  {
+   "id": "scm",
+   "name": "구매·SCM",
+   "n": 20,
+   "code": "321",
+   "fig": "scm",
+   "job": "생산·물류 사무",
+   "sm": "자재 및 생산관리 사무원",
+   "e26": 0.4624,
+   "e30": 0.673,
+   "stage": 2,
+   "stage30": 4,
+   "sub": 0.43,
+   "ob": 0.0282,
+   "ob_raw": 0.0282,
+   "tasks": [
+    {
+     "id": "C9",
+     "name": "기록·문서화",
+     "share": 0.165,
+     "type": "대체형"
+    },
+    {
+     "id": "B4",
+     "name": "데이터 분석",
+     "share": 0.064,
+     "type": "보완형"
+    },
+    {
+     "id": "D12",
+     "name": "지휘하기",
+     "share": 0.045,
+     "type": "보완형"
+    },
+    {
+     "id": "B5",
+     "name": "결정·문제 풀기",
+     "share": 0.039,
+     "type": "보완형"
+    }
+   ],
+   "wage_k": 4516,
+   "hours": 152.1,
+   "fte": 9.25,
+   "fte30": 13.46,
+   "cost_m": 5.01,
+   "union_kr": 11.1,
+   "union_us": 8.7,
+   "lic_us": 8.9,
+   "licenses": [],
+   "aiact": [],
+   "news": [
+    {
+     "hd": "현대차, 울산 EV 공장에서 생산·품질·설비 데이터를 분석하는 제조 AI 에이전트 '폴라리스' 9월부터 시범 운영",
+     "src": "서울신문",
+     "url": "https://www.seoul.co.kr/news/economy/car/2026/10/19/20261019029002",
+     "ts": "2026-10-18"
+    }
+   ],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+     "src": "에너지데일리",
+     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-10-20",
+     "all": true
+    }
+   ],
+   "moves": [
+    {
+     "to": "설비 보전",
+     "sim": 0.56,
+     "gap": 0.28
+    }
+   ]
+  },
+  {
+   "id": "exec",
+   "name": "경영진",
+   "n": 8,
+   "code": "112",
+   "fig": "exec",
+   "job": "고위 공무원·기업 임원",
+   "sm": "기업 대표 및 기업 고위 임원",
+   "e26": 0.4442,
+   "e30": 0.7059,
+   "stage": 2,
+   "stage30": 4,
+   "sub": 0.215,
+   "ob": 0.0333,
+   "ob_raw": 0.0333,
+   "tasks": [
+    {
+     "id": "D12",
+     "name": "지휘하기",
+     "share": 0.075,
+     "type": "보완형"
+    },
+    {
+     "id": "C9",
+     "name": "기록·문서화",
+     "share": 0.07,
+     "type": "대체형"
+    },
+    {
+     "id": "B6",
+     "name": "창의적으로 생각하기",
+     "share": 0.039,
+     "type": "보완형"
+    },
+    {
+     "id": "B4",
+     "name": "데이터 분석",
+     "share": 0.038,
+     "type": "보완형"
+    }
+   ],
+   "wage_k": 12545,
+   "hours": 155.8,
+   "fte": 3.55,
+   "fte30": 5.65,
+   "cost_m": 5.35,
+   "union_kr": 5.5,
+   "union_us": 4.1,
+   "lic_us": 18.0,
+   "licenses": [],
+   "aiact": [],
+   "news": [],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+     "src": "에너지데일리",
+     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-10-20",
+     "all": true
+    }
+   ],
+   "moves": []
+  },
+  {
+   "id": "rnd",
+   "name": "제품 개발(R&D)",
+   "n": 15,
+   "code": "211",
+   "fig": "foodrnd",
+   "job": "과학 연구직",
+   "sm": "생명 및 자연과학 관련 전문가",
+   "e26": 0.442,
+   "e30": 0.6951,
+   "stage": 2,
+   "stage30": 4,
+   "sub": 0.206,
+   "ob": 0.1055,
+   "ob_raw": 0.1055,
+   "tasks": [
+    {
+     "id": "A1",
+     "name": "정보 찾아 모으기",
+     "share": 0.08,
+     "type": "보완형"
+    },
+    {
+     "id": "C9",
+     "name": "기록·문서화",
+     "share": 0.078,
+     "type": "대체형"
+    },
+    {
+     "id": "B6",
+     "name": "창의적으로 생각하기",
+     "share": 0.063,
+     "type": "보완형"
+    },
+    {
+     "id": "B4",
+     "name": "데이터 분석",
+     "share": 0.055,
+     "type": "보완형"
+    }
+   ],
+   "wage_k": 4761,
+   "hours": 151.0,
+   "fte": 6.63,
+   "fte30": 10.43,
+   "cost_m": 3.79,
+   "union_kr": 9.1,
+   "union_us": 10.7,
+   "lic_us": 21.6,
+   "licenses": [],
+   "aiact": [],
+   "news": [
+    {
+     "hd": "구글, 연구 목표를 주면 새 가설·연구 개요·실험 계획을 만드는 다중 에이전트 'AI 공동과학자' 공개… 백혈병 약물 재활용 후보는 실험에서 효과 확인",
+     "src": "Google Research",
+     "url": "https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/",
+     "ts": "2025-02-19"
+    }
+   ],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+     "src": "에너지데일리",
+     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-10-20",
+     "all": true
+    }
+   ],
+   "moves": []
+  },
+  {
+   "id": "qc",
+   "name": "품질·위생(HACCP)",
+   "n": 35,
+   "code": "213",
+   "fig": "researcher",
+   "job": "과학 연구직",
+   "sm": "생명 및 자연과학 관련 시험원",
+   "e26": 0.3788,
+   "e30": 0.5773,
+   "stage": 2,
+   "stage30": 3,
+   "sub": 0.349,
+   "ob": 0.1486,
+   "ob_raw": 0.1486,
+   "tasks": [
+    {
+     "id": "C9",
+     "name": "기록·문서화",
+     "share": 0.094,
+     "type": "대체형"
+    },
+    {
+     "id": "B4",
+     "name": "데이터 분석",
+     "share": 0.063,
+     "type": "보완형"
+    },
+    {
+     "id": "A1",
+     "name": "정보 찾아 모으기",
+     "share": 0.035,
+     "type": "보완형"
+    },
+    {
+     "id": "B6",
+     "name": "창의적으로 생각하기",
+     "share": 0.032,
+     "type": "보완형"
+    }
+   ],
+   "wage_k": 4761,
+   "hours": 151.0,
+   "fte": 13.26,
+   "fte30": 20.21,
+   "cost_m": 7.57,
+   "union_kr": 9.1,
+   "union_us": 10.7,
+   "lic_us": 21.6,
+   "licenses": [],
+   "aiact": [],
+   "news": [
+    {
+     "hd": "구글, 연구 목표를 주면 새 가설·연구 개요·실험 계획을 만드는 다중 에이전트 'AI 공동과학자' 공개… 백혈병 약물 재활용 후보는 실험에서 효과 확인",
+     "src": "Google Research",
+     "url": "https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/",
+     "ts": "2025-02-19"
+    }
+   ],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+     "src": "에너지데일리",
+     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-10-20",
+     "all": true
+    }
+   ],
+   "moves": [
+    {
+     "to": "설비 보전",
+     "sim": 0.65,
+     "gap": 0.196
+    }
+   ]
+  },
+  {
+   "id": "drv",
+   "name": "배송",
+   "n": 10,
+   "code": "872",
+   "fig": "driver",
+   "job": "운전·운송",
+   "sm": "자동차 운전원",
+   "e26": 0.2733,
+   "e30": 0.4039,
+   "stage": 1,
+   "stage30": 2,
+   "sub": 0.41,
+   "ob": 0.0033,
+   "ob_raw": 0.0033,
+   "tasks": [
+    {
+     "id": "C9",
+     "name": "기록·문서화",
+     "share": 0.065,
+     "type": "대체형"
+    },
+    {
+     "id": "D2",
+     "name": "동료와 소통",
+     "share": 0.037,
+     "type": "보완형"
+    },
+    {
+     "id": "A1",
+     "name": "정보 찾아 모으기",
+     "share": 0.031,
+     "type": "보완형"
+    },
+    {
+     "id": "D17",
+     "name": "자원 관리",
+     "share": 0.029,
+     "type": "보완형"
+    }
+   ],
+   "wage_k": 4019,
+   "hours": 171.7,
+   "fte": 2.73,
+   "fte30": 4.04,
+   "cost_m": 1.32,
+   "union_kr": 24.3,
+   "union_us": 12.8,
+   "lic_us": 15.6,
+   "licenses": [
+    {
+     "name": "자동차 운전면허",
+     "type": "독점",
+     "law": "도로교통법",
+     "article": "제43조, 제80조제1항"
+    },
+    {
+     "name": "여객·화물 운수종사자 자격",
+     "type": "자격",
+     "law": "여객자동차 운수사업법",
+     "article": "제24조제1항"
+    }
+   ],
+   "aiact": [
+    "교통수단·교통시설·교통체계의 주요한 작동 및 운영"
+   ],
+   "news": [
+    {
+     "hd": "현대차, 울산 EV 공장에서 생산·품질·설비 데이터를 분석하는 제조 AI 에이전트 '폴라리스' 9월부터 시범 운영",
+     "src": "서울신문",
+     "url": "https://www.seoul.co.kr/news/economy/car/2026/10/19/20261019029002",
+     "ts": "2026-10-18"
+    },
+    {
+     "hd": "오로라, 미국 텍사스 댈러스~휴스턴 구간에서 운전자 없는 자율주행 트럭 화물 운송 상업 서비스 시작 (첫 고객 우버 프레이트·허쉬바흐)",
+     "src": "Business Wire (Aurora 보도자료)",
+     "url": "https://www.businesswire.com/news/home/20250501031863/en/Aurora-Begins-Commercial-Driverless-Trucking-in-Texas-Ushering-in-a-New-Era-of-Freight",
+     "ts": "2025-05-01"
+    },
+    {
+     "hd": "서울시, 도봉산~영등포역 25.7km 구간 새벽 3시 30분 첫차 자율주행버스(A160) 평일 운행 시작 (운영 오토노머스에이투지)",
+     "src": "뉴시스",
+     "url": "https://mobile.newsis.com/view/NISX20241126_0002972583",
+     "ts": "2024-11-26"
+    }
+   ],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+     "src": "에너지데일리",
+     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-10-20",
+     "all": true
+    }
+   ],
+   "moves": [
+    {
+     "to": "물류·출하",
+     "sim": 0.67,
+     "gap": 0.158
+    }
+   ]
+  },
+  {
+   "id": "maint",
+   "name": "설비 보전",
+   "n": 25,
+   "code": "753",
+   "fig": "technician",
+   "job": "자동차·기계 정비",
+   "sm": "기계장비 설치 및 정비원",
+   "e26": 0.1828,
+   "e30": 0.2747,
+   "stage": 0,
+   "stage30": 1,
+   "sub": 0.389,
+   "ob": 0.0221,
+   "ob_raw": 0.0221,
+   "tasks": [
+    {
+     "id": "C9",
+     "name": "기록·문서화",
+     "share": 0.035,
+     "type": "대체형"
+    },
+    {
+     "id": "A4",
+     "name": "장비·재료 점검",
+     "share": 0.014,
+     "type": "보완형"
+    },
+    {
+     "id": "D17",
+     "name": "자원 관리",
+     "share": 0.013,
+     "type": "보완형"
+    },
+    {
+     "id": "A1",
+     "name": "정보 찾아 모으기",
+     "share": 0.013,
+     "type": "보완형"
+    }
+   ],
+   "wage_k": 3488,
+   "hours": 141.5,
+   "fte": 4.57,
+   "fte30": 6.87,
+   "cost_m": 1.91,
+   "union_kr": 10.1,
+   "union_us": 12.5,
+   "lic_us": 18.8,
+   "licenses": [],
+   "aiact": [],
+   "news": [
+    {
+     "hd": "현대차, 울산 EV 공장에서 생산·품질·설비 데이터를 분석하는 제조 AI 에이전트 '폴라리스' 9월부터 시범 운영",
+     "src": "서울신문",
+     "url": "https://www.seoul.co.kr/news/economy/car/2026/10/19/20261019029002",
+     "ts": "2026-10-18"
+    }
+   ],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+     "src": "에너지데일리",
+     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-10-20",
+     "all": true
+    }
+   ],
+   "moves": []
+  },
+  {
+   "id": "pack",
+   "name": "포장·생산 보조",
+   "n": 90,
+   "code": "930",
+   "fig": "foodworker",
+   "job": "제조 단순노무",
+   "sm": "제조 관련 단순 종사자",
+   "e26": 0.1682,
+   "e30": 0.2394,
+   "stage": 0,
+   "stage30": 1,
+   "sub": 0.735,
+   "ob": 0.0101,
+   "ob_raw": 0.0101,
+   "tasks": [
+    {
+     "id": "C9",
+     "name": "기록·문서화",
+     "share": 0.062,
+     "type": "대체형"
+    },
+    {
+     "id": "B2",
+     "name": "정보 처리하기",
+     "share": 0.025,
+     "type": "대체형"
+    },
+    {
+     "id": "A5",
+     "name": "수량·비용 가늠",
+     "share": 0.023,
+     "type": "대체형"
+    },
+    {
+     "id": "A3",
+     "name": "사물·사건 알아보기",
+     "share": 0.019,
+     "type": "보완형"
+    }
+   ],
+   "wage_k": 2095,
+   "hours": 130.3,
+   "fte": 15.13,
+   "fte30": 21.54,
+   "cost_m": 3.8,
+   "union_kr": 4.5,
+   "union_us": 11.9,
+   "lic_us": 8.6,
+   "licenses": [],
+   "aiact": [],
+   "news": [
+    {
+     "hd": "농기계 업체 AGCO, 2027년 미국 캔자스 헤스턴 공장에서 애질리티 로보틱스 휴머노이드 'Digit' 시범 운영 계획 (부품 분류·적재, 보관용 상자 놓기부터; 대수 미공개)",
+     "src": "AGCO·Agility Robotics (GlobeNewswire)",
+     "url": "https://www.globenewswire.com/news-release/2026/10/20/3384385/0/en/agco-and-agility-robotics-advance-smart-manufacturing-with-humanoid-robot-pilot-in-hesston-kansas-facility.html",
+     "ts": "2026-10-20"
+    },
+    {
+     "hd": "콘택트렌즈 제조사 네오비젼 오송공장, AI 비전 검사로 하루 약 50만 개 렌즈의 기포·흠집·깨짐 실시간 판정 (1인당 검사량 약 3천→2만 5천 개)",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026010214000000638",
+     "ts": "2026-01-02"
+    },
+    {
+     "hd": "현대차 미국 조지아 공장(HMGMA), 4족 로봇 스팟이 용접 뒤 차체를 검사하고 AI 비전으로 품질 관리, 무인 운반차가 패널·차량 운반",
+     "src": "코리아헤럴드",
+     "url": "https://v.daum.net/v/20250330110453515",
+     "ts": "2025-03-30"
+    }
+   ],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+     "src": "에너지데일리",
+     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-10-20",
+     "all": true
+    }
+   ],
+   "moves": []
+  },
+  {
+   "id": "line",
+   "name": "생산 라인(가공·조작)",
+   "n": 269,
+   "code": "811",
+   "fig": "foodworker",
+   "job": "식품 기계 조작",
+   "sm": "식품가공 관련 기계 조작원",
+   "e26": 0.1338,
+   "e30": 0.2085,
+   "stage": 0,
+   "stage30": 1,
+   "sub": 0.379,
+   "ob": 0,
+   "ob_raw": 0.0,
+   "tasks": [
+    {
+     "id": "B5",
+     "name": "결정·문제 풀기",
+     "share": 0.034,
+     "type": "보완형"
+    },
+    {
+     "id": "C3",
+     "name": "기계·공정 제어",
+     "share": 0.022,
+     "type": "대체형"
+    },
+    {
+     "id": "C9",
+     "name": "기록·문서화",
+     "share": 0.022,
+     "type": "대체형"
+    },
+    {
+     "id": "B1",
+     "name": "질 판단하기",
+     "share": 0.014,
+     "type": "보완형"
+    }
+   ],
+   "wage_k": 4019,
+   "hours": 171.7,
+   "fte": 35.98,
+   "fte30": 56.08,
+   "cost_m": 17.35,
+   "union_kr": 24.3,
+   "union_us": 11.9,
+   "lic_us": 8.6,
+   "licenses": [],
+   "aiact": [],
+   "news": [
+    {
+     "hd": "현대차, 울산 EV 공장에서 생산·품질·설비 데이터를 분석하는 제조 AI 에이전트 '폴라리스' 9월부터 시범 운영",
+     "src": "서울신문",
+     "url": "https://www.seoul.co.kr/news/economy/car/2026/10/19/20261019029002",
+     "ts": "2026-10-18"
+    }
+   ],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+     "src": "에너지데일리",
+     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-10-20",
+     "all": true
+    }
+   ],
+   "moves": []
+  },
+  {
+   "id": "log",
+   "name": "물류·출하",
+   "n": 20,
+   "code": "873",
+   "fig": "logistics",
+   "job": "운전·운송",
+   "sm": "물품 이동 장비 조작원",
+   "e26": 0.1154,
+   "e30": 0.1903,
+   "stage": 0,
+   "stage30": 0,
+   "sub": 0.586,
+   "ob": 0,
+   "ob_raw": 0.0,
+   "tasks": [
+    {
+     "id": "C3",
+     "name": "기계·공정 제어",
+     "share": 0.032,
+     "type": "대체형"
+    },
+    {
+     "id": "A5",
+     "name": "수량·비용 가늠",
+     "share": 0.023,
+     "type": "대체형"
+    },
+    {
+     "id": "A3",
+     "name": "사물·사건 알아보기",
+     "share": 0.019,
+     "type": "보완형"
+    },
+    {
+     "id": "A4",
+     "name": "장비·재료 점검",
+     "share": 0.018,
+     "type": "보완형"
+    }
+   ],
+   "wage_k": 4019,
+   "hours": 171.7,
+   "fte": 2.31,
+   "fte30": 3.81,
+   "cost_m": 1.11,
+   "union_kr": 24.3,
+   "union_us": 12.8,
+   "lic_us": 15.6,
+   "licenses": [
+    {
+     "name": "건설기계조종사면허",
+     "type": "독점",
+     "law": "건설기계관리법",
+     "article": "제26조제1항"
+    }
+   ],
+   "aiact": [],
+   "news": [
+    {
+     "hd": "현대차, 울산 EV 공장에서 생산·품질·설비 데이터를 분석하는 제조 AI 에이전트 '폴라리스' 9월부터 시범 운영",
+     "src": "서울신문",
+     "url": "https://www.seoul.co.kr/news/economy/car/2026/10/19/20261019029002",
+     "ts": "2026-10-18"
+    },
+    {
+     "hd": "오로라, 미국 텍사스 댈러스~휴스턴 구간에서 운전자 없는 자율주행 트럭 화물 운송 상업 서비스 시작 (첫 고객 우버 프레이트·허쉬바흐)",
+     "src": "Business Wire (Aurora 보도자료)",
+     "url": "https://www.businesswire.com/news/home/20250501031863/en/Aurora-Begins-Commercial-Driverless-Trucking-in-Texas-Ushering-in-a-New-Era-of-Freight",
+     "ts": "2025-05-01"
+    },
+    {
+     "hd": "서울시, 도봉산~영등포역 25.7km 구간 새벽 3시 30분 첫차 자율주행버스(A160) 평일 운행 시작 (운영 오토노머스에이투지)",
+     "src": "뉴시스",
+     "url": "https://mobile.newsis.com/view/NISX20241126_0002972583",
+     "ts": "2024-11-26"
+    }
+   ],
+   "front": [
+    {
+     "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
+     "src": "헤럴드경제",
+     "url": "https://www.heraldk.com/article/2026090222004679023",
+     "fx": "중",
+     "kind": "법·규제",
+     "ts": "2026-09-03",
+     "all": true
+    },
+    {
+     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
+     "src": "국민참여입법센터",
+     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-06-23",
+     "all": true
+    },
+    {
+     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
+     "src": "에너지데일리",
+     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "fx": "약",
+     "kind": "법·규제",
+     "ts": "2026-10-20",
+     "all": true
+    }
+   ],
+   "moves": []
+  }
+ ],
+ "stages": [
+  [
+   "발목",
+   0
+  ],
+  [
+   "무릎",
+   0.2
+  ],
+  [
+   "허리",
+   0.35
+  ],
+  [
+   "가슴",
+   0.5
+  ],
+  [
+   "목까지",
+   0.65
+  ]
+ ],
+ "src": {
+  "wage": "고용노동부 고용형태별근로실태조사(2025), 직종(표준직업분류 7차 대분류)별 임금 및 근로시간",
+  "union": "고용노동부 고용형태별근로실태조사(2025), 직종(표준직업분류 대분류)별 노조 가입률",
+  "us": {
+   "us_union": {
+    "name": "미국 노동통계국 Union Members 2025, 표 3(임금근로자, 2025년 10월 조사 빠짐)",
+    "url": "https://www.bls.gov/news.release/union2.t03.htm",
+    "year": 2025
+   },
+   "us_license": {
+    "name": "미국 노동통계국 CPS 연평균 표 53, 정부 발급 면허 보유율(전체 취업자)",
+    "url": "https://www.bls.gov/cps/cpsaat53.htm",
+    "year": 2025
+   },
+   "kr_union": {
+    "name": "고용노동부 고용형태별근로실태조사(2025), 직종 대분류별 노조 가입률",
+    "url": "https://kosis.kr/statHtml/statHtml.do?orgId=118&tblId=DT_118N_LCE310",
+    "year": 2025
+   },
+   "epl": {
+    "name": "OECD 고용보호법제 지표(정규직 개별 해고, 0~6, 높을수록 엄격)",
+    "url": "https://www.oecd.org/en/data/datasets/oecd-indicators-of-employment-protection.html",
+    "year": 2025
+   }
+  }
+ }
+}
