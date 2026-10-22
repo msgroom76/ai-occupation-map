@@ -66,8 +66,10 @@ if QUEUE:
     os.makedirs('review', exist_ok=True)
     keys = ('id', 'ts', 'src', 'url', 'tier', 'kr', 'sig', 'ind', 'hd', 'r', 'dwa', 'grp')
     q = [{k: n[k] for k in keys if k in n} for n in feed['items'] if n.get('st') == 'pending' and n.get('r') and basic(n) > 0]
-    json.dump({'week': wk, 'date': D, 'made': dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).isoformat(timespec='seconds'), 'items': q}, open(f'review/{wk}.queue.json', 'w'), ensure_ascii=False, indent=1)
-    print(f'review/{wk}.queue.json: 검토할 소식 {len(q)}건'); sys.exit(0)
+    fk = ('id', 'ts', 'src', 'url', 'tier', 'kr', 'kind', 'fx', 'ind', 'hd', 'note')
+    fq = [{k: n[k] for k in fk if k in n} for n in feed.get('front', []) if not n.get('rvw')]
+    json.dump({'week': wk, 'date': D, 'made': dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).isoformat(timespec='seconds'), 'items': q, 'front': fq}, open(f'review/{wk}.queue.json', 'w'), ensure_ascii=False, indent=1)
+    print(f'review/{wk}.queue.json: 검토할 소식 {len(q)}건 · 쟁점 {len(fq)}건'); sys.exit(0)
 RV = None; rvf = f'review/{wk}.json'
 if os.path.exists(rvf):
     RV = json.load(open(rvf))
@@ -90,6 +92,23 @@ if RV:
                 if val is None: n.pop(k, None)
                 else: n[k] = val
             n['rv'] = (x.get('note') or '독립 검토에서 수정')[:200]
+FFIX = ('fx', 'kind', 'ind', 'hd', 'note', 'tier')
+fr_stat = {'ok': 0, 'fix': 0, 'hold': 0}; fr_hold = []
+if RV and RV.get('front'):
+    fby = {n['id']: n for n in feed.get('front', [])}
+    for x in RV['front']:
+        n = fby.get(x.get('id')); v = x.get('v')
+        if v not in fr_stat: sys.exit(f"{rvf}: 쟁점 {x.get('id')} 판정 값이 ok|fix|hold가 아님")
+        if not n: continue
+        fr_stat[v] += 1
+        if v == 'hold': fr_hold.append(n['id']); continue
+        if v == 'fix':
+            for k, val in (x.get('fix') or {}).items():
+                if k not in FFIX: sys.exit(f"{rvf}: 쟁점 {n['id']} 고칠 수 없는 칸 {k}")
+                n[k] = val
+        n['rvw'] = wk
+    if fr_hold: feed['front'] = [n for n in feed['front'] if n['id'] not in fr_hold]
+    print(f"쟁점 독립 검토: 확인 {fr_stat['ok']} · 수정 {fr_stat['fix']} · 보류(삭제) {fr_stat['hold']}")
 late = [n['id'] for n in feed['items'] if RV and n.get('st') == 'pending' and n.get('r') and basic(n) > 0 and n['id'] not in rv_ids]
 if late: print('검토 뒤에 들어와 다음 주로 넘김: ' + ', '.join(late))
 cand = [(n, *weight(n)) for n in feed['items'] if n.get('st') == 'pending' and n.get('r') and n['id'] not in late]
@@ -142,7 +161,7 @@ for n in feed['items']:
     if n['id'] in applied: n['st'] = 'applied'; n['wk'] = wk
 if last.get('total') is None and len(idx['weeks']) == 1: last['total'] = round(total({}), 5)
 idx['weeks'].append({'week': wk, 'date': D, 'adj': adj, 'total': round(t1, 5), 'applied': applied, 'ledger': ledger, 'scale': scale, 'rules': 'v2',
-                    'review': ({'by': RV.get('by', '?'), **rv_stat, 'late': late} if RV else {'by': 'skipped'})})
+                    'review': ({'by': RV.get('by', '?'), **rv_stat, 'late': late, 'front': fr_stat} if RV else {'by': 'skipped'})})
 # 두 파일을 임시 파일에 쓴 뒤 한꺼번에 바꾼다(중간 실패로 한쪽만 바뀌지 않게)
 json.dump(idx, open('index.json.tmp', 'w'), ensure_ascii=False, indent=1)
 json.dump(feed, open('feed.json.tmp', 'w'), ensure_ascii=False, indent=1)

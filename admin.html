@@ -64,6 +64,11 @@ iframe{width:100%;height:620px;border:1px solid var(--hair);background:#fff;marg
   <iframe id="pv" title="메일 미리보기" hidden></iframe>
 </div>
 
+<h2>소식 수집 현황 <small>AI 소식과 쟁점을 같은 노력으로 찾고 있는지 봐요</small></h2>
+<p class="note">맞추는 건 건수가 아니라 찾는 노력이에요. 매 회차 두 갈래를 모두 검색하고, 찾은 후보와 채택한 수를 남겨요. 쟁점이 0건인 주도 '찾아봤는데 없었다'면 데이터예요.</p>
+<div class="wrap"><table><thead><tr><th>주</th><th class="n">수집 회차</th><th class="n">AI 소식<br><small>검색 · 후보 · 채택</small></th><th class="n">쟁점<br><small>검색 · 후보 · 채택</small></th><th class="n">새 쟁점<br><small>강 · 중 · 약</small></th></tr></thead><tbody id="cov"></tbody></table></div>
+<p class="note" id="covgap" style="margin-top:10px"></p>
+
 <h2>최근 신청자 <small>주소 일부는 가려서 보여요</small></h2>
 <div class="wrap"><table><thead><tr><th>주소</th><th>상태</th><th>신청</th><th>확인</th></tr></thead><tbody id="recent"></tbody></table></div>
 </section>
@@ -77,7 +82,7 @@ const ts=s=>(s||'').slice(5,16).replace('T',' ');
 let D=null,SEL=null;
 async function boot(){let r,j;try{({r,j}=await api('/api/admin/mail'))}catch(e){$('#login').hidden=false;say($('#lm'),'연결하지 못했어요.',false);return}
   if(r.status===403||!j.ok){$('#login').hidden=false;$('#app').hidden=true;$('#out').hidden=true;if(r.status!==403)say($('#lm'),j.msg||'열지 못했어요.',false);return}
-  D=j;$('#login').hidden=true;$('#app').hidden=false;$('#out').hidden=false;
+  D=j;$('#login').hidden=true;$('#app').hidden=false;$('#out').hidden=false;cov();
   $('#status').textContent=(j.mailOn?'메일 발송 켜짐':'메일 발송 꺼짐 — Pages 설정의 MAIL_ENABLED·RESEND_API_KEY·MAIL_FROM을 확인하세요')+(j.adminTo?` · 승인 요청은 ${j.adminTo}로 가요`:'');
   $('#ca').textContent=j.counts.active;$('#cp').textContent=j.counts.pending;$('#cu').textContent=j.counts.unsub;$('#cm').textContent=(j.confirmMails&&j.confirmMails.sent)||0;
   const dl=$('#daily');dl.innerHTML='';if(!j.daily.length){const tr=document.createElement('tr');const c=td('최근 30일 기록이 없어요','note');c.colSpan=4;tr.appendChild(c);dl.appendChild(tr)}
@@ -119,5 +124,19 @@ $('#resend').onclick=async()=>{const b=$('#resend');b.disabled=true;say($('#m3')
 $('#mail').onclick=async()=>{const b=$('#mail');b.disabled=true;say($('#lm'),'보내는 중…',true);const {j}=await api('/api/admin/login',{method:'POST',body:'{}'});say($('#lm'),j.msg||'실패',!!j.ok);setTimeout(()=>b.disabled=false,5000)};
 $('#kgo').onclick=()=>{KEY=$('#k').value.trim();try{sessionStorage.setItem('aimap.admin',KEY)}catch(e){}boot()};$('#k').onkeydown=e=>{if(e.key==='Enter')$('#kgo').click()};
 $('#out').onclick=async()=>{await fetch('/api/admin/login',{method:'DELETE'});KEY='';try{sessionStorage.removeItem('aimap.admin')}catch(e){}$('#lm').textContent='';boot()};
+// 소식 수집 현황: 공개 파일(feed.json·city_meta.json)만 읽는다
+const isoWk=t=>{const d=new Date(t.slice(0,10)+'T00:00:00Z');const day=(d.getUTCDay()+6)%7;d.setUTCDate(d.getUTCDate()-day+3);const y=d.getUTCFullYear();const f=new Date(Date.UTC(y,0,4));return y+'-W'+String(1+Math.round(((d-f)/864e5-3+((f.getUTCDay()+6)%7))/7)).padStart(2,'0')};
+async function cov(){try{const [F,C]=await Promise.all([fetch('/feed.json',{cache:'no-store'}).then(r=>r.json()),fetch('/city_meta.json').then(r=>r.json())]);
+  const W={};const g=k=>W[k]=W[k]||{runs:0,p:[0,0,0],f:[0,0,0],fx:{'강':0,'중':0,'약':0},log:false};
+  (F.runs||[]).forEach(r=>{const w=g(isoWk(r.at));w.runs++;w.log=true;['q','cand','acc'].forEach((k,i)=>{w.p[i]+=(r.push&&r.push[k])||0;w.f[i]+=(r.front&&r.front[k])||0})});
+  (F.front||[]).forEach(n=>{const w=g(isoWk(n.ts));if(w.fx[n.fx]!=null)w.fx[n.fx]++});
+  const ks=Object.keys(W).sort().reverse().slice(0,6),tb=$('#cov');tb.innerHTML='';
+  ks.forEach(k=>{const w=W[k],tr=document.createElement('tr');tr.append(td(k),td(w.log?w.runs:'—','n'),td(w.log?w.p.join(' · '):'기록 전','n'),td(w.log?w.f.join(' · '):'기록 전','n'),td(`${w.fx['강']} · ${w.fx['중']} · ${w.fx['약']}`,'n'));
+    if(w.log&&w.runs>=3&&w.f[0]===0)tr.title='쟁점 검색을 하지 않은 주예요';tb.appendChild(tr)});
+  const cnt={};(F.front||[]).forEach(n=>(n.ind||[]).forEach(c=>{cnt[c.slice(0,2)]=(cnt[c.slice(0,2)]||0)+1}));
+  const zero=C.jobs.filter(j=>!cnt[j.code]),top=C.jobs.filter(j=>cnt[j.code]).sort((a,b)=>cnt[b.code]-cnt[a.code]).slice(0,5);
+  $('#covgap').textContent=`쟁점이 기록된 직업 ${C.jobs.length-zero.length}/${C.jobs.length}개`+(top.length?` · 많은 곳: ${top.map(j=>j.name+' '+cnt[j.code]).join(', ')}`:'')+(zero.length?` · 아직 0건: ${zero.slice(0,12).map(j=>j.name).join(', ')}${zero.length>12?` 외 ${zero.length-12}개`:''}`:'')}
+  catch(e){$('#covgap').textContent='수집 현황을 불러오지 못했어요.'}}
+
 boot();
 </script></main></body></html>

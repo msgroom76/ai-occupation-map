@@ -73,8 +73,27 @@ for n in fr:
     bad = [c for c in n.get('ind', []) if c not in JOBC]
     if bad: err(f'front {i}: 없는 직업 코드 {bad}')
     if not re.match(r'^\d{4}-\d{2}-\d{2}T', str(n.get('ts', ''))): err(f'front {i}: ts 형식 이상')
+# 쟁점은 들어온 뒤 다음 월요일 독립 검토를 받는다(rvw = 검토한 주). 3주 넘게 검토 없이 남아 있으면 경고
+from datetime import datetime as _dt
+for n in feed.get('front', []):
+    if n.get('rvw'): continue
+    try: age = (datetime.now(KST) - _dt.fromisoformat(n['ts'])).days
+    except Exception: continue
+    if n.get('added') and (datetime.now(KST) - _dt.fromisoformat(n['added'])).days > 21: warn(f'front {n.get("id")}: 들어온 지 3주가 넘었는데 독립 검토 기록(rvw)이 없음')
 for n in feed['items']:
     if n.get('sig') == '저항': err(f'feed {n.get("id")}: 저항 소식은 items가 아니라 front에')
+
+# ---------- 수집 기록 (feed.runs): 두 갈래를 같은 노력으로 찾았는지 ----------
+RN_ = feed.get('runs', [])
+if len(RN_) > 90: warn(f'runs: {len(RN_)}건 (최근 90회만 남긴다)')
+for r in RN_:
+    for side in ('push', 'front'):
+        x = r.get(side)
+        if not isinstance(x, dict) or not all(isinstance(x.get(k), int) and x.get(k) >= 0 for k in ('q', 'cand', 'acc')):
+            err(f'runs {r.get("at")}: {side}는 {{q, cand, acc}} 0 이상 정수'); continue
+        if x['acc'] > x['cand']: err(f'runs {r.get("at")}: {side} 채택 수가 후보 수보다 많음')
+if len(RN_) >= 6 and all(r.get('front', {}).get('q', 0) == 0 for r in RN_[:6]):
+    warn('runs: 최근 6회 연속 쟁점 검색을 하지 않음')
 
 if not feed_only:
     # ---------- city_meta.json ----------
@@ -156,7 +175,7 @@ if not feed_only:
         try: X = json.load(open(f))
         except Exception as ex: err(f'{f}: JSON 아님 {ex}'); continue
         if X.get('by') not in ('independent', 'self'): err(f'{f}: by 값이 independent|self가 아님')
-        for x in X.get('items', []):
+        for x in X.get('items', []) + X.get('front', []):
             if x.get('v') not in ('ok', 'fix', 'hold'): err(f'{f}: {x.get("id")} 판정 값 이상 {x.get("v")}')
             if x.get('v') in ('fix', 'hold') and not x.get('note'): warn(f'{f}: {x.get("id")} {x.get("v")} 사유(note)가 없음')
     for w in idx['weeks']:
