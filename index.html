@@ -640,7 +640,7 @@ details.card[open] summary::after{content:"−"}
 .fold.closed{padding-top:20px;padding-bottom:calc(var(--tabh) + 22px)}
 .fin>.card:last-child{margin-bottom:8px}
 .sheet .sugg{margin-bottom:20px}
-@media (max-width:899px){.scroll>.sugg{order:-3}}
+@media (max-width:899px){.scroll>.sugg,.scroll>.join{order:-3}}
 
 /* 선명하게: filter 그림자는 휴대폰에서 글자를 흐리게 만들어 box-shadow로 바꾸고, 밝은 모드 면은 흰색에서 시작해 단계적으로 짙어진다 */
 .fold,.fold.inv{filter:none}
@@ -745,6 +745,51 @@ details.card[open] summary::after{content:"−"}
 .tkhow summary{font-weight:500;color:var(--ink2);font-size:11.5px}
 .tklg{font-size:11px;color:var(--ink2);line-height:2;display:flex;flex-wrap:wrap;gap:2px 14px;align-items:center}
 .tklg span{white-space:nowrap}
+
+/* ===== 구독·협력: 검색 예시 아래 첫 화면 블록(넓은 화면은 바로 입력, 좁은 화면은 두 버튼 → 아래에서 올라오는 창) */
+.join{margin:0 0 36px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink)}
+.join .jn{padding:12px 0}
+.join .jk{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
+.join .jk b,.join .jp b{font-size:14px;font-weight:700;letter-spacing:-.02em}
+.join .jk span,.join .jp span{font-size:11px;color:var(--ink2)}
+.join .jr{display:flex;gap:6px}
+.join .jr input{flex:1;min-width:0;box-sizing:border-box;height:40px;border:1px solid var(--hair);border-radius:0;background:var(--fill);color:var(--ink);font:inherit;font-size:16px;padding:0 12px}
+.join .jr input:focus{outline:0;border-color:var(--ink);background:var(--bg)}
+.jbtn{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:40px;padding:0 14px;font-size:14px;font-weight:600;letter-spacing:-.01em;border:1px solid var(--ink);color:var(--ink);white-space:nowrap}
+.jbtn.h{background:var(--c100);border-color:var(--c100);color:var(--bg)}
+.jbtn:focus-visible,.join .ja:focus-visible,.jdlg .jdx:focus-visible{outline:2px solid var(--tint);outline-offset:2px}
+.jbtn:disabled{opacity:.5;cursor:default}
+.jbtn svg{width:16px;height:16px;flex:none}
+.join .jc{display:flex;gap:6px;align-items:center;font-size:11px;color:var(--ink2);margin-top:8px}
+.join .jc input{accent-color:var(--ink);width:15px;height:15px;margin:0}
+.join .jc a{color:inherit}
+.join .fmsg{margin-top:6px}
+.join .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.join .jp{border-top:1px solid var(--hair);padding-top:12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.join .jp b{display:block}
+.join .ja{all:unset;cursor:pointer;font-size:13px;font-weight:600;color:var(--c100);border-bottom:1px solid currentColor;padding-bottom:1px;white-space:nowrap}
+.join .jm{display:none}
+.jdlg{border:1px solid var(--ink);border-radius:0;background:var(--bg);color:var(--ink);padding:20px;width:min(440px,calc(100vw - 32px));box-sizing:border-box;box-shadow:var(--shadow);font-family:var(--f);font-size:14px;line-height:1.55}
+.jdlg::backdrop{background:rgba(0,0,0,.42)}
+.jdlg .jdh{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.jdlg .jdh b{font-size:17px;letter-spacing:-.02em}
+.jdlg .jdx{all:unset;cursor:pointer;width:36px;height:36px;display:grid;place-items:center;font-size:17px;color:var(--ink2);flex:none}
+.jdlg .card{border:0;margin:0;padding:0;background:none}
+.jdlg .card>.lab{display:none}
+.jdlg .jintro{margin:0 0 12px;color:var(--ink2);font-size:13px}
+.jdlg .jlist{margin:0 0 16px;padding:0;list-style:none;border-top:1px solid var(--hair)}
+.jdlg .jlist li{padding:9px 0;border-bottom:1px solid var(--hair);display:grid;grid-template-columns:88px 1fr;gap:8px;font-size:13px}
+.jdlg .jlist b{font-weight:600}.jdlg .jlist span{color:var(--ink2)}
+.jdlg .fm .btn{justify-self:stretch;box-sizing:border-box;min-height:46px;display:flex;align-items:center;justify-content:center;font-size:14px;background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.jdlg .fm .btn::after{content:none}
+.jdlg .card .fm .btn{background:var(--c100);border-color:var(--c100)}
+@media (max-width:899px){
+  .join{border-top:0;margin:0 0 20px}
+  .join .jn,.join .jp{display:none}
+  .join .jm{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .join .jm .jbtn{height:46px;padding:0 8px}
+  .jdlg{margin:auto 0 0;width:100vw;max-width:100vw;border:0;border-top:1px solid var(--ink);padding:16px 20px calc(24px + env(safe-area-inset-bottom,0px));max-height:88vh;overflow:auto}
+}
 </style>
 
 </head><body>
@@ -796,6 +841,7 @@ details.card[open] summary::after{content:"−"}
   <div class="tip glass" id="tip" hidden></div>
 
   <div class="scrim" id="scrim" aria-hidden="true"></div>
+  <dialog class="jdlg" id="jdlg" aria-labelledby="jdt"><div class="jdh"><b id="jdt"></b><button type="button" class="jdx" id="jdx" aria-label="닫기">✕</button></div><div id="jdb"></div></dialog>
   <section class="sheet glass" id="sheet" aria-label="정보 패널">
     <button type="button" class="grab" id="grab" aria-label="패널 크기 바꾸기"></button>
     <div class="scroll" id="scroll">
@@ -810,6 +856,7 @@ details.card[open] summary::after{content:"−"}
         <ul class="results" id="results" hidden></ul>
       </div>
       <div class="sugg" id="sugg"></div>
+      <section class="join" id="join" aria-label="주간 메일 구독과 협력 문의"></section>
       <div id="ctx"></div>
       <div id="rest"></div>
     </div>
@@ -1193,18 +1240,46 @@ function subCard(){const c=el('section','card');const lab=el('div','lab');lab.ap
   const bt=el('button','btn','구독하기');bt.type='submit';const out=el('p','fmsg');
   f.append(em,hp,jb,cs,bt,out);f.onsubmit=async e=>{e.preventDefault();const ok=await postForm('/api/subscribe',{email:em.value,consent:cc.checked,job:jc.checked&&MINE?(MINE.k||MINE.code):'',src:'site',website:hp.value},out,bt);if(ok){track('sub');em.value=''}};
   c.append(f,PRIV('수집 항목: 이메일, 선택한 직업. 목적: 구독 확인 메일과 주간 지수 메일 발송. 신청하면 확인 메일을 먼저 보내고, 메일의 링크를 눌러야 구독이 시작돼요. 보유 기간: 수신 거부 후 30일(확인하지 않은 신청도 30일 뒤 삭제). 메일마다 있는 수신 거부 링크로 언제든 끊을 수 있어요. 미국 서버(Cloudflare·Resend)에 저장·처리돼요. 동의하지 않으면 구독할 수 없어요.'));return c}
-function leadCard(){const d=el('details','card');d.innerHTML='<summary>기관·기업 리포트 문의</summary>';const m=el('div','meth');
-  m.appendChild(el('p',null,'우리 조직의 직무별 AI 노출 분석 리포트, 임직원·교육생 대상 워크숍, 언론·기관 공동 리포트를 만들어 드려요.'));
-  const f=el('form','fm');f.noValidate=true;const mk=(ph,ty='text',ac='')=>{const i=el('input');i.type=ty;i.placeholder=ph;i.setAttribute('aria-label',ph);if(ac)i.autocomplete=ac;return i};
+// 협력 문의 양식(맨 아래 '함께하기'와 첫 화면의 [제안하기] 창이 같이 쓴다)
+const LEAD_KINDS=['후원','제휴·공동 콘텐츠','조직 리포트','워크숍·강연','언론 취재','기타'];
+function leadForm(src){const f=el('form','fm');f.noValidate=true;const mk=(ph,ty='text',ac='')=>{const i=el('input');i.type=ty;i.placeholder=ph;i.setAttribute('aria-label',ph);if(ac)i.autocomplete=ac;return i};
   const nm=mk('이름','text','name'),og=mk('소속(회사·기관)','text','organization'),em=mk('이메일','email','email');
-  const kd=el('select');kd.setAttribute('aria-label','문의 종류');['조직 리포트','워크숍·강연','공동 리포트·연구','언론 취재','기타'].forEach(t=>{const o=el('option',null,t);kd.appendChild(o)});
-  const ms=el('textarea');ms.rows=4;ms.placeholder='문의 내용 (조직 규모, 원하는 시기 등)';ms.setAttribute('aria-label','문의 내용');
+  const kd=el('select');kd.setAttribute('aria-label','문의 종류');LEAD_KINDS.forEach(t=>{const o=el('option',null,t);kd.appendChild(o)});
+  const ms=el('textarea');ms.rows=4;ms.placeholder='문의 내용 (조직 규모, 원하는 시기, 후원·제휴 형태 등)';ms.setAttribute('aria-label','문의 내용');
   const hp=el('input');hp.name='website';hp.tabIndex=-1;hp.autocomplete='off';hp.className='hp';hp.setAttribute('aria-hidden','true');
   const cs=el('label','ck');const cc=el('input');cc.type='checkbox';cs.append(cc,' 개인정보 수집·이용에 동의해요');
   const bt=el('button','btn','문의 보내기');bt.type='submit';const out=el('p','fmsg');
-  f.append(nm,og,em,kd,ms,hp,cs,bt,out);f.onsubmit=async e=>{e.preventDefault();const ok=await postForm('/api/contact',{name:nm.value,org:og.value,email:em.value,kind:kd.value,msg:ms.value,consent:cc.checked,website:hp.value},out,bt);if(ok){track('lead',kd.value);ms.value=''}};
-  m.append(f,PRIV('수집 항목: 이름, 소속, 이메일, 문의 내용. 목적: 문의 답변과 견적 안내. 보유 기간: 접수 후 1년. 미국 서버(Cloudflare)에 저장돼요. 동의하지 않으면 문의를 보낼 수 없어요. 문의처: 포스트오피스.'));d.appendChild(m);
+  f.append(nm,og,em,kd,ms,hp,cs,bt,out);f.onsubmit=async e=>{e.preventDefault();const ok=await postForm('/api/contact',{name:nm.value,org:og.value,email:em.value,kind:kd.value,msg:ms.value,consent:cc.checked,website:hp.value},out,bt);if(ok){track('lead',kd.value+(src?'·'+src:''));ms.value=''}};
+  return [f,PRIV('수집 항목: 이름, 소속, 이메일, 문의 내용. 목적: 문의 답변과 견적 안내. 보유 기간: 접수 후 1년. 미국 서버(Cloudflare)에 저장돼요. 동의하지 않으면 문의를 보낼 수 없어요. 문의처: 포스트오피스.')]}
+function leadCard(){const d=el('details','card');d.innerHTML='<summary>후원·제휴·기관 리포트 문의</summary>';const m=el('div','meth');
+  m.appendChild(el('p',null,'AI 점령 지도의 후원·제휴, 우리 조직의 직무별 AI 노출 분석 리포트, 임직원·교육생 대상 워크숍, 언론·기관 공동 리포트를 함께 만들어요.'));
+  m.append(...leadForm());d.appendChild(m);
   d.addEventListener('toggle',()=>{if(d.open)track('lead','open')});return d}
+// 첫 화면 [제안하기] 창: 무엇을 함께할 수 있는지 + 문의 양식
+function partBody(){const w=el('div');w.appendChild(el('p','jintro','기업·기관·단체와 이렇게 협력해요.'));const ul=el('ul','jlist');
+  [['후원','지도와 주간 메일에 후원사를 밝히고, 지도는 누구나 무료로 계속 볼 수 있게 해요'],['제휴','언론·플랫폼과 데이터 협력, 공동 콘텐츠'],['조직 리포트','우리 조직 직무 구성으로 본 AI 노출 분석'],['워크숍·강연','임직원·교육생 대상']].forEach(([k,v])=>{const li=el('li');li.append(el('b',null,k),el('span',null,v));ul.appendChild(li)});
+  w.append(ul,...leadForm('top'));return w}
+const MAIL_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13"/><path d="m3.5 6.5 8.5 7 8.5-7"/></svg>',HAND_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 8.5 8l3 1.5L15 7l5 5-6.5 6.5L9 14"/><path d="m11.5 9.5-3 3 1.5 1.5"/></svg>';
+function joinOpen(kind){const dl=document.getElementById('jdlg'),b=document.getElementById('jdb');if(!dl)return;b.innerHTML='';
+  document.getElementById('jdt').textContent=kind==='news'?'매주 월요일, AI 지수를 메일로':'AI 점령 지도를 함께 만들어요';
+  b.appendChild(kind==='news'?subCard():partBody());try{dl.showModal()}catch(e){dl.setAttribute('open','')}track('join',kind)}
+function joinInit(){const j=document.getElementById('join'),dl=document.getElementById('jdlg');if(!j||j.childElementCount)return;
+  // 넓은 화면: 이메일만 받는 짧은 양식(동의 체크 포함). 직업은 받지 않는다
+  const n=el('div','jn');const k=el('div','jk');k.append(el('b',null,'매주 월요일, AI 지수를 메일로'),el('span',null,'무료 · 언제든 해지'));
+  const f=el('form');f.noValidate=true;const r=el('div','jr');const em=el('input');em.type='email';em.placeholder='이메일 주소';em.autocomplete='email';em.setAttribute('aria-label','구독할 이메일 주소');
+  const bt=el('button','jbtn h','구독');bt.type='submit';r.append(em,bt);
+  const hp=el('input');hp.name='website';hp.tabIndex=-1;hp.autocomplete='off';hp.className='hp';hp.setAttribute('aria-hidden','true');
+  const cs=el('label','jc');const cc=el('input');cc.type='checkbox';const pv=el('a',null,'처리방침');pv.href='/privacy';pv.target='_blank';pv.rel='noopener';cs.append(cc,' 개인정보 수집·이용에 동의해요 · ',pv);
+  const out=el('p','fmsg');f.append(r,hp,cs,out);
+  f.onsubmit=async e=>{e.preventDefault();const ok=await postForm('/api/subscribe',{email:em.value,consent:cc.checked,job:'',src:'top',website:hp.value},out,bt);if(ok){track('sub','top');em.value=''}};
+  n.append(k,f);
+  const pp=el('div','jp');const tx=el('div');tx.append(el('b',null,'기업·기관과 함께 만들어요'),el('span',null,'후원 · 제휴 · 조직 리포트 · 워크숍'));
+  const pa=el('button','ja','제안하기 →');pa.type='button';pa.onclick=()=>joinOpen('part');pp.append(tx,pa);
+  // 좁은 화면: 두 버튼 → 아래에서 올라오는 창
+  const m=el('div','jm');const b1=el('button','jbtn h');b1.type='button';b1.innerHTML=MAIL_SVG;b1.append(' 주간 메일 받기');b1.onclick=()=>joinOpen('news');
+  const b2=el('button','jbtn');b2.type='button';b2.innerHTML=HAND_SVG;b2.append(' 후원·제휴');b2.onclick=()=>joinOpen('part');m.append(b1,b2);
+  j.append(n,pp,m);
+  if(dl){document.getElementById('jdx').onclick=()=>dl.close();dl.addEventListener('click',e=>{if(e.target===dl)dl.close()})}}
 function aboutCard(){
   const d=el('details','card');d.innerHTML=`<summary>이 지도에 대해 · 인용하기</summary>`;const m=el('div','meth');
   m.innerHTML=`<dl>
@@ -1365,7 +1440,7 @@ function render(){
     :key==='today'?['사람이 하던 일 중 AI가 해낼 수 있는 몫',pct(total(year))+'%']
     :key==='news'?['확인된 AI 소식 · 숫자는 매주 월요일 반영',FEED.items.filter(n=>n.st!=='hold').length+'건']
     :key==='browse'?['업무 4분류 · 직업 순위',NJ+'개']
-    :key==='join'?['주간 메일 구독 · 기관 리포트 문의','→']:[txt(k,'h2')||'',''];
+    :key==='join'?['주간 메일 구독 · 후원·제휴·리포트 문의','→']:[txt(k,'h2')||'',''];
   FL.forEach(([key,label,kids,box],i)=>{const shut=CL.includes(key)&&key!=='job'&&key!=='task'&&key!=='flash';
     const f=el('section','fold f-'+key+(i===FL.length-1?' inv':'')+(shut?' closed':''));f.id='f-'+key;f.style.setProperty('--i',i);f.style.setProperty('--k',FL.length>1?i/(FL.length-1):0);
     const tb=el('button','tab');tb.type='button';tb.setAttribute('aria-expanded',!shut);tb.setAttribute('aria-controls','fb-'+key);
@@ -1452,6 +1527,7 @@ placeSearch();
 swatches();applyLayers();home();setYear(2026);
 if(MINE){const j=jIdx(MINE.code);if(j>=0){MINE.v=occ(j,2026);MINE.seen=FEED.updated||new Date().toISOString();lsSet(MINE)}}
 {const h=new URLSearchParams(location.hash.slice(1)),c=h.get('j');if(c){const j=jIdx(c);if(j>=0){const q=h.get('q');let via=null;if(q){const m=matches(q).find(e=>e.j===j);via=m&&!m.std?m:{t:q}}pickJob(j,via)}}}
+joinInit();
 if(document.fonts)document.fonts.ready.then(()=>schedule());
 {let seen=null;try{seen=localStorage.getItem('aimap.seen.v1')}catch(e){}if(!seen&&!dOpen){setTimeout(()=>drawer(true,'first'),500)}try{localStorage.setItem('aimap.seen.v1','1')}catch(e){}}
 })().catch(e=>{console.error(e);const l=document.getElementById('loading');if(!l)return;

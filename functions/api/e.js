@@ -1,6 +1,6 @@
 // 행동 집계: 날짜·이벤트·라벨별 횟수만 센다. 개인 식별 정보는 받지 않는다.
 import { db, json, kst, clip, sameOrigin } from '../_db.js';
-const NAMES = new Set(['search', 'job', 'save', 'share', 'map', 'news', 'compare', 'task', 'sub', 'lead', 'jobpage', 'fold', 'menu', 'fb', 'tab', 'tk']);
+const NAMES = new Set(['search', 'job', 'save', 'share', 'map', 'news', 'compare', 'task', 'sub', 'lead', 'jobpage', 'fold', 'menu', 'fb', 'tab', 'tk', 'join']);
 export async function onRequestPost({ request, env }) {
   if (!sameOrigin(request)) return json({ ok: false }, 403);
   let b = {}; try { b = JSON.parse(await request.text() || '{}'); } catch (e) {}
