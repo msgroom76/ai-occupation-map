@@ -6,7 +6,7 @@
 // 4) 새 구독자가 확인 링크를 누르면 환영 메일과 이미 발송한(승인된) 가장 최근 호를 바로 보낸다.
 // 상태는 meta 표에 issue:<주> = asked | approved | done, 하루 한도 멈춤은 issue_pause = 날짜.
 import { kst, safeEq } from './_db.js';
-import { mailOn } from './_mail.js';
+import { mailOn, confirmMail } from './_mail.js';
 export const WEEK = /^\d{4}-W\d{2}$/;
 const reply = env => env.MAIL_REPLY_TO ? { reply_to: env.MAIL_REPLY_TO } : {};
 export const adminTo = env => env.ADMIN_EMAIL || env.MAIL_REPLY_TO || '';
@@ -111,6 +111,7 @@ export async function tick(env, d, origin) {
   if (!mailOn(env) || !d) return;
   if (globalThis.__tick && Date.now() - globalThis.__tick < 5 * 60e3) return;
   globalThis.__tick = Date.now();
+  await confirmCatchUp(env, d, origin);
   const list = await issues(env, origin); const it = list[0]; if (!it) return;
   if (Date.now() - Date.parse(it.date + 'T00:00:00+09:00') > 6 * 864e5) return;   // 일주일이 지난 호는 자동으로 다루지 않는다
   const st = await issueState(d, it.week);
@@ -119,6 +120,23 @@ export async function tick(env, d, origin) {
     if (await getMeta(d, 'issue_pause') === kst().slice(0, 10)) return;           // 오늘 한도에 걸렸으면 내일
     await sendNext(env, d, origin, it.week, 50);
   }
+}
+
+// 하루 한도(CONFIRM_DAY)에 걸려 확인 메일을 못 받은 최근 3일 신청자에게, 하루에 한 번 남은 한도만큼 보낸다
+const CONFIRM_DAY = 40;
+async function confirmCatchUp(env, d, origin) {
+  const today = kst().slice(0, 10);
+  if (await getMeta(d, 'confirm_catchup') === today) return;
+  await setMeta(d, 'confirm_catchup', today);
+  const c = await getMeta(d, 'confirm_day') || ''; const n = c.startsWith(today + ':') ? +c.split(':')[1] : 0;
+  const room = Math.min(50, CONFIRM_DAY - n); if (room <= 0) return;
+  const rows = (await d.prepare(`SELECT email, token FROM subscribers s WHERE status = 'pending' AND token IS NOT NULL AND consent_at >= ?1
+    AND NOT EXISTS (SELECT 1 FROM sends x WHERE x.week = 'confirm' AND x.email = s.email AND x.status = 'sent') LIMIT ?2`).bind(new Date(Date.now() + 9 * 3600e3 - 3 * 864e5).toISOString().slice(0, 10), room).all()).results;
+  if (!rows.length) return;
+  const r = await batch(env, rows.map(x => ({ from: env.MAIL_FROM, ...reply(env), to: [x.email], ...confirmMail(origin, x.token) })));
+  const now = kst();
+  await d.batch([...rows.map((x, i) => d.prepare("INSERT INTO sends (week, email, status, at, id, err) VALUES ('confirm', ?1, ?2, ?3, ?4, ?5) ON CONFLICT(week, email) DO UPDATE SET status = excluded.status, at = excluded.at, id = excluded.id, err = excluded.err").bind(x.email, r.ok ? 'sent' : 'failed', now, r.ids[i] || null, r.err)),
+    d.prepare("INSERT INTO meta (k, v) VALUES ('confirm_day', ?1) ON CONFLICT(k) DO UPDATE SET v = excluded.v").bind(`${today}:${n + (r.ok ? rows.length : 0)}`)]);
 }
 
 // 새 구독자 환영: 환영 메일 + 이미 발송을 승인한 가장 최근 호
