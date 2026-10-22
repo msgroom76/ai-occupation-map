@@ -1,0 +1,18 @@
+{"id":"janghan","name":"장한기술(주)","eng":"Janghan Engineers, Inc.","asof":"2026-10-22",
+ "about":"1987년 설립. 밀폐식 팽창탱크·열교환기·부스터펌프·축열(빙축열) 설비를 설계·제조. 충남 당진 본사·공장(9,918㎡, 연 5,000대 이상), 서울 영업본부, 1993년 기업부설연구소. 누적 출하 11만 대 이상, 특허 등 지식재산권 30건 이상.",
+ "basis":"홈페이지의 '전문 인력 70+'를 바탕으로 한 직무 구성 추정. 회사가 실제 인원표를 주면 바로 다시 계산한다.",
+ "site":"https://janghan.pages.dev/",
+ "roles":[
+  {"id":"exec","name":"경영진","n":3,"code":"112","fig":"exec"},
+  {"id":"sales","name":"기술영업","n":10,"code":"284","fig":"sales","note":"서울 영업본부. 건설사·설계사무소 대상 사양 영업"},
+  {"id":"design","name":"설계·견적 엔지니어","n":10,"code":"235","fig":"engineer","note":"사양 검토·도면·견적"},
+  {"id":"rnd","name":"연구소(R&D)","n":4,"code":"237","fig":"researcher","note":"축열·수열·PVT 개발"},
+  {"id":"weld","name":"용접","n":12,"code":"740","fig":"welder"},
+  {"id":"assy","name":"조립·배관","n":12,"code":"855","fig":"assembler"},
+  {"id":"mach","name":"기계 가공","n":4,"code":"851","fig":"machinist"},
+  {"id":"qc","name":"품질 검사","n":3,"code":"235","fig":"inspector"},
+  {"id":"scm","name":"구매·자재·생산관리","n":4,"code":"321","fig":"admin"},
+  {"id":"svc","name":"AS·시운전","n":5,"code":"753","fig":"technician"},
+  {"id":"acct","name":"회계·재무","n":2,"code":"331","fig":"admin"},
+  {"id":"hr","name":"인사·총무","n":2,"code":"371","fig":"admin"},
+  {"id":"log","name":"출하·물류","n":2,"code":"873","fig":"logistics"}]}

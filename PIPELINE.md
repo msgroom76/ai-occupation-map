@@ -187,3 +187,12 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 - 구독은 /api/subscribe(src='test', job=소분류 또는 중분류). 행동 집계 이름 'test'.
 - 일러스트: tools/build_illo.py가 pipeline/inputs/illo/의 흑백 바탕 그림(AI 생성, 2026-10-22)에 tools/dither.py(글리프 망점: 사람·사물은 점·십자·X, 물은 세로 막대, 잉크 한 색)를 입혀 img/water/를 만든다. 물 높이는 코드가 정한다. 그림체를 바꿀 때는 dither.py만 고치고 build_illo.py를 다시 돌린다.
 - 주간 메일 머리 그림: 그 주 전체 노출도에 맞는 crowd-sN-mail.png와 "한국 일자리 전체의 물때" 한 줄, /test 링크(build_mail.py).
+
+## 조직 리포트
+
+- 입력: reports/<회사>.json (직무·인원·직업 코드·그림). 인원은 회사 자료가 없으면 추정이고, 리포트에 추정이라고 밝힌다.
+- 계산: `python3 tools/org_report.py reports/<회사>.json` → reports/out/<회사>/metrics.json (지도와 같은 노출도, 대체형 비중, 명분·인건비 환산, 사내 옮겨가기, 자격·AI 기본법·노조·미국 비교, 관련 소식·쟁점).
+- 그림: `python3 tools/build_lineup.py reports/out/<회사>/metrics.json` (직무 군상, 사람마다 자기 물 높이) · `python3 tools/report_charts.py … <사무 직무 id들>` (두 집단·업무 도표).
+- 사람 그림: pipeline/inputs/illo/figs/<이름>.png (AI로 만든 흑백 바탕, dither.py로 그림체 통일).
+- 임금: labor.json(KOSIS DT_118N_LCE306). KOSIS 표는 /api/kosis로 읽는다(서버의 KOSIS_KEY, 고용 통계만, 하루 저장).
+- reports/는 사이트로 열리지 않는다(_middleware 허용 목록 밖).
