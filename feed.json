@@ -1,7 +1,37 @@
 {
- "updated": "2026-10-22T12:58:00+09:00",
+ "updated": "2026-10-22T17:53:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-10-21-ceva-sereact-returns",
+   "ts": "2026-10-21T17:00:00+09:00",
+   "src": "Sereact (GlobeNewswire)",
+   "url": "https://globenewswire.com/news-release/2026/10/21/3385409/0/en/sereact-nvidia-nebius-ceva-logistics-and-zalando-close-the-training-loop-for-robotic-returns-handling.html",
+   "tier": "1차 출처",
+   "sig": "도입",
+   "us": false,
+   "kr": false,
+   "hd": "독일 로봇업체 세리액트, CEVA 물류의 잘란도 반품 처리 센터 일부에 반품 상품을 집어 식별·상태 확인·분류하는 AI 로봇 첫 배치 시작",
+   "r": [
+    "C2",
+    "A3"
+   ],
+   "st": "pending",
+   "grp": "warehouse-robot",
+   "dwa": [
+    [
+     "4.A.2.a.2.I02.D05",
+     "f"
+    ],
+    [
+     "4.A.1.b.2.I10.D04",
+     "a"
+    ]
+   ],
+   "ind": [
+    "92"
+   ]
+  },
   {
    "id": "2026-10-22-poscofm-palantir",
    "ts": "2026-10-22T11:17:00+09:00",
@@ -2230,6 +2260,43 @@
  ],
  "front": [
   {
+   "id": "2026-10-08-italy-ai-decree-work",
+   "ts": "2026-10-08T09:00:00+09:00",
+   "src": "ActuIA",
+   "url": "https://www.actuia.com/en/news/italy-from-23-october-ai-hiring-or-firing-requires-a-human-decision-maker/",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "sig": "저항",
+   "kind": "법·규제",
+   "fx": "강",
+   "ind": [
+    "31",
+    "12"
+   ],
+   "hd": "이탈리아 AI법 시행 입법명령(2026년 제179호) 10월 23일 시행 — 평가·징계·해고 등 고용 결정은 AI 자동 처리만으로 못 하고 실질 결정권 있는 사람이 최종 결정, 어기면 무효",
+   "note": "EU AI법 국내 이행 입법명령(관보 10.8 게재·10.23 시행) · 근로자 동의로도 예외 불가, AI 비중 설명 요구권 · 지원자 서류 선별은 제외",
+   "st": "none",
+   "added": "2026-10-22T17:53:00+09:00"
+  },
+  {
+   "id": "2026-10-19-callcenter-union-ai",
+   "ts": "2026-10-19T10:00:00+09:00",
+   "src": "매일노동뉴스",
+   "url": "https://www.labortoday.co.kr/news/articleView.html?idxno=237297",
+   "tier": "신뢰 매체",
+   "kr": true,
+   "sig": "저항",
+   "kind": "노사",
+   "fx": "약",
+   "ind": [
+    "36"
+   ],
+   "hd": "민주노총 콜센터 연대회의, 원청교섭 공동요구안 발표 — AI·자동화 도입 시 노조 사전협의와 고용보장 요구",
+   "note": "공공·금융 콜센터 하청 노조의 원청 교섭 요구 · 요구안 단계(합의 아님)",
+   "st": "none",
+   "added": "2026-10-22T17:53:00+09:00"
+  },
+  {
    "id": "2026-10-20-public-ai-employment-bill",
    "ts": "2026-10-20T15:36:00+09:00",
    "src": "에너지데일리",
@@ -2553,5 +2620,19 @@
    "added": "2026-10-22T14:30:00+09:00"
   }
  ],
- "runs": []
+ "runs": [
+  {
+   "at": "2026-10-22T17:53:00+09:00",
+   "push": {
+    "q": 15,
+    "cand": 10,
+    "acc": 1
+   },
+   "front": {
+    "q": 13,
+    "cand": 7,
+    "acc": 2
+   }
+  }
+ ]
 }
