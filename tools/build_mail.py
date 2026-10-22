@@ -124,12 +124,12 @@ for i,w in enumerate(weeks):
     fr=[n for n in feed.get('front',[]) if start<date.fromisoformat(n['ts'][:10])<=end]
     fr.sort(key=lambda n:({'강':0,'중':1,'약':2}.get(n.get('fx'),3),n['ts']))
     if fr:
-        rows.append(kicker(f'{k+1:02d} — 이번 주 전선'))
-        rows.append(para('AI가 할 수 있어도 법·노사·기관의 결정이 대체를 막거나 늦춘 소식이에요. 지수에는 반영하지 않아요.',MUT,13,'0 0 4px'))
+        rows.append(kicker(f'{k+1:02d} — 이번 주 쟁점'))
+        rows.append(para('AI가 할 수 있어도 법·노사·기관이 속도와 조건을 정한 소식이에요. 지수에는 반영하지 않아요.',MUT,13,'0 0 4px'))
         for n in fr[:5]:
             jn=', '.join(j['name'] for j in J if any(c.startswith(j['code']) for c in n.get('ind',[]))) or '모든 직업'
             rows.append(para(f'<b style="color:{PINK}">{FX.get(n.get("fx"),"")}</b> · {e(n.get("kind",""))}<br>{a(n["url"],n["hd"],INK)}<br><span style="color:{MUT};font-size:13px">{e(n["src"])} · 닿는 직업: {e(jn)}</span>','8px 0'))
-        txt+=['','■ 이번 주 전선 (지수에는 반영하지 않음)']+[f'- [{FX.get(n.get("fx"),"")}·{n.get("kind","")}] {n["hd"]} ({n["src"]}) {n["url"]}' for n in fr[:5]]
+        txt+=['','■ 이번 주 쟁점 (지수에는 반영하지 않음)']+[f'- [{FX.get(n.get("fx"),"")}·{n.get("kind","")}] {n["hd"]} ({n["src"]}) {n["url"]}' for n in fr[:5]]
     if B and B.get('closing'):
         rows.append(para(e(B['closing']),INK,16,'32px 0 0'));txt+=['',B['closing']]
     rows.append(row(f'<a href="{BASE}/" style="display:inline-block;background:{INK};color:#fff;font:700 15px {F};padding:13px 22px;text-decoration:none">내 직업 찾아보기 →</a>','24px 0 0'))
