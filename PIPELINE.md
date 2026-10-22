@@ -196,3 +196,11 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 - 사람 그림: pipeline/inputs/illo/figs/<이름>.png (AI로 만든 흑백 바탕, dither.py로 그림체 통일).
 - 임금: labor.json(KOSIS DT_118N_LCE306). KOSIS 표는 /api/kosis로 읽는다(서버의 KOSIS_KEY, 고용 통계만, 하루 저장).
 - reports/는 사이트로 열리지 않는다(_middleware 허용 목록 밖).
+
+### 한 번에 만들기 (build_report.py)
+`python3 tools/build_report.py reports/<회사>.json` → 계산·그림 5종·`report.md` 초안·`checks.json`.
+- 숫자가 들어가는 표(핵심 지표, 직무별, 동종사, 노사·법 비교), 그림 설명, 주요 발견 수치, 부록은 metrics에서 바로 쓴다. 손으로 옮기지 않는다.
+- 해석 자리는 `<!-- 작성: … -->`로 남기고 근거 수치를 같이 적는다. 사람이 쓸 곳은 핵심 메시지, 의사결정 사항, 시사점, 로드맵.
+- 회사 파일에 `office`, `groups`, `readers`, `payroll_note`, `op_profit`, `kpi_rows`, `facts`(finance·headcount·bullets·ai_moves), `sources`, `asks`, `law_rows`를 넣을 수 있다(스크립트 머리말 참고). 동종사 파일 항목에 `biz`, `ai`, `n_note`.
+- `checks.json`: 인원 합계, 같은 직업 분류로 묶인 직무, 급여 근거, 빠진 자료. 문서로 옮기기 전에 0건이 되거나 본문에 밝혀야 한다.
+- 순서: 조사(회사·동종사 에이전트) → 회사·동종사 파일 → build_report → 작성 자리 채우기 → Docs(섹션별 replace, 그림은 asset→blob) → 숫자 대조.

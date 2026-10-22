@@ -105,5 +105,23 @@
    "fig": "admin"
   }
  ],
- "payroll_actual": 401.8
+ "payroll_actual": 401.8,
+ "office": [
+  "exec",
+  "qc",
+  "rnd",
+  "pm",
+  "scm",
+  "sales",
+  "mkt",
+  "acct",
+  "hr"
+ ],
+ "groups": [
+  "사무·기술",
+  "현장"
+ ],
+ "payroll_note": "2025년 급여 총액(감사보고서)",
+ "op_profit": 176.9,
+ "readers": "대표이사 및 경영진, 인사·안전보건 책임자"
 }

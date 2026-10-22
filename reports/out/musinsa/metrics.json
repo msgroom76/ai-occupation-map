@@ -5,7 +5,28 @@
   "eng": "MUSINSA",
   "asof": "2026-10-22",
   "about": "패션 플랫폼(무신사·29CM·솔드아웃), PB 무신사 스탠다드(매장 34개, 2025년 말), 물류(여주). 2025년 연결 매출 1조 4,679억 원, 영업이익 1,405억 원. 2026년 9월 유가증권시장 상장 예비심사 청구.",
-  "basis": "국민연금 가입 기준 2,115명(2026.9), 본사 약 1,600명 중 개발 직군 48%(언론 보도)를 바탕으로 한 직무 구성 추정. 매장·물류 인력의 상당 부분은 자회사·외부 위탁일 수 있어 회사 확인이 필요하다."
+  "basis": "국민연금 가입 기준 2,115명(2026.9), 본사 약 1,600명 중 개발 직군 48%(언론 보도)를 바탕으로 한 직무 구성 추정. 매장·물류 인력의 상당 부분은 자회사·외부 위탁일 수 있어 회사 확인이 필요하다.",
+  "office": [
+   "exec",
+   "dev",
+   "data",
+   "pm",
+   "md",
+   "mkt",
+   "content",
+   "design",
+   "sourcing",
+   "cs",
+   "acct",
+   "hr",
+   "legal"
+  ],
+  "groups": [
+   "본사 사무·기술",
+   "매장·물류"
+  ],
+  "op_profit": 1405,
+  "readers": "대표이사·CTO 등 경영진, 인사 책임자, 상장 준비 조직"
  },
  "org": {
   "n": 2115,
@@ -491,21 +512,21 @@
      "all": false
     },
     {
+     "hd": "이탈리아 AI법 시행 입법명령(2026년 제179호) 10월 23일 시행 — 평가·징계·해고 등 고용 결정은 AI 자동 처리만으로 못 하고 실질 결정권 있는 사람이 최종 결정, 어기면 무효",
+     "src": "ActuIA",
+     "url": "https://www.actuia.com/en/news/italy-from-23-october-ai-hiring-or-firing-requires-a-human-decision-maker/",
+     "fx": "강",
+     "kind": "법·규제",
+     "ts": "2026-10-08",
+     "all": false
+    },
+    {
      "hd": "고용노동부 지침: AI 도입 결정 자체는 의무교섭 대상 아니지만, 그에 따른 직무·교대제·인력 변경 계획이 확인되면 교섭 대상",
      "src": "헤럴드경제",
      "url": "https://www.heraldk.com/article/2026090222004679023",
      "fx": "중",
      "kind": "법·규제",
      "ts": "2026-09-03",
-     "all": true
-    },
-    {
-     "hd": "이종배 의원 등 10인 근로기준법 개정안 발의 — AI 결정만으로 해고·감봉 금지, 사람에게 재검토를 요청할 권리",
-     "src": "국민참여입법센터",
-     "url": "https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2219438/detailRP",
-     "fx": "약",
-     "kind": "법·규제",
-     "ts": "2026-06-23",
      "all": true
     }
    ],
@@ -715,13 +736,13 @@
      "all": true
     },
     {
-     "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
-     "src": "에너지데일리",
-     "url": "https://www.energydaily.co.kr/news/articleView.html?idxno=204212",
+     "hd": "민주노총 콜센터 연대회의, 원청교섭 공동요구안 발표 — AI·자동화 도입 시 노조 사전협의와 고용보장 요구",
+     "src": "매일노동뉴스",
+     "url": "https://www.labortoday.co.kr/news/articleView.html?idxno=237297",
      "fx": "약",
-     "kind": "법·규제",
-     "ts": "2026-10-20",
-     "all": true
+     "kind": "노사",
+     "ts": "2026-10-19",
+     "all": false
     }
    ],
    "moves": [
@@ -1595,6 +1616,12 @@
    "licenses": [],
    "aiact": [],
    "news": [
+    {
+     "hd": "독일 로봇업체 세리액트, CEVA 물류의 잘란도 반품 처리 센터 일부에 반품 상품을 집어 식별·상태 확인·분류하는 AI 로봇 첫 배치 시작",
+     "src": "Sereact (GlobeNewswire)",
+     "url": "https://globenewswire.com/news-release/2026/10/21/3385409/0/en/sereact-nvidia-nebius-ceva-logistics-and-zalando-close-the-training-loop-for-robotic-returns-handling.html",
+     "ts": "2026-10-21"
+    },
     {
      "hd": "CJ대한통운, 인천GDC에 AI 비전 이동형 로봇 팔레타이저 도입 — 박스를 알아보고 도착지별로 나눠 파렛트에 적재 (랩 포장은 사람)",
      "src": "CJ뉴스룸 (CJ대한통운 보도자료)",

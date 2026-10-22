@@ -106,5 +106,23 @@
    "fig": "logistics"
   }
  ],
- "payroll_actual": 36.52
+ "payroll_actual": 36.52,
+ "office": [
+  "exec",
+  "sales",
+  "design",
+  "rnd",
+  "site",
+  "qc",
+  "scm",
+  "acct",
+  "hr"
+ ],
+ "groups": [
+  "사무·기술",
+  "생산·현장"
+ ],
+ "payroll_note": "2025년 급여 총액(감사보고서)",
+ "op_profit": -11.1,
+ "readers": "공동대표, 경영진, 인사 책임자"
 }
