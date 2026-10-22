@@ -22,6 +22,10 @@ iframe{width:100%;height:620px;border:1px solid var(--hair);background:#fff;marg
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:14px 0 0;border-top:1px solid var(--hair)}.flow div{padding:8px 10px 8px 0;font-size:13px;color:var(--ink2)}.flow b{display:block;color:var(--ink);font-size:13px}
 @media (max-width:640px){.flow{grid-template-columns:1fr 1fr}}
 #recent td{white-space:nowrap}
+.srcbar{display:block;margin:14px 0 0;padding:10px 12px;border:1px solid var(--warn);color:var(--warn);font-size:14px;font-weight:600;text-decoration:none}.srcbar[hidden]{display:none}
+.t-snew{color:var(--hot)}.t-sdue{color:var(--warn)}.t-ssoon{color:var(--ink2)}.t-sok{color:var(--ok)}.t-sfixed{color:var(--ink2);border-style:dashed}
+#src td{vertical-align:top}#src td small{display:block;color:var(--ink2);font-size:12px;line-height:1.45;margin-top:2px}#src td a{color:inherit}@media (max-width:640px){.srct thead{display:none}.srct tr{display:block;border-bottom:1px solid var(--hair);padding:10px 0}.srct td{display:block;border:0;padding:3px 0}.srct td:nth-child(2)::before{content:'지금 쓰는 판 · ';color:var(--ink2);font-size:12px}}
+#src button{min-height:32px;padding:0 10px;font-size:13px}
 </style></head><body><main>
 <div class="top"><span><b>AI</b> 점령 지도 · 운영</span><span class="row" style="gap:16px"><a href="/">사이트로</a><button class="link" id="out" hidden type="button">로그아웃</button></span></div>
 
@@ -36,6 +40,7 @@ iframe{width:100%;height:620px;border:1px solid var(--hair);background:#fff;marg
 <section id="app" hidden>
 <h1>구독자와 주간 메일</h1>
 <p class="note" id="status"></p>
+<a class="srcbar" id="srcbar" href="#srcsec" hidden></a>
 <div class="flow">
   <div><b>① 신청</b>확인 메일이 자동으로 가요</div>
   <div><b>② 확인 클릭</b>환영 메일과 최근 호를 바로 보내요</div>
@@ -69,6 +74,12 @@ iframe{width:100%;height:620px;border:1px solid var(--hair);background:#fff;marg
 <div class="wrap"><table><thead><tr><th>주</th><th class="n">수집 회차</th><th class="n">AI 소식<br><small>검색 · 후보 · 채택</small></th><th class="n">쟁점<br><small>검색 · 후보 · 채택</small></th><th class="n">새 쟁점<br><small>강 · 중 · 약</small></th></tr></thead><tbody id="cov"></tbody></table></div>
 <p class="note" id="covgap" style="margin-top:10px"></p>
 
+<h2 id="srcsec">자료 출처 관리 <small>새 판이 나왔는지 하루 한 번 자동으로 확인해요</small></h2>
+<p class="note">API나 공개 페이지로 확인할 수 있는 자료는 자동으로, 그렇지 않은 자료는 정해 둔 날짜가 되면 알려요. 직접 확인했거나 이번 판은 반영하지 않기로 했으면 [확인했어요]를 누르세요. 다음 알림 때까지 조용해져요.</p>
+<div class="row" style="margin-top:8px"><button id="srcchk" type="button">지금 다시 확인</button><span class="note" id="srcinfo"></span></div>
+<p class="msg" id="m4"></p>
+<div class="wrap"><table class="srct"><thead><tr><th>자료</th><th>지금 쓰는 판</th><th>확인 방법</th><th>상태</th><th></th></tr></thead><tbody id="src"></tbody></table></div>
+
 <h2>최근 신청자 <small>주소 일부는 가려서 보여요</small></h2>
 <div class="wrap"><table><thead><tr><th>주소</th><th>상태</th><th>신청</th><th>확인</th></tr></thead><tbody id="recent"></tbody></table></div>
 </section>
@@ -82,7 +93,7 @@ const ts=s=>(s||'').slice(5,16).replace('T',' ');
 let D=null,SEL=null;
 async function boot(){let r,j;try{({r,j}=await api('/api/admin/mail'))}catch(e){$('#login').hidden=false;say($('#lm'),'연결하지 못했어요.',false);return}
   if(r.status===403||!j.ok){$('#login').hidden=false;$('#app').hidden=true;$('#out').hidden=true;if(r.status!==403)say($('#lm'),j.msg||'열지 못했어요.',false);return}
-  D=j;$('#login').hidden=true;$('#app').hidden=false;$('#out').hidden=false;cov();
+  D=j;$('#login').hidden=true;$('#app').hidden=false;$('#out').hidden=false;cov();srcLoad();
   $('#status').textContent=(j.mailOn?'메일 발송 켜짐':'메일 발송 꺼짐 — Pages 설정의 MAIL_ENABLED·RESEND_API_KEY·MAIL_FROM을 확인하세요')+(j.adminTo?` · 승인 요청은 ${j.adminTo}로 가요`:'');
   $('#ca').textContent=j.counts.active;$('#cp').textContent=j.counts.pending;$('#cu').textContent=j.counts.unsub;$('#cm').textContent=(j.confirmMails&&j.confirmMails.sent)||0;
   const dl=$('#daily');dl.innerHTML='';if(!j.daily.length){const tr=document.createElement('tr');const c=td('최근 30일 기록이 없어요','note');c.colSpan=4;tr.appendChild(c);dl.appendChild(tr)}
@@ -126,6 +137,25 @@ $('#kgo').onclick=()=>{KEY=$('#k').value.trim();try{sessionStorage.setItem('aima
 $('#out').onclick=async()=>{await fetch('/api/admin/login',{method:'DELETE'});KEY='';try{sessionStorage.removeItem('aimap.admin')}catch(e){}$('#lm').textContent='';boot()};
 // 소식 수집 현황: 공개 파일(feed.json·city_meta.json)만 읽는다
 const isoWk=t=>{const d=new Date(t.slice(0,10)+'T00:00:00Z');const day=(d.getUTCDay()+6)%7;d.setUTCDate(d.getUTCDate()-day+3);const y=d.getUTCFullYear();const f=new Date(Date.UTC(y,0,4));return y+'-W'+String(1+Math.round(((d-f)/864e5-3+((f.getUTCDay()+6)%7))/7)).padStart(2,'0')};
+// 자료 출처 관리
+const SST={new:['새 판 나옴','snew'],due:['확인할 때','sdue'],soon:['곧 확인','ssoon'],ok:['최신','sok'],wait:['확인일 전','ssoon'],fixed:['고정본','sfixed']};
+const AUTO={onet:'자동 · 공개 페이지',hf:'자동 · API',gh:'자동 · API',kosis:'자동 · KOSIS API',law:'자동 · 법령 API'};
+async function srcLoad(){const {j}=await api('/api/admin/mail?view=sources');const L=j.list||[],tb=$('#src');tb.innerHTML='';
+  const ord={new:0,due:1,soon:2,wait:3,ok:4,fixed:5};L.sort((a,b)=>ord[a.st]-ord[b.st]);
+  L.forEach(x=>{const tr=document.createElement('tr');
+    const c1=document.createElement('td');const a=document.createElement('a');a.href=x.url;a.target='_blank';a.rel='noopener';a.textContent=x.name;c1.append(a);const u=document.createElement('small');u.textContent='쓰는 곳: '+x.used;c1.append(u);
+    if(x.st==='new'||x.st==='due'){const h=document.createElement('small');h.textContent='바꾸는 법: '+x.how;c1.append(h)}
+    const c3=document.createElement('td');c3.textContent=x.auto?AUTO[x.auto]:'직접 확인';const sm=document.createElement('small');
+    sm.textContent=x.err?('자동 확인 안 됨: '+x.err):(x.auto&&x.at?`최신 ${x.latest} · ${x.at.slice(5,16).replace('T',' ')} 확인`:(x.next?`다음 확인 ${x.next}`:''));c3.append(sm);
+    const c4=document.createElement('td');const t=document.createElement('span');t.className='tag t-'+SST[x.st][1];t.textContent=SST[x.st][0];c4.append(t);
+    if(x.why){const w=document.createElement('small');w.textContent=x.why;c4.append(w)}if(x.ack){const w=document.createElement('small');w.textContent='확인함 '+x.ack;c4.append(w)}
+    const c5=document.createElement('td');if(x.st==='new'||x.st==='due'||x.st==='soon'){const b=document.createElement('button');b.type='button';b.textContent='확인했어요';
+      b.onclick=async()=>{b.disabled=true;const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({mode:'src-ack',id:x.id})});say($('#m4'),j.msg||'실패',!!j.ok);srcLoad()};c5.append(b)}
+    tr.append(c1,td(x.have),c3,c4,c5);tb.appendChild(tr)});
+  const nN=L.filter(x=>x.st==='new').length,nD=L.filter(x=>x.st==='due').length,bar=$('#srcbar');
+  bar.hidden=!(nN||nD);bar.textContent=`자료 출처: ${[nN?`새 판 ${nN}건`:'',nD?`확인할 때 ${nD}건`:''].filter(Boolean).join(' · ')} → 자료 출처 관리 보기`;
+  const last=L.map(x=>x.at).filter(Boolean).sort().pop();$('#srcinfo').textContent=last?`마지막 자동 확인 ${last.slice(0,16).replace('T',' ')}`:'아직 자동 확인 전이에요(사이트 첫 방문 때 돌아요)'}
+$('#srcchk').onclick=async()=>{const b=$('#srcchk');b.disabled=true;$('#m4').textContent='확인하는 중…';const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({mode:'src-check'})});b.disabled=false;say($('#m4'),j.msg||'실패',!!j.ok);srcLoad()};
 async function cov(){try{const [F,C]=await Promise.all([fetch('/feed.json',{cache:'no-store'}).then(r=>r.json()),fetch('/city_meta.json').then(r=>r.json())]);
   const W={};const g=k=>W[k]=W[k]||{runs:0,p:[0,0,0],f:[0,0,0],fx:{'강':0,'중':0,'약':0},log:false};
   (F.runs||[]).forEach(r=>{const w=g(isoWk(r.at));w.runs++;w.log=true;['q','cand','acc'].forEach((k,i)=>{w.p[i]+=(r.push&&r.push[k])||0;w.f[i]+=(r.front&&r.front[k])||0})});

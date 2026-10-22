@@ -5,11 +5,14 @@
 // POST {mode:'test', week, to}          → 한 주소에 시험 발송([시험])
 // POST {mode:'approve', week}           → 승인하고 발송 시작(승인 요청 메일의 버튼과 같음)
 // POST {mode:'ask', week}               → 승인 요청 메일 다시 보내기
+// GET ?view=sources         → 자료 출처 관리(새 판·확인할 때)
+// POST {mode:'src-check'} · {mode:'src-ack', id} → 자료 출처 지금 확인 · 확인했어요
 // POST {mode:'confirm-pending'}         → 확인 전 신청자에게 확인 메일(한 사람에 한 번)
 import { db, json, kst, token } from '../../_db.js';
 import { mailOn, confirmMail } from '../../_mail.js';
 import { WEEK, issues, draft, personal, issueMail, batch, issueState, setMeta, sendNext, askApproval, adminTo, evidence } from '../../_issue.js';
 import { authed } from '../../_admin.js';
+import { checkSources, sourceStatus, ackSource } from '../../_sources.js';
 const mask = e => { const [a, b] = String(e).split('@'); return (a.length <= 2 ? a[0] + '*' : a.slice(0, 2) + '*'.repeat(Math.min(6, a.length - 2))) + '@' + b; };
 
 export async function onRequestGet({ request, env }) {
@@ -21,6 +24,7 @@ export async function onRequestGet({ request, env }) {
   }
   if (WEEK.test(week) && u.searchParams.get('view') === 'evidence') return json({ ok: true, ev: await evidence(env, origin, week) });
   const d = await db(env); if (!d) return json({ ok: false, msg: 'DB 연결 전' }, 503);
+  if (u.searchParams.get('view') === 'sources') return json({ ok: true, list: await sourceStatus(env, d) });
   const st = Object.fromEntries((await d.prepare("SELECT COALESCE(status,'pending') AS s, COUNT(*) AS n FROM subscribers GROUP BY 1").all()).results.map(r => [r.s, r.n]));
   const daily = (await d.prepare(`SELECT day, SUM(newn) AS signup, SUM(conf) AS confirmed, SUM(un) AS unsub FROM (
       SELECT substr(COALESCE(consent_at, created),1,10) AS day, 1 AS newn, 0 AS conf, 0 AS un FROM subscribers
@@ -38,6 +42,11 @@ export async function onRequestGet({ request, env }) {
 export async function onRequestPost({ request, env }) {
   if (!(await authed(request, env))) return json({ ok: false }, 403);
   let b = {}; try { b = await request.json(); } catch (e) { return json({ ok: false, msg: '요청 형식이 잘못됐어요.' }, 400); }
+  if (b.mode === 'src-check' || b.mode === 'src-ack') {
+    const d0 = await db(env); if (!d0) return json({ ok: false, msg: 'DB 연결 전' }, 503);
+    if (b.mode === 'src-check') { await checkSources(env, d0, new URL(request.url).origin, true); return json({ ok: true, msg: '자동으로 확인할 수 있는 자료를 모두 다시 확인했어요.' }); }
+    const ok = await ackSource(env, d0, String(b.id || '')); return json({ ok, msg: ok ? '확인했어요로 표시했어요.' : '그런 자료가 없어요.' }, ok ? 200 : 400);
+  }
   if (!mailOn(env)) return json({ ok: false, msg: '메일 발송이 꺼져 있어요(MAIL_ENABLED·RESEND_API_KEY·MAIL_FROM).' }, 409);
   const origin = new URL(request.url).origin, d = await db(env); if (!d) return json({ ok: false, msg: 'DB 연결 전' }, 503);
   const week = String(b.week || '');

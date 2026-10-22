@@ -5,6 +5,7 @@
 //    하루 한도(Resend 429)에 걸리면 다음 날 이어서 보낸다. 같은 호를 같은 사람에게 두 번 보내지 않는다(sends 표).
 // 4) 새 구독자가 확인 링크를 누르면 환영 메일과 이미 발송한(승인된) 가장 최근 호를 바로 보낸다.
 // 상태는 meta 표에 issue:<주> = asked | approved | done, 하루 한도 멈춤은 issue_pause = 날짜.
+import { sourceStatus } from './_sources.js';
 import { kst, safeEq } from './_db.js';
 import { mailOn, confirmMail } from './_mail.js';
 import { mailHtml, link, textFoot } from './_tpl.js';
@@ -100,10 +101,12 @@ export async function askApproval(env, d, origin, it) {
   const m = await draft(env, origin, it.week); if (!m) return false;
   const n = (await d.prepare("SELECT COUNT(*) AS n FROM subscribers WHERE status = 'active'").first()).n;
   const link = `${origin}/api/approve?w=${it.week}&s=${await sign(env, 'approve|' + it.week)}`;
-  const band = `<div style="font:15px/1.6 -apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#1c1c1e;color:#fff;padding:18px 20px;margin:0 0 16px"><b>[승인 요청] ${it.week} 주간 메일</b><br>아래가 구독자 ${n}명에게 갈 메일이에요. 내용을 확인하고 승인하면 바로 발송을 시작해요.<br><a href="${link}" style="display:inline-block;margin-top:10px;padding:10px 16px;background:#ff8ccd;color:#1c1c1e;font-weight:700;text-decoration:none">승인 화면 열기</a></div>`;
+  const S = (await sourceStatus(env, d)).filter(x => x.st === 'new' || x.st === 'due');
+  const srcLine = S.length ? `<br><span style="color:#ffc266">자료 출처 확인 필요 ${S.length}건: ${S.map(x => esc(x.name)).join(', ')} · <a href="${origin}/admin" style="color:#ffc266">운영 화면</a></span>` : '';
+  const band = `<div style="font:15px/1.6 -apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#1c1c1e;color:#fff;padding:18px 20px;margin:0 0 16px"><b>[승인 요청] ${it.week} 주간 메일</b><br>아래가 구독자 ${n}명에게 갈 메일이에요. 내용을 확인하고 승인하면 바로 발송을 시작해요.${srcLine}<br><a href="${link}" style="display:inline-block;margin-top:10px;padding:10px 16px;background:#ff8ccd;color:#1c1c1e;font-weight:700;text-decoration:none">승인 화면 열기</a></div>`;
   const ev = await evidence(env, origin, it.week); const top = band + `<div style="max-width:640px;margin:0 auto">${evidenceHtml(ev)}</div>`;
   const body = /<body[^>]*>/i.test(m.htmlBody) ? m.htmlBody.replace(/<body([^>]*)>/i, `<body$1>${top}`) : top + m.htmlBody;
-  const r = await batch(env, [{ from: env.MAIL_FROM, to: [to], subject: `[승인 요청] ${m.subject}`, html: personal(body, `${origin}/`), text: `[승인 요청] ${it.week} 주간 메일 · 구독자 ${n}명\n승인 화면: ${link}\n\n` + evidenceText(ev) + personal(m.textBody, `${origin}/`) }]);
+  const r = await batch(env, [{ from: env.MAIL_FROM, to: [to], subject: `[승인 요청] ${m.subject}`, html: personal(body, `${origin}/`), text: `[승인 요청] ${it.week} 주간 메일 · 구독자 ${n}명\n승인 화면: ${link}\n${S.length ? `자료 출처 확인 필요 ${S.length}건: ${S.map(x => x.name).join(', ')} · ${origin}/admin\n` : ''}\n` + evidenceText(ev) + personal(m.textBody, `${origin}/`) }]);
   return r.ok;
 }
 
