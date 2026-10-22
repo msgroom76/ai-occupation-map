@@ -106,6 +106,12 @@ if os.path.exists('protect.json'):
     for A in PR.get('ai_act', {}).get('areas', []):
         bad = [c for c in A.get('sm', []) if c not in cm['sm']]
         if bad: err(f'protect AI기본법 {A.get("item")}: 없는 소분류 {bad}')
+    UM = (PR.get('union') or {}).get('major') or {}
+    if UM:
+        if sorted(UM) != [str(i) for i in range(1, 10)]: err('protect union: 대분류 1~9가 모두 있어야 함')
+        for k, v in UM.items():
+            for f in ('all', 'reg', 'irr'):
+                if not isinstance(v.get(f), (int, float)) or not 0 <= v[f] <= 100: err(f'protect union {k}: {f} 값 이상')
 
 if not feed_only:
     # ---------- city_meta.json ----------
