@@ -13,7 +13,7 @@
 :root[data-theme="light"]{--bg:#f6f6f8;--card:#fff;--ink:#16161a;--ink2:rgba(60,60,67,.72);--ink3:rgba(60,60,67,.42);--hair:rgba(22,22,26,.14);--hot:#8a085a;--soft:#fbf1f7;--bad:#c0262d;color-scheme:light}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-size:16px;line-height:1.6;word-break:keep-all;-webkit-font-smoothing:antialiased}
 main{max-width:880px;margin:0 auto;padding:20px 16px 80px}a{color:inherit}
-.top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:10px;font-size:13px}
+.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--ink);padding-bottom:10px;font-size:13px}
 .brand{font-weight:700;text-decoration:none}.brand b{color:var(--hot)}
 .kick{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--hot);margin:32px 0 6px}
 h1{font-size:clamp(30px,6vw,48px);line-height:1.15;letter-spacing:-.04em;margin:0 0 12px;font-weight:800}
@@ -80,9 +80,11 @@ details.meth{margin-top:24px;font-size:14px;color:var(--ink2)}details.meth summa
 footer{margin-top:48px;border-top:1px solid var(--hair);padding-top:14px;font-size:13px;color:var(--ink2);display:flex;gap:16px;flex-wrap:wrap}footer a{text-decoration:none}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;font-size:14px;z-index:20}
 @media print{.noprint,.cta,.acts,footer,.step,.kick,h1,.lede,.top{display:none!important}body{background:#fff;color:#000}main{max-width:none;padding:0}h3{break-after:avoid}table,svg{break-inside:avoid}}
+.gnav{display:flex;gap:2px;flex-wrap:wrap}.gnav a{text-decoration:none;color:var(--ink2);font-weight:600;padding:4px 8px;border-bottom:2px solid transparent;white-space:nowrap}.gnav a:hover{color:var(--ink)}.gnav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--hot)}
+@media (max-width:520px){.top{flex-wrap:wrap;gap:6px}.gnav{width:100%;justify-content:space-between}.gnav a{padding:4px 2px}}
 </style></head><body>
 <main>
-<div class="top noprint"><a class="brand" href="/">AI <b>점령</b> 지도</a><span>조직 진단 · 베타</span></div>
+<div class="top noprint"><a class="brand" href="/">AI <b>점령</b> 지도</a><nav class="gnav" aria-label="주요 메뉴"><a href="/">지도</a><a href="/test">내 직업 전망</a><a href="/org" aria-current="page">기업 자가 진단</a></nav></div>
 <p class="kick">조직 진단</p>
 <h1>우리 조직 업무 중 AI가 해낼 수 있는 몫은 얼마일까</h1>
 <p class="lede">직무와 인원을 넣으면 직무별로 계산해 드려요. AI 점령 지도의 직업별 노출도와 같은 방법이에요. 입력한 내용은 이 브라우저 안에서만 계산하고 서버로 보내지 않아요.</p>

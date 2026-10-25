@@ -809,6 +809,18 @@ details.card[open] summary::after{content:"−"}
 .aiact{padding:10px 0;border-top:1px solid var(--hair);font-size:13px}
 .aiact a{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:2px}
 .aiact .eff{font-size:12px;color:var(--ink2);margin-top:2px}
+
+/* 위 막대 주요 메뉴: 지도 · 내 직업 전망 · 기업 자가 진단 */
+.gnav{display:flex;align-items:center;gap:4px;margin-left:auto;flex:none;order:9}
+.gnav a{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;font-size:14px;font-weight:600;color:var(--ink2);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap}
+.gnav a:hover{color:var(--ink)}.gnav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--c100)}
+.gnav a:focus-visible{outline:2px solid var(--c100);outline-offset:2px}
+@media (max-width:899px){
+  :root{--tb:calc(98px + env(safe-area-inset-top,0px))}
+  .topbar{flex-wrap:wrap;row-gap:4px}
+  .gnav{width:100%;margin:0 -4px;gap:0}
+  .gnav a{flex:1;justify-content:center;min-height:32px;padding:0 4px;font-size:13.5px}
+}
 </style>
 
 </head><body>
@@ -828,7 +840,7 @@ details.card[open] summary::after{content:"−"}
 
   <div class="legend glass" id="legend"></div>
 
-  <div class="topbar" id="topbar"><button type="button" class="menu" id="menu" aria-label="정보 패널 열기" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8.5h18M3 15.5h12"/></svg></button><a class="mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a></div>
+  <div class="topbar" id="topbar"><button type="button" class="menu" id="menu" aria-label="정보 패널 열기" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8.5h18M3 15.5h12"/></svg></button><a class="mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a><nav class="gnav" aria-label="주요 메뉴"><a href="/" aria-current="page">지도</a><a href="/test">내 직업 전망</a><a href="/org">기업 자가 진단</a></nav></div>
   <div class="ctl">
     <div class="grp glass"><button type="button" id="lyrbtn" aria-label="지도 유형" aria-expanded="false" aria-controls="lyr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></button></div>
     <div class="grp glass"><button type="button" id="zin" aria-label="확대"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><button type="button" id="zout" aria-label="축소"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button></div>
