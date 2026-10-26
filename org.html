@@ -80,11 +80,22 @@ details.meth{margin-top:24px;font-size:14px;color:var(--ink2)}details.meth summa
 footer{margin-top:48px;border-top:1px solid var(--hair);padding-top:14px;font-size:13px;color:var(--ink2);display:flex;gap:16px;flex-wrap:wrap}footer a{text-decoration:none}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;font-size:14px;z-index:20}
 @media print{.noprint,.cta,.acts,footer,.step,.kick,h1,.lede,.top{display:none!important}body{background:#fff;color:#000}main{max-width:none;padding:0}h3{break-after:avoid}table,svg{break-inside:avoid}}
-.gnav{display:flex;gap:2px;flex-wrap:wrap}.gnav a{text-decoration:none;color:var(--ink2);font-weight:600;padding:4px 8px;border-bottom:2px solid transparent;white-space:nowrap}.gnav a:hover{color:var(--ink)}.gnav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--hot)}
-@media (max-width:520px){.top{flex-wrap:wrap;gap:6px}.gnav{width:100%;justify-content:space-between}.gnav a{padding:4px 2px}}
-</style></head><body>
+.gnav{display:flex;align-items:center;gap:4px;flex:none}
+.gnav a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 12px;font-size:14px;font-weight:600;color:var(--ink2);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap}
+.gnav a:hover{color:var(--ink)}.gnav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--hot)}
+.gnav a:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+@media (max-width:899px){.gnav{gap:0}.gnav a{flex:1;min-height:32px;padding:0 4px;font-size:13.5px}}
+.gh{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;min-height:64px;box-sizing:border-box;padding:calc(11px + env(safe-area-inset-top,0px)) 16px 11px;background:var(--bg);border-bottom:1px solid var(--ink)}
+.gh-mark{display:flex;align-items:center;gap:5px;color:var(--hot);text-decoration:none;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-weight:700;flex:none}
+.gh-mark b{font-size:36px;letter-spacing:-.045em;line-height:.8}.gh-mark span{font-size:11.5px;line-height:1.02;letter-spacing:-.02em}
+.gh .gnav{margin-left:auto}
+@media (max-width:899px){.gh{flex-wrap:wrap;row-gap:4px;min-height:0;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px}.gh-mark{min-height:46px}.gh-mark b{font-size:30px}.gh-mark span{font-size:10px}.gh .gnav{width:100%;margin:0 -4px}}
+html{scroll-padding-top:76px}@media (max-width:899px){html{scroll-padding-top:115px}}
+@media print{.gh{display:none}}
+
+</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"></head><body>
+<header class="gh"><a class="gh-mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a><nav class="gnav" aria-label="주요 메뉴"><a href="/">지도</a><a href="/test">내 직업 전망</a><a href="/org" aria-current="page">기업 자가 진단</a></nav></header>
 <main>
-<div class="top noprint"><a class="brand" href="/">AI <b>점령</b> 지도</a><nav class="gnav" aria-label="주요 메뉴"><a href="/">지도</a><a href="/test">내 직업 전망</a><a href="/org" aria-current="page">기업 자가 진단</a></nav></div>
 <p class="kick">조직 진단</p>
 <h1>우리 조직 업무 중 AI가 해낼 수 있는 몫은 얼마일까</h1>
 <p class="lede">직무와 인원을 넣으면 직무별로 계산해 드려요. AI 점령 지도의 직업별 노출도와 같은 방법이에요. 입력한 내용은 이 브라우저 안에서만 계산하고 서버로 보내지 않아요.</p>
@@ -109,7 +120,7 @@ footer{margin-top:48px;border-top:1px solid var(--hair);padding-top:14px;font-si
 
 <section id="out" hidden></section>
 <div class="caveat" id="cav" hidden>이 결과는 직업 단위 평균으로 계산한 경향이에요. 인원 감축을 결정하는 근거로 쓰지 마세요. AI 도입으로 직무나 배치를 바꾸려면 상시 30명 이상 사업장은 노사협의회 협의를 거쳐야 해요.</div>
-<footer><a href="/">지도</a><a href="/test">물때 테스트</a><a href="/w/">주간 리포트</a><a href="/about">소개</a><a href="/privacy">개인정보처리방침</a></footer>
+<footer><a href="/">지도</a><a href="/test">내 직업 전망</a><a href="/w/">주간 리포트</a><a href="/about">소개</a><a href="/privacy">개인정보처리방침</a></footer>
 </main>
 <script type="module">
 import { engine, TIER } from '/org_engine.js?v=1';

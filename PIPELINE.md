@@ -212,3 +212,8 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 - 입력값은 브라우저에만(localStorage, 공유 링크는 주소 # 뒤). 서버 저장은 보고서 요청 때만: `/api/org-request` → org_requests(+leads, 1년 보관).
 - 운영 화면 '조직 진단 요청' → [설정 파일] = reports/<id>.json 형식 → 동종사 파일·facts를 채워 `python3 tools/build_report.py`.
 - 이벤트: org/start·add·paste·pick·template·result·share·print·csv·request·open-shared.
+
+## 공통 헤더(지도·내 직업 전망·기업 자가 진단)
+- 메뉴는 작업 폴더 build_site.py의 NAV 한 곳에서 관리한다. 마스터 파일에는 자리표시만 있다: 지도 `<!--@GNAV:/@-->`·`<!--@GNAV_SHEET@-->`·`/*@GNAV_CSS@*/`, 하위 페이지 `<!--@HEADER:/경로@-->`·`/*@GH_CSS@*/`.
+- 높이는 지도 위 막대 기준: 데스크톱 64px, 휴대폰 103px(로고·검색 줄 + 메뉴 줄). 하위 페이지 헤더는 화면 전체 폭·위에 붙어 있음(sticky).
+- 휴대폰 지도는 처음에 정보 패널이 위 막대를 덮으므로 패널 맨 위에도 같은 메뉴(gnav-sheet).

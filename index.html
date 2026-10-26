@@ -810,17 +810,23 @@ details.card[open] summary::after{content:"−"}
 .aiact a{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:2px}
 .aiact .eff{font-size:12px;color:var(--ink2);margin-top:2px}
 
-/* 위 막대 주요 메뉴: 지도 · 내 직업 전망 · 기업 자가 진단 */
-.gnav{display:flex;align-items:center;gap:4px;margin-left:auto;flex:none;order:9}
-.gnav a{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;font-size:14px;font-weight:600;color:var(--ink2);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap}
-.gnav a:hover{color:var(--ink)}.gnav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--c100)}
-.gnav a:focus-visible{outline:2px solid var(--c100);outline-offset:2px}
+.gnav{display:flex;align-items:center;gap:4px;flex:none}
+.gnav a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 12px;font-size:14px;font-weight:600;color:var(--ink2);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap}
+.gnav a:hover{color:var(--ink)}.gnav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--hot)}
+.gnav a:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+@media (max-width:899px){.gnav{gap:0}.gnav a{flex:1;min-height:32px;padding:0 4px;font-size:13.5px}}
+.topbar .gnav a[aria-current=page],.gnav-sheet a[aria-current=page]{border-bottom-color:var(--c100)}
+
+/* 지도 위 막대: 휴대폰에서는 메뉴를 둘째 줄로(그만큼 --tb를 늘려 범례·조작 단추를 내림) */
+.topbar .gnav{margin-left:auto;order:9}
 @media (max-width:899px){
   :root{--tb:calc(98px + env(safe-area-inset-top,0px))}
   .topbar{flex-wrap:wrap;row-gap:4px}
-  .gnav{width:100%;margin:0 -4px;gap:0}
-  .gnav a{flex:1;justify-content:center;min-height:32px;padding:0 4px;font-size:13.5px}
+  .topbar .gnav{width:100%;margin:0 -4px}
 }
+/* 휴대폰 정보 패널 맨 위 메뉴(처음 열릴 때 패널이 위 막대를 덮으므로) */
+.gnav-sheet{display:none}
+@media (max-width:899px){.gnav-sheet{display:flex;margin:-4px -4px 10px;border-bottom:1px solid var(--hair)}}
 </style>
 
 </head><body>
@@ -877,6 +883,7 @@ details.card[open] summary::after{content:"−"}
     <button type="button" class="grab" id="grab" aria-label="패널 크기 바꾸기"></button>
     <div class="scroll" id="scroll">
       <header class="head">
+        <nav class="gnav gnav-sheet" aria-label="주요 메뉴"><a href="/" aria-current="page">지도</a><a href="/test">내 직업 전망</a><a href="/org">기업 자가 진단</a></nav>
         <div class="khead"><p class="kicker"><b>AI 점령 지도</b> 사람의 일, AI가 어디까지 장악했나?</p><button type="button" class="dclose" id="dclose" aria-label="정보 패널 닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12H4.5M10.5 6l-6 6 6 6"/></svg></button></div>
         <div class="logo"><h1 aria-label="AI 점령 지도 · AI Occupied Map"><span class="ai" aria-hidden="true">AI</span><span class="w en" aria-hidden="true">Occupied</span><span class="w en" aria-hidden="true">Map</span></h1></div>
         <span class="badge" id="badge"></span>
@@ -887,7 +894,7 @@ details.card[open] summary::after{content:"−"}
         <ul class="results" id="results" hidden></ul>
       </div>
       <div class="sugg" id="sugg"></div>
-      <a class="tlink" href="/test">내 직업은 언제 소멸될까? <b>물때 테스트 →</b></a>
+      <a class="tlink" href="/test">내 직업은 언제 소멸될까? <b>내 직업 전망 →</b></a>
       <section class="join" id="join" aria-label="주간 메일 구독과 협력 문의"></section>
       <div id="ctx"></div>
       <div id="rest"></div>

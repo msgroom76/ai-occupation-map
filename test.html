@@ -1,5 +1,5 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>내 직업은 언제 소멸될까? · 물때 테스트 · AI 점령 지도</title>
+<title>내 직업은 언제 소멸될까? · 내 직업 전망 · AI 점령 지도</title>
 <meta name="description" content="직업 이름만 넣으면 AI라는 물이 지금 어디까지 찼는지, 언제 더 차오르는지 알려드려요. 미국과 한국의 제도 차이도 함께 봐요.">
 <meta property="og:type" content="website"><meta property="og:title" content="내 직업은 언제 소멸될까? · AI 점령 지도"><meta property="og:description" content="사라지는 날이 아니라, 차오르는 높이를 재요. 내 직업의 물때를 확인해 보세요.">
 <meta property="og:image" content="https://aijido.org/img/water/og-test.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="https://aijido.org/test"><meta name="twitter:card" content="summary_large_image">
@@ -68,13 +68,24 @@ td.kr,th.kr{width:38%}
 .foot{margin-top:56px;border-top:1px solid var(--hair);padding-top:12px;font-size:12px;color:var(--ink2)}.foot p{margin:4px 0}
 .priv{font-size:12px;color:var(--ink2);margin:0}
 .scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:16px 0 0}.scale div{text-align:center;font-size:12px;color:var(--ink2)}.scale img{width:100%;height:auto;display:block;margin-bottom:4px}.scale b{display:block;color:var(--ink);font-size:14px}
-.gnav{display:flex;gap:2px;flex-wrap:wrap}.gnav a{text-decoration:none;color:var(--ink2);font-weight:600;padding:4px 8px;border-bottom:2px solid transparent;white-space:nowrap}.gnav a:hover{color:var(--ink)}.gnav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--hot)}
-@media (max-width:520px){.top{flex-wrap:wrap;gap:6px}.gnav{width:100%;justify-content:space-between}.gnav a{padding:4px 2px}}
-</style></head><body><main>
-<div class="top"><a class="brand" href="/"><b>AI</b> 점령 지도</a><nav class="gnav" aria-label="주요 메뉴"><a href="/">지도</a><a href="/test" aria-current="page">내 직업 전망</a><a href="/org">기업 자가 진단</a></nav></div>
+.gnav{display:flex;align-items:center;gap:4px;flex:none}
+.gnav a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 12px;font-size:14px;font-weight:600;color:var(--ink2);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap}
+.gnav a:hover{color:var(--ink)}.gnav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--hot)}
+.gnav a:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+@media (max-width:899px){.gnav{gap:0}.gnav a{flex:1;min-height:32px;padding:0 4px;font-size:13.5px}}
+.gh{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;min-height:64px;box-sizing:border-box;padding:calc(11px + env(safe-area-inset-top,0px)) 16px 11px;background:var(--bg);border-bottom:1px solid var(--ink)}
+.gh-mark{display:flex;align-items:center;gap:5px;color:var(--hot);text-decoration:none;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-weight:700;flex:none}
+.gh-mark b{font-size:36px;letter-spacing:-.045em;line-height:.8}.gh-mark span{font-size:11.5px;line-height:1.02;letter-spacing:-.02em}
+.gh .gnav{margin-left:auto}
+@media (max-width:899px){.gh{flex-wrap:wrap;row-gap:4px;min-height:0;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px}.gh-mark{min-height:46px}.gh-mark b{font-size:30px}.gh-mark span{font-size:10px}.gh .gnav{width:100%;margin:0 -4px}}
+html{scroll-padding-top:76px}@media (max-width:899px){html{scroll-padding-top:115px}}
+@media print{.gh{display:none}}
+
+</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"></head><body><header class="gh"><a class="gh-mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a><nav class="gnav" aria-label="주요 메뉴"><a href="/">지도</a><a href="/test" aria-current="page">내 직업 전망</a><a href="/org">기업 자가 진단</a></nav></header>
+<main>
 
 <section id="intro">
-<p class="kick">물때 테스트</p>
+<p class="kick">내 직업 전망</p>
 <h1>내 직업은<br>언제 소멸될까?</h1>
 <p class="lede">직업 이름을 넣으면 AI라는 물이 지금 어디까지 찼는지, 언제 더 차오르는지 알려드려요. 미국과 한국은 무엇이 다른지도 함께 봐요.</p>
 <picture><source srcset="/img/water/crowd-s2-dark.png" media="(prefers-color-scheme: dark)"><img class="fig" id="hero" src="/img/water/crowd-s2-light.png" width="1200" height="514" alt="사무직, 요리사, 건설 노동자, 간호사, 택배 기사가 나란히 서 있고 물이 무릎 높이까지 차 있는 그림"></picture>
