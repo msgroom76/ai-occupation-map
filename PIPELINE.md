@@ -214,6 +214,6 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 - 이벤트: org/start·add·paste·pick·template·result·share·print·csv·request·open-shared.
 
 ## 공통 헤더(지도·내 직업 전망·기업 자가 진단)
-- 메뉴는 작업 폴더 build_site.py의 NAV 한 곳에서 관리한다. 마스터 파일에는 자리표시만 있다: 지도 `<!--@GNAV:/@-->`·`<!--@GNAV_SHEET@-->`·`/*@GNAV_CSS@*/`, 하위 페이지 `<!--@HEADER:/경로@-->`·`/*@GH_CSS@*/`.
+- 페이지 마스터는 tools/site_src/(index·test·org), 만들기는 `python3 tools/build_site.py`(저장소 루트에서, 결과가 루트의 html을 덮어씀). 메뉴는 그 파일의 NAV 한 곳에서 관리한다. 마스터 파일에는 자리표시만 있다: 지도 `<!--@GNAV:/@-->`·`<!--@GNAV_SHEET@-->`·`/*@GNAV_CSS@*/`, 하위 페이지 `<!--@HEADER:/경로@-->`·`/*@GH_CSS@*/`.
 - 높이는 지도 위 막대 기준: 데스크톱 64px, 휴대폰 103px(로고·검색 줄 + 메뉴 줄). 하위 페이지 헤더는 화면 전체 폭·위에 붙어 있음(sticky).
 - 휴대폰 지도는 처음에 정보 패널이 위 막대를 덮으므로 패널 맨 위에도 같은 메뉴(gnav-sheet).
