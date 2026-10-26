@@ -1,7 +1,37 @@
 {
- "updated": "2026-10-26T17:52:00+09:00",
+ "updated": "2026-10-27T08:56:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-10-26-openai-gpt-6-1-terra",
+   "ts": "2026-10-27T02:00:00+09:00",
+   "src": "9to5Mac",
+   "url": "https://9to5mac.com/2026/10/26/openai-upgrades-chatgpt-and-codex-with-new-gpt-6-1-terra-model/",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "오픈AI, 화면을 읽고 여러 앱을 직접 조작하는 '컴퓨터 사용'을 강화한 중형 모델 'GPT-6.1 Terra' 출시 — ChatGPT Work·Codex·API로 바로 제공, 이전 Terra보다 50% 싸고 회사 내부 시험에서 오류율이 크게 줄었다고 발표",
+   "r": [
+    "C5"
+   ],
+   "st": "pending",
+   "grp": "openai-gpt-model"
+  },
+  {
+   "id": "2026-10-26-bok-youth-employment-ai",
+   "ts": "2026-10-26T18:25:00+09:00",
+   "src": "세계일보",
+   "url": "https://www.segye.com/newsView/20261026515255",
+   "tier": "신뢰 매체",
+   "sig": "고용",
+   "us": false,
+   "kr": true,
+   "hd": "한국은행 이슈노트 '청년고용 부진 및 정책 과제': 신입이 맡던 초급·기초 업무를 생성형 AI가 대신하면서 경력직 선호·신입 채용 축소가 강해졌다고 진단 — 15~29세 고용의 질 지수는 2014~19년 101.1에서 2023~26년 94.7로 하락(AI 몫을 따로 수치로 내지는 않음)",
+   "r": [],
+   "st": "none",
+   "note": "고용 신호(중앙은행 분석) · 노출도 수치 영향 없음"
+  },
   {
    "id": "2026-10-26-samsungfire-ai-advisor",
    "ts": "2026-10-26T08:42:00+09:00",
@@ -2705,6 +2735,24 @@
  ],
  "front": [
   {
+   "id": "2026-10-26-utaw-ai-refusal-demands",
+   "ts": "2026-10-27T00:45:00+09:00",
+   "src": "컴퓨터위클리(Computer Weekly)",
+   "url": "https://www.computerweekly.com/news/366652721/Employees-must-be-empowered-to-refuse-AI-tools-at-work-says-UTAW",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "sig": "저항",
+   "kind": "노사",
+   "fx": "약",
+   "ind": [
+    "22"
+   ],
+   "hd": "영국 IT 노조 UTAW, 'AI 노동자 조사 2026' 보고서에서 직원이 업무용 AI 도구를 거부할 권리와 보호, AI 배치 전 노동자 협의 법정 의무, AI 도입을 이유로 한 감원·외주화 제한, AI 시스템을 멈출 수 있는 규제기관 신설을 요구",
+   "note": "노조 요구안(구속력 없음) · 영국 IT·기술 직군 중심",
+   "st": "none",
+   "added": "2026-10-27T08:56:00+09:00"
+  },
+  {
    "id": "2026-07-24-woongjin-corpus-ai-copyright",
    "ts": "2026-07-24T09:00:00+09:00",
    "src": "비즈한국",
@@ -3297,6 +3345,19 @@
   }
  ],
  "runs": [
+  {
+   "at": "2026-10-27T08:56:00+09:00",
+   "push": {
+    "q": 21,
+    "cand": 14,
+    "acc": 2
+   },
+   "front": {
+    "q": 12,
+    "cand": 8,
+    "acc": 1
+   }
+  },
   {
    "at": "2026-10-26T17:52:00+09:00",
    "push": {
