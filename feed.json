@@ -90,8 +90,9 @@
    "r": [
     "C5"
    ],
-   "st": "pending",
-   "grp": "coding-model"
+   "st": "applied",
+   "grp": "coding-model",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-23-soundthinking-field-agent",
@@ -107,7 +108,7 @@
     "B4",
     "C9"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.1.a.1.I03.D05",
@@ -121,7 +122,8 @@
    "ind": [
     "41"
    ],
-   "grp": "police-analytics-agent"
+   "grp": "police-analytics-agent",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-23-amex-5pct-cuts",
@@ -151,7 +153,7 @@
     "B4",
     "C5"
    ],
-   "st": "pending",
+   "st": "applied",
    "grp": "personal-agent",
    "dwa": [
     [
@@ -162,14 +164,15 @@
      "4.A.4.a.1.I03.D01",
      "d"
     ]
-   ]
+   ],
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-22-microsoft-mai-dxo-science",
    "ts": "2026-10-22T23:00:00+09:00",
    "src": "테크크런치",
    "url": "https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/",
-   "tier": "신뢰 매체",
+   "tier": "확인 필요",
    "sig": "능력",
    "us": true,
    "kr": false,
@@ -178,7 +181,7 @@
     "B5",
     "B7"
    ],
-   "st": "pending",
+   "st": "applied",
    "grp": "medical-diagnosis",
    "dwa": [
     [
@@ -188,14 +191,16 @@
    ],
    "ind": [
     "24"
-   ]
+   ],
+   "rv": "사이언스 논문의 모의 진단 연구(83% 대 36%)이고 BIDMC 실제 평가는 앞으로 할 계획이라 연구 단계이므로 tier를 낮춤.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-21-kognitos-ai-employees",
    "ts": "2026-10-21T22:00:00+09:00",
    "src": "코그니토스(Kognitos)",
    "url": "https://www.kognitos.com/news/kognitos-launches-ai-employees-context-graphs-finance-banking/",
-   "tier": "1차 출처",
+   "tier": "확인 필요",
    "sig": "능력",
    "us": true,
    "kr": false,
@@ -204,7 +209,7 @@
     "B2",
     "C9"
    ],
-   "st": "pending",
+   "st": "applied",
    "grp": "finance-ops-agent",
    "dwa": [
     [
@@ -223,7 +228,9 @@
    "ind": [
     "33",
     "34"
-   ]
+   ],
+   "rv": "원문이 61개 역할·515개 SOP의 AI 직원을 기존 고객 대상 프리뷰로 공개했다고 적어 정식 출시가 아니므로 tier를 낮춤.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-22-mainline-ai-office",
@@ -239,7 +246,7 @@
     "C9",
     "A1"
    ],
-   "st": "pending",
+   "st": "applied",
    "grp": "doc-agent",
    "dwa": [
     [
@@ -250,7 +257,8 @@
      "4.A.2.b.2.I18.D14",
      "d"
     ]
-   ]
+   ],
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-22-barclays-5000-cuts",
@@ -294,7 +302,7 @@
     "C9",
     "B3"
    ],
-   "st": "pending",
+   "st": "applied",
    "grp": "finance-work-agent",
    "dwa": [
     [
@@ -313,7 +321,8 @@
    "ind": [
     "28",
     "34"
-   ]
+   ],
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-21-servicenow-arc",
@@ -329,8 +338,9 @@
     "B10",
     "C5"
    ],
-   "st": "pending",
-   "grp": "personal-agent"
+   "st": "applied",
+   "grp": "personal-agent",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-21-ceva-sereact-returns",
@@ -346,7 +356,7 @@
     "C2",
     "A3"
    ],
-   "st": "pending",
+   "st": "hold",
    "grp": "warehouse-robot",
    "dwa": [
     [
@@ -360,7 +370,8 @@
    ],
    "ind": [
     "92"
-   ]
+   ],
+   "rv": "10월 21일 자료는 학습 루프 협력 발표이고, CEVA의 잘란도 반품 현장 실가동은 10월 7일 자료에서 이미 발표돼 '첫 배치 시작'을 새 소식으로 볼지 판단이 서지 않음."
   },
   {
    "id": "2026-10-22-poscofm-palantir",
@@ -416,7 +427,7 @@
     "A1",
     "C9"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.2.a.2.I03.D03",
@@ -426,14 +437,15 @@
    "ind": [
     "35"
    ],
-   "grp": "gov-agent"
+   "grp": "gov-agent",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-22-claude-duet",
    "ts": "2026-10-22T06:03:00+09:00",
    "src": "Engadget",
    "url": "https://www.engadget.com/2293646/claude-duet-is-anthropics-answer-to-meta-muse-and-openai-dots/",
-   "tier": "신뢰 매체",
+   "tier": "확인 필요",
    "sig": "능력",
    "us": true,
    "hd": "앤트로픽, 연결된 앱을 몇 시간마다 살펴 할 일 브리핑을 만들고 회의 일정 잡기·대시보드·예측 작업을 백그라운드로 하는 개인 에이전트 'Claude Duet' 연구 프리뷰 공개 (행동 전 사용자 확인, 미국 대기자 명단)",
@@ -441,21 +453,23 @@
     "B9",
     "C5"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.2.b.5.I03.D01",
      "a"
     ]
    ],
-   "grp": "personal-agent"
+   "grp": "personal-agent",
+   "rv": "기사가 Claude Duet을 미국 구독자 대기자 명단 방식의 연구 프리뷰로 공개했다고 적어 tier를 낮춤.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-21-oracle-industry-agent-studio",
    "ts": "2026-10-21T22:00:00+09:00",
    "src": "Oracle 뉴스룸",
    "url": "https://www.oracle.com/news/announcement/oracle-ai-agent-studio-for-industry-applications-helps-accelerate-business-outcomes-2026-10-21/",
-   "tier": "1차 출처",
+   "tier": "확인 필요",
    "sig": "능력",
    "us": true,
    "hd": "오라클, 건설·소매·금융·외식·공공·유틸리티·통신·숙박 업종용 AI 에이전트를 코딩 없이 만들고 관리하는 'AI Agent Studio for Industry Applications' 발표 (12개월 안에 미국부터 제공)",
@@ -463,8 +477,10 @@
     "C5",
     "B2"
    ],
-   "st": "pending",
-   "grp": "agent-builder"
+   "st": "applied",
+   "grp": "agent-builder",
+   "rv": "오라클 원문이 12개월 안에 미국부터 제공할 계획(확정 약속 아님)이라고 적어 '예정' 단계이므로 tier를 낮춤.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-21-channeltalk-voice-alf",
@@ -472,7 +488,7 @@
    "src": "벤처스퀘어",
    "url": "https://www.venturesquare.net/1121742",
    "tier": "신뢰 매체",
-   "sig": "도입",
+   "sig": "능력",
    "us": false,
    "kr": true,
    "hd": "채널톡, 걸려온 전화의 단순 문의·A/S 접수를 처리하고 상담 신청 고객에게 먼저 전화를 거는 AI 전화 상담 '보이스 알프' 정식 출시 (도입사 린클, 상담원 응대 약 39% 감소)",
@@ -480,7 +496,7 @@
     "D3",
     "D6"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.4.a.3.I03.D11",
@@ -495,7 +511,9 @@
      "a"
     ]
    ],
-   "grp": "voice-bot"
+   "grp": "voice-bot",
+   "rv": "기사의 중심이 채널톡이 보이스 알프를 누구나 쓸 수 있게 정식 출시한 것이고 린클은 사례이므로 성격을 '능력'으로 고침.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-21-mokpo-genai-platform",
@@ -511,7 +529,7 @@
     "C5",
     "B2"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.4.a.1.I03.D01",
@@ -521,14 +539,15 @@
    "ind": [
     "35"
    ],
-   "grp": "gov-genai-platform"
+   "grp": "gov-genai-platform",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-21-shinhanlife-complaint-agent",
    "ts": "2026-10-21T12:37:00+09:00",
    "src": "글로벌이코노믹",
    "url": "https://www.g-enews.com/article/Finance/2026/10/202610211103063107a6e8311f64_1",
-   "tier": "신뢰 매체",
+   "tier": "확인 필요",
    "sig": "도입",
    "us": false,
    "kr": true,
@@ -537,7 +556,7 @@
     "B2",
     "D3"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.1.a.1.I14.D02",
@@ -552,14 +571,16 @@
     "36",
     "34"
    ],
-   "grp": "contact-center-agent"
+   "grp": "contact-center-agent",
+   "rv": "기사가 에이전트는 공개만 했고 11월 시행 예정이라고 적어 아직 운영 전이므로 tier를 낮춤.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-20-agco-agility-digit",
    "ts": "2026-10-20T21:15:00+09:00",
    "src": "AGCO·Agility Robotics (GlobeNewswire)",
    "url": "https://www.globenewswire.com/news-release/2026/10/20/3384385/0/en/agco-and-agility-robotics-advance-smart-manufacturing-with-humanoid-robot-pilot-in-hesston-kansas-facility.html",
-   "tier": "1차 출처",
+   "tier": "확인 필요",
    "sig": "도입",
    "us": true,
    "hd": "농기계 업체 AGCO, 2027년 미국 캔자스 헤스턴 공장에서 애질리티 로보틱스 휴머노이드 'Digit' 시범 운영 계획 (부품 분류·적재, 보관용 상자 놓기부터; 대수 미공개)",
@@ -567,7 +588,7 @@
     "C1",
     "C2"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.2.a.2.I02.D05",
@@ -586,7 +607,9 @@
     "85",
     "93"
    ],
-   "grp": "humanoid-factory"
+   "grp": "humanoid-factory",
+   "rv": "보도자료가 Digit 시범 운영을 2027년 시작 예정이라고만 적어 '시범 계획' 단계이므로 tier를 낮춤.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-21-hwasun-voice-emr",
@@ -602,7 +625,7 @@
     "C9",
     "C5"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.3.b.6.I11.D04",
@@ -621,7 +644,8 @@
     "24",
     "42"
    ],
-   "grp": "medical-scribe"
+   "grp": "medical-scribe",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-21-gemini-for-government",
@@ -636,7 +660,7 @@
     "D15",
     "B2"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.2.a.3.I01.D04",
@@ -651,7 +675,8 @@
     "35",
     "27"
    ],
-   "grp": "google-gemini-agent"
+   "grp": "google-gemini-agent",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-20-openai-cobol-migration",
@@ -665,7 +690,7 @@
    "r": [
     "C5"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.3.b.1.I01.D03",
@@ -675,7 +700,8 @@
    "ind": [
     "22"
    ],
-   "grp": "coding-model"
+   "grp": "coding-model",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-20-notion-24h-agents",
@@ -689,8 +715,9 @@
    "r": [
     "C5"
    ],
-   "st": "pending",
-   "grp": "long-running-agent"
+   "st": "applied",
+   "grp": "long-running-agent",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-20-mistral-voxtral3",
@@ -705,8 +732,9 @@
     "D3",
     "C9"
    ],
-   "st": "pending",
-   "grp": "speech-model"
+   "st": "applied",
+   "grp": "speech-model",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-20-molit-construction-robot",
@@ -736,8 +764,9 @@
     "D3",
     "C9"
    ],
-   "st": "pending",
-   "grp": "voice-bot"
+   "st": "applied",
+   "grp": "voice-bot",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-20-pps-ai-agents",
@@ -754,7 +783,7 @@
     "B3",
     "D15"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.1.b.3.I02.D06",
@@ -768,14 +797,15 @@
    "ind": [
     "35"
    ],
-   "grp": "gov-agent"
+   "grp": "gov-agent",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-20-nh-bank-ai-agents",
    "ts": "2026-10-20T10:37:00+09:00",
    "src": "파이낸셜뉴스",
    "url": "https://www.fnnews.com/news/202610200950526986",
-   "tier": "신뢰 매체",
+   "tier": "확인 필요",
    "sig": "도입",
    "us": false,
    "kr": true,
@@ -784,8 +814,10 @@
     "D14",
     "B4"
    ],
-   "st": "pending",
-   "grp": "bank-agent"
+   "st": "applied",
+   "grp": "bank-agent",
+   "rv": "기사가 구축 착수(킥오프) 단계이고 12월 첫 적용 예정이라고 적어 실제 운영 전이므로 tier를 낮춤.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-20-catch-it-jobs",
@@ -806,7 +838,7 @@
    "ts": "2026-10-19T11:15:00+09:00",
    "src": "메디파나뉴스",
    "url": "https://www.medipana.com/news/articleView.html?idxno=419583",
-   "tier": "신뢰 매체",
+   "tier": "확인 필요",
    "sig": "능력",
    "us": false,
    "kr": true,
@@ -815,7 +847,7 @@
     "C9",
     "B2"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.3.b.6.I11.D04",
@@ -830,14 +862,16 @@
     "24",
     "42"
    ],
-   "grp": "medical-scribe"
+   "grp": "medical-scribe",
+   "rv": "기사가 KIMES 부산 출품작으로 기능만 소개하고 상용 출시일이 없으며 내장 LLM도 초기 버전이라 tier를 낮춤.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-19-elevenlabs-architect",
    "ts": "2026-10-19T10:53:00+09:00",
    "src": "파이낸셜뉴스",
    "url": "https://www.fnnews.com/news/202610191046548529",
-   "tier": "신뢰 매체",
+   "tier": "확인 필요",
    "sig": "능력",
    "us": true,
    "hd": "일레븐랩스, 대화만으로 음성 상담 에이전트를 만들고 로그 검토·테스트 시뮬레이션까지 하는 'ElevenAgent Architect' 알파 공개",
@@ -845,7 +879,7 @@
     "C5",
     "B3"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.4.a.8.I03.D02",
@@ -856,14 +890,16 @@
      "a"
     ]
    ],
-   "grp": "agent-builder"
+   "grp": "agent-builder",
+   "rv": "기사가 ElevenAgent Architect를 알파(프리뷰)로 공개했다고 적어 tier를 낮춤.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-19-cheonan-patrol-robot",
    "ts": "2026-10-19T09:35:00+09:00",
    "src": "중도일보",
    "url": "https://m.joongdo.co.kr/view.php?key=20261019010004937",
-   "tier": "신뢰 매체",
+   "tier": "확인 필요",
    "sig": "도입",
    "us": false,
    "kr": true,
@@ -871,7 +907,7 @@
    "r": [
     "A2"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.1.a.2.I07.D05",
@@ -882,7 +918,9 @@
     "41",
     "94"
    ],
-   "grp": "patrol-robot"
+   "grp": "patrol-robot",
+   "rv": "기사가 도입 추진·실증 단계와 규제특례 조건부 승인만 적고 실제 운영은 없어 tier를 낮춤.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-18-shanghai-humanoid",
@@ -911,7 +949,7 @@
     "B4",
     "A2"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.2.a.4.I12.D05",
@@ -929,7 +967,8 @@
     "7",
     "8"
    ],
-   "grp": "factory-agent"
+   "grp": "factory-agent",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-18-hyundai-humanoid",
@@ -1016,8 +1055,9 @@
     "A1",
     "C5"
    ],
-   "st": "pending",
-   "grp": "browser-agent"
+   "st": "applied",
+   "grp": "browser-agent",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-15-workday-agents",
@@ -1032,7 +1072,7 @@
     "D15",
     "B2"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.3.b.6.I08.D10",
@@ -1048,7 +1088,8 @@
     "31",
     "33"
    ],
-   "grp": "system-agent"
+   "grp": "system-agent",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-15-muse-spark-open",
@@ -1063,15 +1104,16 @@
     "C5",
     "B5"
    ],
-   "st": "pending",
-   "grp": "coding-model"
+   "st": "applied",
+   "grp": "coding-model",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-16-copilot-studio",
    "ts": "2026-10-15T09:00:00+09:00",
    "src": "Microsoft Copilot 블로그",
    "url": "https://www.microsoft.com/en-us/copilot/blog/copilot-studio/delegate-shared-business-processes-to-agents-that-are-more-persistent-and-proactive-with-microsoft-copilot-studio/",
-   "tier": "1차 출처",
+   "tier": "확인 필요",
    "sig": "능력",
    "us": true,
    "hd": "마이크로소프트, Copilot Studio 에이전트에 자체 계정·업무 기억·자동 트리거 도입 (Frontier 프로그램 우선)",
@@ -1079,8 +1121,10 @@
     "C9",
     "D15"
    ],
-   "st": "pending",
-   "grp": "agent-builder"
+   "st": "applied",
+   "grp": "agent-builder",
+   "rv": "블로그가 에이전트 자체 계정·업무 기억·트리거를 조기 접근 성격의 Frontier 프로그램으로 배포 중이라고 적어 일반 제공이 아니므로 tier를 낮춤.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-16-vertafore",
@@ -1088,14 +1132,14 @@
    "src": "ColoradoBiz",
    "url": "https://coloradobiz.com/vertafore-launches-ai-tools-for-insurance-policy-processing/",
    "tier": "신뢰 매체",
-   "sig": "도입",
+   "sig": "능력",
    "us": true,
    "hd": "보험 소프트웨어 기업 버타포어, 보험증권 데이터 입력·대조 검증 AI 에이전트 2종 출시",
    "r": [
     "B2",
     "B3"
    ],
-   "st": "pending",
+   "st": "applied",
    "dwa": [
     [
      "4.A.3.b.1.I06.D06",
@@ -1113,23 +1157,27 @@
    "ind": [
     "34"
    ],
-   "grp": "system-agent"
+   "grp": "system-agent",
+   "rv": "기사가 버타포어가 보험 대리점용 에이전트 2종(입력·대조 검증)을 출시한 제품 발표라서 성격을 '능력'으로 고침.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-16-servicenow",
    "ts": "2026-10-15T09:00:00+09:00",
    "src": "ServiceNow 뉴스룸",
    "url": "https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-introduces-the-third-generation-of-its-employee-centric-AI-harness-so-the-workforce-can-build-and-use-the-AI-their-jobs-demand/default.aspx",
-   "tier": "1차 출처",
-   "sig": "도입",
+   "tier": "확인 필요",
+   "sig": "능력",
    "us": true,
    "hd": "서비스나우, 직원이 코딩 없이 업무용 에이전트를 만드는 도구 발표",
    "r": [
     "D15",
     "C9"
    ],
-   "st": "pending",
-   "grp": "agent-builder"
+   "st": "applied",
+   "grp": "agent-builder",
+   "rv": "보도자료가 코딩 없는 에이전트 제작 도구를 'controlled availability'로 발표한 제품 발표라서 tier를 낮추고 성격을 '능력'으로 고침.",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-14-deloitte-uk",
@@ -1186,8 +1234,9 @@
     "B9",
     "C5"
    ],
-   "st": "pending",
-   "grp": "google-gemini-model"
+   "st": "applied",
+   "grp": "google-gemini-model",
+   "wk": "2026-W44"
   },
   {
    "id": "2026-10-08-gemini-agent",
@@ -2643,7 +2692,8 @@
    "hd": "수공예 장터 엣시(Etsy), AI가 만든 도안·레시피·만들기 설명서 판매 금지 — 판매자 본인 작업만 허용하고 실제 완성품 사진 의무, 사람 손을 거치지 않은 자동 생성 상품 등록은 삭제(반복 시 상점 폐쇄), 모든 상품에 보정하지 않은 실물 사진 1장 이상",
    "note": "플랫폼의 구속력 있는 판매 규칙으로 AI 생성 도안·설명서를 막고 수작업 판매자 몫을 지킴 · AI 미술품은 공개 조건으로 계속 허용",
    "st": "none",
-   "added": "2026-10-26T08:55:00+09:00"
+   "added": "2026-10-26T08:55:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-09-29-third-circuit-ross-westlaw",
@@ -2661,7 +2711,8 @@
    "hd": "미국 제3순회 연방항소법원, 법률 리서치 AI 스타트업 로스(ROSS)가 웨스트로 판례 요지(headnote) 2,243건을 AI 학습에 쓴 것은 공정 이용이 아니라고 판결 — 톰슨로이터 승소한 1심 부분 약식판결 유지(9월 29일)",
    "note": "AI 학습 데이터에 허락·대가를 요구한 첫 연방 항소심 판단 · 생성형 AI가 아닌 검색형 AI에 한정, 로스는 전원합의체 재심리·대법원 상고 예고",
    "st": "none",
-   "added": "2026-10-25T18:10:00+09:00"
+   "added": "2026-10-25T18:10:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-10-23-sweden-govoffices-block-chatgpt-claude",
@@ -2672,7 +2723,7 @@
    "kr": false,
    "sig": "저항",
    "kind": "사용 거부",
-   "fx": "중",
+   "fx": "강",
    "ind": [
     "35",
     "27"
@@ -2680,7 +2731,8 @@
    "hd": "스웨덴 정부청사(Regeringskansliet), 다음 주 월요일부터 직원 업무용 컴퓨터에서 ChatGPT·Claude 접속 차단 — 보안 검토를 거친 마이크로소프트 Copilot만 쓰도록 안내, 국세청·국가보호처우청은 이미 차단",
    "note": "정부 부처 공무원의 외부 생성형 AI 사용을 기관 결정으로 제한 · 승인된 도구(Copilot)는 허용해 전면 금지는 아님",
    "st": "none",
-   "added": "2026-10-24T17:57:00+09:00"
+   "added": "2026-10-24T17:57:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-10-19-canada-publishers-sue-anthropic",
@@ -2698,7 +2750,8 @@
    "hd": "캐나다 언론사 포스트미디어·토스타·글로브앤드메일·캐나디안프레스, 기사를 허락 없이 Claude 개발에 썼다며 앤트로픽을 온타리오 법원에 제소(10월 6일 제기) — 저작권 침해·이용약관 위반·기술적 보호조치 우회·부당이득 주장",
    "note": "뉴스 기사의 AI 학습에 허락과 대가를 요구 · 소송 제기 단계, 주장은 법원에서 입증되지 않음",
    "st": "none",
-   "added": "2026-10-24T17:57:00+09:00"
+   "added": "2026-10-24T17:57:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-10-22-reservoir-suno-anthropic-suit",
@@ -2716,7 +2769,8 @@
    "hd": "미국 음악출판사 리저보어, 노래 1,050곡을 허락 없이 학습했다며 음악 생성 AI 수노를, 가사 853곡을 학습·복제했다며 앤트로픽을 캘리포니아 북부 연방지법에 각각 저작권 침해로 제소",
    "note": "작곡·작사 저작물의 AI 학습·생성에 허락과 대가를 요구 · 소송 제기 단계, 손해배상과 학습 복제물 폐기 청구",
    "st": "none",
-   "added": "2026-10-24T12:58:00+09:00"
+   "added": "2026-10-24T12:58:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-10-19-authors-sue-meta-ai",
@@ -2734,7 +2788,8 @@
    "hd": "미국 작가 약 300명, 메타가 해적판 도서와 대량 스캔한 종이책으로 AI 모델(Muse)을 학습시켰다며 캘리포니아 북부 연방지법에 개별 저작권 침해 소송 제기(10월 19일)",
    "note": "작가 저작물의 AI 학습에 '책 구매는 학습 허락이 아니다'라며 대가 요구 · 소송 제기 단계, 대리 로펌은 연말까지 최대 1,000건 추가 예고",
    "st": "none",
-   "added": "2026-10-24T12:58:00+09:00"
+   "added": "2026-10-24T12:58:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-10-15-japan-nippairen-voice-ai",
@@ -2752,7 +2807,8 @@
    "hd": "일본 배우·성우 단체 일본배우연합, 사업자가 AI로 목소리를 쓸 때의 지침 발표 — 영화·드라마 더빙을 AI 목소리로 대신하지 말고, 고인 목소리는 원칙적으로 새 작품에 쓰지 말며(예외 시 유족 허락) 성우 일자리를 지키자는 취지",
    "note": "성우·배우의 더빙·목소리 일을 AI로 바꾸는 데 업계 자율 기준 요구 · 강제력 없는 단체 지침, 목소리 권리 법제화도 추진",
    "st": "none",
-   "added": "2026-10-23T17:56:00+09:00"
+   "added": "2026-10-23T17:56:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-10-20-fwc-genai-guidance",
@@ -2771,7 +2827,8 @@
    "hd": "호주 공정근로위원회, 10월 20일부터 생성형 AI 지침 적용 — 사건 서류에 AI 사용 여부·방식을 밝히고 사람이 내용을 직접 확인했다고 적어야 하며, 증인 진술은 본인의 지식과 말이어야 함",
    "note": "노동 분쟁 사건 서류(신청서·의견서·증인 진술) 전부에 공개·사람 확인 의무 · 금지는 아님, 전문 대리인은 더 엄격",
    "st": "none",
-   "added": "2026-10-23T08:58:00+09:00"
+   "added": "2026-10-23T08:58:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-09-30-california-ab1979-clinical-ai",
@@ -2787,9 +2844,10 @@
     "24"
    ],
    "hd": "캘리포니아 주지사, 의료 AI법 AB 1979 서명 — 면허 의료인만 할 수 있는 임상 업무를 AI가 혼자 하게 할 수 없고, 의료기관은 의료인의 독립적 임상 판단을 보장해야 함 (2027.1.1 시행)",
-   "note": "병원·의원·진료소의 임상 의사결정 지원 AI에 적용 · 면허위원회가 금지명령 청구 가능 · 일정 관리 같은 행정 도구는 제외",
+   "note": "병원·의원·진료소의 임상 의사결정 지원 AI에 적용 · 면허위원회가 금지명령 청구 가능",
    "st": "none",
-   "added": "2026-10-23T08:58:00+09:00"
+   "added": "2026-10-23T08:58:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-10-08-italy-ai-decree-work",
@@ -2808,7 +2866,8 @@
    "hd": "이탈리아 AI법 시행 입법명령(2026년 제179호) 10월 23일 시행 — 평가·징계·해고 등 고용 결정은 AI 자동 처리만으로 못 하고 실질 결정권 있는 사람이 최종 결정, 어기면 무효",
    "note": "EU AI법 국내 이행 입법명령(관보 10.8 게재·10.23 시행) · 근로자 동의로도 예외 불가, AI 비중 설명 요구권 · 지원자 서류 선별은 제외",
    "st": "none",
-   "added": "2026-10-22T17:53:00+09:00"
+   "added": "2026-10-22T17:53:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-10-19-callcenter-union-ai",
@@ -2826,7 +2885,8 @@
    "hd": "민주노총 콜센터 연대회의, 원청교섭 공동요구안 발표 — AI·자동화 도입 시 노조 사전협의와 고용보장 요구",
    "note": "공공·금융 콜센터 하청 노조의 원청 교섭 요구 · 요구안 단계(합의 아님)",
    "st": "none",
-   "added": "2026-10-22T17:53:00+09:00"
+   "added": "2026-10-22T17:53:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-10-20-public-ai-employment-bill",
@@ -2842,7 +2902,8 @@
    "hd": "최혁진 의원, 공공기관이 AI 시스템 도입 전 일자리 증감·고용의 질 영향을 사전 평가하고 위험 시 재교육·재배치하도록 하는 공공기관운영법 개정안 대표발의",
    "note": "공공기관 AI 도입 전 고용영향 사전평가·재교육 의무화 추진 · 발의 단계",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-10-02-inquirer-union-ai",
@@ -2860,7 +2921,8 @@
    "note": "미국 일간지 단협 · 본인 동의 없는 AI 모방 금지, AI 산출물에 노조원 참여 의무, 월례 AI 자문위 신설",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-09-30-us-physicians-ai-statement",
@@ -2878,7 +2940,8 @@
    "note": "보건복지부 장관의 'AI 2차 소견' 발언에 대한 반박 · 임상 판단은 의사의 몫이라는 입장",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-09-30-california-no-robo-bosses",
@@ -2897,7 +2960,8 @@
    "note": "자동화 의사결정 사람 검증 의무(2027.7 시행) · AI로 인한 대량해고는 WARN 통지에 공개(SB 951)",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-09-14-hyundai-motor-ai-agreement",
@@ -2916,7 +2980,8 @@
    "note": "완성차 노사가 AI 도입 원칙을 단협에 넣음 · 구체적 의무 없는 선언이라 효력 약, 하청·비정규직 미적용",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-09-14-blizzard-union-ai",
@@ -2934,7 +2999,8 @@
    "note": "게임 개발·QA 직군 · AI 사용 자체를 막지는 않고 협의·교섭 의무를 둠",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-09-05-quebec-courts-ai",
@@ -2952,7 +3018,8 @@
    "note": "'재판은 인간의 책임' 명시 · 교정·번역 같은 보조 용도만 허용",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-09-03-moel-ai-bargaining-guide",
@@ -2968,7 +3035,8 @@
    "note": "AI 전환에 따른 근로조건 변화에 교섭 의무 · 사무직 포함 전 업종, 도입 결정 자체는 제외",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-09-02-nyc-schools-ai-moratorium",
@@ -2986,7 +3054,8 @@
    "note": "미국 최대 공립학교 시스템의 사용 중단 결정 · 컴패니언 챗봇은 전 학년 금지",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-08-05-hyundai-steel-job-security",
@@ -3005,7 +3074,8 @@
    "note": "AI 전환을 명시하고 고용 보장을 단협에 넣음 · 현 조합원만 해당",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-08-01-chaekdoduk-ai-translation",
@@ -3023,7 +3093,8 @@
    "note": "AI 번역을 숨긴 서비스가 판매 중단 · 출판계는 AI 고지 기준을 번역·삽화로 넓히는 방안 검토",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-07-28-us-states-ai-therapy-laws",
@@ -3042,7 +3113,8 @@
    "note": "상담·치료를 AI로 대신하는 것을 법으로 제한 · 버몬트(6.17), 로드아일랜드(2027.1) 포함",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-07-14-japan-voice-rights",
@@ -3060,7 +3132,8 @@
    "note": "성우 목소리 무단 AI 복제의 민사 책임 기준 · 초안 단계",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-07-11-kma-medical-ai-law",
@@ -3078,7 +3151,8 @@
    "note": "의사 단체가 'AI 의사'의 책임·수가·면허 문제 제기 · 건의 예고 단계",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-06-25-gm-korea-union-ai-agent",
@@ -3097,7 +3171,8 @@
    "note": "사무용 AI 도입도 노사 협의 대상이라는 요구 · 금속노조 공동요구(사전 통보·공동 평가)",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-06-23-lsa-ai-dismissal-bill",
@@ -3113,7 +3188,8 @@
    "note": "'노동영역 인공지능시스템' 사전 고지·설명 요청권 · 9.1 환노위 상정, 소위 회부",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-06-05-sag-aftra-ai-actors",
@@ -3131,7 +3207,8 @@
    "note": "할리우드 TV·영화 배우 계약(2030년까지) · AI 연기자 사용을 최소화하는 조건",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   },
   {
    "id": "2026-06-03-sbs-union-ai-clause",
@@ -3149,7 +3226,8 @@
    "note": "방송사 단협에 AI 조항 · 퇴직 후 AI 목소리·초상 무단 사용 금지, 2년 적용",
    "sig": "저항",
    "st": "none",
-   "added": "2026-10-22T14:30:00+09:00"
+   "added": "2026-10-22T14:30:00+09:00",
+   "rvw": "2026-W44"
   }
  ],
  "runs": [

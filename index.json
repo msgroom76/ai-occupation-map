@@ -23,6 +23,457 @@
     "2026-10-08-gemini-agent"
    ],
    "rebased": "v0.15 O*NET 31.0(2026.10.22)"
+  },
+  {
+   "week": "2026-W44",
+   "date": "2026-10-26",
+   "adj": {
+    "B9": 0.1129,
+    "D9": 0.0417,
+    "C5": 0.3051,
+    "B4": 0.0076,
+    "C9": 0.1219,
+    "B5": 0.0,
+    "B7": 0.0,
+    "B2": 0.0734,
+    "A1": 0.0712,
+    "B3": 0.0014,
+    "B10": 0.0712,
+    "D3": 0.1187,
+    "D6": 0.0475,
+    "C1": 0.0,
+    "C2": 0.0,
+    "D15": 0.0022,
+    "A5": 0.0006,
+    "D14": 0.0,
+    "A2": 0.0061
+   },
+   "total": 0.31695,
+   "applied": [
+    "2026-10-23-kimi-k3-1-pro",
+    "2026-10-23-soundthinking-field-agent",
+    "2026-10-22-uber-chatgpt-work",
+    "2026-10-22-microsoft-mai-dxo-science",
+    "2026-10-21-kognitos-ai-employees",
+    "2026-10-22-mainline-ai-office",
+    "2026-10-22-kb-securities-kkaebi-ai",
+    "2026-10-21-servicenow-arc",
+    "2026-10-21-japan-gennai-agents",
+    "2026-10-22-claude-duet",
+    "2026-10-21-oracle-industry-agent-studio",
+    "2026-10-21-channeltalk-voice-alf",
+    "2026-10-21-mokpo-genai-platform",
+    "2026-10-21-shinhanlife-complaint-agent",
+    "2026-10-20-agco-agility-digit",
+    "2026-10-21-hwasun-voice-emr",
+    "2026-10-21-gemini-for-government",
+    "2026-10-20-openai-cobol-migration",
+    "2026-10-20-notion-24h-agents",
+    "2026-10-20-mistral-voxtral3",
+    "2026-10-20-seongnam-ai-dutybot",
+    "2026-10-20-pps-ai-agents",
+    "2026-10-20-nh-bank-ai-agents",
+    "2026-10-19-bitcomputer-bitmate",
+    "2026-10-19-elevenlabs-architect",
+    "2026-10-19-cheonan-patrol-robot",
+    "2026-10-18-hyundai-polaris",
+    "2026-10-16-chatgpt-chrome",
+    "2026-10-15-workday-agents",
+    "2026-10-15-muse-spark-open",
+    "2026-10-16-copilot-studio",
+    "2026-10-16-vertafore",
+    "2026-10-16-servicenow",
+    "2026-10-16-gemini4-argon"
+   ],
+   "ledger": [
+    {
+     "id": "2026-10-23-kimi-k3-1-pro",
+     "grp": "coding-model",
+     "r": [
+      "C5"
+     ],
+     "w": 0.02375,
+     "why": "신뢰 매체 0.083년 · 해외 ×0.5",
+     "dp": 9e-06
+    },
+    {
+     "id": "2026-10-23-soundthinking-field-agent",
+     "grp": "police-analytics-agent",
+     "r": [
+      "B4",
+      "C9"
+     ],
+     "w": 0.00074,
+     "why": "1차 출처 0.250년 · 해외 ×0.5 · 업종 비중 ×0.01",
+     "dp": 5e-06
+    },
+    {
+     "id": "2026-10-22-uber-chatgpt-work",
+     "grp": "personal-agent",
+     "r": [
+      "B4",
+      "C5"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(personal-agent)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-22-microsoft-mai-dxo-science",
+     "grp": "medical-diagnosis",
+     "r": [
+      "B5",
+      "B7"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 해외 ×0.5 · 업종 비중 ×0.04",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-21-kognitos-ai-employees",
+     "grp": "finance-ops-agent",
+     "r": [
+      "B2",
+      "C9"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 해외 ×0.5 · 업종 비중 ×0.04",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-22-mainline-ai-office",
+     "grp": "doc-agent",
+     "r": [
+      "C9",
+      "A1"
+     ],
+     "w": 0.0475,
+     "why": "신뢰 매체 0.083년",
+     "dp": 0.000438
+    },
+    {
+     "id": "2026-10-22-kb-securities-kkaebi-ai",
+     "grp": "finance-work-agent",
+     "r": [
+      "B4",
+      "C9",
+      "B3"
+     ],
+     "w": 0.00082,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5 · 업종 비중 ×0.03",
+     "dp": 7e-06
+    },
+    {
+     "id": "2026-10-21-servicenow-arc",
+     "grp": "personal-agent",
+     "r": [
+      "B10",
+      "C5"
+     ],
+     "w": 0.07125,
+     "why": "1차 출처 0.250년 · 해외 ×0.5",
+     "dp": 4.6e-05
+    },
+    {
+     "id": "2026-10-21-japan-gennai-agents",
+     "grp": "gov-agent",
+     "r": [
+      "A1",
+      "C9"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(gov-agent)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-22-claude-duet",
+     "grp": "personal-agent",
+     "r": [
+      "B9",
+      "C5"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(personal-agent)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-21-oracle-industry-agent-studio",
+     "grp": "agent-builder",
+     "r": [
+      "C5",
+      "B2"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 해외 ×0.5",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-21-channeltalk-voice-alf",
+     "grp": "voice-bot",
+     "r": [
+      "D3",
+      "D6"
+     ],
+     "w": 0.0475,
+     "why": "신뢰 매체 0.083년",
+     "dp": 0.000165
+    },
+    {
+     "id": "2026-10-21-mokpo-genai-platform",
+     "grp": "gov-genai-platform",
+     "r": [
+      "C5",
+      "B2"
+     ],
+     "w": 0.00057,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5 · 업종 비중 ×0.02",
+     "dp": 1e-06
+    },
+    {
+     "id": "2026-10-21-shinhanlife-complaint-agent",
+     "grp": "contact-center-agent",
+     "r": [
+      "B2",
+      "D3"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 도입 ×0.5 · 업종 비중 ×0.02",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-20-agco-agility-digit",
+     "grp": "humanoid-factory",
+     "r": [
+      "C1",
+      "C2"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 해외 ×0.5 · 도입 ×0.5 · 업종 비중 ×0.03",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-21-hwasun-voice-emr",
+     "grp": "medical-scribe",
+     "r": [
+      "C9",
+      "C5"
+     ],
+     "w": 0.00162,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5 · 업종 비중 ×0.07",
+     "dp": 7e-06
+    },
+    {
+     "id": "2026-10-21-gemini-for-government",
+     "grp": "google-gemini-agent",
+     "r": [
+      "D15",
+      "B2"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(google-gemini-agent) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-20-openai-cobol-migration",
+     "grp": "coding-model",
+     "r": [
+      "C5"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(coding-model)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-20-notion-24h-agents",
+     "grp": "long-running-agent",
+     "r": [
+      "C5"
+     ],
+     "w": 0.07125,
+     "why": "1차 출처 0.250년 · 해외 ×0.5",
+     "dp": 2.8e-05
+    },
+    {
+     "id": "2026-10-20-mistral-voxtral3",
+     "grp": "speech-model",
+     "r": [
+      "D3",
+      "C9"
+     ],
+     "w": 0.07125,
+     "why": "1차 출처 0.250년 · 해외 ×0.5",
+     "dp": 0.000366
+    },
+    {
+     "id": "2026-10-20-seongnam-ai-dutybot",
+     "grp": "voice-bot",
+     "r": [
+      "D3",
+      "C9"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(voice-bot)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-20-pps-ai-agents",
+     "grp": "gov-agent",
+     "r": [
+      "A5",
+      "B3",
+      "D15"
+     ],
+     "w": 0.00057,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5 · 업종 비중 ×0.02",
+     "dp": 2e-06
+    },
+    {
+     "id": "2026-10-20-nh-bank-ai-agents",
+     "grp": "bank-agent",
+     "r": [
+      "D14",
+      "B4"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 도입 ×0.5",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-19-bitcomputer-bitmate",
+     "grp": "medical-scribe",
+     "r": [
+      "C9",
+      "B2"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(medical-scribe)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-19-elevenlabs-architect",
+     "grp": "agent-builder",
+     "r": [
+      "C5",
+      "B3"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(agent-builder)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-19-cheonan-patrol-robot",
+     "grp": "patrol-robot",
+     "r": [
+      "A2"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 도입 ×0.5 · 업종 비중 ×0.07",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-18-hyundai-polaris",
+     "grp": "factory-agent",
+     "r": [
+      "B4",
+      "A2"
+     ],
+     "w": 0.00608,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5 · 업종 비중 ×0.26",
+     "dp": 4e-05
+    },
+    {
+     "id": "2026-10-16-chatgpt-chrome",
+     "grp": "browser-agent",
+     "r": [
+      "A1",
+      "C5"
+     ],
+     "w": 0.02375,
+     "why": "신뢰 매체 0.083년 · 해외 ×0.5",
+     "dp": 0.000142
+    },
+    {
+     "id": "2026-10-15-workday-agents",
+     "grp": "system-agent",
+     "r": [
+      "D15",
+      "B2"
+     ],
+     "w": 0.00161,
+     "why": "신뢰 매체 0.083년 · 해외 ×0.5 · 업종 비중 ×0.07",
+     "dp": 5e-06
+    },
+    {
+     "id": "2026-10-15-muse-spark-open",
+     "grp": "coding-model",
+     "r": [
+      "C5",
+      "B5"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(coding-model)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-16-copilot-studio",
+     "grp": "agent-builder",
+     "r": [
+      "C9",
+      "D15"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(agent-builder)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-16-vertafore",
+     "grp": "system-agent",
+     "r": [
+      "B2",
+      "B3"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(system-agent)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-16-servicenow",
+     "grp": "agent-builder",
+     "r": [
+      "D15",
+      "C9"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(agent-builder)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-16-gemini4-argon",
+     "grp": "google-gemini-model",
+     "r": [
+      "B2",
+      "B9",
+      "C5"
+     ],
+     "w": 0.07125,
+     "why": "1차 출처 0.250년 · 해외 ×0.5",
+     "dp": 0.00024
+    }
+   ],
+   "scale": 0.57,
+   "rules": "v2",
+   "review": {
+    "by": "independent",
+    "ok": 19,
+    "fix": 14,
+    "hold": 1,
+    "late": [],
+    "front": {
+     "ok": 27,
+     "fix": 2,
+     "hold": 0
+    }
+   }
   }
  ]
 }
