@@ -1,7 +1,76 @@
 {
- "updated": "2026-10-27T13:05:00+09:00",
+ "updated": "2026-10-27T17:58:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-10-27-daiso-ktcs-aicc",
+   "ts": "2026-10-27T15:33:00+09:00",
+   "src": "지디넷코리아",
+   "url": "https://zdnet.co.kr/view/?no=20261027153329",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "다이소, 고객센터에 KTcs의 생성형 AI 상담 플랫폼 '하이큐리' 적용 — 전화 음성 안내와 챗봇이 상품 정보·매장 위치·배송 조회·교환·환불 문의에 답하고, 추가 확인이나 개별 처리가 필요한 건은 상담원에게 연결",
+   "r": [
+    "D3"
+   ],
+   "st": "pending",
+   "grp": "voice-bot",
+   "dwa": [
+    [
+     "4.A.4.a.8.I03.D02",
+     "a"
+    ]
+   ],
+   "ind": [
+    "36"
+   ]
+  },
+  {
+   "id": "2026-10-26-oracle-fusion-scm-agents",
+   "ts": "2026-10-27T01:00:00+09:00",
+   "src": "Oracle",
+   "url": "https://www.oracle.com/news/announcement/ai-world-oracle-introduces-claw-powered-fusion-agentic-applications-for-supply-chain-2026-10-26/",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "오라클, Fusion Cloud 공급망(SCM)용 에이전트 앱 3종 공개 — 부족한 자재·생산능력 배분안을 만들어 사람 승인에 올리고, 운송 적재 통합안을 비교해 승인되면 실행, 구매 지출을 분석해 계약 누수를 찾고 시정안을 추천",
+   "r": [
+    "B4",
+    "B5"
+   ],
+   "st": "pending",
+   "grp": "supply-chain-agent",
+   "dwa": [
+    [
+     "4.A.2.a.4.I07.D15",
+     "d"
+    ],
+    [
+     "4.A.2.a.4.I11.D04",
+     "d"
+    ]
+   ],
+   "ind": [
+    "32"
+   ]
+  },
+  {
+   "id": "2026-10-26-microsoft-voluntary-exit",
+   "ts": "2026-10-27T00:57:00+09:00",
+   "src": "GeekWire",
+   "url": "https://www.geekwire.com/2026/microsoft-makes-new-voluntary-exit-offer-to-more-than-a-quarter-of-its-workforce-including-some-execs/",
+   "tier": "신뢰 매체",
+   "sig": "고용",
+   "us": true,
+   "kr": false,
+   "hd": "마이크로소프트, 미국·캐나다·영국·인도의 참여 부서 직원 약 6만 명(전체 약 22만3천 명의 4분의 1가량)에게 자발적 퇴직 제안 — 12월 첫 주까지 결정, 회사는 '직원이 덜 필요하다는 뜻은 아니다'라며 AI를 이유로 들지 않음(언론은 AI 인프라 투자 비용 압박과 연결)",
+   "r": [],
+   "st": "none",
+   "note": "고용 소식 · 회사가 AI를 사유로 밝히지 않음 · 수치 영향 없음"
+  },
   {
    "id": "2026-10-26-lg-cloid-factory-poc",
    "ts": "2026-10-26T15:17:00+09:00",
@@ -1310,47 +1379,6 @@
    "grp": "agent-builder",
    "rv": "보도자료가 코딩 없는 에이전트 제작 도구를 'controlled availability'로 발표한 제품 발표라서 tier를 낮추고 성격을 '능력'으로 고침.",
    "wk": "2026-W44"
-  },
-  {
-   "id": "2026-10-14-deloitte-uk",
-   "ts": "2026-10-14T08:40:00+09:00",
-   "src": "글로벌이코노믹 (블룸버그·FT 인용)",
-   "url": "https://www.g-enews.com/article/Global-Biz/2026/10/2026101408403596729a1f309431_1",
-   "tier": "신뢰 매체",
-   "sig": "고용",
-   "us": false,
-   "hd": "딜로이트 조사: 영국 대기업 CFO 52%가 \"AI 도입으로 내년 인력 감축\" 예상",
-   "r": [],
-   "st": "none",
-   "note": "고용 신호 · 노출도 수치 영향 없음"
-  },
-  {
-   "id": "2026-10-13-audit-youth",
-   "ts": "2026-10-13T15:38:00+09:00",
-   "src": "아주경제",
-   "url": "https://www.ajunews.com/view/20261013153817871",
-   "tier": "신뢰 매체",
-   "sig": "고용",
-   "us": false,
-   "kr": true,
-   "hd": "국정감사: 최근 4년 청년 일자리 28.5만 개 감소, 94%가 AI 노출 높은 업종 (한국은행 분석 인용)",
-   "r": [],
-   "st": "none",
-   "note": "국내 고용 신호 · 노출도 수치 영향 없음"
-  },
-  {
-   "id": "2026-10-13-motie-humanoid",
-   "ts": "2026-10-13T15:00:00+09:00",
-   "src": "파이낸셜뉴스",
-   "url": "https://www.fnnews.com/news/202610131103564249",
-   "tier": "신뢰 매체",
-   "sig": "정책",
-   "us": false,
-   "kr": true,
-   "hd": "산업통상부 규제특례위, 안전펜스 규제 풀어 제조 현장에 이동형 휴머노이드 20대 실증 투입 승인",
-   "r": [],
-   "st": "none",
-   "note": "규제 완화(AI 쪽 지원) · 노출도 수치 영향 없음"
   },
   {
    "id": "2026-10-16-gemini4-argon",
@@ -2771,6 +2799,24 @@
  ],
  "front": [
   {
+   "id": "2026-10-26-cfa-csu-strike-vote-ai",
+   "ts": "2026-10-27T01:00:00+09:00",
+   "src": "캘리포니아교수협회(CFA)",
+   "url": "https://www.calfac.org/cfa-chapters-organize-actions-coinciding-with-launch-of-strike-authorization-vote/",
+   "tier": "1차 출처",
+   "kr": false,
+   "sig": "저항",
+   "kind": "노사",
+   "fx": "약",
+   "ind": [
+    "26"
+   ],
+   "hd": "캘리포니아주립대(CSU) 교수노조 CFA, 10.26~11.19 파업 찬반투표 시작 — 임금·업무량과 함께 AI 별도 조항(교수의 AI 사용·거부 권리 보호, 지적재산 보호) 요구",
+   "note": "교섭 결렬 뒤 파업권 투표 · 요구안 단계라 구속력 없음 · 미국 대학 교수",
+   "st": "none",
+   "added": "2026-10-27T17:58:00+09:00"
+  },
+  {
    "id": "2026-10-21-law-society-ai-practice-note",
    "ts": "2026-10-21T18:00:00+09:00",
    "src": "아티피셜 로이어(Artificial Lawyer)",
@@ -3399,6 +3445,19 @@
   }
  ],
  "runs": [
+  {
+   "at": "2026-10-27T17:58:00+09:00",
+   "push": {
+    "q": 17,
+    "cand": 10,
+    "acc": 3
+   },
+   "front": {
+    "q": 14,
+    "cand": 5,
+    "acc": 1
+   }
+  },
   {
    "at": "2026-10-27T13:05:00+09:00",
    "push": {
