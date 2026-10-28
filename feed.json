@@ -1,7 +1,50 @@
 {
- "updated": "2026-10-28T12:52:00+09:00",
+ "updated": "2026-10-29T08:56:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-10-28-featuring-ai-agent",
+   "ts": "2026-10-28T13:53:00+09:00",
+   "src": "디지털데일리",
+   "url": "https://www.ddaily.co.kr/page/view/2026102811553280572",
+   "tier": "확인 필요",
+   "sig": "능력",
+   "kr": true,
+   "hd": "피처링, 인플루언서 마케팅 AI 에이전트 공개 — 캠페인 목표를 말로 입력하면 조건(채널 성격·참여율 등)에 맞는 인플루언서를 찾아 추천, 예산·운영·성과 점검까지 넓힐 계획",
+   "r": [
+    "A1",
+    "B4"
+   ],
+   "st": "hold",
+   "note": "자체 행사(FUTURING 26)에서 공개 · 정식 제공 여부·시점 미확인, 추천 외 기능은 계획 단계",
+   "grp": "marketing-agent",
+   "dwa": [
+    [
+     "4.A.2.b.1.I09.D04",
+     "a"
+    ]
+   ],
+   "ind": [
+    "28"
+   ]
+  },
+  {
+   "id": "2026-10-28-gemini-4-carbon",
+   "ts": "2026-10-28T09:00:00+09:00",
+   "src": "9to5Google",
+   "url": "https://9to5google.com/2026/10/28/gemini-4-carbon-announcement/",
+   "tier": "확인 필요",
+   "sig": "능력",
+   "us": true,
+   "hd": "구글, 코딩·에이전트 작업 성능을 높인 'Gemini 4 Carbon' 발표 — 먼저 사이버 방어 기관·모델 검증용으로 공개하고 일반 제공은 추후",
+   "r": [
+    "C5",
+    "B5"
+   ],
+   "st": "hold",
+   "note": "제한 공개(사이버 방어자 우선) · 일반 제공 시점 미정",
+   "grp": "google-gemini-model"
+  },
   {
    "id": "2026-10-28-acryl-medical-llm",
    "ts": "2026-10-28T09:08:00+09:00",
@@ -1274,39 +1317,6 @@
    ],
    "grp": "factory-agent",
    "wk": "2026-W44"
-  },
-  {
-   "id": "2026-10-18-hyundai-humanoid",
-   "ts": "2026-10-18T15:30:00+09:00",
-   "src": "아주경제(Aju Press)",
-   "url": "https://www.ajupress.com/view/20261018152154879",
-   "tier": "신뢰 매체",
-   "sig": "도입",
-   "us": false,
-   "kr": true,
-   "hd": "현대차그룹, 2032년 이후 신공장에 휴머노이드 투입 계획 공개 (배선 연결·내장재 공급·도장 보수 등)",
-   "r": [
-    "C1",
-    "C2"
-   ],
-   "st": "none",
-   "note": "2032년 이후 계획 · 현재 도입 아님"
-  },
-  {
-   "id": "2026-10-16-astra-pro-parallel",
-   "ts": "2026-10-16T09:00:00+09:00",
-   "src": "Lapaas Voice",
-   "url": "https://lapaasvoice.com/openai-upgrades-gpt-6-astra-pro-in-chatgpt-with-faster-responses-and-parallel-agents",
-   "tier": "확인 필요",
-   "sig": "능력",
-   "us": true,
-   "hd": "오픈AI, ChatGPT의 GPT-6 Astra Pro에 여러 에이전트가 한 작업을 나눠 병렬 처리하는 기능 추가 (Pro 사용자)",
-   "r": [
-    "C5",
-    "B5"
-   ],
-   "st": "hold",
-   "note": "원문은 오픈AI X 게시물로 직접 열람 불가 · 요약 매체만 확인"
   },
   {
    "id": "2026-10-16-chatgpt-chrome",
@@ -2864,6 +2874,26 @@
  ],
  "front": [
   {
+   "id": "2026-10-28-hhi-industrial-transition-pact",
+   "ts": "2026-10-28T17:35:00+09:00",
+   "src": "중앙이코노미뉴스",
+   "url": "https://www.joongangenews.com/news/articleView.html?idxno=559269",
+   "tier": "신뢰 매체",
+   "kr": true,
+   "sig": "저항",
+   "kind": "노사",
+   "fx": "약",
+   "ind": [
+    "74",
+    "84",
+    "85"
+   ],
+   "hd": "HD현대중공업 노사, 2026 임단협 조인식에서 '산업전환 특별협약' 체결 — AI·자동화 등 신기술 도입에 따른 작업환경 변화에 노사가 공동 대응하고 안전한 작업환경 조성에 협력",
+   "note": "조선 대기업 단협에 AI·자동화 공동 대응 조항 · 기사상 고용 보장·협의 절차 같은 구체적 의무는 확인 안 됨",
+   "st": "none",
+   "added": "2026-10-29T08:56:00+09:00"
+  },
+  {
    "id": "2026-10-27-kmwu-central-agreement-ai",
    "ts": "2026-10-27T20:00:00+09:00",
    "src": "미디어오늘",
@@ -3548,6 +3578,19 @@
   }
  ],
  "runs": [
+  {
+   "at": "2026-10-29T08:56:00+09:00",
+   "push": {
+    "q": 28,
+    "cand": 10,
+    "acc": 2
+   },
+   "front": {
+    "q": 12,
+    "cand": 4,
+    "acc": 1
+   }
+  },
   {
    "at": "2026-10-28T12:52:00+09:00",
    "push": {
