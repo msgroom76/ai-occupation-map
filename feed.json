@@ -1,7 +1,89 @@
 {
- "updated": "2026-10-28T08:58:00+09:00",
+ "updated": "2026-10-28T12:52:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-10-28-acryl-medical-llm",
+   "ts": "2026-10-28T09:08:00+09:00",
+   "src": "뉴스핌",
+   "url": "https://www.newspim.com/news/view/20261028000237",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": false,
+   "kr": true,
+   "hd": "아크릴, 한국 의학 문헌·진료지침·의약품 자료로 학습한 의료 언어모델 'ALLM.H'와 이를 바탕으로 국내 허가 정보·임상 근거를 찾아 의료진의 치료 결정을 돕는 대화형 AI 'Dr.GAL', 병원 AI 에이전트 운영 플랫폼 공개",
+   "r": [
+    "A1",
+    "B7"
+   ],
+   "st": "pending",
+   "grp": "medical-decision-support",
+   "dwa": [
+    [
+     "4.A.2.b.2.I01.D01",
+     "a"
+    ]
+   ],
+   "ind": [
+    "24"
+   ]
+  },
+  {
+   "id": "2026-10-27-dayforce-agents",
+   "ts": "2026-10-28T05:00:00+09:00",
+   "src": "Dayforce (GlobeNewswire)",
+   "url": "https://www.globenewswire.com/news-release/2026/10/27/3389576/0/en/dayforce-introduces-agentic-innovations-to-simplify-work-from-schedule-to-pay.html",
+   "tier": "확인 필요",
+   "sig": "능력",
+   "us": true,
+   "hd": "데이포스, 인사·급여 AI 에이전트 공개 — 근무 공백을 채울 직원을 자격·가용성 기준으로 추천(관리자 승인), 급여 마감 전 누락된 출퇴근 기록·미완성 근무표·미승인 건을 찾아 알림, 규정 변경 영향 직원 파악, 세금 계산 문의 답변",
+   "r": [
+    "B9",
+    "D15"
+   ],
+   "st": "hold",
+   "note": "단계적 출시 · 에이전트별 제공 시기 미공개(일부만 현재 제공)",
+   "grp": "hr-payroll-agent",
+   "dwa": [
+    [
+     "4.A.4.b.4.I13.D06",
+     "a"
+    ],
+    [
+     "4.A.3.b.6.I08.D17",
+     "a"
+    ]
+   ],
+   "ind": [
+    "31",
+    "33"
+   ]
+  },
+  {
+   "id": "2026-10-26-gxo-agility-digit-expand",
+   "ts": "2026-10-26T22:00:00+09:00",
+   "src": "Agility Robotics",
+   "url": "https://www.agilityrobotics.com/content/gxo-and-agility-robotics-expand-partnership-to-accelerate-deployment-of-humanoids-in-u-s-operations",
+   "tier": "확인 필요",
+   "sig": "도입",
+   "us": true,
+   "hd": "물류업체 GXO, 조지아 창고에서 토트 10만 개 넘게 옮긴 애질리티 휴머노이드 'Digit'을 2027년 초부터 노스캐롤라이나 스테이츠빌·테네시 레바논 전자상거래 물류센터 반복 운반 작업에 추가 배치 계획",
+   "r": [
+    "C2"
+   ],
+   "st": "hold",
+   "note": "새 두 곳은 2027년 초 배치 예정(대수 미공개) · 실제 운영 확인 후 반영",
+   "grp": "warehouse-robot",
+   "dwa": [
+    [
+     "4.A.3.a.1.I10.D11",
+     "a"
+    ]
+   ],
+   "ind": [
+    "92"
+   ]
+  },
   {
    "id": "2026-10-27-sprinklr-marketing-agents",
    "ts": "2026-10-27T21:00:00+09:00",
@@ -1159,19 +1241,6 @@
    "wk": "2026-W44"
   },
   {
-   "id": "2026-10-18-shanghai-humanoid",
-   "ts": "2026-10-18T19:37:00+09:00",
-   "src": "로봇신문",
-   "url": "https://www.irobotnews.com/news/articleView.html?idxno=49043",
-   "tier": "신뢰 매체",
-   "sig": "정책",
-   "us": false,
-   "hd": "중국 상하이시, 지능형 제조 행동계획에서 제조공장에 휴머노이드 로봇 8천 대 배치 목표 제시",
-   "r": [],
-   "st": "none",
-   "note": "정책 동향 · 노출도 수치 영향 없음"
-  },
-  {
    "id": "2026-10-18-hyundai-polaris",
    "ts": "2026-10-18T18:13:00+09:00",
    "src": "서울신문",
@@ -1224,19 +1293,6 @@
    "note": "2032년 이후 계획 · 현재 도입 아님"
   },
   {
-   "id": "2026-10-14-imf-tax",
-   "ts": "2026-10-18T08:00:00+09:00",
-   "src": "머니투데이",
-   "url": "https://www.mt.co.kr/world/2026/10/18/2026101515475292816",
-   "tier": "신뢰 매체",
-   "sig": "정책",
-   "us": false,
-   "hd": "IMF 패널 \"AI가 노동을 대체하면 세수 3~8% 줄 수 있어\" 과세 체계 재설계 제안",
-   "r": [],
-   "st": "none",
-   "note": "정책 동향 · 노출도 수치 영향 없음"
-  },
-  {
    "id": "2026-10-16-astra-pro-parallel",
    "ts": "2026-10-16T09:00:00+09:00",
    "src": "Lapaas Voice",
@@ -1251,19 +1307,6 @@
    ],
    "st": "hold",
    "note": "원문은 오픈AI X 게시물로 직접 열람 불가 · 요약 매체만 확인"
-  },
-  {
-   "id": "2026-10-16-anthropic-expectations",
-   "ts": "2026-10-16T09:00:00+09:00",
-   "src": "Anthropic",
-   "url": "https://anthropic.com/research/ai-expectations-gap",
-   "tier": "1차 출처",
-   "sig": "고용",
-   "us": true,
-   "hd": "앤트로픽 설문: 미국 근로자는 2030년까지 자기 업무의 약 28%를 AI가 맡을 것으로 예상, 앤트로픽 직원 예상치는 약 75%",
-   "r": [],
-   "st": "none",
-   "note": "고용 전망 설문 · 노출도 수치 영향 없음"
   },
   {
    "id": "2026-10-16-chatgpt-chrome",
@@ -2821,6 +2864,26 @@
  ],
  "front": [
   {
+   "id": "2026-10-27-kmwu-central-agreement-ai",
+   "ts": "2026-10-27T20:00:00+09:00",
+   "src": "미디어오늘",
+   "url": "https://www.mediatoday.co.kr/news/articleView.html?idxno=338034",
+   "tier": "신뢰 매체",
+   "kr": true,
+   "sig": "저항",
+   "kind": "노사",
+   "fx": "중",
+   "ind": [
+    "84",
+    "85",
+    "74"
+   ],
+   "hd": "금속노조·금속산업사용자협의회, 2026 중앙교섭 산별협약에 'AI 도입 시 노동인권·고용 보호' 조항 신설 — 공정·인사관리에 AI를 들일 때 노조에 미리 알리고, 요청 시 고용 영향을 함께 사전 점검하며, 고용·교육훈련·안전·개인정보 대책을 노사 합의한 뒤에만 도입",
+   "note": "초기업 단협에 사전 통보·영향 점검·합의 후 도입 의무 명시 · 69개 회원사 참여",
+   "st": "none",
+   "added": "2026-10-28T12:52:00+09:00"
+  },
+  {
    "id": "2026-07-28-uup-suny-contract-ai",
    "ts": "2026-07-29T03:23:00+09:00",
    "src": "WAMC",
@@ -3485,6 +3548,19 @@
   }
  ],
  "runs": [
+  {
+   "at": "2026-10-28T12:52:00+09:00",
+   "push": {
+    "q": 20,
+    "cand": 12,
+    "acc": 3
+   },
+   "front": {
+    "q": 15,
+    "cand": 8,
+    "acc": 1
+   }
+  },
   {
    "at": "2026-10-28T08:58:00+09:00",
    "push": {
