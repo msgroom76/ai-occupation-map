@@ -1,7 +1,36 @@
 {
- "updated": "2026-10-29T17:51:00+09:00",
+ "updated": "2026-10-30T09:03:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-10-29-claude-legal-artifacts",
+   "ts": "2026-10-29T02:00:00+09:00",
+   "src": "Anthropic (Claude for Legal)",
+   "url": "https://claude.com/solutions/legal",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "us": true,
+   "hd": "앤트로픽, 'Claude for Legal'에 바로 쓰는 법무 도구 모음 추가 — 계약서를 회사 표준 조항과 비교해 조항마다 표준·대체·이탈·누락으로 표시(플레이북 검토), 여러 계약의 특정 조항을 표로 뽑기, 사업·지역에 맞춰 다가올 규제를 시간표로 정리하고 영향도 점수화, 사건별 단계·기일 관리, 인용 대조",
+   "r": [
+    "B3",
+    "A1"
+   ],
+   "st": "pending",
+   "grp": "legal-review-tool",
+   "dwa": [
+    [
+     "4.A.1.a.1.I05.D01",
+     "a"
+    ],
+    [
+     "4.A.2.b.3.I01.D06",
+     "a"
+    ]
+   ],
+   "ind": [
+    "27"
+   ]
+  },
   {
    "id": "2026-10-29-skax-zfit-studio",
    "ts": "2026-10-29T16:24:00+09:00",
@@ -809,37 +838,6 @@
    "st": "applied",
    "grp": "personal-agent",
    "wk": "2026-W44"
-  },
-  {
-   "id": "2026-10-21-ceva-sereact-returns",
-   "ts": "2026-10-21T17:00:00+09:00",
-   "src": "Sereact (GlobeNewswire)",
-   "url": "https://globenewswire.com/news-release/2026/10/21/3385409/0/en/sereact-nvidia-nebius-ceva-logistics-and-zalando-close-the-training-loop-for-robotic-returns-handling.html",
-   "tier": "1차 출처",
-   "sig": "도입",
-   "us": false,
-   "kr": false,
-   "hd": "독일 로봇업체 세리액트, CEVA 물류의 잘란도 반품 처리 센터 일부에 반품 상품을 집어 식별·상태 확인·분류하는 AI 로봇 첫 배치 시작",
-   "r": [
-    "C2",
-    "A3"
-   ],
-   "st": "hold",
-   "grp": "warehouse-robot",
-   "dwa": [
-    [
-     "4.A.2.a.2.I02.D05",
-     "f"
-    ],
-    [
-     "4.A.1.b.2.I10.D04",
-     "a"
-    ]
-   ],
-   "ind": [
-    "92"
-   ],
-   "rv": "10월 21일 자료는 학습 루프 협력 발표이고, CEVA의 잘란도 반품 현장 실가동은 10월 7일 자료에서 이미 발표돼 '첫 배치 시작'을 새 소식으로 볼지 판단이 서지 않음."
   },
   {
    "id": "2026-10-22-poscofm-palantir",
@@ -2953,6 +2951,42 @@
  ],
  "front": [
   {
+   "id": "2026-10-20-nyc-ai-customer-service-human",
+   "ts": "2026-10-21T00:00:00+09:00",
+   "src": "뉴욕시 소비자·노동자보호국(DCWP)",
+   "url": "https://www.nyc.gov/site/dca/news/072-26/mamdani-administration-proposes-ban-ai-customer-service-doom-loops",
+   "tier": "1차 출처",
+   "kr": false,
+   "sig": "저항",
+   "kind": "법·규제",
+   "fx": "약",
+   "ind": [
+    "36"
+   ],
+   "hd": "뉴욕시 소비자·노동자보호국, AI 챗봇·자동응답 고객 상담 규칙안 공고 — 자동 시스템임을 알리고 사람 상담원에게 쉽게 넘어가는 길을 둘 것, 엉뚱하거나 틀린 답을 되풀이하면 기만적 거래 행위로 보고 배상·과태료(525달러부터)",
+   "note": "자동화된 고객 상담에 사람 연결 의무를 거는 규칙안 · 30일 의견 수렴·공청회 단계라 아직 시행 전",
+   "st": "none",
+   "added": "2026-10-30T09:03:00+09:00"
+  },
+  {
+   "id": "2026-10-23-greene-google-notebooklm-voice",
+   "ts": "2026-10-23T12:00:00+09:00",
+   "src": "Radio Ink",
+   "url": "https://radioink.com/2026/10/29/google-must-answer-former-npr-hosts-ai-voice-claims-in-court/",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "sig": "저항",
+   "kind": "판결·소송",
+   "fx": "약",
+   "ind": [
+    "29"
+   ],
+   "hd": "미국 캘리포니아 샌타클래라 법원, 전 NPR 진행자 데이비드 그린이 '구글 NotebookLM 오디오 개요의 남성 진행자 목소리가 내 목소리를 본떴다'며 낸 소송에서 구글의 기각 요청을 4개 청구 모두 받아들이지 않음 — 퍼블리시티권 등 심리 계속",
+   "note": "방송인 목소리를 AI 합성 음성에 허락 없이 쓴 데 대한 소송이 본안 심리로 넘어감 · 사실 판단 전 절차 결정이라 구속력 있는 결론은 아님",
+   "st": "none",
+   "added": "2026-10-30T09:03:00+09:00"
+  },
+  {
    "id": "2026-10-26-sntpct-animation-vfx-walkout",
    "ts": "2026-10-26T18:00:00+09:00",
    "src": "3DVF",
@@ -3711,6 +3745,19 @@
   }
  ],
  "runs": [
+  {
+   "at": "2026-10-30T09:03:00+09:00",
+   "push": {
+    "q": 26,
+    "cand": 13,
+    "acc": 1
+   },
+   "front": {
+    "q": 11,
+    "cand": 8,
+    "acc": 2
+   }
+  },
   {
    "at": "2026-10-29T17:51:00+09:00",
    "push": {
