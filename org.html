@@ -84,7 +84,8 @@ footer{margin-top:48px;border-top:1px solid var(--hair);padding-top:14px;font-si
 .gnav a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 12px;font-size:14px;font-weight:600;color:var(--ink2);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap}
 .gnav a:hover{color:var(--ink)}.gnav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--hot)}
 .gnav a:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
-@media (max-width:899px){.gnav{gap:0}.gnav a{flex:1;min-height:32px;padding:0 4px;font-size:13.5px}}
+.gnav a[href="/guide"]{font-weight:500}.gnav a[href="/guide"]::before{content:"?";display:inline-grid;place-items:center;width:16px;height:16px;margin-right:5px;border:1.5px solid currentColor;border-radius:50%;font-size:10.5px;font-weight:700}
+@media (max-width:899px){.gnav{gap:0}.gnav a{flex:1;min-height:32px;padding:0 4px;font-size:13.5px}.gnav a[href="/guide"]{flex:none;padding:0 2px 0 6px;font-size:0}.gnav a[href="/guide"]::before{margin:0;width:20px;height:20px;font-size:12px}}
 .gh{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;min-height:64px;box-sizing:border-box;padding:calc(11px + env(safe-area-inset-top,0px)) 16px 11px;background:var(--bg);border-bottom:1px solid var(--ink)}
 .gh-mark{display:flex;align-items:center;gap:5px;color:var(--hot);text-decoration:none;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-weight:700;flex:none}
 .gh-mark b{font-size:36px;letter-spacing:-.045em;line-height:.8}.gh-mark span{font-size:11.5px;line-height:1.02;letter-spacing:-.02em}
@@ -94,7 +95,7 @@ html{scroll-padding-top:76px}@media (max-width:899px){html{scroll-padding-top:11
 @media print{.gh{display:none}}
 
 </style><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"></head><body>
-<header class="gh"><a class="gh-mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a><nav class="gnav" aria-label="주요 메뉴"><a href="/">지도</a><a href="/test">내 직업 전망</a><a href="/org" aria-current="page">기업 자가 진단</a></nav></header>
+<header class="gh"><a class="gh-mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a><nav class="gnav" aria-label="주요 메뉴"><a href="/">지도</a><a href="/test">내 직업 전망</a><a href="/org" aria-current="page">기업 자가 진단</a><a href="/guide">보는 법</a></nav></header>
 <main>
 <p class="kick">조직 진단</p>
 <h1>우리 조직 업무 중 AI가 해낼 수 있는 몫은 얼마일까</h1>

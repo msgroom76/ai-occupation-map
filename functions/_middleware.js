@@ -10,7 +10,7 @@ const PUBLIC_FILES = new Set(['/', '/index.html', '/404.html', '/robots.txt', '/
   '/city_index.png', '/city_roads.png', '/city_meta.json', '/config.json', '/feed.json', '/index.json',
   '/ksco_titles.json', '/ksco_soc_map.json', '/tasks.json', '/protect.json', '/favicon.ico', '/favicon.svg', '/apple-touch-icon.png',
   '/privacy', '/privacy.html', '/terms', '/terms.html', '/about', '/about.html', '/admin', '/admin.html',
-  '/test', '/test.html', '/us_kr.json', '/labor.json',
+  '/test', '/test.html', '/guide', '/guide.html', '/us_kr.json', '/labor.json',
   '/org', '/org.html', '/org_engine.js', '/org_bench.json']);
 const PUBLIC_DIRS = ['/j/', '/w/', '/og/', '/mail/img/', '/img/', '/api/'];
 const isPublic = p => PUBLIC_FILES.has(p) || PUBLIC_DIRS.some(d => p.startsWith(d)) || p === '/j' || p === '/w';

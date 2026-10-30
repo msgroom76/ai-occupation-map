@@ -8,7 +8,7 @@ W='tools/site_src/' if REPO else 'web/'
 O='' if REPO else 'site/'
 
 # ===== 공통 헤더: 메뉴를 바꿀 때는 여기 NAV만 고친다 =====
-NAV=[('/','지도'),('/test','내 직업 전망'),('/org','기업 자가 진단')]
+NAV=[('/','지도'),('/test','내 직업 전망'),('/org','기업 자가 진단'),('/guide','보는 법')]
 def gnav(cur,cls='gnav'):
     return f'<nav class="{cls}" aria-label="주요 메뉴">'+''.join(f'<a href="{h}"'+(' aria-current="page"' if h==cur else '')+f'>{t}</a>' for h,t in NAV)+'</nav>'
 # 메뉴 모양(지도·하위 페이지 공통). 색은 각 페이지 변수(--ink, --ink2, --hot)를 쓴다
@@ -16,7 +16,8 @@ GNAV_CSS=""".gnav{display:flex;align-items:center;gap:4px;flex:none}
 .gnav a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 12px;font-size:14px;font-weight:600;color:var(--ink2);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap}
 .gnav a:hover{color:var(--ink)}.gnav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--hot)}
 .gnav a:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
-@media (max-width:899px){.gnav{gap:0}.gnav a{flex:1;min-height:32px;padding:0 4px;font-size:13.5px}}
+.gnav a[href="/guide"]{font-weight:500}.gnav a[href="/guide"]::before{content:"?";display:inline-grid;place-items:center;width:16px;height:16px;margin-right:5px;border:1.5px solid currentColor;border-radius:50%;font-size:10.5px;font-weight:700}
+@media (max-width:899px){.gnav{gap:0}.gnav a{flex:1;min-height:32px;padding:0 4px;font-size:13.5px}.gnav a[href="/guide"]{flex:none;padding:0 2px 0 6px;font-size:0}.gnav a[href="/guide"]::before{margin:0;width:20px;height:20px;font-size:12px}}
 """
 # 하위 페이지 헤더: 지도 위 막대와 같은 높이(데스크톱 64px, 휴대폰 62px + 메뉴 줄)·같은 로고·같은 아래 선
 GH_CSS=GNAV_CSS+""".gh{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;min-height:64px;box-sizing:border-box;padding:calc(11px + env(safe-area-inset-top,0px)) 16px 11px;background:var(--bg);border-bottom:1px solid var(--ink)}
@@ -75,3 +76,7 @@ o=open(W+'org.html').read()
 assert '/*@SEARCH@*/' in o
 open(O+'org.html','w').write(apply(o.replace('/*@SEARCH@*/',src[a:b])))
 print('built org')
+# 그 밖의 페이지(검색 코드 없이 공통 헤더만): 보는 법
+for f in ['guide.html']:
+    if os.path.exists(W+f):
+        open(O+f,'w').write(apply(open(W+f).read())); print('built',f)

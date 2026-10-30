@@ -807,6 +807,14 @@ details.card[open] summary::after{content:"−"}
 .aiact a{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:2px}
 .aiact .eff{font-size:12px;color:var(--ink2);margin-top:2px}
 
+
+/* 쉬운 보기: 범례 문장, 결과 카드의 '어떻게 찾았나요?' */
+.legend .say{font-size:11.5px;line-height:1.4;color:var(--ink);margin-top:4px}
+.card details.how{margin-top:16px;border-top:1px solid var(--hair);padding-top:10px}
+.card details.how summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--ink2);list-style:none}
+.card details.how summary::before{content:'＋ ';}.card details.how[open] summary::before{content:'－ '}
+.card details.how .sub{margin-top:6px}
+.ghint{display:block;margin:10px 0 0;padding:9px 12px;border:1px solid var(--rule);font-size:13px;color:var(--ink);text-decoration:none}.ghint b{color:var(--c100)}
 /*@GNAV_CSS@*/
 /* 지도 위 막대: 휴대폰에서는 메뉴를 둘째 줄로(그만큼 --tb를 늘려 범례·조작 단추를 내림) */
 .topbar .gnav{margin-left:auto;order:9}
@@ -877,6 +885,7 @@ details.card[open] summary::after{content:"−"}
         <div class="khead"><p class="kicker"><b>AI 점령 지도</b> 사람의 일, AI가 어디까지 장악했나?</p><button type="button" class="dclose" id="dclose" aria-label="정보 패널 닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12H4.5M10.5 6l-6 6 6 6"/></svg></button></div>
         <div class="logo"><h1 aria-label="AI 점령 지도 · AI Occupied Map"><span class="ai" aria-hidden="true">AI</span><span class="w en" aria-hidden="true">Occupied</span><span class="w en" aria-hidden="true">Map</span></h1></div>
         <span class="badge" id="badge"></span>
+        <a class="ghint" id="ghint" href="/guide" hidden>처음이세요? <b>이 지도 보는 법 →</b></a>
       </header>
       <div class="search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -1064,16 +1073,18 @@ function layoutLabels(F){
   L.taskL.forEach(X=>{const on=mtype==='cat'&&OVL.names&&view.k>=1.3&&X.n*s*s>2200&&(!F||F.regs.has(X.r));if(!on){X.e.classList.add('off');return}X.v.textContent=pct(ptj(X.r,X.rid,year))+'%';place(X,[0])});
 }
 
+try{if(!localStorage.getItem('aimap.guide')&&!localStorage.getItem('aimap.mine.v1'))$('#ghint').hidden=false}catch(e){$('#ghint').hidden=false}
+$('#ghint').addEventListener('click',()=>{try{localStorage.setItem('aimap.guide','1')}catch(e){}track('menu','guide-hint')});
 // ---------- 범례·지도 유형 ----------
 function renderLegend(){const lg=$('#legend');lg.innerHTML='';
   if(mtype==='occ'||mtype==='flat'){lg.append(el('b',null,mtype==='flat'?'AI 노출도 · 직업 평균':'AI 노출도'));const rp=el('div','ramp');RAMP[TH].forEach(c=>{const i=el('i');i.style.background=c;rp.appendChild(i)});
-    const tk=el('div','ticks num');['0','20','40','60','80','100%'].forEach(t=>tk.appendChild(el('span',null,t)));lg.append(rp,tk)}
+    const tk=el('div','ticks num');['0','20','40','60','80','100%'].forEach(t=>tk.appendChild(el('span',null,t)));lg.append(rp,tk,el('div','say','진할수록 AI가 더 많이 해내요'))}
   else if(mtype==='use'||mtype==='sub'){const U=mtype==='use';lg.append(el('b',null,U?'실제 사용 확인 (2026)':'대체 대 보완'));const rp=el('div','ramp');(U?RAMPU:RAMPS)[TH].forEach(c=>{const i=el('i');i.style.background=c;rp.appendChild(i)});
     const tk=el('div','ticks num');(U?['0','3','8','15','30%+']:['보완 쪽','','반반','','대체 쪽']).forEach(t=>tk.appendChild(el('span',null,t)));lg.append(rp,tk);
     lg.appendChild(el('div','ticks',U?'AI 사용 기록(Anthropic 경제지수)에서 이미 쓰이는 몫':'노출된 일 중 AI가 대신하는 업무의 비중 · 노출도가 낮을수록 옅게'))}
   else{lg.append(el('b',null,'업무 4분류'));Object.keys(CAT).forEach(g=>{const r=el('div','row'),i=el('i');i.style.background=CATP[TH][g];r.append(i,CAT[g][0],el('b','num',pct(catOcc(g,year))+'%'));lg.appendChild(r)});
     lg.appendChild(el('div','ticks','밝을수록 노출도 높음'))}
-  lg.appendChild(el('div','wm',`넓이 = 실제 취업자 · ${VER}`))}
+  lg.appendChild(el('div','say','넓을수록 일하는 사람이 많아요'));lg.appendChild(el('div','wm',VER))}
 function swatches(){$('.sw.flat').style.background=`linear-gradient(90deg,${RAMP[TH][1]} 0 33%,${RAMP[TH][3]} 33% 66%,${RAMP[TH][2]} 66%)`;$('.sw.occ').style.background=`linear-gradient(90deg,${RAMP[TH].map((c,i)=>`${c} ${i*20}% ${(i+1)*20}%`).join(',')})`;
   $('.sw.use').style.background=`linear-gradient(90deg,${RAMPU[TH].map((c,i)=>`${c} ${i*20}% ${(i+1)*20}%`).join(',')})`;$('.sw.sub').style.background=`linear-gradient(90deg,${RAMPS[TH].map((c,i)=>`${c} ${i*20}% ${(i+1)*20}%`).join(',')})`;
   $('.sw.cat').style.background=`linear-gradient(90deg,${'ABCD'.split('').map((g,i)=>`${CATP[TH][g]} ${i*25}% ${(i+1)*25}%`).join(',')})`}
@@ -1440,13 +1451,16 @@ function jobTabs(c,defs){const bar=el('div','jtabs');bar.setAttribute('role','ta
 function jobCard(j){
   const sk=selVia?smOf(j,selVia.k):null,f=(y,s=0)=>sk?occS(sk,y,s):occ(j,y,s);
   const c=el('section','card place'),t_=tw(j),y4=Math.min(yi()+4,2032),v=f(year);
-  const top=el('div','top'),tt=el('div');tt.append(el('h2',null,RJ_[j].name),el('div','sub',`${GNAME[RJ_[j].group]} 구역 · 표준직업분류 ${RJ_[j].code} ${RJ_[j].full} · 취업자 ${fw(RJ_[j].ws)}만 명`));
+  const top=el('div','top'),tt=el('div');const ttl=selVia&&selVia.t&&selVia.t!==RJ_[j].name?selVia.t:(sk?smName(j,sk):RJ_[j].name);
+  tt.append(el('h2',null,ttl),el('div','sub',`${GNAME[RJ_[j].group]} 구역 · 이 일을 하는 사람 ${fw(RJ_[j].ws)}만 명`));
+  // 분류 코드·계산 기준 설명은 접어 둔다(처음 보는 사람에게는 답이 먼저)
+  const how=el('details','how');how.append(el('summary',null,'어떻게 찾았나요?'));const how1=el('div','sub',`지도 위치: ${RJ_[j].name} · 표준직업분류 ${RJ_[j].code} ${RJ_[j].full}`);how.append(how1);
   const x=el('button','x','✕');x.type='button';x.setAttribute('aria-label','닫기');x.onclick=clearAll;top.append(tt,x);if(selVia){const v=el('div','sub via');v.style.marginTop='6px';const nm=selVia.k?`'${selVia.t}' · ${String(selVia.k).length===3?'소분류':'세분류'} ${selVia.k} ${selVia.kn}`:`'${selVia.t}'`;
-    v.textContent=sk?`${nm}(으)로 찾았어요. 아래 숫자는 소분류 '${smName(j,sk)}' 기준이에요. ${RJ_[j].name} 전체는 ${pct(occ(j,year))}%예요.`:`${nm}(으)로 찾았어요. 이 지역 전체 기준으로 계산했어요.`;tt.appendChild(v);
+    v.textContent=sk?`${nm}(으)로 찾았어요. 아래 숫자는 소분류 '${smName(j,sk)}' 기준이에요. ${RJ_[j].name} 전체는 ${pct(occ(j,year))}%예요.`:`${nm}(으)로 찾았어요. 이 지역 전체 기준으로 계산했어요.`;how.appendChild(v);
     if(!sk&&selVia.d&&cm.detail[selVia.d]){const dv=el('div','sub via');const od=occD(cm.detail[selVia.d],year);dv.innerHTML=`'${selVia.d}' 업무만 따로 보면 <b>${pct(od)}%</b>예요.`;tt.appendChild(dv)}}
   const r40=reach(y=>f(y),.4),f40=reach(y=>f(y,1),.4),s40=reach(y=>f(y,-1),.4);
   const lede=el('p','lede');lede.innerHTML=v>=.5?`이 일의 절반 이상을 AI가 해낼 수 있어요.`:v>=.4?`이 일의 40%\u2060 이상을 AI가 해낼 수 있어요.`:r40&&r40<=yi()?`올해 안에 이 일의 40%\u2060를 AI가 해낼 수 있게 될 전망이에요.`:r40?`${r40}년쯤 이 일의 40%\u2060를 AI가 해낼 수 있게 돼요.`:`아직 대부분 사람의 몫이에요.`;
-  const bn=el('div','bign');const b=el('b','num');b.append(String(pct(v)),el('small',null,'%'));bn.append(b,el('span',null,`${yi()} ${tag(year)} 노출도`));
+  const bn=el('div','bign');const b=el('b','num');b.append(String(pct(v)),el('small',null,'%'));bn.append(b,el('span',null,`${yi()} ${tag(year)} · AI가 해낼 수 있는 몫(노출도)`));
   const st=el('div','stats');[[`${y4} 예측`,`${pct(f(y4))}%`,`범위 ${pct(f(y4,-1))}–${pct(f(y4,1))}`],['40% 도달',r40===null?'2045 이후':f(2026)>=.4?'이미 도달':r40<=2026?'올해 안':`${r40}년`,r40===null?'':f(2026)>=.4?`2026년 ${pct(f(2026))}%`:`범위 ${f40}–${s40??'2045+'}`],['남은 구역',`${100-pct(v)}%`,`${yi()}년 사람 몫`]].forEach(([a,bb,cc])=>{const d=el('div');d.append(el('small',null,a),el('b','num',bb),el('em',null,cc));st.appendChild(d)});
   let sub=0,aug=0;for(const r in RJ_[j].w41){const vv=RJ_[j].w41[r]*ptj(j,r,year);if(SUB.has(r))sub+=vv;else aug+=vv}{const sc=occ(j,year)/Math.max(sub+aug,1e-9);sub*=sc;aug*=sc}
   const sp=el('div','split');[[sub,'var(--hot)'],[aug,'var(--tint)'],[1-sub-aug,'var(--fill2)']].forEach(([w,cc])=>{const i=el('i');i.style.width=(w*100).toFixed(1)+'%';i.style.background=cc;sp.appendChild(i)});
@@ -1461,7 +1475,7 @@ function jobCard(j){
   const relBox=el('div');if(rel.length){const rl=el('div','lab');rl.append(el('span',null,'이 직업에 닿은 최근 소식'));const ul=el('ul','news');rel.forEach(n=>ul.appendChild(newsItem(n)));relBox.append(rl,ul)}
   const RT=sk?SMD[sk]:RJ_[j];const rt=el('div','raters');rt.innerHTML=`<div><small>미국 연구</small><b>${pct(RT.e)}%</b></div><div><small>국제노동기구</small><b>${pct(RT.il)}%</b></div><div class="u"><small>실제 사용 확인</small><b>${RT.ob==null?'자료 없음':pct(Math.min(RT.ob,f(2026)))+'%'}</b></div>`;
   const rtn=el('p','rule','2026 노출도는 두 연구 값의 평균이에요. 실제 사용 확인은 AI 사용 기록(Anthropic 경제지수)에서 이미 쓰이는 게 보인 몫이에요.');
-  c.append(top,acts,lede,bn,trend((y,s)=>f(y,s),{ref:.4,refLabel:'40% 선'}),st);
+  c.append(top,lede,bn,acts,trend((y,s)=>f(y,s),{ref:.4,refLabel:'40% 선'}),st,how);
   const nF=frontFor(sk||RJ_[j].code).length;const P=jobTabs(c,[['my','내 업무'],['why','근거'],['front',nF?`쟁점 ${nF}`:'쟁점'],['sm','세부 직업',RJ_[j].smalls&&RJ_[j].smalls.length>1],['tasks','주요 업무'],['move','옮겨가기']]);
   P.front.append(frontBox(RJ_[j].code,sk));
   P.my.append(tkBox(j,sk,selVia&&selVia.k&&/^\d{4}$/.test(String(selVia.k))?String(selVia.k):null));P.why.append(rt,rtn,el('div','lab','노출된 업무의 성격'),sp,lg,relBox);

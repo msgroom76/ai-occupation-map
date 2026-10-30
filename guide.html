@@ -1,0 +1,133 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>이 지도 보는 법 · AI 점령 지도</title>
+<meta name="description" content="AI 점령 지도를 처음 보는 분을 위한 3분 안내. 색과 넓이가 뜻하는 것, 내 직업 찾는 법, 숫자를 읽는 법을 쉬운 말로 정리했어요.">
+<meta property="og:type" content="website"><meta property="og:title" content="이 지도 보는 법 · AI 점령 지도"><meta property="og:description" content="한 동네가 한 직업이에요. 진할수록 AI가 더 많이 해내요. 3분이면 읽을 수 있어요.">
+<meta property="og:image" content="https://aijido.org/img/water/og-test.png"><meta property="og:url" content="https://aijido.org/guide"><meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://aijido.org/guide">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+*{box-sizing:border-box}[hidden]{display:none!important}
+:root{--bg:#0b0c10;--card:#16171c;--ink:#f5f5f7;--ink2:rgba(235,235,245,.68);--ink3:rgba(235,235,245,.4);--hair:rgba(245,245,247,.16);--hot:#ff8ccd;--soft:rgba(255,140,205,.1);color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f6f8;--card:#fff;--ink:#16161a;--ink2:rgba(60,60,67,.72);--ink3:rgba(60,60,67,.42);--hair:rgba(22,22,26,.14);--hot:#8a085a;--soft:#fbf1f7;color-scheme:light}}
+:root[data-theme="light"]{--bg:#f6f6f8;--card:#fff;--ink:#16161a;--ink2:rgba(60,60,67,.72);--ink3:rgba(60,60,67,.42);--hair:rgba(22,22,26,.14);--hot:#8a085a;--soft:#fbf1f7;color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-size:16px;line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased}
+main{max-width:760px;margin:0 auto;padding:20px 16px 80px}a{color:inherit}
+.kick{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--hot);margin:32px 0 6px}
+h1{font-size:clamp(32px,6.6vw,52px);line-height:1.15;letter-spacing:-.04em;margin:0 0 14px;font-weight:800}
+.lede{color:var(--ink2);margin:0 0 8px;font-size:17px}
+.toc{display:flex;flex-wrap:wrap;gap:6px 14px;margin:20px 0 0;padding:12px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);font-size:14px}
+.toc a{text-decoration:none;color:var(--ink2)}.toc a:hover{color:var(--hot)}
+section{margin:52px 0 0;scroll-margin-top:80px}
+h2{font-size:24px;letter-spacing:-.03em;line-height:1.3;margin:0 0 12px}
+h2 .n{color:var(--hot);margin-right:8px;font-variant-numeric:tabular-nums}
+p{margin:0 0 12px}
+.big{background:var(--card);border:1px solid var(--hair);padding:20px;margin:16px 0}
+.big p{margin:0;font-size:18px;font-weight:600;line-height:1.55}.big p+p{margin-top:8px;font-size:15px;font-weight:400;color:var(--ink2)}
+figure{margin:18px 0 6px}figure img{display:block;width:100%;height:auto;border:1px solid var(--hair)}
+.narrow img{max-width:420px;margin:0 auto}
+ol.marks{list-style:none;padding:0;margin:12px 0 0;counter-reset:m}
+ol.marks li{counter-increment:m;position:relative;padding:10px 0 10px 40px;border-bottom:1px solid var(--hair)}
+ol.marks li::before{content:counter(m);position:absolute;left:0;top:11px;width:26px;height:26px;border-radius:50%;background:var(--hot);color:var(--bg);font-weight:700;font-size:14px;display:grid;place-items:center}
+ol.marks b{display:block}
+dl.terms{margin:12px 0 0}
+dl.terms dt{font-weight:700;margin:18px 0 2px}dl.terms dd{margin:0;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 0}
+.cards a{display:block;background:var(--card);border:1px solid var(--hair);padding:18px;text-decoration:none}
+.cards a:hover{border-color:var(--hot)}.cards b{display:block;font-size:17px;margin-bottom:4px}.cards span{font-size:14px;color:var(--ink2)}
+details{border-bottom:1px solid var(--hair)}details:first-of-type{border-top:1px solid var(--hair)}
+summary{cursor:pointer;padding:14px 0;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}summary::after{content:"+";color:var(--hot);font-weight:400}
+details[open] summary::after{content:"−"}details p{color:var(--ink2);margin:0 0 14px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0}
+.btn{display:inline-flex;align-items:center;min-height:52px;padding:0 22px;background:var(--hot);color:var(--bg);font-weight:700;text-decoration:none}
+.btn.ghost{background:none;color:var(--ink);border:1.5px solid var(--ink)}
+.foot{margin-top:56px;font-size:13px;color:var(--ink3)}
+@media (max-width:560px){.cards{grid-template-columns:1fr}h2{font-size:21px}.lede{font-size:16px}}
+.gnav{display:flex;align-items:center;gap:4px;flex:none}
+.gnav a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 12px;font-size:14px;font-weight:600;color:var(--ink2);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap}
+.gnav a:hover{color:var(--ink)}.gnav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--hot)}
+.gnav a:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+.gnav a[href="/guide"]{font-weight:500}.gnav a[href="/guide"]::before{content:"?";display:inline-grid;place-items:center;width:16px;height:16px;margin-right:5px;border:1.5px solid currentColor;border-radius:50%;font-size:10.5px;font-weight:700}
+@media (max-width:899px){.gnav{gap:0}.gnav a{flex:1;min-height:32px;padding:0 4px;font-size:13.5px}.gnav a[href="/guide"]{flex:none;padding:0 2px 0 6px;font-size:0}.gnav a[href="/guide"]::before{margin:0;width:20px;height:20px;font-size:12px}}
+.gh{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;min-height:64px;box-sizing:border-box;padding:calc(11px + env(safe-area-inset-top,0px)) 16px 11px;background:var(--bg);border-bottom:1px solid var(--ink)}
+.gh-mark{display:flex;align-items:center;gap:5px;color:var(--hot);text-decoration:none;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-weight:700;flex:none}
+.gh-mark b{font-size:36px;letter-spacing:-.045em;line-height:.8}.gh-mark span{font-size:11.5px;line-height:1.02;letter-spacing:-.02em}
+.gh .gnav{margin-left:auto}
+@media (max-width:899px){.gh{flex-wrap:wrap;row-gap:4px;min-height:0;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px}.gh-mark{min-height:46px}.gh-mark b{font-size:30px}.gh-mark span{font-size:10px}.gh .gnav{width:100%;margin:0 -4px}}
+html{scroll-padding-top:76px}@media (max-width:899px){html{scroll-padding-top:115px}}
+@media print{.gh{display:none}}
+
+</style><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"></head><body><header class="gh"><a class="gh-mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a><nav class="gnav" aria-label="주요 메뉴"><a href="/">지도</a><a href="/test">내 직업 전망</a><a href="/org">기업 자가 진단</a><a href="/guide" aria-current="page">보는 법</a></nav></header>
+<main>
+<p class="kick">처음 오셨나요</p>
+<h1>이 지도 보는 법</h1>
+<p class="lede">3분이면 다 읽어요. 하나만 기억하면 돼요. <b>한 동네가 한 직업이고, 진할수록 AI가 그 일을 더 많이 해낼 수 있다</b>는 뜻이에요.</p>
+<nav class="toc"><a href="#what">무엇을 보여주나</a><a href="#map">지도 읽기</a><a href="#job">내 직업 찾기</a><a href="#terms">낱말 풀이</a><a href="#more">다른 메뉴</a><a href="#faq">자주 묻는 것</a></nav>
+
+<section id="what">
+<h2><span class="n">1</span>이 지도가 말하는 것</h2>
+<p>우리나라 사람들이 하는 일을 직업별로 나눠 하나의 도시처럼 그렸어요. 비슷한 일끼리 모여 ‘구역’이 되고, 구역 안의 작은 동네 하나하나가 직업이에요.</p>
+<div class="big"><p>색이 진한 동네일수록, 그 직업이 하는 일 가운데 AI가 해낼 수 있는 몫이 커요.</p><p>이걸 ‘노출도’라고 불러요. 지금 우리나라 일 전체로 보면 이 몫이 3분의 1쯤 돼요.</p></div>
+<p>오해하기 쉬운 점이 하나 있어요. 노출도는 <b>“이 직업이 사라진다”는 뜻이 아니에요.</b> 하루 일과 중 AI 손을 빌릴 수 있는 부분이 얼마나 되느냐예요. 그 몫이 사람을 줄이는 쪽으로 쓰일지, 사람이 더 많은 일을 하게 돕는 쪽으로 쓰일지는 회사와 제도가 정해요.</p>
+</section>
+
+<section id="map">
+<h2><span class="n">2</span>지도 읽기</h2>
+<p>첫 화면에서 눈여겨볼 곳은 다섯 군데예요.</p>
+<figure><img src="/img/guide/map.webp" width="1440" height="900" alt="지도 첫 화면. 검색창, 범례, 구역 이름, 진한 동네, 연도 막대에 번호가 붙어 있다" loading="lazy"></figure>
+<ol class="marks">
+<li><b>검색창</b>직업 이름을 넣으면 그 동네로 바로 가요. ‘마케터’, ‘간호사’처럼 평소 부르는 이름이면 돼요.</li>
+<li><b>범례</b>색이 진할수록 AI가 더 많이 해내는 일이에요. 동네가 넓을수록 그 일을 하는 사람이 많아요.</li>
+<li><b>구역 이름과 숫자</b>‘사무 구역 56%’는 사무 일을 하는 사람들의 노출도를 평균 낸 값이에요.</li>
+<li><b>진한 동네</b>이렇게 빽빽하고 진한 곳이 지금 AI가 가장 깊이 들어온 직업이에요. 눌러 보면 자세한 카드가 열려요.</li>
+<li><b>연도 막대</b>▶를 누르거나 막대를 끌면 2023년부터 2032년까지 색이 어떻게 진해지는지 볼 수 있어요.</li>
+</ol>
+<p style="margin-top:14px;color:var(--ink2);font-size:15px">휴대폰에서는 두 손가락으로 벌려 확대하고, 동네를 눌러 카드를 열어요.</p>
+</section>
+
+<section id="job">
+<h2><span class="n">3</span>내 직업 찾기</h2>
+<p>검색하거나 동네를 누르면 카드가 열려요. 맨 위에 답이 먼저 나와요.</p>
+<figure class="narrow"><img src="/img/guide/card.webp" width="684" height="928" alt="마케터를 검색했을 때 열리는 카드. 직업 이름, 큰 숫자 52%, 내 직업으로 저장 버튼, 앞으로의 곡선에 번호가 붙어 있다" loading="lazy"></figure>
+<ol class="marks">
+<li><b>찾은 직업</b>내가 넣은 이름과 가장 가까운 직업이에요. 그 아래에 어느 구역인지, 몇 명이 이 일을 하는지 나와요.</li>
+<li><b>큰 숫자 하나</b>이 일 가운데 지금 AI가 해낼 수 있는 몫이에요. 그 위 한 줄이 이 숫자를 말로 풀어 줘요.</li>
+<li><b>내 직업으로 저장</b>저장해 두면 다음에 왔을 때 바로 보이고, 숫자가 바뀌면 알 수 있어요.</li>
+<li><b>앞으로의 곡선</b>진한 선이 가장 그럴듯한 흐름, 옅은 띠가 그럴 수 있는 범위예요. 점선은 40% 선이에요.</li>
+</ol>
+<p style="margin-top:14px">카드를 더 내리면 이 직업에서 AI가 해내는 일이 무엇인지, 어떻게 이 직업을 찾았는지가 접혀 있어요. 궁금할 때만 열어 보면 돼요.</p>
+</section>
+
+<section id="terms">
+<h2><span class="n">4</span>낱말 풀이</h2>
+<dl class="terms">
+<dt>노출도</dt><dd>한 직업이 하는 일을 여러 업무로 쪼갠 뒤, 업무마다 AI가 해낼 수 있는 정도를 더한 값이에요. 100%면 모든 업무를 AI가 해낼 수 있다는 뜻이고, 실제로 그렇게 쓰이는지는 따로 봐요.</dd>
+<dt>실제 사용 확인</dt><dd>사람들이 AI를 실제로 쓴 기록(Anthropic 경제지수)에서 이미 그 업무에 쓰이고 있는 게 확인된 몫이에요. ‘할 수 있다’와 ‘하고 있다’의 차이를 보여줘요.</dd>
+<dt>2030 예측과 범위</dt><dd>지금 흐름이 이어지면 2030년에 어디쯤일지예요. 미래는 정확히 알 수 없어서, 빨라질 때와 늦어질 때를 띠로 함께 보여줘요.</dd>
+<dt>40% 도달</dt><dd>그 직업의 노출도가 40%를 넘는 해예요. 40%는 일의 상당 부분을 AI와 나눠 하게 되는 지점으로 잡은 기준선이에요.</dd>
+<dt>대체형과 보완형</dt><dd>대체형은 AI가 사람 대신 끝낼 수 있는 업무(서류 정리, 번역 같은 것), 보완형은 AI가 돕지만 사람이 마무리하는 업무(상담, 판단 같은 것)예요. 같은 노출도라도 대체형이 많으면 일자리에 더 직접 영향을 줘요.</dd>
+<dt>주간 소식</dt><dd>새 AI 모델이나 서비스가 나오면 매주 월요일에 숫자를 조금씩 고쳐요. 왼쪽 위 ‘소식’ 줄에서 무엇이 바뀌었는지 볼 수 있어요.</dd>
+</dl>
+</section>
+
+<section id="more">
+<h2><span class="n">5</span>다른 메뉴</h2>
+<div class="cards">
+<a href="/test"><b>내 직업 전망 →</b><span>직업 이름 하나로 지금 어디까지 왔는지, 언제 더 차오르는지 한 장으로 보여줘요.</span></a>
+<a href="/org"><b>기업 자가 진단 →</b><span>우리 회사 직무와 인원을 넣으면 조직 전체가 AI에 얼마나 노출됐는지 계산해요.</span></a>
+</div>
+</section>
+
+<section id="faq">
+<h2><span class="n">6</span>자주 묻는 것</h2>
+<details><summary>숫자가 높으면 그 직업은 없어지나요?</summary><p>아니에요. 노출도는 일의 일부를 AI가 맡을 수 있다는 뜻이지, 사람이 필요 없다는 뜻이 아니에요. 노출도가 높아도 일이 늘어나는 직업이 있고, 낮아도 줄어드는 직업이 있어요. 숫자는 ‘어디를 먼저 준비해야 하는지’ 보는 지도로 쓰는 게 좋아요.</p></details>
+<details><summary>왜 지난주와 숫자가 다른가요?</summary><p>매주 새로 나온 AI 소식을 반영해 업무별 수치를 고쳐요. 바뀐 이유는 지도 왼쪽의 ‘소식’과 주간 메일에 적어 둬요.</p></details>
+<details><summary>내 직업이 안 나와요.</summary><p>‘그로스 매니저’, ‘PM’처럼 회사에서 쓰는 직함도 꽤 많이 찾아요. 그래도 안 나오면 하는 일을 떠올려 ‘마케터’, ‘회계’, ‘상담원’처럼 흔한 이름으로 넣어 보세요. 공식 직업 분류에서 가장 가까운 직업으로 이어 줘요.</p></details>
+<details><summary>어떤 자료로 만들었나요?</summary><p>업무별로 AI가 해낼 수 있는 정도는 두 연구(Eloundou 외 2024, ILO 2025)의 평균을, 직업별 업무 구성은 미국 O*NET을, 실제 AI 사용은 Anthropic 경제지수를, 직업별 일하는 사람 수는 국가데이터처 통계를 썼어요. 해마다 어떻게 바뀌는지는 이 지도가 추정한 값이에요. 자세한 방법은 <a href="/about">소개 페이지</a>에 있어요.</p></details>
+</section>
+
+<div class="cta"><a class="btn" href="/">지도 열기</a><a class="btn ghost" href="/test">내 직업 바로 찾기</a></div>
+<p class="foot">AI 점령 지도 · 숫자는 매주 바뀌어요.</p>
+</main>
+<script>try{localStorage.setItem('aimap.guide','1')}catch(e){}</script>
+</body></html>
