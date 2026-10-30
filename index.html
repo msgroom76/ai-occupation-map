@@ -818,6 +818,32 @@ details.card[open] summary::after{content:"−"}
 .card details.how summary::before{content:'＋ ';}.card details.how[open] summary::before{content:'－ '}
 .card details.how .sub{margin-top:6px}
 .ghint{display:block;margin:10px 0 0;padding:9px 12px;border:1px solid var(--rule);font-size:13px;color:var(--ink);text-decoration:none}.ghint b{color:var(--c100)}
+/* 첫 화면: 로고 → 질문 한 줄 → 검색창 → 예시. 패널이 열려 있으면 검색창은 패널 맨 위에 있다 */
+.sheet .head{margin-bottom:0}
+.khead{align-items:flex-start}
+.khead .logo{margin:0}
+.head .hero{margin:22px 0 14px;font-size:22px;line-height:1.36;font-weight:700;letter-spacing:-.035em;color:var(--ink)}
+.hslot .search{display:block;margin:0}
+.hslot .search input{height:52px;padding:0 44px 0 42px;font-size:16px;font-weight:500;background:var(--bg);border:1.5px solid var(--ink)}
+.hslot .search input:hover{border-color:var(--ink)}
+.hslot .search input:focus{border-color:var(--c100);box-shadow:0 0 0 3px color-mix(in srgb,var(--c100) 18%,transparent)}
+.hslot .search svg{left:15px;top:26px;width:18px;height:18px;color:var(--ink)}
+.hslot .search::after{top:26px;right:16px}
+.hslot .results{margin-top:-1.5px;border:1.5px solid var(--ink);border-top-width:1px}
+.hslot .results button{padding:12px 14px;font-size:14px}
+.sheet .sugg{margin:12px 0 0}
+.hmeta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px;margin:22px 0 36px;padding:8px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);font-size:11.5px;color:var(--ink2)}
+.hmeta .badge{border:0;padding:0;margin:0;font-size:11.5px}
+.hmeta .ghint{display:inline;margin:0;padding:0;border:0;font-size:12px;color:var(--ink2)}
+.hmeta .ghint b{color:var(--c100);font-weight:700}
+.hmeta .ghint:hover b{text-decoration:underline;text-underline-offset:3px}
+@media (max-width:899px){
+  .logo .ai{font-size:64px;margin:-5px 0 0 -3px}.logo .en{font-size:25.7px}.logo .en+.en{padding-top:2.2px}.logo{column-gap:10px}
+  .head .hero{font-size:21px;margin:18px 0 12px}
+  .scroll>.hmeta{order:-3}
+  .sheet .sugg button:nth-child(n+6){display:none}
+  .hmeta{margin:18px 0 28px}
+}
 .gnav{display:flex;align-items:center;gap:4px;flex:none}
 .gnav a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 12px;font-size:14px;font-weight:600;color:var(--ink2);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap}
 .gnav a:hover{color:var(--ink)}.gnav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--hot)}
@@ -893,10 +919,9 @@ details.card[open] summary::after{content:"−"}
     <div class="scroll" id="scroll">
       <header class="head">
         <nav class="gnav gnav-sheet" aria-label="주요 메뉴"><a href="/" aria-current="page">지도</a><a href="/test">내 직업 전망</a><a href="/org">기업 자가 진단</a><a href="/guide">보는 법</a></nav>
-        <div class="khead"><p class="kicker"><b>AI 점령 지도</b> 사람의 일, AI가 어디까지 장악했나?</p><button type="button" class="dclose" id="dclose" aria-label="정보 패널 닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12H4.5M10.5 6l-6 6 6 6"/></svg></button></div>
-        <div class="logo"><h1 aria-label="AI 점령 지도 · AI Occupied Map"><span class="ai" aria-hidden="true">AI</span><span class="w en" aria-hidden="true">Occupied</span><span class="w en" aria-hidden="true">Map</span></h1></div>
-        <span class="badge" id="badge"></span>
-        <a class="ghint" id="ghint" href="/guide" hidden>처음이세요? <b>이 지도 보는 법 →</b></a>
+        <div class="khead"><div class="logo"><h1 aria-label="AI 점령 지도 · AI Occupied Map"><span class="ai" aria-hidden="true">AI</span><span class="w en" aria-hidden="true">Occupied</span><span class="w en" aria-hidden="true">Map</span></h1></div><button type="button" class="dclose" id="dclose" aria-label="정보 패널 닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12H4.5M10.5 6l-6 6 6 6"/></svg></button></div>
+        <p class="hero" id="hero">내 일, AI가 얼마나<br>해낼 수 있을까요?</p>
+        <div class="hslot" id="hslot"></div>
       </header>
       <div class="search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -904,8 +929,7 @@ details.card[open] summary::after{content:"−"}
         <ul class="results" id="results" hidden></ul>
       </div>
       <div class="sugg" id="sugg"></div>
-      <a class="tlink" href="/test">내 직업은 언제 소멸될까? <b>내 직업 전망 →</b></a>
-      <section class="join" id="join" aria-label="주간 메일 구독과 협력 문의"></section>
+      <p class="hmeta"><span class="badge" id="badge"></span><a class="ghint" id="ghint" href="/guide" hidden>처음이세요? <b>보는 법 →</b></a></p>
       <div id="ctx"></div>
       <div id="rest"></div>
     </div>
@@ -1376,9 +1400,8 @@ function joinBlock(src){const box=el('section','join');box.setAttribute('aria-la
   const m=el('div','jm');const b1=el('button','jbtn h');b1.type='button';b1.innerHTML=MAIL_SVG;b1.append(' 주간 메일 받기');b1.onclick=()=>joinOpen('news',src);
   const b2=el('button','jbtn');b2.type='button';b2.innerHTML=HAND_SVG;b2.append(' 후원·제휴');b2.onclick=()=>joinOpen('part',src);m.append(b1,b2);
   box.append(n,pp,m);return box}
-function joinInit(){const j=document.getElementById('join'),dl=document.getElementById('jdlg');if(!j||j.childElementCount)return;
-  j.append(...joinBlock('top').childNodes);
-  if(dl){document.getElementById('jdx').onclick=()=>dl.close();dl.addEventListener('click',e=>{if(e.target===dl)dl.close()})}}
+function joinInit(){const j=document.getElementById('join'),dl=document.getElementById('jdlg');if(j&&!j.childElementCount)j.append(...joinBlock('top').childNodes);
+  if(dl&&!dl.dataset.on){dl.dataset.on=1;document.getElementById('jdx').onclick=()=>dl.close();dl.addEventListener('click',e=>{if(e.target===dl)dl.close()})}}
 function aboutCard(){
   const d=el('details','card');d.innerHTML=`<summary>이 지도에 대해 · 인용하기</summary>`;const m=el('div','meth');
   m.innerHTML=`<dl>
@@ -1595,7 +1618,7 @@ wireSearch($('#q'),$('#results'),(i,via)=>pickJob(i,via));
 const sheet=$('#sheet');
 // 정보 패널은 왼쪽 서랍: 기본은 지도만 크게, 메뉴 버튼이나 직업 선택으로 열린다
 let dOpen=false;
-function drawer(o,why){o=!!o;if(o===dOpen)return;dOpen=o;sheet.classList.toggle('open',o);document.body.classList.toggle('dopen',o);$('#scrim').classList.toggle('on',o);sheet.inert=!o;
+function drawer(o,why){o=!!o;if(o===dOpen)return;dOpen=o;sheet.classList.toggle('open',o);document.body.classList.toggle('dopen',o);$('#scrim').classList.toggle('on',o);sheet.inert=!o;placeSearch();
   const mb=$('#menu');mb.setAttribute('aria-expanded',o);mb.setAttribute('aria-label',o?'정보 패널 닫기':'정보 패널 열기');
   if(desk()){stack.classList.add('glide');view.tx+=(o?1:-1)*sheet.offsetWidth/2;clamp();apply();setTimeout(()=>stack.classList.remove('glide'),380)}
   if(o&&why==='menu')setTimeout(()=>$('#dclose').focus({preventScroll:true}),60);if(!o&&why==='key')mb.focus();track('menu',(o?'open:':'close:')+(why||''))}
@@ -1623,7 +1646,7 @@ mqD.addEventListener('change',onTheme);new MutationObserver(onTheme).observe(doc
 
 $('#badge').textContent=FEED.updated?`소식 ${fmtT(FEED.updated)} 갱신 · 베타`:`베타 · ${ASOF}`;
 const sMark=document.createComment('search');$('.search').before(sMark);
-function placeSearch(){const sb=$('.search');$('#q').placeholder=desk()?'직업 이름 검색 (예: 마케터, AE, 간호사)':'직업 검색 (예: 마케터)';if(sb.parentElement!==$('#topbar'))$('#topbar').appendChild(sb)}
+function placeSearch(){const sb=$('.search'),q=$('#q'),to=dOpen?$('#hslot'):$('#topbar');q.placeholder=dOpen?'직업 이름 (예: 마케터, 간호사)':desk()?'직업 이름 검색 (예: 마케터, AE, 간호사)':'직업 검색 (예: 마케터)';if(sb.parentElement!==to){const f=document.activeElement===q;to.appendChild(sb);if(f)q.focus({preventScroll:true})}}
 placeSearch();
 // 휴대폰은 주소창이 접히거나 키보드가 뜰 때도 resize가 와서, 너비·방향이 바뀔 때만 지도를 처음 화면으로 맞춘다
 {let lw=innerWidth,lp=innerWidth>innerHeight,tm=0;addEventListener('resize',()=>{placeSearch();clearTimeout(tm);tm=setTimeout(()=>{const p=innerWidth>innerHeight;if(Math.abs(innerWidth-lw)>40||p!==lp){lw=innerWidth;lp=p;home()}},150)})}sheet.addEventListener('transitionend',()=>layoutLabels());
