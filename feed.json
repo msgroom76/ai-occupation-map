@@ -1,7 +1,53 @@
 {
- "updated": "2026-10-30T17:53:12+09:00",
+ "updated": "2026-10-31T08:58:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-10-30-ibk-deeplearning-voicephishing-docs",
+   "ts": "2026-10-30T10:00:00+09:00",
+   "src": "AI타임스",
+   "url": "https://www.aitimes.com/news/articleView.html?idxno=216827",
+   "tier": "확인 필요",
+   "sig": "도입",
+   "kr": true,
+   "hd": "한국딥러닝, IBK기업은행 보이스피싱 피해구제 신청 서류의 인식·분류·정보 추출·범죄 유형 추론을 AI 에이전트로 자동화하는 실증 마쳐 — 처리 시간 88% 단축, 신뢰도 낮은 건은 담당자 검수, 실제 업무 적용은 내년 상반기 예정",
+   "r": [
+    "B2",
+    "C9"
+   ],
+   "st": "hold",
+   "note": "실증(PoC) 결과 · 실제 업무 적용은 2027년 상반기 예정",
+   "grp": "doc-intake-agent",
+   "dwa": [
+    [
+     "4.A.2.a.3.I01.D02",
+     "d"
+    ],
+    [
+     "4.A.2.a.2.I03.D03",
+     "d"
+    ]
+   ],
+   "ind": [
+    "34"
+   ]
+  },
+  {
+   "id": "2026-10-29-mistral-large-4-open-weights",
+   "ts": "2026-10-30T01:00:00+09:00",
+   "src": "TechCrunch",
+   "url": "https://techcrunch.com/2026/10/29/mistral-releases-weights-for-its-trillion-parameter-ai-model-targeting-cybersecurity/",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "kr": false,
+   "us": false,
+   "hd": "미스트랄, 1조 파라미터 모델 'Mistral Large 4' 가중치 공개(허깅페이스·API) — 기관이 자체 서버에 설치해 쓸 수 있고, 에이전트 코딩·사이버 방어 성능을 내세움",
+   "r": [
+    "C5"
+   ],
+   "st": "pending",
+   "grp": "mistral-model"
+  },
   {
    "id": "2026-10-30-11st-ai-showhost",
    "ts": "2026-10-30T06:00:00+09:00",
@@ -3041,6 +3087,24 @@
  ],
  "front": [
   {
+   "id": "2026-10-29-sag-aftra-tv-animation-ai",
+   "ts": "2026-10-30T09:00:00+09:00",
+   "src": "TheWrap",
+   "url": "https://www.thewrap.com/industry-news/labor-unions/sag-aftra-members-ratify-tv-animation-contracts/",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "sig": "저항",
+   "kind": "노사",
+   "fx": "중",
+   "ind": [
+    "29"
+   ],
+   "hd": "미국 배우·성우 노조 SAG-AFTRA, TV 애니메이션 단협(2026.7~2030.6, 4년) 찬성 94.5%로 비준 — AI 관련 보호 조항 강화",
+   "note": "애니메이션 성우 계약의 AI 보호(보도에 따르면 더빙용 디지털 복제 동의, 합성 연기자는 '상당한 부가가치'일 때만, 외부 AI 학습용 라이선스 전 노조 통지) · 단협 의무라 중",
+   "st": "none",
+   "added": "2026-10-31T08:58:00+09:00"
+  },
+  {
    "id": "2026-10-30-ktu-seoul-elementary-genai-ban",
    "ts": "2026-10-30T16:08:00+09:00",
    "src": "세계일보",
@@ -3905,6 +3969,19 @@
   }
  ],
  "runs": [
+  {
+   "at": "2026-10-31T08:58:00+09:00",
+   "push": {
+    "q": 14,
+    "cand": 5,
+    "acc": 2
+   },
+   "front": {
+    "q": 11,
+    "cand": 7,
+    "acc": 1
+   }
+  },
   {
    "at": "2026-10-30T17:53:12+09:00",
    "push": {
