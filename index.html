@@ -824,13 +824,12 @@ details.card[open] summary::after{content:"−"}
 .khead .logo{margin:0}
 .head .hero{margin:22px 0 14px;font-size:22px;line-height:1.36;font-weight:700;letter-spacing:-.035em;color:var(--ink)}
 .hslot .search{display:block;margin:0}
-.hslot .search input{height:52px;padding:0 44px 0 42px;font-size:16px;font-weight:500;background:var(--bg);border:1.5px solid var(--ink)}
-.hslot .search input:hover{border-color:var(--ink)}
-.hslot .search input:focus{border-color:var(--c100);box-shadow:0 0 0 3px color-mix(in srgb,var(--c100) 18%,transparent)}
-.hslot .search svg{left:15px;top:26px;width:18px;height:18px;color:var(--ink)}
-.hslot .search::after{top:26px;right:16px}
-.hslot .results{margin-top:-1.5px;border:1.5px solid var(--ink);border-top-width:1px}
-.hslot .results button{padding:12px 14px;font-size:14px}
+.hslot .search input{height:44px;padding:0 40px 0 38px;font-size:15px;font-weight:500;background:var(--fill);border:1px solid var(--hair)}
+.hslot .search input:focus{border-color:var(--ink);background:var(--bg);box-shadow:none}
+.hslot .search svg{left:13px;top:22px;width:16px;height:16px;color:var(--ink2)}
+.hslot .search::after{top:22px;right:14px}
+.hslot .results{margin-top:-1px}
+.hslot .results button{padding:11px 12px;font-size:13.5px}
 .sheet .sugg{margin:12px 0 0}
 .hmeta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px;margin:22px 0 36px;padding:8px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);font-size:11.5px;color:var(--ink2)}
 .hmeta .badge{border:0;padding:0;margin:0;font-size:11.5px}
@@ -842,6 +841,7 @@ details.card[open] summary::after{content:"−"}
   .head .hero{font-size:21px;margin:18px 0 12px}
   .scroll>.hmeta{order:-3}
   .sheet .sugg button:nth-child(n+6){display:none}
+  .sheet .sugg button:nth-child(5)::after{content:none}
   .hmeta{margin:18px 0 28px}
 }
 .gnav{display:flex;align-items:center;gap:4px;flex:none}
