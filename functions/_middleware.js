@@ -8,7 +8,7 @@ import { checkSources } from './_sources.js';
 const MOVE = new Set(['www.aijido.org', 'ai-occupation-map.pages.dev']);
 const PUBLIC_FILES = new Set(['/', '/index.html', '/404.html', '/robots.txt', '/sitemap.xml', '/og.png',
   '/city_index.png', '/city_roads.png', '/city_meta.json', '/config.json', '/feed.json', '/index.json',
-  '/ksco_titles.json', '/ksco_soc_map.json', '/tasks.json', '/protect.json', '/favicon.ico',
+  '/ksco_titles.json', '/ksco_soc_map.json', '/tasks.json', '/protect.json', '/favicon.ico', '/favicon.svg', '/apple-touch-icon.png',
   '/privacy', '/privacy.html', '/terms', '/terms.html', '/about', '/about.html', '/admin', '/admin.html',
   '/test', '/test.html', '/us_kr.json', '/labor.json',
   '/org', '/org.html', '/org_engine.js', '/org_bench.json']);

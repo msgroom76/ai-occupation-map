@@ -29,6 +29,7 @@ html{scroll-padding-top:76px}@media (max-width:899px){html{scroll-padding-top:11
 """
 # 지도 쪽 강조색은 로고색(--c100)에 맞춘다
 MAP_GNAV_FIX=".topbar .gnav a[aria-current=page],.gnav-sheet a[aria-current=page]{border-bottom-color:var(--c100)}\n"
+ICON='<link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png">'
 FONT='<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap">'
 def header(cur):
     return '<header class="gh"><a class="gh-mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a>'+gnav(cur)+'</header>'
@@ -37,6 +38,8 @@ def apply(t):
     t=t.replace('/*@GNAV_CSS@*/',GNAV_CSS+MAP_GNAV_FIX).replace('/*@GH_CSS@*/',GH_CSS)
     t=t.replace('<!--@GNAV:/@-->',gnav('/')).replace('<!--@GNAV_SHEET@-->',gnav('/','gnav gnav-sheet'))
     t=re.sub(r'<!--@HEADER:(/[a-z]*)@-->',lambda m:header(m.group(1)),t)
+    t=t.replace('<link rel="icon" href="data:,">','')
+    if 'rel="apple-touch-icon"' not in t: t=t.replace('</head>',ICON+'</head>',1)
     if '<!--@HEADER' in t or 'class="gh"' in t and FONT not in t: t=t.replace('</head>',FONT+'</head>',1)
     assert '@GNAV' not in t and '@GH_CSS' not in t and '@HEADER' not in t
     return t

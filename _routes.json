@@ -17,6 +17,9 @@
     "/og/*",
     "/mail/img/*",
     "/img/*",
-    "/us_kr.json"
+    "/us_kr.json",
+    "/favicon.ico",
+    "/favicon.svg",
+    "/apple-touch-icon.png"
   ]
 }
