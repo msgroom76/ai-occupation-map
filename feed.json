@@ -1,7 +1,59 @@
 {
- "updated": "2026-10-31T12:58:00+09:00",
+ "updated": "2026-10-31T17:58:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-10-30-plateer-xgen-product-registration",
+   "ts": "2026-10-30T10:42:00+09:00",
+   "src": "이데일리",
+   "url": "https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=03726086645618168",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "kr": true,
+   "us": false,
+   "hd": "플래티어, 기업용 에이전틱 AI 플랫폼 '엑스젠(XGEN)' 시연 — 음성 지시 한 번에 신상품 자료 분석·카테고리·중복 확인 후 담당자 승인을 거쳐 쇼핑몰에 상품 등록, 직원이 대화로 업무 에이전트를 만들어 사내 시스템에 연결",
+   "r": [
+    "C5",
+    "B2"
+   ],
+   "st": "pending",
+   "grp": "agent-builder",
+   "dwa": [
+    [
+     "4.A.3.b.1.I06.D06",
+     "d"
+    ]
+   ],
+   "ind": [
+    "283"
+   ]
+  },
+  {
+   "id": "2026-10-30-lges-enswer-ess-trading-agent",
+   "ts": "2026-10-30T14:37:00+09:00",
+   "src": "머니투데이(서플 전재)",
+   "url": "https://supple.kr/news/cmvujmfi7czk113paeqqxjbff",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "kr": true,
+   "us": false,
+   "hd": "LG에너지솔루션, ESS 전력 거래용 AI 분석 에이전트 '엔스워' 첫 공개 — 시장 데이터·입찰 이력·규정·뉴스를 찾아 근거와 입찰 전략을 제시, 트레이더 반복 업무를 덜어 줌(현재 시범 운영 단계)",
+   "r": [
+    "B4",
+    "A1"
+   ],
+   "st": "pending",
+   "grp": "energy-trading-agent",
+   "dwa": [
+    [
+     "4.A.2.a.4.I02.D04",
+     "a"
+    ]
+   ],
+   "ind": [
+    "28"
+   ]
+  },
   {
    "id": "2026-10-31-comcast-warn-912-ai-redesign",
    "ts": "2026-10-31T00:24:00+09:00",
@@ -3126,6 +3178,24 @@
  ],
  "front": [
   {
+   "id": "2026-10-22-afm-human-made-human-paid",
+   "ts": "2026-10-22T09:00:00+09:00",
+   "src": "Hypebot",
+   "url": "https://hypebot.com/afm-launches-human-made-human-paid-ai-music-campaign",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "sig": "저항",
+   "kind": "노사",
+   "fx": "약",
+   "ind": [
+    "294"
+   ],
+   "hd": "미국 음악가 노조 AFM, 'Human Made, Human Paid' 캠페인 시작 — 유니버설·소니·워너 등과의 음반 녹음 단협(SRLA) 재협상(11월 3일 재개)에서 AI 학습·음성·악기 복제에 연주자 동의·출처 표기·수익 배분 요구",
+   "note": "연주자·가수 녹음을 AI 학습·복제에 쓸 때 조건을 거는 단협 요구안 · 아직 합의 전이라 약",
+   "st": "none",
+   "added": "2026-10-31T17:58:00+09:00"
+  },
+  {
    "id": "2026-10-29-sag-aftra-tv-animation-ai",
    "ts": "2026-10-30T09:00:00+09:00",
    "src": "TheWrap",
@@ -4008,6 +4078,19 @@
   }
  ],
  "runs": [
+  {
+   "at": "2026-10-31T17:58:00+09:00",
+   "push": {
+    "q": 16,
+    "cand": 8,
+    "acc": 2
+   },
+   "front": {
+    "q": 12,
+    "cand": 6,
+    "acc": 1
+   }
+  },
   {
    "at": "2026-10-31T12:58:00+09:00",
    "push": {
