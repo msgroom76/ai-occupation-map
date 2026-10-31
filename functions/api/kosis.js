@@ -13,13 +13,15 @@ const setMeta = (d, k, v) => d.prepare("INSERT INTO meta (k, v) VALUES (?1, ?2) 
 async function kosis(env, url) {
   const r = await fetch(url + '&apiKey=' + encodeURIComponent(env.KOSIS_KEY), { signal: AbortSignal.timeout(12000), headers: { accept: 'application/json' } });
   const t = await r.text(); let j; try { j = JSON.parse(t); } catch (e) { j = null; }
-  if (!j) { try { j = JSON.parse(t.replace(/([{,])\s*([A-Za-z_]\w*)\s*:/g, '$1"$2":')); } catch (e) { return { err: `KOSIS 응답을 읽지 못함(${r.status})`, raw: t.slice(0, 200) }; } }
-  if (j && !Array.isArray(j) && (j.err || j.errMsg)) return { err: `KOSIS: ${j.errMsg || j.err}` };
+  // KOSIS가 보낸 글을 그대로 돌려주지 않는다(오류 글에 요청 주소·열쇠가 섞여 있을 수 있어서). 열쇠는 지우고, 원문은 로그에만.
+  const hide = s => { const k = env.KOSIS_KEY || ''; let o = String(s || ''); if (k) { o = o.split(k).join('***').split(encodeURIComponent(k)).join('***'); } return o.replace(/apiKey=[^&\s"']*/gi, 'apiKey=***').slice(0, 200); };
+  if (!j) { try { j = JSON.parse(t.replace(/([{,])\s*([A-Za-z_]\w*)\s*:/g, '$1"$2":')); } catch (e) { console.error(JSON.stringify({ at: 'kosis', status: r.status, body: hide(t) })); return { err: `KOSIS 응답을 읽지 못함(${r.status})` }; } }
+  if (j && !Array.isArray(j) && (j.err || j.errMsg)) return { err: `KOSIS: ${hide(j.errMsg || j.err).slice(0, 120)}` };
   return { rows: j };
 }
 
 export async function onRequestGet(ctx) {
-  try { return await handle(ctx); } catch (e) { return json({ ok: false, msg: 'KOSIS 조회 중 오류: ' + String(e.message || e).slice(0, 120) }, 502); }
+  try { return await handle(ctx); } catch (e) { console.error(JSON.stringify({ at: 'kosis', err: String(e && e.name || e) })); return json({ ok: false, msg: 'KOSIS 조회 중 오류가 났어요. 잠시 후 다시 시도해 주세요.' }, 502); }
 }
 async function handle({ request, env }) {
   const u = new URL(request.url), org = u.searchParams.get('org') || '', tbl = u.searchParams.get('tbl') || '', type = u.searchParams.get('type') || '';
@@ -37,7 +39,7 @@ async function handle({ request, env }) {
   if (type === 'meta') {
     const [t1, t2] = await Promise.all([kosis(env, `${base}/statisticsData.do?method=getMeta&type=TBL&format=json&orgId=${org}&tblId=${tbl}`),
                                         kosis(env, `${base}/statisticsData.do?method=getMeta&type=PRD&format=json&orgId=${org}&tblId=${tbl}`)]);
-    if (t1.err) return json({ ok: false, msg: t1.err, raw: t1.raw }, 502);
+    if (t1.err) return json({ ok: false, msg: t1.err }, 502);
     out = { day: today, tbl, name: (t1.rows || [])[0]?.TBL_NM || null, eng: (t1.rows || [])[0]?.TBL_NM_ENG || null, periods: (t2.rows || []).map(r => r.PRD_DE || r.prdDe).filter(Boolean) };
   } else {
     // 분류 개수를 모르므로 1~4개를 차례로 시도한다(KOSIS는 분류 수가 맞아야 응답한다)
@@ -47,7 +49,7 @@ async function handle({ request, env }) {
       res = await kosis(env, `${base}/Param/statisticsParameterData.do?method=getList&format=json&jsonVD=Y&orgId=${org}&tblId=${tbl}&itmId=ALL&prdSe=Y&newEstPrdCnt=1${objs}`);
       if (!res.err && Array.isArray(res.rows) && res.rows.length) break;
     }
-    if (!res || res.err || !Array.isArray(res.rows)) return json({ ok: false, msg: res?.err || '자료가 비어 있어요.', raw: res?.raw }, 502);
+    if (!res || res.err || !Array.isArray(res.rows)) return json({ ok: false, msg: res?.err || '자료가 비어 있어요.' }, 502);
     out = { day: today, tbl, rows: res.rows.slice(0, 3000).map(r => ({ prd: r.PRD_DE, c1: r.C1_NM, c2: r.C2_NM, c3: r.C3_NM, item: r.ITM_NM, unit: r.UNIT_NM, v: r.DT })) };
   }
   if (d) await setMeta(d, ck, JSON.stringify(out));

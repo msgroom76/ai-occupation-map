@@ -60,6 +60,8 @@ async function maintain(DB) {
     DB.prepare("DELETE FROM org_requests WHERE created < date('now', '+9 hours', '-1 year')"),                                // 조직 진단 요청: 1년
     DB.prepare("DELETE FROM events WHERE day < date('now', '+9 hours', '-400 day')"),
     DB.prepare("DELETE FROM sends WHERE at < date('now', '+9 hours', '-1 year')"),                                            // 발송 기록: 1년
+    DB.prepare("DELETE FROM sends WHERE email NOT IN (SELECT email FROM subscribers)"),                                        // 지운 구독자의 발송 기록도 같이(30일 약속)
+    DB.prepare("DELETE FROM meta WHERE (k LIKE 'rate:%' AND substr(v, 1, 10) < date('now', '+9 hours', '-2 day')) OR (k LIKE 'login_nonce:%' AND CAST(v AS INTEGER) < unixepoch())"), // 접속 해시 카운터: 이틀
     DB.prepare("INSERT INTO meta (k, v) VALUES ('cleanup', ?1) ON CONFLICT(k) DO UPDATE SET v = excluded.v").bind(day)
   ]);
 }
@@ -78,6 +80,30 @@ export function sameOrigin(request) {
     return h === self || h === 'aijido.org' || h.endsWith('.ai-occupation-map.pages.dev') || h === 'localhost' || h === '127.0.0.1';
   } catch (e) { return false; }
 }
+// 하루 단위 카운터를 한 문장으로 올린다(동시에 들어와도 정확). 이번 요청이 한도 안이면 true.
+export async function count(d, key, cap, day = kst().slice(0, 10)) {
+  const r = await d.prepare(`INSERT INTO meta (k, v) VALUES (?1, ?2 || ':1') ON CONFLICT(k) DO UPDATE SET
+    v = CASE WHEN substr(meta.v, 1, 10) = ?2 THEN ?2 || ':' || (CAST(substr(meta.v, 12) AS INTEGER) + 1) ELSE ?2 || ':1' END RETURNING v`).bind(key, day).first();
+  return +String(r?.v || '').slice(11) <= cap;
+}
+// 접속 주소를 그날만 쓰는 비밀값과 섞은 해시(원래 주소는 남기지 않음). IPv6는 앞 64비트만. 비밀값이 없으면 null.
+export async function ipHash(request, env, day = kst().slice(0, 10)) {
+  const salt = env.IP_SALT || env.STATS_KEY; if (!salt) return null;
+  let ip = request.headers.get('cf-connecting-ip') || 'na';
+  if (ip.includes(':')) { const [h, t = ''] = ip.split('::'); const a = h ? h.split(':') : [], b = t ? t.split(':') : []; ip = [...a, ...Array(Math.max(0, 8 - a.length - b.length)).fill('0'), ...b].slice(0, 4).join(':'); }
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`${salt}|${day}|${ip}`));
+  return [...new Uint8Array(b)].slice(0, 12).map(x => x.toString(16).padStart(2, '0')).join('');
+}
+// 익명 요청 한도: 접속 해시별 하루 perIp번, 전체 하루 all번. 둘 다 안이면 true.
+// 접속 해시별 횟수는 개인정보처리방침 변경 시행일(IP_RATE_FROM)부터 센다. 그 전에는 전체 한도만.
+const IP_RATE_FROM = '2026-11-07';
+export async function allow(d, request, env, bucket, perIp, all) {
+  const day = kst().slice(0, 10), ih = day >= IP_RATE_FROM ? await ipHash(request, env, day) : null;
+  if (ih && !(await count(d, `rate:${bucket}:${ih}`, perIp, day))) return false;
+  return count(d, `rate:${bucket}:*`, all, day);
+}
+// 링크로 쓸 주소는 http(s)만(javascript: 같은 주소가 섞여도 링크가 되지 않게)
+export const webUrl = u => /^https?:\/\//i.test(String(u || '').trim()) ? String(u).trim() : '';
 // 길이가 같을 때 걸리는 시간이 같은 비교(비밀값 비교용)
 export function safeEq(a, b) {
   a = String(a || ''); b = String(b || '');

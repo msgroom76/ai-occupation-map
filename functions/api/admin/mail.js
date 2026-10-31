@@ -1,16 +1,16 @@
 // 운영 화면(/admin)용 API. 로그인 쿠키(메일 로그인 링크) 또는 'Authorization: Bearer <STATS_KEY>'가 있어야 열린다.
 // GET                      → 구독자 현황, 최근 30일 신규·확인·해지, 호별 발송 현황, 최근 구독자(주소 일부 가림), 자동 발송 설정 상태
-// GET ?week=…&view=html    → 그 호 미리보기
+// GET ?week=…&view=html    → 그 호 미리보기(격리해서 내보냄, x-draft-hash에 원고 지문)
 // GET ?week=…&view=evidence → 그 호 숫자의 근거(반영 소식·기여·독립 검토 결과)
 // POST {mode:'test', week, to}          → 한 주소에 시험 발송([시험])
-// POST {mode:'approve', week}           → 승인하고 발송 시작(승인 요청 메일의 버튼과 같음)
+// POST {mode:'approve', week, hash}     → 승인하고 발송 시작. hash는 미리본 원고의 지문(미리본 그대로일 때만 승인)
 // POST {mode:'ask', week}               → 승인 요청 메일 다시 보내기
 // GET ?view=sources         → 자료 출처 관리(새 판·확인할 때)
 // POST {mode:'src-check'} · {mode:'src-ack', id} → 자료 출처 지금 확인 · 확인했어요
 // POST {mode:'confirm-pending'}         → 확인 전 신청자에게 확인 메일(한 사람에 한 번)
 import { db, json, kst, token } from '../../_db.js';
 import { mailOn, confirmMail } from '../../_mail.js';
-import { WEEK, issues, draft, personal, issueMail, batch, issueState, setMeta, sendNext, askApproval, adminTo, evidence } from '../../_issue.js';
+import { WEEK, issues, draft, personal, issueMail, batch, issueState, setMeta, sendNext, askApproval, adminTo, evidence, digest, PREVIEW_HEADERS } from '../../_issue.js';
 import { authed } from '../../_admin.js';
 import { checkSources, sourceStatus, ackSource } from '../../_sources.js';
 const mask = e => { const [a, b] = String(e).split('@'); return (a.length <= 2 ? a[0] + '*' : a.slice(0, 2) + '*'.repeat(Math.min(6, a.length - 2))) + '@' + b; };
@@ -20,7 +20,7 @@ export async function onRequestGet({ request, env }) {
   const u = new URL(request.url), origin = u.origin, week = u.searchParams.get('week') || '';
   if (WEEK.test(week) && u.searchParams.get('view') === 'html') {
     const m = await draft(env, origin, week); if (!m) return new Response('원고가 없어요', { status: 404 });
-    return new Response(personal(m.htmlBody, '#'), { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'x-robots-tag': 'noindex' } });
+    return new Response(personal(m.htmlBody, '#'), { headers: { ...PREVIEW_HEADERS, 'x-draft-hash': await digest(m) } });
   }
   if (WEEK.test(week) && u.searchParams.get('view') === 'evidence') return json({ ok: true, ev: await evidence(env, origin, week) });
   const d = await db(env); if (!d) return json({ ok: false, msg: 'DB 연결 전' }, 503);
@@ -74,10 +74,15 @@ export async function onRequestPost({ request, env }) {
   }
   if (b.mode === 'approve') {
     const st = await issueState(d, week);
-    if (st !== 'approved' && st !== 'done') { await setMeta(d, 'issue:' + week, 'approved'); await setMeta(d, 'issue_approved_at:' + week, kst()); }
+    if (st !== 'approved' && st !== 'done') {
+      const m = await draft(env, origin, week); if (!m) return json({ ok: false, msg: '그 호의 원고가 없어요.' }, 404);
+      const h = await digest(m);
+      if (b.hash !== h) return json({ ok: false, msg: b.hash ? '미리본 뒤 원고가 바뀌었어요. 미리보기를 다시 열고 확인한 뒤 승인해 주세요.' : '미리보기를 먼저 열어 확인한 뒤 승인해 주세요.' }, 409);
+      await setMeta(d, 'issue_hash:' + week, h); await setMeta(d, 'issue:' + week, 'approved'); await setMeta(d, 'issue_approved_at:' + week, kst());
+    }
     let sent = 0, r = { ok: true, remaining: 0 };
     for (let i = 0; i < 2; i++) { r = await sendNext(env, d, origin, week, 50); sent += r.sent || 0; if (!r.ok || !r.remaining) break; }
-    const msg = !r.ok ? (r.status === 429 ? `${sent}명에게 보냈고, 오늘 한도(하루 100통)에 걸려 멈췄어요. 내일 자동으로 이어서 보내요.` : `${sent}명에게 보냈고 일부 실패했어요(${r.status}). 사이트 방문 때 다시 시도해요.`)
+    const msg = r.changed ? '승인한 원고와 지금 원고가 달라 멈췄어요. 미리보기를 다시 열고 승인해 주세요.' : !r.ok ? (r.status === 429 ? `${sent}명에게 보냈고, 오늘 한도(하루 100통)에 걸려 멈췄어요. 내일 자동으로 이어서 보내요.` : `${sent}명에게 보냈고 일부 실패했어요(${r.status}). 사이트 방문 때 다시 시도해요.`)
       : r.remaining ? `${sent}명에게 보냈어요. 남은 ${r.remaining}명은 사이트 방문 때 50명씩 자동으로 이어서 보내요.` : `${sent}명에게 보냈어요. 이 호는 모두 보냈어요.`;
     return json({ ok: r.ok, msg });
   }

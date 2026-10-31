@@ -31,7 +31,8 @@ for i,w in enumerate(weeks):
     title=f"{wk[:4]}년 {int(num)}주차 AI 점령률 {t*100:.1f}%"
     lede=(f"지난주보다 {dt:+.2f}%p. " if dt is not None and abs(dt)<0.1 else f"지난주보다 {dt:+.1f}%p. " if dt is not None else "첫 주간 지수예요. ")+f"한국 취업자 2,904만 명이 하는 일 가운데 AI가 이미 해낼 수 있는 몫이에요."
     rows=''.join(f'<tr><td><a href="/j/{j["code"]}">{H.escape(j["name"])}</a></td><td class="n">{occ(j,2026,w["adj"])*100:.0f}%</td><td class="n">+{d:.1f}%p</td></tr>' for d,j in mv[:8])
-    news=''.join(f'<li><a href="{H.escape(n["url"])}" rel="noopener">{H.escape(n["hd"])}</a> <span class="sub">· {H.escape(n["src"])} · {H.escape(n["tier"])}</span></li>' for n in ap)
+    lk=lambda n:f'<a href="{H.escape(n["url"])}" rel="noopener">{H.escape(n["hd"])}</a>' if str(n.get('url','')).lower().startswith(('https://','http://')) else H.escape(n['hd'])   # http(s)만 링크로
+    news=''.join(f'<li>{lk(n)} <span class="sub">· {H.escape(n["src"])} · {H.escape(n["tier"])}</span></li>' for n in ap)
     top=sorted(J,key=lambda j:-occ(j,2026,w['adj']))[:5]
     toprows=''.join(f'<tr><td><a href="/j/{j["code"]}">{H.escape(j["name"])}</a></td><td class="n">{occ(j,2026,w["adj"])*100:.0f}%</td><td class="n">{j["ws"]:.0f}만 명</td></tr>' for j in top)
     body=f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">

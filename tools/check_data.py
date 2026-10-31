@@ -95,6 +95,21 @@ for r in RN_:
 if len(RN_) >= 6 and all(r.get('front', {}).get('q', 0) == 0 for r in RN_[:6]):
     warn('runs: 최근 6회 연속 쟁점 검색을 하지 않음')
 
+# ---------- 주간 메일 브리핑 출처 (mail/brief/*.json) ----------
+import glob as _g
+for bf in sorted(_g.glob('mail/brief/*.json')):
+    try: B = json.load(open(bf))
+    except Exception as ex: err(f'{bf}: JSON 오류 {ex}'); continue
+    def _urls(o):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                if k == 'url': yield v
+                else: yield from _urls(v)
+        elif isinstance(o, list):
+            for v in o: yield from _urls(v)
+    for u in _urls(B):
+        if not str(u or '').startswith('https://'): err(f'{bf}: url이 https가 아님 ({str(u)[:60]})')
+
 # ---------- 구조적 보호막 (protect.json) ----------
 if os.path.exists('protect.json'):
     PR = json.load(open('protect.json'))

@@ -15,7 +15,7 @@
 
 결과: mail/<주>.html(메일용 HTML, 인라인 스타일) · mail/<주>.txt(텍스트판) · mail/<주>.json(제목·미리보기 문구)
       mail/index.json(전체 목록). 발송은 아직 안 함. 발송 도구를 붙이면 {{unsubscribe_url}}을 구독자별 https://aijido.org/api/unsub?t=<token>으로 바꿔 넣고, 헤더 List-Unsubscribe와 List-Unsubscribe-Post: List-Unsubscribe=One-Click을 같은 주소로 붙인다. status='active'인 구독자에게만 보낸다."""
-import json,math,os,html as H
+import json,math,os,re,html as H
 from datetime import date,timedelta
 BASE='https://aijido.org'
 cm=json.load(open('city_meta.json'));idx=json.load(open('index.json'));feed=json.load(open('feed.json'))
@@ -29,7 +29,10 @@ os.makedirs('mail',exist_ok=True)
 INK='#16161a';MUT='#6b6b76';LINE='#e6e6ea';PINK='#8a085a';SOFT='#fbf1f7';BG='#f6f6f8'
 F="-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif"
 e=H.escape
-def a(u,t,c=PINK,w=400):return f'<a href="{e(u)}" style="color:{c};font-weight:{w};text-decoration:underline">{e(t)}</a>'
+def a(u,t,c=PINK,w=400):
+    # 소식 주소는 http(s)만 링크로 만든다(javascript: 같은 주소가 섞여도 링크가 되지 않게)
+    if not re.match(r'(?i)^https?://',str(u or '').strip()):return e(t)
+    return f'<a href="{e(u)}" style="color:{c};font-weight:{w};text-decoration:underline">{e(t)}</a>'
 def row(inner,pad='0'):return f'<tr><td style="padding:{pad}">{inner}</td></tr>'
 def para(t,c=INK,s=15,pad='4px 0'):return f'<tr><td style="padding:{pad};font:{s}px/1.7 {F};color:{c}">{t}</td></tr>'
 def kicker(t):return f'<tr><td style="padding:36px 0 6px;font:700 12px/1.4 {F};letter-spacing:.08em;color:{PINK}">{t}</td></tr>'

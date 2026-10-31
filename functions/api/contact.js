@@ -2,19 +2,15 @@
 // 접수하면 ① 운영자에게 알림 메일(답장하면 문의한 사람에게 바로 감) ② 문의한 사람에게 접수 확인 메일을 보낸다.
 // 악용 방지: 접수 확인 메일에는 입력한 글(이름·내용)을 다시 싣지 않는다(남의 주소로 스팸을 보내는 통로가 되지 않게).
 // 같은 주소에는 24시간에 한 번, 하루 최대 RECEIPT_DAY통. 운영자 알림은 하루 최대 ALERT_DAY통. 넘으면 저장만 하고 운영 화면에서 본다.
-import { db, json, kst, clip, isEmail, sameOrigin } from '../_db.js';
+// 저장 자체도 한 접속에서 하루 LEAD_IP건, 전체 하루 LEAD_ALL건까지(가짜 문의로 알림 한도를 다 쓰고 진짜 문의를 묻어 버리는 것 막기).
+import { db, json, kst, clip, isEmail, sameOrigin, count, allow } from '../_db.js';
 import { mailOn } from '../_mail.js';
 import { adminTo, batch } from '../_issue.js';
 import { mailHtml, esc, link, textFoot } from '../_tpl.js';
 const KINDS = ['후원', '제휴·공동 콘텐츠', '조직 리포트', '워크숍·강연', '언론 취재', '공동 리포트·연구', '기타'];
 const RECEIPT_DAY = 20, ALERT_DAY = 30;
-export async function bump(d, key, cap, today) {
-  const v = (await d.prepare("SELECT v FROM meta WHERE k = ?1").bind(key).first())?.v || '';
-  const n = v.startsWith(today + ':') ? +v.split(':')[1] : 0;
-  if (n >= cap) return false;
-  await d.prepare("INSERT INTO meta (k, v) VALUES (?1, ?2) ON CONFLICT(k) DO UPDATE SET v = excluded.v").bind(key, `${today}:${n + 1}`).run();
-  return true;
-}
+export const LEAD_IP = 5, LEAD_ALL = 200;
+export const bump = (d, key, cap, today) => count(d, key, cap, today);
 export function leadMails(env, origin, L) {
   const reply = env.MAIL_REPLY_TO ? { reply_to: env.MAIL_REPLY_TO } : {};
   const to = adminTo(env), M = {};
@@ -57,6 +53,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
   if (!b.consent) return json({ ok: false, msg: '개인정보 수집·이용에 동의해 주세요.' }, 400);
   const msg = clip(b.msg, 2000); if (msg.length < 5) return json({ ok: false, msg: '문의 내용을 조금 더 적어 주세요.' }, 400);
   const d = await db(env); if (!d) return json({ ok: false, msg: '문의 접수 준비 중이에요. 잠시 후 다시 시도해 주세요.' }, 503);
+  if (!(await allow(d, request, env, 'lead', LEAD_IP, LEAD_ALL))) return json({ ok: false, msg: '오늘은 문의를 많이 받았어요. 내일 다시 보내 주시거나 메일로 연락해 주세요.' }, 429);
   const kind = KINDS.includes(b.kind) ? b.kind : '기타';
   const L = { name: clip(b.name, 60), org: clip(b.org, 100), email, kind, msg: String(b.msg || '').slice(0, 2000).trim(), at: kst() };
   await d.prepare("INSERT INTO leads (name, org, email, kind, msg, created) VALUES (?1, ?2, ?3, ?4, ?5, ?6)").bind(L.name, L.org, email, kind, msg, L.at).run();

@@ -66,7 +66,7 @@ iframe{width:100%;height:620px;border:1px solid var(--hair);background:#fff;marg
   <p class="lab">시험 메일 받을 주소</p>
   <div class="row"><div class="grow"><input id="to" type="email" aria-label="시험 메일 받을 주소" value="msgr@post-office.kr"></div><button id="test" type="button">시험 메일 보내기</button></div>
   <p class="msg" id="m1"></p>
-  <iframe id="pv" title="메일 미리보기" hidden></iframe>
+  <iframe id="pv" title="메일 미리보기" sandbox hidden></iframe>
 </div>
 
 <h2>소식 수집 현황 <small>AI 소식과 쟁점을 같은 노력으로 찾고 있는지 봐요</small></h2>
@@ -92,7 +92,8 @@ iframe{width:100%;height:620px;border:1px solid var(--hair);background:#fff;marg
 const $=s=>document.querySelector(s);let KEY='';try{KEY=sessionStorage.getItem('aimap.admin')||''}catch(e){}
 const api=async(path,opt={})=>{const h={'content-type':'application/json'};if(KEY)h.authorization='Bearer '+KEY;const r=await fetch(path,{credentials:'same-origin',...opt,headers:{...h,...(opt.headers||{})}});const t=await r.text();let j={};try{j=JSON.parse(t)}catch(e){j={raw:t}}return {r,j}};
 const say=(el,t,ok)=>{el.textContent=t;el.className='msg '+(ok?'ok':'bad')};
-const ST={new:'새 호',asked:'승인 대기',approved:'발송 중',done:'발송 완료'};
+let PVH={};
+const ST={new:'새 호',asked:'승인 대기',approved:'발송 중',done:'발송 완료',changed:'원고 바뀜 · 다시 승인'};
 const td=(t,c)=>{const e=document.createElement('td');if(c)e.className=c;e.textContent=t;return e};
 const ts=s=>(s||'').slice(5,16).replace('T',' ');
 let D=null,SEL=null;
@@ -116,7 +117,7 @@ function pick(w,keep){SEL=w;const x=D.issues.find(i=>i.week===w);[...$('#iss').c
   const done=x.state==='approved'||x.state==='done';const b=$('#approve');b.disabled=done||!D.mailOn;b.dataset.arm='';
   b.textContent=x.state==='done'?'모두 보냈어요':x.state==='approved'?'발송 중이에요':`승인하고 발송 · 구독자 ${D.counts.active}명`;$('#ask').hidden=done;
   loadEv(w);
-  if(!keep){$('#pv').hidden=true;$('#pvbtn').textContent='미리보기';$('#m1').textContent='';$('#m2').textContent=''}}
+  if(!keep){PVH={};$('#pv').hidden=true;$('#pvbtn').textContent='미리보기';$('#m1').textContent='';$('#m2').textContent=''}}
 const pp=x=>Math.abs(x)<5e-6?(x>0?'<0.001%p':'0'):(x>=0?'+':'')+(x*100).toFixed(3)+'%p';
 async function loadEv(w){const box=$('#ev');box.innerHTML='';const {j}=await api('/api/admin/mail?week='+w+'&view=evidence');const ev=j.ev;if(SEL!==w||!ev)return;
   const d=document.createElement('div');d.className='ev';const h=document.createElement('p');h.className='h';const b=document.createElement('b');b.textContent='숫자의 근거';h.appendChild(b);
@@ -126,13 +127,13 @@ async function loadEv(w){const box=$('#ev');box.innerHTML='';const {j}=await api
   else{rl.textContent=`${r.by==='independent'?'독립 검토':'자체 검토(독립 아님)'}: 확인 ${r.ok} · 수정 ${r.fix} · 보류 ${r.hold}${r.late&&r.late.length?' · 검토 뒤 들어와 다음 주로 '+r.late.length:''}`;if(r.by!=='independent')rl.classList.add('warn')}
   d.appendChild(rl);
   const row=e=>{const tr=document.createElement('tr');tr.appendChild(td(e.dp!=null?pp(e.dp):'–','n dp'));const c=document.createElement('td');
-    const a=document.createElement(e.url?'a':'span');a.textContent=e.hd;if(e.url){a.href=e.url;a.target='_blank';a.rel='noopener'}c.appendChild(a);const sm=document.createElement('small');sm.textContent=[e.src,e.why,e.rv&&('검토: '+e.rv)].filter(Boolean).join(' · ');c.appendChild(sm);tr.appendChild(c);return tr};
+    const a=document.createElement(e.url?'a':'span');a.textContent=e.hd;if(/^https?:\/\//i.test(e.url||'')){a.href=e.url;a.target='_blank';a.rel='noopener'}c.appendChild(a);const sm=document.createElement('small');sm.textContent=[e.src,e.why,e.rv&&('검토: '+e.rv)].filter(Boolean).join(' · ');c.appendChild(sm);tr.appendChild(c);return tr};
   if(ev.rows.length){const t=document.createElement('table');ev.rows.slice(0,5).forEach(e=>t.appendChild(row(e)));d.appendChild(t);
     if(ev.rows.length>5){const det=document.createElement('details');const su=document.createElement('summary');su.textContent=`나머지 ${ev.rows.length-5}건 보기`;det.appendChild(su);const t2=document.createElement('table');ev.rows.slice(5).forEach(e=>t2.appendChild(row(e)));det.appendChild(t2);d.appendChild(det)}}
   box.appendChild(d)}
-$('#pvbtn').onclick=async()=>{const f=$('#pv');if(!f.hidden){f.hidden=true;$('#pvbtn').textContent='미리보기';return}const {j}=await api('/api/admin/mail?week='+SEL+'&view=html');f.srcdoc=j.raw||'';f.hidden=false;$('#pvbtn').textContent='미리보기 닫기'};
+$('#pvbtn').onclick=async()=>{const f=$('#pv');if(!f.hidden){f.hidden=true;$('#pvbtn').textContent='미리보기';return}const {r,j}=await api('/api/admin/mail?week='+SEL+'&view=html');f.srcdoc=j.raw||'';PVH={week:SEL,hash:r.headers.get('x-draft-hash')||''};f.hidden=false;$('#pvbtn').textContent='미리보기 닫기'};
 $('#approve').onclick=async()=>{const b=$('#approve');if(!b.dataset.arm){b.dataset.arm='1';b.textContent=`한 번 더 누르면 ${D.counts.active}명에게 보내요`;setTimeout(()=>{if(b.dataset.arm)pick(SEL,true)},6000);return}
-  b.dataset.arm='';b.disabled=true;say($('#m2'),'보내는 중…',true);const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({mode:'approve',week:SEL})});await boot();say($('#m2'),j.msg||'실패',!!j.ok)};
+  b.dataset.arm='';b.disabled=true;say($('#m2'),'보내는 중…',true);const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({mode:'approve',week:SEL,hash:PVH.week===SEL?PVH.hash:''})});await boot();say($('#m2'),j.msg||'실패',!!j.ok)};
 $('#ask').onclick=async()=>{say($('#m2'),'보내는 중…',true);const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({mode:'ask',week:SEL})});await boot();say($('#m2'),j.msg||'실패',!!j.ok)};
 $('#test').onclick=async()=>{const to=$('#to').value.trim();if(!to){say($('#m1'),'받을 주소를 입력하세요.',false);$('#to').focus();return}try{localStorage.setItem('aimap.admin.to',to)}catch(e){}
   const b=$('#test');b.disabled=true;say($('#m1'),'보내는 중…',true);const {j}=await api('/api/admin/mail',{method:'POST',body:JSON.stringify({mode:'test',week:SEL,to})});say($('#m1'),j.msg||'실패',!!j.ok);b.disabled=false};

@@ -930,6 +930,7 @@ details.card[open] summary::after{content:"−"}
 const W=1800,H=2400, VER='v0.15 베타';let ASOF='2026.10.22';
 const $=s=>document.querySelector(s);
 const pct=v=>Math.round(v*100);
+const webUrl=u=>/^https?:\/\//i.test(String(u||'').trim())?String(u).trim():'#';   // 소식 주소는 http(s)만 링크로
 const el=(t,cls,txt)=>{const e=document.createElement(t);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
 // 색: 노출도는 한 가지 색(분홍)의 밝기 단계. 4분류는 색각 이상 검증을 통과한 4색
 const RAMP={dark:['#552f42','#873e63','#bc4b87','#ed60ac','#ff8ccd'],light:['#f2cbdc','#e297ba','#d15d9a','#b5297b','#8a085a']};
@@ -1274,7 +1275,7 @@ function newsItem(n){const li=el('li'),b=el('div','nb');
   if(sh>0){n.r.forEach((r,i)=>{const v=(RP[r][2]/(1+Math.exp(-RP[r][1]*(2026-RP[r][0]+(ADJ[r]||0)+sh))))-p(r,2026);if(i)e.append(' · ');e.append(`${RN[r][0]} `,el('b',null,`+${(v*100).toFixed(1)}%p`))});
     e.append(el('span','st',n.st==='applied'?` · ${n.wk||''} 지수에 반영됨`:' · 다음 월요일 지수에 반영'))}
   else e.textContent=n.note||'수치 영향 없음';
-  const hd=el('a','hd',n.hd);hd.href=n.url;hd.target='_blank';hd.rel='noopener';
+  const hd=el('a','hd',n.hd);hd.href=webUrl(n.url);hd.target='_blank';hd.rel='noopener';
   b.append(m,hd,e);
   if(n.r&&n.r.length&&n.st!=='hold'){const sb=el('button','show','지도에서 보기');sb.type='button';sb.onclick=()=>{selTask=null;selA=-1;flash=new Set(n.r);flashLabel=n.hd;refresh()};b.appendChild(sb)}
   li.appendChild(b);return li}
@@ -1290,7 +1291,7 @@ const FRONT=()=>(FEED.front||[]).slice().sort((a,b)=>a.ts<b.ts?1:-1);
 const frontFor=code=>FRONT().filter(n=>(n.ind||[]).some(c=>c.startsWith(code)||code.startsWith(c)));
 function frontItem(n,skip){const li=el('li','fr'),b=el('div','nb');
   const m=el('div','m');m.append(el('span','fxb f'+(FXW[n.fx]||1),FXL[n.fx]||n.fx),`${fmtD(n.ts)} · ${n.src} · ${n.kind} · ${n.kr?'국내':'해외'}`);
-  const hd=el('a','hd',n.hd);hd.href=n.url;hd.target='_blank';hd.rel='noopener';b.append(m,hd);
+  const hd=el('a','hd',n.hd);hd.href=webUrl(n.url);hd.target='_blank';hd.rel='noopener';b.append(m,hd);
   if(n.note)b.append(el('div','eff',n.note));
   const js_=(n.ind||[]).map(c=>jIdx(c.slice(0,2))).filter((k,i,a)=>k>=0&&a.indexOf(k)===i&&RJ_[k].code!==skip);
   if(js_.length){const w=el('div','fj');w.append('닿는 직업 ');js_.forEach(k=>{const bt=el('button','show',RJ_[k].name);bt.type='button';bt.onclick=()=>{track('front','job:'+RJ_[k].code);pickJob(k)};w.appendChild(bt)});b.append(w)}
@@ -1310,14 +1311,14 @@ function protectBox(code,sk){const w=el('div');const hit=c=>sk?c===sk:c.startsWi
   prLoad().then(P=>{if(!P)return;const L=(P.licenses||[]).filter(l=>l.sm.some(([c])=>hit(c))),A=((P.ai_act||{}).areas||[]).filter(a=>a.sm.some(hit));
     const lab=el('div','lab');lab.append(el('span',null,'법으로 정한 보호막'),el('span',null,'뉴스와 별개로 오래 가는 것'));w.append(lab);
     const U=((P.union||{}).major||{})[String(code)[0]],UA=((P.union||{}).survey||{}).all;
-    const uBox=()=>{if(!U||!UA)return;const d=el('div','aiact');const a=el('a',null,`노조 가입률 · ${U.name} ${U.all}%`);a.href=P.union.survey.url;a.target='_blank';a.rel='noopener';
+    const uBox=()=>{if(!U||!UA)return;const d=el('div','aiact');const a=el('a',null,`노조 가입률 · ${U.name} ${U.all}%`);a.href=webUrl(P.union.survey.url);a.target='_blank';a.rel='noopener';
       d.append(a,el('div','eff',`정규직 ${U.reg}% · 비정규직 ${U.irr}% · 전 직종 평균 ${UA.all}%`),el('p','rule',`${P.union.survey.year}년 고용형태별근로실태조사. 같은 대분류(${U.name}) 전체 값이라 이 직업만의 수치는 아니에요. 노조가 있으면 AI 도입에 따른 근로조건 변화를 교섭으로 다룰 수 있어요.`));w.append(d)};
     if(!L.length&&!A.length){w.append(el('p','rule','이 직업에는 법으로 정한 자격 독점이나 AI 기본법 고영향 영역이 확인되지 않았어요.'));uBox();return}
     if(L.length){const ul=el('ul','news'),SL=L.slice().sort((a,b)=>PTY[b.type][1]-PTY[a.type][1]);SL.forEach((l,ix)=>{const li=el('li','fr'),b=el('div','nb');const part=l.sm.filter(([c])=>hit(c)).every(([,cv])=>cv==='일부');
         const m=el('div','m');m.append(el('span','fxb f'+PTY[l.type][1],PTY[l.type][0]),`${l.law} ${l.article}${part?' · 이 직업 중 일부':''}`);
-        const hd=el('a','hd',l.name);hd.href=l.url;hd.target='_blank';hd.rel='noopener';b.append(m,hd,el('div','eff',l.reserved));li.appendChild(b);if(ix>=4)li.hidden=true;ul.appendChild(li)});w.append(ul);
+        const hd=el('a','hd',l.name);hd.href=webUrl(l.url);hd.target='_blank';hd.rel='noopener';b.append(m,hd,el('div','eff',l.reserved));li.appendChild(b);if(ix>=4)li.hidden=true;ul.appendChild(li)});w.append(ul);
       if(SL.length>4){const mb=el('button','more',`자격 ${SL.length-4}개 더 보기`);mb.type='button';mb.onclick=()=>{[...ul.children].forEach(x=>x.hidden=false);mb.remove()};w.append(mb)}}
-    if(A.length){const li=el('div','aiact');const a=el('a',null,`AI 기본법 고영향 영역 (${P.ai_act.enforce.slice(0,4)}.${+P.ai_act.enforce.slice(5,7)} 시행)`);a.href=P.ai_act.url;a.target='_blank';a.rel='noopener';
+    if(A.length){const li=el('div','aiact');const a=el('a',null,`AI 기본법 고영향 영역 (${P.ai_act.enforce.slice(0,4)}.${+P.ai_act.enforce.slice(5,7)} 시행)`);a.href=webUrl(P.ai_act.url);a.target='_blank';a.rel='noopener';
       li.append(a,el('div','eff',A.map(x=>x.text).join(' · ')),el('p','rule',P.ai_act.what));w.append(li)}
     uBox();
     w.append(el('p','rule','업무 독점: 자격이 없으면 그 일을 못 해요 · 자격 요건: 그 자리에는 자격자만 · 배치 의무: 자격자를 두어야 하지만 다른 사람도 일은 할 수 있어요. 법 조항은 2026년 10월 현행 법령 기준이에요.'))});
@@ -1456,7 +1457,7 @@ const sw={};(RJ_[j].smalls||[]).forEach(([c,,w])=>sw[c]=w);const per={};cs.forEa
       const tx=el('p');tx.innerHTML=nOn?`초안 이상을 대신할 수 있다고 발표된 일이 내 업무에서 차지하는 비중<br><span>체크한 업무 ${nOn}개 중 ${nHit}개에 발표가 닿았어요${nHit&&!wHit?' (모두 보조 수준이라 비중에는 넣지 않았어요)':''}</span>`:'내가 하는 업무를 하나 이상 체크해 주세요.';sum.append(big,tx);box.appendChild(sum);
       const item=(r,full)=>{const li=el('li',(r.on?'':'off')+(r.hs.length?' hit':''));const cb=el('input');cb.type='checkbox';cb.checked=r.on;cb.setAttribute('aria-label',(T.dwa[r.d]||r.d)+' — 내가 하는 일');cb.onchange=()=>{cb.checked?off.delete(r.d):off.add(r.d);st.off=[...off];save();draw()};
         const nm=el('span','nm',T.dwa[r.d]||r.d),pc=el('span','pc',Math.round(r.w*100)+'%');const lab=el('label');lab.append(cb,nm,pc);li.appendChild(lab);
-        if(full&&(r.hs.length||r.ex.length)){const nv=el('div','nv');r.hs.slice(0,2).concat(r.hs.length?[]:r.ex.slice(0,1)).forEach(h=>{const a=el('a');if(h.ex)a.className='ex';a.href=h.n.url;a.target='_blank';a.rel='noopener';a.title=LV[h.lv][1]+' · '+h.n.src;a.append(el('b','lv lv-'+(h.ex?'x':h.lv),h.ex?'다른 업종':LV[h.lv][0]),el('span',null,(h.n.base?h.n.ts.slice(0,7).replace('-','.')+' · ':'')+h.n.hd));nv.appendChild(a)});li.appendChild(nv)}return li};
+        if(full&&(r.hs.length||r.ex.length)){const nv=el('div','nv');r.hs.slice(0,2).concat(r.hs.length?[]:r.ex.slice(0,1)).forEach(h=>{const a=el('a');if(h.ex)a.className='ex';a.href=webUrl(h.n.url);a.target='_blank';a.rel='noopener';a.title=LV[h.lv][1]+' · '+h.n.src;a.append(el('b','lv lv-'+(h.ex?'x':h.lv),h.ex?'다른 업종':LV[h.lv][0]),el('span',null,(h.n.base?h.n.ts.slice(0,7).replace('-','.')+' · ':'')+h.n.hd));nv.appendChild(a)});li.appendChild(nv)}return li};
       const hitRows=rows.filter(r=>r.hs.length||r.ex.length),rest=rows.filter(r=>!r.hs.length&&!r.ex.length);
       if(hitRows.length){const ul=el('ul','tklist');hitRows.forEach(r=>ul.appendChild(item(r,true)));box.appendChild(ul)}
       if(rest.length){const dt=el('details','tkrest');if(!hitRows.length)dt.open=true;dt.innerHTML=`<summary>${hitRows.length?'아직 발표가 없는 업무':'업무 목록'} ${rest.length}개</summary>`;const ul=el('ul','tklist sm');rest.forEach(r=>ul.appendChild(item(r,false)));dt.appendChild(ul);box.appendChild(dt)}

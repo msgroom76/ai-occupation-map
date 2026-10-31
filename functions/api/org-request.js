@@ -1,10 +1,10 @@
 // 조직 자가 진단(/org)의 '진단 보고서 요청'. 연락처는 늘 저장하고, 직무·인원(config)은 담당자가 함께 보내기로 동의했을 때만 저장한다.
 // 저장: org_requests(보고서 작업용 원본) + leads(기존 문의 목록·메일 알림과 같은 흐름). 둘 다 접수 1년 뒤 지운다.
 // 악용 방지: 같은 출처만, 숨은 입력란(봇), 이메일 형식, 입력값 검사(직무 40개·한 직무 10만 명 이하·직업 코드 형식), 같은 주소 하루 3건.
-import { db, json, kst, clip, isEmail, sameOrigin } from '../_db.js';
+import { db, json, kst, clip, isEmail, sameOrigin, allow } from '../_db.js';
 import { mailOn } from '../_mail.js';
 import { adminTo, batch } from '../_issue.js';
-import { leadMails, bump } from './contact.js';
+import { leadMails, bump, LEAD_IP, LEAD_ALL } from './contact.js';
 const SCOPES = ['진단 보고서', '진단 보고서 + 임직원 워크숍'];
 export function cleanConfig(c) {
   if (!c || typeof c !== 'object' || !Array.isArray(c.roles)) return null;
@@ -27,6 +27,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
   const at = kst();
   const recent = (await d.prepare("SELECT COUNT(*) AS n FROM org_requests WHERE email = ?1 AND created >= ?2").bind(email, new Date(Date.now() + 9 * 3600e3 - 864e5).toISOString()).first()).n;
   if (recent >= 3) return json({ ok: false, msg: '오늘은 이미 요청을 받았어요. 메일로 연락드릴게요.' }, 429);
+  if (!(await allow(d, request, env, 'lead', LEAD_IP, LEAD_ALL))) return json({ ok: false, msg: '오늘은 요청을 많이 받았어요. 내일 다시 보내 주세요.' }, 429);
   const cfg = b.share ? cleanConfig(b.config) : null;
   const scope = SCOPES.includes(b.scope) ? b.scope : SCOPES[0], name = clip(b.name, 60), msg = String(b.msg || '').slice(0, 1000).trim();
   const r = await d.prepare("INSERT INTO org_requests (created, name, org, email, scope, msg, config, status) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 'new')")

@@ -3,7 +3,7 @@
 // 이미 해지한 주소도 다시 신청하면 확인 메일을 거쳐야 한다(예전처럼 조용히 다시 구독되지 않음).
 // 악용 방지(2026-10-22): 같은 주소에는 24시간에 한 번만 확인 메일을 보낸다. 확인 메일은 하루 최대 CONFIRM_DAY통만 보내
 // 주간 메일 몫(Resend 무료 하루 100통)을 남긴다. 넘친 신청은 대기로만 저장하고, 운영 화면의 '확인 메일 다시 보내기'나 다음 날 자동으로 보낸다.
-import { db, json, kst, clip, isEmail, token, sameOrigin } from '../_db.js';
+import { db, json, kst, clip, isEmail, token, sameOrigin, count, allow } from '../_db.js';
 import { sendMail, confirmMail, mailOn } from '../_mail.js';
 export const CONSENT_VER = '2026-10-21';
 export const CONFIRM_DAY = 40;
@@ -16,21 +16,21 @@ export async function onRequestPost({ request, env }) {
   if (!isEmail(email)) return json({ ok: false, msg: '이메일 주소를 확인해 주세요.' }, 400);
   if (!b.consent) return json({ ok: false, msg: '개인정보 수집·이용에 동의해 주세요.' }, 400);
   const d = await db(env); if (!d) return json({ ok: false, msg: '구독 접수 준비 중이에요. 잠시 후 다시 시도해 주세요.' }, 503);
+  if (!(await allow(d, request, env, 'sub', 10, 500))) return json({ ok: true, msg: done(env) });   // 한 접속에서 하루 10건까지(같은 문구)
   const cur = await d.prepare("SELECT status, token, consent_at FROM subscribers WHERE email = ?1").bind(email).first();
   // 이미 구독 중인 주소: 아무것도 바꾸지 않는다(누가 구독 중인지 알려주지 않도록 같은 문구)
   if (cur && cur.status === 'active') return json({ ok: true, msg: done(env) });
   // 24시간 안에 이미 확인 메일을 보낸 대기 주소: 다시 보내지 않는다(같은 문구)
   if (cur && cur.status === 'pending' && cur.token && cur.consent_at && Date.now() - Date.parse(cur.consent_at) < 864e5) return json({ ok: true, msg: done(env) });
   const tok = token(), now = kst();
+  await d.prepare("DELETE FROM sends WHERE week = 'confirm' AND email = ?1").bind(email).run();   // 예전 신청의 확인 메일 기록은 지운다(새 신청으로 다룬다)
   await d.prepare(`INSERT INTO subscribers (email, job, src, created, status, token, consent_at, consent_ver) VALUES (?1, ?2, ?3, ?4, 'pending', ?5, ?4, ?6)
     ON CONFLICT(email) DO UPDATE SET job = excluded.job, src = excluded.src, status = 'pending', token = excluded.token, consent_at = excluded.consent_at, consent_ver = excluded.consent_ver, unsubscribed = NULL, unsub_at = NULL`)
     .bind(email, clip(b.job, 60), clip(b.src, 40), now, tok, CONSENT_VER).run();
   if (mailOn(env)) {
     const today = now.slice(0, 10);
-    const sent = (await d.prepare("SELECT v FROM meta WHERE k = 'confirm_day'").first())?.v || '';
-    const n = sent.startsWith(today + ':') ? +sent.split(':')[1] : 0;
-    if (n >= CONFIRM_DAY) return json({ ok: true, msg: '신청을 받았어요. 오늘 신청이 많아 확인 메일이 내일 갈 수 있어요. 메일이 오면 \'구독 확인하기\'를 눌러 주세요.' });
-    await d.prepare("INSERT INTO meta (k, v) VALUES ('confirm_day', ?1) ON CONFLICT(k) DO UPDATE SET v = excluded.v").bind(`${today}:${n + 1}`).run();
+    // 넘친 신청은 다음 날 자동으로 보낸다. 문구를 바꾸면 누가 구독 중인지 드러나서 같은 문구
+    if (!(await count(d, 'confirm_day', CONFIRM_DAY, today))) return json({ ok: true, msg: done(env) });
     const m = confirmMail(new URL(request.url).origin, tok);
     const r = await sendMail(env, { to: email, ...m });
     await d.prepare("INSERT INTO sends (week, email, status, at) VALUES ('confirm', ?1, ?2, ?3) ON CONFLICT(week, email) DO UPDATE SET status = excluded.status, at = excluded.at").bind(email, r.sent ? 'sent' : 'failed', now).run();

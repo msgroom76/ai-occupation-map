@@ -1,4 +1,5 @@
 // 구독 확인 링크(확인 메일의 '구독 확인하기'). 링크를 연 것만으로 확인된다.
+// 확인 전(pending)인 신청만 구독으로 바꾼다. 수신 거부한 주소는 사이트에서 새로 신청해야 한다(예전 메일의 링크로 되살아나지 않게).
 import { db, html, kst } from '../_db.js';
 import { welcome } from '../_issue.js';
 export async function onRequestGet({ request, env, waitUntil }) {
@@ -7,10 +8,11 @@ export async function onRequestGet({ request, env, waitUntil }) {
   const d = await db(env); if (!d) return html('잠시 후 다시 시도해 주세요', '<p>준비 중이에요.</p>', 503);
   const s = await d.prepare("SELECT status, email FROM subscribers WHERE token = ?1").bind(t).first();
   if (!s) return html('링크가 만료됐어요', '<p>신청한 지 오래됐거나 이미 해지한 링크예요. 사이트에서 다시 신청해 주세요.</p><p><a class="b" href="/">AI 점령 지도로</a></p>', 404);
+  if (s.status === 'unsub') return html('이미 수신 거부한 주소예요', '<p>다시 받고 싶으면 사이트에서 새로 신청해 주세요.</p><p><a class="b" href="/">AI 점령 지도로</a></p>', 410);
   if (s.status !== 'active') {
-    await d.prepare("UPDATE subscribers SET status = 'active', confirmed_at = ?2 WHERE token = ?1").bind(t, kst()).run();
-    // 환영 메일 + 가장 최근 호를 바로 보낸다(응답은 기다리지 않음)
-    waitUntil(welcome(env, d, new URL(request.url).origin, s.email, t).catch(e => console.error(JSON.stringify({ at: 'welcome', err: String(e) }))));
+    const r = await d.prepare("UPDATE subscribers SET status = 'active', confirmed_at = ?2 WHERE token = ?1 AND status = 'pending'").bind(t, kst()).run();
+    // 환영 메일 + 가장 최근 호를 바로 보낸다(응답은 기다리지 않음). 이번 요청이 실제로 확인했을 때만(동시에 두 번 눌러도 한 번)
+    if (r.meta && r.meta.changes) waitUntil(welcome(env, d, new URL(request.url).origin, s.email, t).catch(e => console.error(JSON.stringify({ at: 'welcome', err: String(e) }))));
   }
   return html('구독이 시작됐어요', '<p>환영 메일과 가장 최근 호를 바로 보내드려요. 그다음부터는 매주 월요일 아침에 주간 지수와 한 주의 AI 소식을 보내드릴게요. 메일마다 있는 \'수신 거부\' 링크로 언제든 끊을 수 있어요.</p><p><a class="b" href="/">AI 점령 지도로</a></p>');
 }
