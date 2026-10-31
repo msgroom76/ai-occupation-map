@@ -1,7 +1,46 @@
 {
- "updated": "2026-10-31T08:58:00+09:00",
+ "updated": "2026-10-31T12:58:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-10-31-comcast-warn-912-ai-redesign",
+   "ts": "2026-10-31T00:24:00+09:00",
+   "src": "필라델피아 인콰이어러",
+   "url": "https://inquirer.com/business/comcast/comcast-layoffs-warn-notice-philadelphia-ai-jobs-20261030.html",
+   "tier": "신뢰 매체",
+   "sig": "고용",
+   "kr": false,
+   "us": true,
+   "hd": "컴캐스트, 필라델피아 본사 634명 등 912명 감원을 주 정부에 신고(WARN, 12월 31일부터) — '조직을 근본적으로 재설계'한다며 고객 응대 AI 에이전트 도입 계획을 밝힌 가운데, 엔지니어·제품 관리자·비서·분석가 등이 대상이고 신규 채용 1,100여 명도 함께 신고",
+   "r": [],
+   "st": "none",
+   "note": "감원 신고(고용 소식, 수치 영향 없음) · 기사는 감원 직무를 AI가 대신한다고 밝히지는 않음"
+  },
+  {
+   "id": "2026-10-29-ubs-12700-personal-agents",
+   "ts": "2026-10-29T22:00:00+09:00",
+   "src": "PYMNTS",
+   "url": "https://www.pymnts.com/news/banking/2026/ubs-employees-run-12700-ai-agents-as-bank-automation-accelerates/",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "kr": false,
+   "us": false,
+   "hd": "UBS, 3분기 실적 발표에서 직원들이 업무에 쓰는 개인 AI 에이전트 1만2,700개, 운영 중인 AI 사례 608건(1년 새 81%↑)이라고 밝혀 — 자산관리 상담팀용 도구 'STAAT'가 고객 상담에 쓰인 인사이트 3천만 건 생성, 개발자 1만8천 명이 코딩 도구 사용",
+   "r": [
+    "D14"
+   ],
+   "st": "pending",
+   "grp": "bank-agent",
+   "dwa": [
+    [
+     "4.A.4.b.6.I11.D02",
+     "a"
+    ]
+   ],
+   "ind": [
+    "28"
+   ]
+  },
   {
    "id": "2026-10-30-ibk-deeplearning-voicephishing-docs",
    "ts": "2026-10-30T10:00:00+09:00",
@@ -3969,6 +4008,19 @@
   }
  ],
  "runs": [
+  {
+   "at": "2026-10-31T12:58:00+09:00",
+   "push": {
+    "q": 13,
+    "cand": 7,
+    "acc": 2
+   },
+   "front": {
+    "q": 15,
+    "cand": 7,
+    "acc": 0
+   }
+  },
   {
    "at": "2026-10-31T08:58:00+09:00",
    "push": {
