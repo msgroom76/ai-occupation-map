@@ -1,7 +1,51 @@
 {
- "updated": "2026-11-01T12:58:00+09:00",
+ "updated": "2026-11-01T17:52:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-10-29-gemini-in-chat-file-editing",
+   "ts": "2026-10-29T09:00:00+09:00",
+   "src": "Digital Trends",
+   "url": "https://www.digitaltrends.com/computing/google-gemini-can-now-create-and-edit-pdfs-documents-and-more-right-inside-your-chat/",
+   "tier": "신뢰 매체",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "구글 제미나이 앱, 대화창 안에서 문서·PDF·프레젠테이션·스프레드시트를 만들고 미리 보며 고치는 기능 제공 — 손글씨 메모 사진을 PDF 학습자료로 바꾸고, 부분을 골라 다시 쓰게 함(PDF는 웹·모바일, 나머지는 웹)",
+   "r": [
+    "C9"
+   ],
+   "st": "pending",
+   "dwa": [
+    [
+     "4.A.3.b.6.I03.D06",
+     "d"
+    ]
+   ],
+   "grp": "doc-agent"
+  },
+  {
+   "id": "2026-10-29-cresta-agent-platform-self-service",
+   "ts": "2026-10-29T22:01:00+09:00",
+   "src": "Cresta (PR Newswire)",
+   "url": "https://www.prnewswire.com/news-releases/cresta-opens-its-ai-agent-platform-with-end-to-end-self-service-for-developers-302922987.html",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "us": true,
+   "kr": false,
+   "hd": "미국 컨택센터 AI 기업 크레스타, 고객 응대 AI 에이전트를 기업 개발자가 직접 만들고 시험·배포·개선하는 셀프서비스 플랫폼(Cresta Conductor·AI Agent SDK·단계적 배포) 공개 — 호주 통신사 상담 챗 에이전트를 1주 안에 옮겨 구축한 사례 소개",
+   "r": [
+    "D3"
+   ],
+   "st": "pending",
+   "dwa": [
+    [
+     "4.A.4.a.8.I03.D02",
+     "a"
+    ]
+   ],
+   "grp": "contact-center-agent"
+  },
   {
    "id": "2026-11-01-mois-onai-websearch",
    "ts": "2026-11-01T12:09:00+09:00",
@@ -4117,6 +4161,19 @@
   }
  ],
  "runs": [
+  {
+   "at": "2026-11-01T17:52:00+09:00",
+   "push": {
+    "q": 14,
+    "cand": 8,
+    "acc": 2
+   },
+   "front": {
+    "q": 16,
+    "cand": 8,
+    "acc": 0
+   }
+  },
   {
    "at": "2026-11-01T12:58:00+09:00",
    "push": {
