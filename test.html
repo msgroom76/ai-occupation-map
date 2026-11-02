@@ -257,7 +257,7 @@ function why(O,J,c,D,name,v,v30){
 }
 // 첫 화면 문구: 한국 일자리 전체의 물때
 {const t=total(2026),s=stOf(t);$('#hcap').innerHTML=`한국 일자리 전체는 지금 <b>'${ST[s][0]}'</b>까지 찼어요 · 취업자 기준 AI 노출도 ${(t*100).toFixed(1)}%`;
- VAP=VAP||getJ('/validation.json',null);VAP.then(V=>{if(V&&V.summary&&V.summary.conf_all!=null){const a=document.createElement('a');a.href='/guide#trust';a.textContent=` · 신뢰도 ${V.summary.conf_all}%`;a.style.color='inherit';$('#hcap').appendChild(a)}});
+ VAP=VAP||getJ('/validation.json',null);VAP.then(V=>{if(V&&V.summary&&V.summary.conf_disp!=null){const a=document.createElement('a');a.href='/guide#trust';a.textContent=` · 직업별 신뢰도 평균 ${V.summary.conf_disp}%`;a.style.color='inherit';$('#hcap').appendChild(a)}});
  const H=$('#hero');H.src=`/img/water/crowd-s${s+1}-light.png`;H.previousElementSibling.srcset=`/img/water/crowd-s${s+1}-dark.png`;H.alt=`여러 직업의 사람들이 나란히 서 있고 물이 ${ST[s][0]} 높이까지 차 있는 그림`}
 
 // ---------- 검색 ----------
@@ -302,17 +302,23 @@ const yTxt=y=>`${Math.floor(y)}년 ${y%1<.5?'상반기':'하반기'}`;
 function show(j,k,title,scroll){
   const J=RJ_[j],c=smOf(j,k),D=c?SMD[c]:J,name=c?((J.smalls||[]).find(x=>x[0]===c)||[,J.name])[1]:J.name;
   const v=occV(j,k,2026),v30=occV(j,k,2030),s=stOf(v),ny=nextYear(j,k,s),obs=Math.min(D.ob||0,v);
-  const O=$('#out');O.innerHTML='';O.hidden=false;
+  const O=$('#out');O.innerHTML='';O.hidden=false;delete O.dataset.zn;
   const label=title&&title!==name?`${title} → ${name}`:name;
   // 머리
   const rh=el('div','rhead');rh.append(el('span','job',label),el('small',null,`${J.name} · 한국 취업자 ${J.ws>=10?Math.round(J.ws):J.ws.toFixed(1)}만 명`));O.append(rh);
   const st=el('div','stage');const L=el('div');
   L.append(el('div','lv',`물때 ${s+1}단계 / 5`),el('div','nm',ST[s][0]),el('p','say',SAY[s]));
   st.append(L,img(s,`책상 앞에 선 사람의 ${ST[s][0]} 높이까지 물이 찬 그림`));O.append(st);
-  // 신뢰도: 계산 방식을 바꿔 다시 계산해도 같은 단계가 나오는 비율(validation.json)
-  {const cf=el('div','conf');O.append(cf);VAP=VAP||getJ('/validation.json',null);VAP.then(V=>{const x=V&&(c?V.sm&&V.sm[c]:V.mid&&V.mid[J.code]);if(!x||x.conf==null)return;
-    cf.className='conf'+(x.conf<60?' lo':'');const an=x.alt?ST[x.alt[0]][0]:'',ro=w=>{const k=w.charCodeAt(w.length-1)-44032;return k>=0&&k%28&&k%28!==8?'으로':'로'};const al=x.alt&&x.alt[1]>=10?` ${x.alt[1]}%는 '${an}'${ro(an)} ${x.alt[0]>s?'더 높게':'더 낮게'} 나왔어요.`:'';
-    cf.innerHTML=`<b>신뢰도 ${x.conf}%</b><span>계산 방식을 바꿔 2,000번 다시 계산했을 때 '${ST[s][0]}' 단계가 그대로 나온 비율이에요.${al} <a href="/guide#trust">자세히</a></span>`})}
+  // 신뢰도: 계산 방식을 바꿔 2,000번 다시 계산해도 같은 결론이 나오는 비율(validation.json, tools/validate.py)
+  // 단계 경계에 걸린 직업(80% 미만)은 두 단계 사이의 신체 부위로 부르고, 두 단계를 합친 비율을 보여 준다. 80% 미만 숫자는 내지 않는다.
+  {const cf=el('div','conf');O.append(cf);VAP=VAP||getJ('/validation.json',null);VAP.then(V=>{const x=V&&(c?V.sm&&V.sm[c]:V.mid&&V.mid[J.code]);if(!x)return;
+    const gw=w=>{const k=w.charCodeAt(w.length-1)-44032;return k>=0&&k%28?'과':'와'};
+    if(x.zn!=null){const A=ST[x.zone][0],B=ST[x.zone+1][0];
+      L.querySelector('.lv').textContent=`물때 ${x.zone+1}~${x.zone+2}단계 사이`;L.querySelector('.nm').textContent=x.zn+' 높이';O.dataset.zn=x.zn+' 높이';
+      L.querySelector('.say').textContent=`'${A}'${gw(A)} '${B}' 사이에 걸쳐 있어요. 계산 방식에 따라 어느 쪽으로도 나와서, 둘 사이인 ${x.zn} 높이로 보여 드려요.`;
+      lb.querySelectorAll('span').forEach((e,i)=>e.classList.toggle('on',i===x.zone||i===x.zone+1))}
+    if(x.cd==null){cf.remove();return}
+    cf.innerHTML=`<b>신뢰도 ${x.cd}%</b><span>계산 방식을 바꿔 2,000번 다시 계산했을 때 ${x.zn!=null?`'${ST[x.zone][0]}' 또는 '${ST[x.zone+1][0]}'`:`'${ST[s][0]}'`}가 나온 비율이에요. <a href="/guide#trust">자세히</a></span>`})}
   // 반전
   const tn=el('div','turn');tn.innerHTML=`<b>소멸하는 날은 없어요.</b> 직업이 통째로 사라지는 날을 계산할 수는 없어요. 우리가 셀 수 있는 건 그 일의 업무 가운데 AI가 해낼 수 있는 몫이에요. 지금 <b>${pct(v)}%</b>, 2030년이면 <b>${pct(v30)}%</b>가 돼요.`;O.append(tn);
   // 물때 자
@@ -362,7 +368,7 @@ function show(j,k,title,scroll){
   cta.append(f,pv);O.append(cta);
   // 공유·다시·지도
   const acts=el('div','acts');const u=`${location.origin}/test?j=${J.code}${c?'&k='+c:''}`;
-  const sh=el('button','btn','결과 공유하기');sh.type='button';sh.onclick=async()=>{track('share','test:'+J.code);const t=`${label}, AI 물때는 지금 '${ST[s][0]}'(${pct(v)}%) · 내 직업은 언제 소멸될까?`;
+  const sh=el('button','btn','결과 공유하기');sh.type='button';sh.onclick=async()=>{track('share','test:'+J.code);const t=`${label}, AI 물때는 지금 '${O.dataset.zn||ST[s][0]}'(${pct(v)}%) · 내 직업은 언제 소멸될까?`;
     try{if(navigator.share){await navigator.share({title:'내 직업은 언제 소멸될까?',text:t,url:u});return}await navigator.clipboard.writeText(t+' '+u);sh.textContent='링크 복사했어요'}catch(x){sh.textContent='복사하지 못했어요'}setTimeout(()=>sh.textContent='결과 공유하기',2500)};
   const ag=el('button','btn o','다른 직업 해보기');ag.type='button';ag.onclick=()=>{$('#q').focus();window.scrollTo({top:$('.search').offsetTop-20,behavior:'smooth'})};
   const mp=el('a','btn o','지도에서 자세히 보기');mp.href=`/#j=${J.code}`;acts.append(sh,ag,mp);O.append(acts);

@@ -182,6 +182,14 @@ for f in sorted(glob.glob(os.path.join(ROOT, 'review', '20*-W*.json'))):
 
 # ── 신뢰도 %: 2,000번 다시 계산했을 때 화면이 말하는 물때 단계(발목·무릎·허리·가슴·목까지)가 그대로인 비율
 STG = [0, .2, .35, .5, .65]
+# 단계 경계에 걸린 직업(신뢰도 80% 미만, 다음으로 많이 나온 단계가 바로 옆)은 두 단계 사이의 신체 부위로 부른다(2026-11-02 운영자 결정)
+ZONE = ['정강이', '허벅지', '명치', '어깨']   # 발목~무릎, 무릎~허리, 허리~가슴, 가슴~목까지
+def zone(x, s0):
+    x['s'] = s0; x['cd'] = x['conf']
+    a = x.get('alt')
+    if x['conf'] < 80 and a and abs(a[0] - s0) == 1:
+        lo = min(a[0], s0); x['zone'] = lo; x['zn'] = ZONE[lo]; x['cd'] = x['conf'] + a[1]
+    if x['cd'] < 80: x['cd'] = None   # 80% 미만은 화면에 신뢰도 숫자를 내지 않는다
 def stg(v): return sum(1 for t in STG[1:] if v >= t)
 for c in CODES:
     v = occ(c, 2026); s0 = stg(v)
@@ -189,6 +197,7 @@ for c in CODES:
     out['sm'][c]['conf'] = round(cnt[s0] / N * 100)
     alt = [(k, n) for k, n in cnt.most_common() if k != s0]
     if alt: out['sm'][c]['alt'] = [alt[0][0], round(alt[0][1] / N * 100)]   # 다음으로 많이 나온 단계(0~4)와 비율
+    zone(out['sm'][c], s0)
 out['mid'] = {}
 for j in M['jobs']:
     sm = [(c, EMPK.get(c, 0)) for c, _, _ in j['smalls'] if c in SM]
@@ -199,9 +208,13 @@ for j in M['jobs']:
     out['mid'][j['code']] = {'conf': round(cnt[s0] / N * 100)}
     alt = [(k, n) for k, n in cnt.most_common() if k != s0]
     if alt: out['mid'][j['code']]['alt'] = [alt[0][0], round(alt[0][1] / N * 100)]
+    zone(out['mid'][j['code']], s0)
 conf_all = round(sum(out['sm'][c]['conf'] * EMPK.get(c, 0) for c in CODES) / sum(EMPK.get(c, 0) for c in CODES))
+_w = [(out['sm'][c]['cd'], EMPK.get(c, 0)) for c in CODES]
+conf_disp = round(sum((cd if cd is not None else out['sm'][c]['conf']) * e for (cd, e), c in zip(_w, CODES)) / sum(e for _, e in _w))
+zones = sum(1 for c in CODES if 'zone' in out['sm'][c]); hidden = sum(1 for c in CODES if out['sm'][c]['cd'] is None)
 out['summary'] = {
-    'conf_all': conf_all, 'conf_def': '계산 방식(두 연구 비중, 사람·AI 판정, 직업 연결 방식, 미국 고용 가중)을 바꿔 2,000번 다시 계산했을 때 물때 단계가 그대로인 비율. 사이트 전체는 취업자 가중 평균',
+    'conf_all': conf_all, 'conf_disp': conf_disp, 'zones': zones, 'hidden': hidden, 'conf_def': '계산 방식(두 연구 비중, 사람·AI 판정, 직업 연결 방식, 미국 고용 가중)을 바꿔 2,000번 다시 계산했을 때 물때 단계가 그대로인 비율. 사이트 전체는 취업자 가중 평균',
     'agree': {k: {'rho': v[0], 'n': v[1]} for k, v in agree.items()},
     'external': {k: {'rho': v[0], 'n': v[1]} for k, v in extc.items()},
     'grades': dict(grades), 'grades_emp_share': {k: round(v / tot, 3) for k, v in emp_by.items()},

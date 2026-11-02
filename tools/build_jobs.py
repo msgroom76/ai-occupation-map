@@ -7,7 +7,11 @@ BASE='https://aijido.org'
 m=json.load(open('city_meta.json'));idx=json.load(open('index.json'))
 R=m['R'];RN=m['RN'];J=m['jobs'];SM=m.get('sm',{})
 VAL=json.load(open('validation.json')) if os.path.exists('validation.json') else {'sm':{},'mid':{}}
-def cfx(x):return f' · <a href="/guide#trust" style="color:inherit">신뢰도 {x["conf"]}%</a>' if x and x.get('conf') is not None else ''
+ZST=['발목','무릎','허리','가슴','목까지']
+def cfx(x):
+    if not x or x.get('cd') is None: return ''
+    h=f"{x['zn']} 높이({ZST[x['zone']]}~{ZST[x['zone']+1]} 사이)" if x.get('zn') else f"{ZST[x['s']]} 높이"
+    return f' · 물때 {h} · <a href="/guide#trust" style="color:inherit;white-space:nowrap">신뢰도 {x["cd"]}%</a>'
 W=idx['weeks'][-1];ADJ=W.get('adj',{});ASOF=W.get('date','')
 SUB={'A5','B2','B9','C1','C2','C3','C4','C5','C9','D15','D3'}
 CAT={'A':'정보 받아들이기','B':'생각하고 판단하기','C':'작업 수행하기','D':'사람과 상호작용하기'}

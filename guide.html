@@ -143,7 +143,7 @@ html{scroll-padding-top:76px}@media (max-width:899px){html{scroll-padding-top:11
 fetch('/validation.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(V=>{if(!V)return;const S=V.summary,b=document.getElementById('trustbox'),f=x=>x==null?'-':x.toFixed(2);
 const card=(h,p)=>{const d=document.createElement('div');d.className='tc';d.innerHTML='<b>'+h+'</b><span>'+p+'</span>';b.appendChild(d)};
 if(V.at)document.getElementById('trustat').textContent='(마지막 점검 '+V.at.slice(5).replace('-','월 ')+'일 기준)';const ex=S.external,ag=S.agree,G=S.grades,E=S.grades_emp_share;
-card('신뢰도 '+S.conf_all+'%','계산 방식(두 연구 비중, 사람·AI 판정, 직업 연결 방식)을 바꿔 2,000번 다시 계산했을 때, 직업마다 화면에 나온 물때 단계가 그대로 나온 비율이에요. 일하는 사람 수로 평균 낸 값이고, 직업마다 다르니 결과 화면에서 직업별로 확인하세요. 미래 예측이 맞을 확률은 아니에요. 그건 아래 채점으로 따로 확인해요.');
+card('직업별 신뢰도 평균 '+S.conf_disp+'%','계산 방식(두 연구 비중, 사람·AI 판정, 직업 연결 방식)을 바꿔 2,000번 다시 계산했을 때 화면이 말하는 물때 높이가 그대로 나온 비율이에요. 두 단계 경계에 걸린 직업 '+S.zones+'개는 한 단계로 잘라 말하지 않고 둘 사이의 신체 부위(정강이·허벅지·명치·어깨)로 보여 줘요. 80% 미만 숫자는 내지 않아요. 미래 예측이 맞을 확률은 아니에요. 그건 아래 채점으로 따로 확인해요.');
 card('두 연구가 같은 방향을 봐요','미국 연구(Eloundou 외)와 국제노동기구 연구의 직업 순위 상관 '+f(ag.eloundou_vs_ilo.rho)+'. 1에 가까울수록 같은 순서로 봐요.');
 card('다른 지표와도 순위가 비슷해요','실제 AI 사용(Anthropic) '+f(ex['observed_use(Anthropic)']&&ex['observed_use(Anthropic)'].rho)+(ex['AIOE(Felten 2021)']?' · Felten 외 AI 노출 지수 '+f(ex['AIOE(Felten 2021)'].rho):'')+(ex['applicability(Microsoft)']?' · Microsoft AI 적용도 '+f(ex['applicability(Microsoft)'].rho):'')+'. 같은 직업 연결표를 거친 비교라 완전히 따로 잰 건 아니에요.');
 card('직업 연결 방식을 바꿔도 크게 안 흔들려요','우리가 만든 연결표 대신 국가데이터처 공식 연계표로 이어도 순위 상관 '+f(ag.our_map_vs_official.rho)+'. 다만 '+S.route_gap_pp.over10+'개 직업은 10%p 넘게 달라져요.');
