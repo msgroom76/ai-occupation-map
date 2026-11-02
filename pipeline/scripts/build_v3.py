@@ -1,7 +1,8 @@
 import json,collections
 exec(open('samples/jobs_v2.py').read())
 OLD={n:d for n,w,d in JOBS2}; OLDN=[n for n,_,_ in JOBS2]
-occ=json.load(open('dl_lfs/occ_2025h2.json'))['rows']
+import glob
+occ=json.load(open(sorted(glob.glob('dl_lfs/occ_*.json'))[-1]))['rows']  # 가장 최근 반기(tools/refresh_data.py가 자동으로 넣음)
 K={r['code']:r for r in occ}
 KS=json.load(open('web/ksco_titles.json'))
 SHORT={'11':'고위 공무원·기업 임원','12':'경영지원·마케팅 관리자','13':'전문서비스 관리자','14':'건설·생산 관리자','15':'판매·서비스 관리자',

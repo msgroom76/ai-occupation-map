@@ -235,3 +235,10 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 - 신뢰도 %(2026-11-02): `validation.json`의 sm/mid `conf` = 계산 방식을 바꾼 2,000번 중 화면의 물때 단계가 그대로인 비율, `alt` = 다음으로 많이 나온 단계·비율, `summary.conf_all` = 취업자 가중 평균. /test 결과 단계 아래, /test 첫 화면 문구, /guide#trust, 직업 페이지(j/) 노출도 아래에 보인다. 미래 예측이 맞을 확률이 아님을 화면에 밝힌다.
 - 경계 구간(2026-11-02 운영자 결정): 신뢰도가 80% 미만이고 다음으로 많이 나온 단계가 바로 옆이면, 단계를 둘 사이의 신체 부위로 부른다 — 발목~무릎 정강이, 무릎~허리 허벅지, 허리~가슴 명치, 가슴~목까지 어깨. 이때 신뢰도 = 두 단계를 합친 비율(`cd`). `cd`가 80% 미만이면 숫자를 내지 않는다. 단계를 더 잘게 나누면 경계가 늘어 신뢰도가 오히려 떨어지므로, 부위 이름은 '경계 구간'에만 쓴다. 사이트 전체 = `summary.conf_disp`(취업자 가중).
 - 근거 보강 1차(2026-11-02): validate.py가 소분류 하나뿐인 중분류(34·51·62·63·71·73·74·91·93)의 소분류를 '미국 직업 0개'로 세던 실수를 고침(중분류 연결 수 nocc를 씀). 922 배달원에 우편집배원 추가, 건설 노무자(47-2061)를 782에서 빼 단순노무(91)에만 둠. 예측 기록 2026-11-02-r3부터 채점 기준. 남은 C 52개(취업자 22%): 연결 부족 24 · 순위 흔들림 20 · 두 연구 차이 8.
+
+## 자료 자동 반영 (2026-11-02부터, .github/workflows/data-refresh.yml)
+- 매달 1·15일 09:17 KST와 수동 실행. `tools/refresh_data.py`가 Anthropic 경제지수(job_exposure.csv)와 지역별고용조사 직업 소분류 취업자(KOSIS, 우리 /api/kosis 중계 — 열쇠는 Cloudflare에만)를 확인해 새 판이면 내려받고, run.sh → build_evidence → validate → build_jobs → check_data까지 돌려 **PR**로 올린다. 병합해야 사이트에 나간다.
+- Anthropic 새 판이면 직전 예측 기록을 criteria.json대로 자동 채점해 `forecasts/score-*.json`을 같은 PR에 넣는다(결과와 상관없이 공개).
+- O*NET 새 판, ILO·연계표 변경은 PR 본문 '사람이 볼 것'에만 적는다(구조가 바뀔 수 있음).
+- 저장소 설정 > Actions > General에서 'Allow GitHub Actions to create and approve pull requests'가 꺼져 있으면 PR 대신 이슈로 알린다.
+- Claude 정기 작업 환경에서도 같은 스크립트가 돈다(Hugging Face·aijido.org 접속 가능).

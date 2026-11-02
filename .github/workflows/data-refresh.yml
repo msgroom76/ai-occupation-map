@@ -1,0 +1,46 @@
+# 자료 자동 반영: 매달 1일·15일 아침(KST 09:17)과 [Run workflow] 버튼으로 돈다.
+# 새 자료가 있으면 tools/refresh_data.py가 내려받아 파이프라인·신뢰도 점검까지 돌리고, 결과를 PR로 올린다.
+# PR을 병합해야 사이트(Cloudflare Pages, main)에 나간다. 새 자료가 없으면 아무것도 하지 않는다.
+name: data-refresh
+on:
+  schedule:
+    - cron: '17 0 1,15 * *'
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+concurrency: { group: data-refresh, cancel-in-progress: false }
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.13' }
+      - name: 도구 설치
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+          pip install -q numpy==2.5.3 scipy==1.18.1 pandas==3.0.5 matplotlib==3.11.2 pillow==12.3.0 openpyxl==3.1.5
+          git clone -q --depth 1 https://github.com/AIOE-Data/aioe /tmp/aioe
+      - name: 새 자료 확인·반영
+        id: r
+        env: { AIOE_DIR: /tmp/aioe }
+        run: |
+          set +e
+          python3 tools/refresh_data.py --report reports/refresh-latest.md
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          [ $code -eq 0 ] || [ $code -eq 3 ] || exit $code
+      - name: PR 올리기
+        if: steps.r.outputs.code == '0'
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          b="data-refresh-$(date +%Y%m%d)"
+          git config user.name "aijido data bot"; git config user.email "actions@users.noreply.github.com"
+          git checkout -b "$b"; git add -A; git commit -q -m "자료 자동 반영 $(date +%Y-%m-%d)"; git push -q -f origin "$b"
+          gh pr create --base main --head "$b" --title "자료 자동 반영 $(date +%Y-%m-%d)" --body-file reports/refresh-latest.md \
+            || gh issue create --title "자료 자동 반영 $(date +%Y-%m-%d) — PR을 만들지 못했어요" --body "브랜치 $b 에 반영본이 있어요. 저장소 설정 > Actions > 'Allow GitHub Actions to create and approve pull requests'를 켜 주세요.
+
+          $(cat reports/refresh-latest.md)"
