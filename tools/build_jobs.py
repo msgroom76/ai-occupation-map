@@ -6,6 +6,8 @@ from urllib.parse import quote
 BASE='https://aijido.org'
 m=json.load(open('city_meta.json'));idx=json.load(open('index.json'))
 R=m['R'];RN=m['RN'];J=m['jobs'];SM=m.get('sm',{})
+VAL=json.load(open('validation.json')) if os.path.exists('validation.json') else {'sm':{},'mid':{}}
+def cfx(x):return f' · <a href="/guide#trust" style="color:inherit">신뢰도 {x["conf"]}%</a>' if x and x.get('conf') is not None else ''
 W=idx['weeks'][-1];ADJ=W.get('adj',{});ASOF=W.get('date','')
 SUB={'A5','B2','B9','C1','C2','C3','C4','C5','C9','D15','D3'}
 CAT={'A':'정보 받아들이기','B':'생각하고 판단하기','C':'작업 수행하기','D':'사람과 상호작용하기'}
@@ -111,7 +113,7 @@ for j in J:
     nr=''.join(f'<tr><td><a href="/j/{o["code"]}">{H.escape(o["name"])}</a><div class="note">업무 겹침 {pc(sim(j["w41"],o["w41"]))}%</div></td><td class="n">{pc(JV[o["code"]])}%</td></tr>' for o in near)
     qa=faq(name,v,u)
     body=f'''<div class="crumb"><a href="/">지도</a> › {GN[j["group"]]} 구역</div><h1>{H.escape(name)}</h1><div class="sub">표준직업분류 {c} {H.escape(short(j["full"]))} · 취업자 {fw(j["ws"])}만 명</div>
-<p class="lede">{lede(v)}</p><div class="big">{pc(v)}<small>%</small></div><div class="sub">2026 현재 노출도 · 두 연구의 평균</div>{st}
+<p class="lede">{lede(v)}</p><div class="big">{pc(v)}<small>%</small></div><div class="sub">2026 현재 노출도 · 두 연구의 평균{cfx(VAL["mid"].get(c))}</div>{st}
 <div class="cta"><a class="p" href="/#j={c}">지도에서 보기 →</a><a href="/">다른 직업 찾기</a></div>
 {smr}<h2>주요 업무 8개</h2>{tasksrows(j["w41"],j["cal"])}<p class="note">대신하는 쪽: AI가 그 일을 대신하는 업무. 돕는 쪽: 사람이 AI와 함께 더 하게 되는 업무.</p>
 {'<h2>업무가 비슷하고 노출도가 낮은 직업</h2><table><tr><th>직업</th><th class="n">2026 노출도</th></tr>'+nr+'</table><p class="note">옮겨갈 길을 찾는 출발점이에요. 교육 기간·비용과 실제 이직 사례는 반영하지 않았어요.</p>' if nr else ''}
@@ -129,7 +131,7 @@ for j in J:
         thin=d and d.get('n',9)<=2
         qa=faq(nm,v,u)
         body=f'''<div class="crumb"><a href="/">지도</a> › {GN[j["group"]]} 구역 › <a href="/j/{c}">{H.escape(name)}</a></div><h1>{H.escape(nm)}</h1><div class="sub">표준직업분류 소분류 {sc} · 취업자 {fw(k/10)}만 명</div>
-<p class="lede">{lede(v)}</p><div class="big">{pc(v)}<small>%</small></div><div class="sub">2026 현재 노출도 · 두 연구의 평균 · {H.escape(name)} 전체는 {pc(JV[c])}%</div>{st}
+<p class="lede">{lede(v)}</p><div class="big">{pc(v)}<small>%</small></div><div class="sub">2026 현재 노출도 · 두 연구의 평균 · {H.escape(name)} 전체는 {pc(JV[c])}%{cfx(VAL["sm"].get(sc))}</div>{st}
 {'<p class="note">연결된 미국 직업이 1~2개라 오차가 클 수 있어요.</p>' if thin else ''}{'' if d and d.get('own') else '<p class="note">이 소분류에 딱 맞는 미국 직업이 없어 업무 구성은 '+H.escape(name)+' 전체 값을 썼어요.</p>'}
 <div class="cta"><a class="p" href="/#j={c}&q={quote(nm)}">지도에서 보기 →</a><a href="/j/{c}">{H.escape(name)} 전체 →</a></div>
 <h2>주요 업무 8개</h2>{tasksrows(w,cal)}

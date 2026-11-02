@@ -179,7 +179,29 @@ for f in sorted(glob.glob(os.path.join(ROOT, 'review', '20*-W*.json'))):
     rev.append({'week': j.get('week'), 'by': j.get('by'), 'ok': cnt['ok'], 'fix': cnt['fix'], 'hold': cnt['hold'],
                 'pass': round(cnt['ok'] / max(1, len(it)), 3)})
 
+
+# ── 신뢰도 %: 2,000번 다시 계산했을 때 화면이 말하는 물때 단계(발목·무릎·허리·가슴·목까지)가 그대로인 비율
+STG = [0, .2, .35, .5, .65]
+def stg(v): return sum(1 for t in STG[1:] if v >= t)
+for c in CODES:
+    v = occ(c, 2026); s0 = stg(v)
+    cnt = collections.Counter(stg(v * r) for r in draws[c])
+    out['sm'][c]['conf'] = round(cnt[s0] / N * 100)
+    alt = [(k, n) for k, n in cnt.most_common() if k != s0]
+    if alt: out['sm'][c]['alt'] = [alt[0][0], round(alt[0][1] / N * 100)]   # 다음으로 많이 나온 단계(0~4)와 비율
+out['mid'] = {}
+for j in M['jobs']:
+    sm = [(c, EMPK.get(c, 0)) for c, _, _ in j['smalls'] if c in SM]
+    if not sm: continue
+    vm = min(.99, j['cal'] * sum(x * pv(r, 2026) for r, x in j['w41'].items())); s0 = stg(vm)
+    z = sum(T0[c] * e for c, e in sm) or 1
+    cnt = collections.Counter(stg(vm * sum(T0[c] * draws[c][i] * e for c, e in sm) / z) for i in range(N))
+    out['mid'][j['code']] = {'conf': round(cnt[s0] / N * 100)}
+    alt = [(k, n) for k, n in cnt.most_common() if k != s0]
+    if alt: out['mid'][j['code']]['alt'] = [alt[0][0], round(alt[0][1] / N * 100)]
+conf_all = round(sum(out['sm'][c]['conf'] * EMPK.get(c, 0) for c in CODES) / sum(EMPK.get(c, 0) for c in CODES))
 out['summary'] = {
+    'conf_all': conf_all, 'conf_def': '계산 방식(두 연구 비중, 사람·AI 판정, 직업 연결 방식, 미국 고용 가중)을 바꿔 2,000번 다시 계산했을 때 물때 단계가 그대로인 비율. 사이트 전체는 취업자 가중 평균',
     'agree': {k: {'rho': v[0], 'n': v[1]} for k, v in agree.items()},
     'external': {k: {'rho': v[0], 'n': v[1]} for k, v in extc.items()},
     'grades': dict(grades), 'grades_emp_share': {k: round(v / tot, 3) for k, v in emp_by.items()},
@@ -197,12 +219,12 @@ lab = {'eloundou_vs_ilo': 'Eloundou 외 β vs ILO', 'model_vs_human': 'GPT-4 판
 for k, v in agree.items(): L.append(f'- {lab[k]}: ρ={v[0]} (n={v[1]})')
 L += ['', '## 외부 지표와 순위 상관', ''] + [f'- {k}: ρ={v[0]} (n={v[1]})' for k, v in extc.items()]
 s = out['summary']
-L += ['', '## 근거 등급', '', f"- A {grades['A']} · B {grades['B']} · C {grades['C']} (취업자 비중 A {s['grades_emp_share'].get('A',0):.0%} · B {s['grades_emp_share'].get('B',0):.0%} · C {s['grades_emp_share'].get('C',0):.0%})",
+L += ['', f"## 신뢰도(단계 일치율) — 사이트 전체 {conf_all}%", '', out['summary']['conf_def'], '', '## 근거 등급', '', f"- A {grades['A']} · B {grades['B']} · C {grades['C']} (취업자 비중 A {s['grades_emp_share'].get('A',0):.0%} · B {s['grades_emp_share'].get('B',0):.0%} · C {s['grades_emp_share'].get('C',0):.0%})",
       f"- 범위 폭 중앙값 {s['median_band_pp']}%p · 연결 경로를 바꿨을 때 차이 중앙값 {s['route_gap_pp']['median_abs']}%p, 10%p 넘는 소분류 {s['route_gap_pp']['over10']}/{s['route_gap_pp']['n']}", '',
-      '| 코드 | 직업 | 2026 | 범위 | 순위(범위) | 등급 | 이유 |', '| --- | --- | --- | --- | --- | --- | --- |']
+      '| 코드 | 직업 | 2026 | 범위 | 순위(범위) | 등급 | 신뢰도 | 이유 |', '| --- | --- | --- | --- | --- | --- | --- | --- |']
 for c in sorted(CODES, key=lambda c: (out['sm'][c]['g'] != 'C', -(out['sm'][c]['hi'] - out['sm'][c]['lo']))):
     x = out['sm'][c]
-    L.append(f"| {c} | {NAME.get(c, '')} | {round(occ(c, 2026) * 100)}% | {x['lo']}~{x['hi']}% | {x['r0']} ({x['rk'][0]}~{x['rk'][1]}) | {x['g']} | {', '.join(x['why'])} |")
+    L.append(f"| {c} | {NAME.get(c, '')} | {round(occ(c, 2026) * 100)}% | {x['lo']}~{x['hi']}% | {x['r0']} ({x['rk'][0]}~{x['rk'][1]}) | {x['g']} | {x['conf']}% | {', '.join(x['why'])} |")
 L += ['', '## 연결 경로 차이가 큰 소분류(공식 경로 − 우리 연결표, β)', '']
 for c, v in sorted(gap.items(), key=lambda kv: -abs(kv[1]))[:15]: L.append(f'- {c} {NAME.get(c, "")}: {v * 100:+.0f}%p')
 L += ['', '## 주간 소식 독립 검토', ''] + [f"- {r['week']} ({r['by']}): 확인 {r['ok']} · 수정 {r['fix']} · 보류 {r['hold']} → 그대로 통과 {r['pass']:.0%}" for r in rev]

@@ -104,7 +104,7 @@ details[open] summary::after{content:"−"}details p{color:var(--ink2);margin:0 
 <div id="trustbox" class="cards"></div>
 <details><summary>근거 등급은 어떻게 정하나요?</summary><p id="trustrule">연결된 미국 직업 수, 두 연구가 보는 값의 차이, 계산 방식을 바꿨을 때 값이 흔들리는 폭으로 정해요.</p></details>
 <details><summary>‘계산 방식을 바꿔 보면’은 무슨 뜻인가요?</summary><p>지표를 만들 때는 사람이 정하는 선택이 들어가요. 두 연구를 반반 섞을지, AI 판정과 사람 판정 중 무엇을 쓸지, 한국 직업을 미국 직업에 어떤 표로 이을지 같은 것들이에요. 이 선택들을 무작위로 바꿔 2,000번 다시 계산하고, 그중 가운데 80%가 들어가는 범위를 보여 줘요. 범위가 넓을수록 숫자 하나에 기대기보다 순위와 흐름을 보는 게 좋아요.</p></details>
-<details><summary>예측이 맞았는지는 어떻게 아나요?</summary><p>분기마다 직업별 예측값을 날짜와 함께 고정해 공개해요(<a href="/forecasts/index.json">예측 기록</a>). 채점 기준도 채점 전에 정해 공개했어요(<a href="/forecasts/criteria.json">채점 기준</a>). 실제 AI 사용 통계(Anthropic 경제지수)가 새로 나오면, 직업 순위가 실제와 0.7 이상 맞고(순위 상관) 2026년 연구값을 그대로 둔 예측보다 나을 때 ‘합격’이에요. 방향이 맞았는지, 노출 상위·하위 20% 직업의 사용·고용 변화 차이도 함께 공개해요. 결과가 나빠도 그대로 공개하고, 기준은 나중에 바꾸지 않아요. 첫 기록은 2026년 11월 2일이에요.</p></details>
+<details><summary>예측이 맞았는지는 어떻게 아나요?</summary><p>분기마다 직업별 예측값을 날짜와 함께 고정해 공개해요(<a href="/forecasts/index.json">예측 기록</a>). 채점 기준도 채점 전에 정해 공개했어요(<a href="/forecasts/criteria.json">채점 기준</a>). 실제 AI 사용 통계(Anthropic 경제지수)가 새로 나오면, 직업 순위가 실제와 0.7 이상 맞으면(순위 상관) 합격이에요. 2026년 연구값을 그대로 둔 예측보다 0.02 이상 나으면 ‘합격’, 차이가 없으면 ‘합격(추가 가치 없음)’, 0.02 이상 못하면 ‘불합격’이에요. 방향이 맞았는지, 노출 상위·하위 20% 직업의 사용·고용 변화 차이도 함께 공개해요. 결과가 나빠도 그대로 공개하고, 기준은 나중에 바꾸지 않아요. 첫 기록은 2026년 11월 2일이에요.</p></details>
 </section>
 
 <section id="more">
@@ -130,6 +130,7 @@ details[open] summary::after{content:"−"}details p{color:var(--ink2);margin:0 
 fetch('/validation.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(V=>{if(!V)return;const S=V.summary,b=document.getElementById('trustbox'),f=x=>x==null?'-':x.toFixed(2);
 const card=(h,p)=>{const d=document.createElement('div');d.className='tc';d.innerHTML='<b>'+h+'</b><span>'+p+'</span>';b.appendChild(d)};
 if(V.at)document.getElementById('trustat').textContent='(마지막 점검 '+V.at.slice(5).replace('-','월 ')+'일 기준)';const ex=S.external,ag=S.agree,G=S.grades,E=S.grades_emp_share;
+card('신뢰도 '+S.conf_all+'%','계산 방식(두 연구 비중, 사람·AI 판정, 직업 연결 방식)을 바꿔 2,000번 다시 계산했을 때, 직업마다 화면에 나온 물때 단계가 그대로 나온 비율이에요. 일하는 사람 수로 평균 낸 값이고, 직업마다 다르니 결과 화면에서 직업별로 확인하세요. 미래 예측이 맞을 확률은 아니에요. 그건 아래 채점으로 따로 확인해요.');
 card('두 연구가 같은 방향을 봐요','미국 연구(Eloundou 외)와 국제노동기구 연구의 직업 순위 상관 '+f(ag.eloundou_vs_ilo.rho)+'. 1에 가까울수록 같은 순서로 봐요.');
 card('다른 지표와도 순위가 비슷해요','실제 AI 사용(Anthropic) '+f(ex['observed_use(Anthropic)']&&ex['observed_use(Anthropic)'].rho)+(ex['AIOE(Felten 2021)']?' · Felten 외 AI 노출 지수 '+f(ex['AIOE(Felten 2021)'].rho):'')+(ex['applicability(Microsoft)']?' · Microsoft AI 적용도 '+f(ex['applicability(Microsoft)'].rho):'')+'. 같은 직업 연결표를 거친 비교라 완전히 따로 잰 건 아니에요.');
 card('직업 연결 방식을 바꿔도 크게 안 흔들려요','우리가 만든 연결표 대신 국가데이터처 공식 연계표로 이어도 순위 상관 '+f(ag.our_map_vs_official.rho)+'. 다만 '+S.route_gap_pp.over10+'개 직업은 10%p 넘게 달라져요.');
