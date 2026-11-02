@@ -45,12 +45,14 @@ def rho(a, b):
 act = usage(A.usage); y = yf(A.usage_date)
 ours = {c: at(v, y) for c, v in F.items()}
 r_ours, n = rho(ours, act); r_base, _ = rho(B, act)
-TH = C['pass']['rho_min']
+TH = C['pass']['rho_min']; MG = C['pass'].get('margin', 0)
+d = r_ours - r_base; cmp = '낫다' if d >= MG else '못하다' if d <= -MG else '차이 없음'
+level = '불합격' if r_ours < TH or cmp == '못하다' else '합격' if cmp == '낫다' else '합격(추가 가치 없음)'
 res = {'snap': A.snap, 'snap_sha256': S['sha256'], 'criteria_sha256': C.get('sha256'), 'usage': os.path.basename(A.usage), 'usage_date': A.usage_date,
        'scored_at': datetime.date.today().isoformat(), 'n': n,
-       'rank_corr': {'ours': r_ours, 'baseline': r_base, 'threshold': TH},
-       'pass': bool(r_ours >= TH and r_ours > r_base),
-       'verdict': ('합격' if r_ours >= TH and r_ours > r_base else '불합격') + f' (순위 상관 {r_ours}, 기준 {TH} 이상 · 기준선 {r_base}보다 높아야 함)'}
+       'rank_corr': {'ours': r_ours, 'baseline': r_base, 'threshold': TH, 'margin': MG, 'vs_baseline': cmp},
+       'pass': level != '불합격', 'level': level,
+       'verdict': f'{level} (순위 상관 {r_ours}, 기준 {TH} 이상 · 기준선 {r_base}와 비교해 {cmp})'}
 # 방향 일치(평균 대비): 예측이 '평균보다 많이 오른다'고 한 직업이 실제로도 평균보다 많이 올랐나
 if A.usage_old:
     old = usage(A.usage_old); y0 = yf(A.usage_old_date or S['date'][:10])
