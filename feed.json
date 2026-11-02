@@ -1,7 +1,92 @@
 {
- "updated": "2026-11-02T12:58:00+09:00",
+ "updated": "2026-11-02T17:58:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-11-02-skecoplant-one-agent-per-person",
+   "ts": "2026-11-02T10:14:00+09:00",
+   "src": "헤럴드경제",
+   "url": "https://biz.heraldcorp.com/article/10922369",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "SK에코플랜트, '1인 1 AI 에이전트' 본격 가동 — 반도체·AI 데이터센터 현장부터 공정 실적·작업일지 등 반복 데이터 수집과 단순 보고서 작성을 에이전트로 자동화, 사내 시스템 업무 데이터로 직원별 병목을 분석해 맞춤 에이전트 설계(올해 사내 AI 전문가 318명 양성)",
+   "r": [
+    "C9",
+    "A1"
+   ],
+   "st": "pending",
+   "grp": "personal-agent",
+   "dwa": [
+    [
+     "4.A.3.b.6.I15.D06",
+     "d"
+    ],
+    [
+     "4.A.3.b.6.I08.D27",
+     "d"
+    ]
+   ],
+   "ind": [
+    "14",
+    "23"
+   ]
+  },
+  {
+   "id": "2026-11-02-hd-hyundai-robotics-palantir-agent",
+   "ts": "2026-11-02T09:00:00+09:00",
+   "src": "디일렉",
+   "url": "https://www.thelec.net/news/articleView.html?idxno=15151",
+   "tier": "신뢰 매체",
+   "sig": "도입",
+   "us": false,
+   "kr": true,
+   "hd": "HD현대로보틱스, 8월부터 기존 로봇 프로그램을 분석해 개선점을 제시하는 AI 에이전트(팔란티어 협업)를 현장 문제 해결 업무에 도입 — 엔지니어가 제안을 다듬어 적용, 평균 처리 기간 21.5일→7.9일(63% 단축) (안성환 CTO, 팔란티어 행사 기조연설 · 프로그래밍 비용 50% 이상 절감은 기대치)",
+   "r": [
+    "B5"
+   ],
+   "st": "pending",
+   "grp": "factory-agent",
+   "dwa": [
+    [
+     "4.A.3.b.1.I01.D04",
+     "a"
+    ]
+   ],
+   "ind": [
+    "23"
+   ]
+  },
+  {
+   "id": "2026-11-01-iqiyi-ai-film-studio",
+   "ts": "2026-11-01T12:00:00+09:00",
+   "src": "iQIYI(PR Newswire)",
+   "url": "https://www.prnewswire.com/news-releases/iqiyi-launches-chinas-first-ai-film-studio-in-shanghai-with-inaugural-title-cop-in-trouble-in-production-302925881.html",
+   "tier": "1차 출처",
+   "sig": "도입",
+   "us": false,
+   "kr": false,
+   "hd": "중국 아이치이, 상하이에 AI 영화 스튜디오 개설 — 실사 촬영본을 AI 제작 플랫폼 'NadouPro'(모델·에이전트 약 30종)로 넘겨 배경·조명·의상·분장·소품 등 시각 요소를 촬영 후 생성·수정, 첫 작품 'Cop in Trouble' 10월 28일 촬영 시작(배우 연기는 실사 그대로)",
+   "r": [
+    "B6"
+   ],
+   "st": "pending",
+   "grp": "video-gen-production",
+   "dwa": [
+    [
+     "4.A.2.b.2.I18.D17",
+     "d"
+    ],
+    [
+     "4.A.2.b.1.I11.D01",
+     "a"
+    ]
+   ],
+   "ind": [
+    "29"
+   ]
+  },
   {
    "id": "2026-11-02-pulmuone-designmeal-ai-chat",
    "ts": "2026-11-02T07:59:00+09:00",
@@ -4268,6 +4353,19 @@
   }
  ],
  "runs": [
+  {
+   "at": "2026-11-02T17:58:00+09:00",
+   "push": {
+    "q": 13,
+    "cand": 7,
+    "acc": 3
+   },
+   "front": {
+    "q": 24,
+    "cand": 9,
+    "acc": 0
+   }
+  },
   {
    "at": "2026-11-02T12:58:00+09:00",
    "push": {
