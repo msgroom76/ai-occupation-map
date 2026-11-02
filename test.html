@@ -71,6 +71,16 @@ h2 small{display:block;font-size:13px;font-weight:400;color:var(--ink2);letter-s
 .wnews li{padding:9px 0;border-bottom:1px solid var(--hair);font-size:14px;line-height:1.45}.wnews li a{color:var(--ink);text-decoration:none}.wnews li a:hover{text-decoration:underline}
 .wnews small{display:block;font-size:12px;color:var(--ink2);margin-top:2px}
 .wsrc{font-size:13px;color:var(--ink2);margin:20px 0 0;padding:12px 14px;background:var(--soft)}
+/* 비슷한 일을 하는 직업 */
+.pick{margin:12px 0 4px;padding:14px 16px;border:1.5px solid var(--hot);font-size:15px;line-height:1.55}.pick b{color:var(--hot)}.pick small{display:block;font-size:13px;color:var(--ink2);margin-top:4px}
+.near{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--hair)}
+.near li{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:2px 12px;padding:10px 0;border-bottom:1px solid var(--hair);align-items:center}
+.near li a{color:var(--ink);font-weight:600;text-decoration:none}.near li a:hover{text-decoration:underline}
+.near li small{display:block;font-size:12px;color:var(--ink2);font-weight:400;margin-top:1px}
+.near .v{text-align:right;font-weight:800;font-feature-settings:"tnum"}.near .v small{display:block;font-weight:400}
+.near .m{grid-column:1/-1;height:6px;background:var(--hair);position:relative}.near .m i{position:absolute;left:0;top:0;bottom:0;background:var(--ink2)}
+.near li.me{background:var(--soft)}.near li.me .m i{background:var(--hot)}.near li.lo .v{color:var(--hot)}
+.near .tg{display:inline-block;font-size:11px;padding:0 6px;margin-left:6px;border:1px solid currentColor;color:var(--hot);font-weight:700;vertical-align:1px}.near .tg.l{color:var(--ink2);font-weight:400}
 table{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 0}td,th{padding:10px 8px 10px 0;border-bottom:1px solid var(--hair);text-align:left;vertical-align:top}
 th{font-weight:600;font-size:12px;color:var(--ink2)}td:first-child{font-weight:600;width:24%}td small{display:block;font-size:12px;color:var(--ink2);margin-top:2px}
 td.kr,th.kr{width:38%}
@@ -155,6 +165,43 @@ const TODO=[
  '헤엄치는 법을 익힐 때예요. AI가 만든 결과를 검토하고 책임지는 쪽으로 자리를 옮기세요.',
  '물이 얕은 곳을 찾아볼 때예요. 지금 하는 일 중 사람만 할 수 있는 몫을 키우거나, 옆 직업으로 옮길 길을 지도에서 찾아보세요.'];
 const img=(s,a)=>{const pic=el('picture');const so=el('source');so.srcset=`/img/water/s${s+1}-dark.png`;so.media='(prefers-color-scheme: dark)';const i=el('img','fig');i.src=`/img/water/s${s+1}-light.png`;i.width=720;i.height=900;i.alt=a;pic.append(so,i);return pic};
+// ---------- 비슷한 일을 하는 직업의 물때 ----------
+// 닮은 정도: 41개 업무 비중이 얼마나 비슷한지(3할) + 같은 세부 작업을 얼마나 함께 하는지(7할). evidence.json의 sim(tools/build_evidence.py)
+const jOf=code=>RJ_.findIndex(x=>x.code===String(code).slice(0,2));
+const smName=code=>{const j=jOf(code);return j<0?code:((RJ_[j].smalls||[]).find(x=>x[0]===code)||[,RJ_[j].name])[1]};
+function near(O,J,c,name,v){
+  const box=el('section','nearbox');O.append(box);EVP=EVP||getJ('/evidence.json',null);
+  EVP.then(E=>{
+    const me=E&&(c?E.sm[c]:E.mid[J.code]);if(!me||!me.sim||!me.sim.length)return;
+    const W0=c?SMD[c].w:J.w41;
+    const list=me.sim.slice(0,6).map(([o,sc])=>{const j=jOf(o);if(j<0)return null;const k=c?o:null;const w=k&&SMD[k]?SMD[k].w:RJ_[j].w41;
+      return {o,sc,j,k,name:c?smName(o):RJ_[j].name,v:occV(j,k,2026),v30:occV(j,k,2030),w,lic:kLic(RJ_[j].code,k).filter(l=>l.type==='독점'||l.type==='자격')}}).filter(Boolean);
+    if(!list.length)return;
+    const h=el('h2',null,'비슷한 일을 하는 직업의 물때');h.append(el('small',null,'하는 일(업무 비중과 세부 작업)이 많이 겹치는 직업들이에요. 물이 늦게 차는 쪽이 옮겨 가기 좋은 옆자리일 수 있어요.'));box.append(h);
+    const low=list.filter(x=>x.v<=v-.03).sort((a,b)=>pct(a.v)-pct(b.v)||b.sc-a.sc)[0];
+    if(low){
+      // 왜 낮은지: 지금 직업은 AI가 잘하는 업무를 더 많이 하고(차이 × AI 정도), 그 직업은 AI가 못 하는 업무를 더 많이 한다
+      const R=Object.keys({...W0,...low.w}).map(r=>({r,a:W0[r]||0,b:low.w[r]||0,e:p(r,2026)}));
+      const mine=R.filter(x=>x.a>x.b).sort((x,y)=>(y.a-y.b)*y.e-(x.a-x.b)*x.e)[0],theirs=R.filter(x=>x.b>x.a&&x.b>=.05).sort((x,y)=>(y.b-y.a)*(1-y.e)-(x.b-x.a)*(1-x.e))[0];
+      const pk=el('div','pick');pk.innerHTML=`비슷한 일 가운데 물이 가장 늦게 차는 직업은 <b>${low.name}</b>${ida(low.name)}. 지금 <b>${pct(low.v)}%</b>로 ${name}보다 ${pct(v)-pct(low.v)}%p 낮고, 2030년에도 ${pct(low.v30)}%예요.`;
+      const why=[];
+      if(mine)why.push(`AI가 잘하는 '${cm.RN[mine.r][0]}'(AI ${pct(mine.e)}%) 비중이 지금 직업보다 작고(${pct(mine.b)}% vs ${pct(mine.a)}%)`);
+      if(theirs)why.push(`AI가 덜 하는 '${cm.RN[theirs.r][0]}'(AI ${pct(theirs.e)}%) 비중이 더 커서예요(${pct(theirs.b)}% vs ${pct(theirs.a)}%)`);
+      if(why.length)pk.append(el('small',null,why.join(', ')+(why.length===1&&mine?'서예요.':why.length===1?'':'.')));
+      box.append(pk);
+    } else box.append(el('p','note','비슷한 일을 하는 직업 가운데 이 직업보다 물이 눈에 띄게 늦게 차는 곳은 없어요. 같은 직업 안에서 사람이 맡는 몫(위 \'왜\' 영역의 진하지 않은 부분)을 키우는 쪽이 현실적이에요.'));
+    const ul=el('ul','near');
+    const item=(x,isMe)=>{const li=el('li',isMe?'me':x.v<=v-.03?'lo':null);const t=el('div');
+      if(isMe){t.append(el('span',null,x.name));t.lastChild.style.fontWeight='600';t.append(el('small',null,'지금 보고 있는 직업'))}
+      else{const a=el('a',null,x.name);a.href=`/test?j=${RJ_[x.j].code}${x.k?'&k='+x.k:''}`;a.onclick=()=>track('test','near:'+(x.k||RJ_[x.j].code));t.append(a);
+        if(x.v<=v-.03)a.after(el('span','tg','늦게 차요'));if(x.lic.length)t.append(el('span','tg l','자격·면허 필요'));
+        t.append(el('small',null,`${RJ_[x.j].name} · 물때 ${ST[stOf(x.v)][0]}`))}
+      const vv=el('div','v',pct(x.v)+'%');vv.append(el('small',null,'2030 '+pct(x.v30)+'%'));const m=el('div','m');const i=el('i');i.style.width=(x.v*100)+'%';m.appendChild(i);li.append(t,vv,m);return li};
+    ul.appendChild(item({name,v,v30:0,j:-1},true));ul.lastChild.querySelector('.v small').textContent='지금';
+    list.forEach(x=>ul.appendChild(item(x,false)));box.append(ul);
+    box.append(el('p','note','노출도가 낮다고 일자리가 안전하다는 뜻은 아니에요. 로봇·자율주행 같은 기계 자동화는 이 숫자에 거의 잡히지 않고, 옮기려면 교육이나 자격이 필요한 직업도 있어요. 직업을 누르면 그 직업의 물때를 볼 수 있어요.'));
+  });
+}
 // ---------- 왜 이 숫자일까: 업무별 기여·실제로 하는 일·최근 소식·쓴 자료 ----------
 let EVP=null,FDP=null;
 const p0=(r,y)=>RP[r][2]/(1+Math.exp(-RP[r][1]*(y-RP[r][0])));   // 주간 소식 반영 전
@@ -285,6 +332,8 @@ function show(j,k,title,scroll){
     O.append(el('p','note',`해고 보호는 OECD 고용보호법제 지표(0~6, 높을수록 엄격, ${UK.src.epl.year})예요. 한국 노조 가입률은 직종 대분류 값, 미국은 가장 가까운 직업군 값이라 이 직업만의 수치는 아니에요. 둑이 높다고 물이 안 차는 건 아니지만, 한국에서는 일을 바꿀 때 협의와 절차를 거쳐야 하는 경우가 많아요.`))}
   // 지금 할 일
   O.append(el('h2',null,'이 높이에서 할 일'));O.append(el('p','todo',TODO[s]));
+  // 비슷한 일을 하는 직업의 물때(물이 늦게 차는 옆 직업 찾기)
+  near(O,J,c,name,v);
   // 구독
   const cta=el('div','cta');cta.append(el('h3',null,'물때가 바뀌면 알려드릴게요'),el('p',null,`매주 월요일, 한 주 동안 AI 소식으로 물이 얼마나 찼는지와 '${J.name}'에 닿은 소식을 메일로 보내드려요.`));
   const f=el('form','fm');f.noValidate=true;const r=el('div','row');const em=el('input');em.type='email';em.placeholder='이메일 주소';em.autocomplete='email';em.setAttribute('aria-label','이메일 주소');

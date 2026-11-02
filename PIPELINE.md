@@ -220,4 +220,5 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 
 ## /test 결과의 근거(evidence.json)
 - `python3 tools/build_evidence.py` → `evidence.json`: 직업(소분류·중분류)마다 가장 많이 하는 세부 작업(O*NET DWA) 8개와 그 작업이 속한 업무, 업무 구성을 가져온 미국 직업 이름. tasks.json·ksco_soc_map.json이 바뀌면 다시 만든다.
+- 같은 파일의 `sim`: 직업마다 하는 일이 닮은 직업 10개(41개 업무 비중 코사인 3할 + 세부 작업 겹침 7할). /test의 '비슷한 일을 하는 직업의 물때'가 쓴다.
 - /test의 '왜 ○○%일까요?'는 이 파일과 city_meta(업무 비중·업무별 곡선), feed.json(업무에 닿은 소식)으로 그린다.

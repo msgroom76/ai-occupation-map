@@ -30,5 +30,16 @@ for kind, src, ref in (('sm', T['sm'], K['small']), ('mid', T['mid'], K['map']))
         info = ref.get(code) or {}
         u = us(info.get('soc_prefix') or [], l)
         out[kind][code] = {'d': d, 'us': u[:8], 'n': info.get('onet_occupations') or len(u)}
+# 비슷한 일을 하는 직업: 41개 업무 비중의 코사인 유사도(3할)와 세부 작업 겹침(같은 작업 비중의 최솟값 합, 7할)
+import math
+def cos(a, b):
+    k = set(a) | set(b); num = sum(a.get(x, 0) * b.get(x, 0) for x in k)
+    return num / (math.sqrt(sum(v * v for v in a.values())) * math.sqrt(sum(v * v for v in b.values())) or 1)
+def ovl(a, b):
+    A, B = dict(a), dict(b); return sum(min(A[x], B[x]) for x in A if x in B)
+for kind, W, D in (('sm', {c: v['w'] for c, v in CM['sm'].items()}, T['sm']), ('mid', {j['code']: j['w41'] for j in CM['jobs']}, T['mid'])):
+    for c in W:
+        sc = sorted(((0.3 * cos(W[c], W[o]) + 0.7 * ovl(D.get(c, []), D.get(o, [])), o) for o in W if o != c), reverse=True)[:10]
+        out[kind].setdefault(c, {'d': [], 'us': [], 'n': 0})['sim'] = [[o, round(s, 3)] for s, o in sc]
 json.dump(out, open('evidence.json', 'w'), ensure_ascii=False, separators=(',', ':'))
 print('evidence.json', len(out['sm']), len(out['mid']))
