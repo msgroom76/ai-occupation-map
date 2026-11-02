@@ -171,7 +171,7 @@
     "beta": 0.751,
     "gamma": 0.926
    },
-   "calibration": 1.2001
+   "calibration": 1.1999
   },
   "23": {
    "name": "공학 전문가 및 기술직",
@@ -195,7 +195,7 @@
     "beta": 0.504,
     "gamma": 0.838
    },
-   "calibration": 0.9279
+   "calibration": 0.9303
   },
   "24": {
    "name": "보건 전문가 및 관련직",
@@ -379,7 +379,7 @@
     "beta": 0.794,
     "gamma": 0.971
    },
-   "calibration": 1.166
+   "calibration": 1.1657
   },
   "34": {
    "name": "금융 사무직",
@@ -1152,7 +1152,7 @@
     "beta": 0.224,
     "gamma": 0.3
    },
-   "calibration": 0.9596
+   "calibration": 0.8765
   },
   "91": {
    "name": "건설 및 광업 관련 단순 노무직",
@@ -1200,7 +1200,7 @@
     "beta": 0.109,
     "gamma": 0.143
    },
-   "calibration": 0.9839
+   "calibration": 0.9822
   },
   "93": {
    "name": "제조 관련 단순 노무직",
@@ -1296,7 +1296,7 @@
     "beta": 0.091,
     "gamma": 0.123
    },
-   "calibration": 0.6635
+   "calibration": 0.6583
   }
  },
  "fallback": {
@@ -1781,7 +1781,6 @@
   "221": {
    "name": "컴퓨터 하드웨어 및 통신공학 전문가",
    "soc_prefix": [
-    "15-1221",
     "17-2061",
     "15-1241"
    ],
@@ -1794,17 +1793,18 @@
     "Computer Network Architects",
     "Computer Hardware Engineers"
    ],
-   "onet_occupations": 4,
+   "onet_occupations": 3,
    "exposure_2026": {
-    "eloundou": 0.6103,
+    "eloundou": 0.6158,
     "ilo": 0.45
    },
-   "observed_use_anthropic": 0.2003,
-   "calibration": 1.1251
+   "observed_use_anthropic": 0.1825,
+   "calibration": 1.1217
   },
   "222": {
    "name": "컴퓨터 시스템 및 소프트웨어 전문가",
    "soc_prefix": [
+    "15-1221",
     "15-1211",
     "15-1251",
     "15-1252",
@@ -1825,13 +1825,13 @@
     "Health Informatics Specialists",
     "Computer Systems Analysts"
    ],
-   "onet_occupations": 16,
+   "onet_occupations": 17,
    "exposure_2026": {
-    "eloundou": 0.591,
+    "eloundou": 0.5907,
     "ilo": 0.5553
    },
-   "observed_use_anthropic": 0.3304,
-   "calibration": 1.2226
+   "observed_use_anthropic": 0.3305,
+   "calibration": 1.2232
   },
   "223": {
    "name": "네트워크 및 정보 보안 전문가",
@@ -1863,7 +1863,9 @@
    "soc_prefix": [
     "15-1242",
     "15-1243",
-    "15-2"
+    "15-2041",
+    "15-2051",
+    "15-2031"
    ],
    "isco08": [
     2521
@@ -1873,13 +1875,13 @@
     "Database Administrators",
     "Data Scientists"
    ],
-   "onet_occupations": 12,
+   "onet_occupations": 9,
    "exposure_2026": {
-    "eloundou": 0.6202,
+    "eloundou": 0.6237,
     "ilo": 0.57
    },
-   "observed_use_anthropic": 0.3971,
-   "calibration": 1.096
+   "observed_use_anthropic": 0.4173,
+   "calibration": 1.0856
   },
   "225": {
    "name": "정보 시스템 및 웹 운영자",
@@ -2092,7 +2094,6 @@
    "soc_prefix": [
     "17-2081",
     "17-3025",
-    "17-2199",
     "17-2161",
     "17-2171"
    ],
@@ -2106,15 +2107,15 @@
    "us_examples": [
     "Environmental Engineers",
     "Petroleum Engineers",
-    "Wind Energy Engineers"
+    "Environmental Engineering Technologists and Technicians"
    ],
-   "onet_occupations": 12,
+   "onet_occupations": 4,
    "exposure_2026": {
-    "eloundou": 0.5233,
+    "eloundou": 0.5243,
     "ilo": 0.3117
    },
-   "observed_use_anthropic": 0.0535,
-   "calibration": 0.8976
+   "observed_use_anthropic": 0.0332,
+   "calibration": 0.9517
   },
   "238": {
    "name": "항공기‧선박 기관사 및 관제사",
@@ -3077,7 +3078,8 @@
    "name": "통계‧데이터 관련 사무원",
    "soc_prefix": [
     "43-9111",
-    "43-9021"
+    "43-9021",
+    "43-4111"
    ],
    "isco08": [
     4227,
@@ -3086,16 +3088,17 @@
     4413
    ],
    "us_examples": [
+    "Interviewers, Except Eligibility and Loan",
     "Data Entry Keyers",
     "Statistical Assistants"
    ],
-   "onet_occupations": 2,
+   "onet_occupations": 3,
    "exposure_2026": {
-    "eloundou": 0.7246,
+    "eloundou": 0.6633,
     "ilo": 0.5675
    },
-   "observed_use_anthropic": 0.6642,
-   "calibration": 1.2266
+   "observed_use_anthropic": 0.5175,
+   "calibration": 1.2124
   },
   "340": {
    "name": "금융 사무 종사자",
@@ -5000,7 +5003,6 @@
   "899": {
    "name": "기타 기계 조작원",
    "soc_prefix": [
-    "51-9061",
     "51-9111",
     "51-9199",
     "51-9191",
@@ -5013,17 +5015,17 @@
     8189
    ],
    "us_examples": [
-    "Inspectors, Testers, Sorters, Samplers, and Weighers",
     "Packaging and Filling Machine Operators and Tenders",
-    "Cleaning, Washing, and Metal Pickling Equipment Operators and Tenders"
+    "Cleaning, Washing, and Metal Pickling Equipment Operators and Tenders",
+    "Adhesive Bonding Machine Operators and Tenders"
    ],
-   "onet_occupations": 6,
+   "onet_occupations": 5,
    "exposure_2026": {
-    "eloundou": 0.2457,
+    "eloundou": 0.0095,
     "ilo": 0.22
    },
-   "observed_use_anthropic": 0.0188,
-   "calibration": 1.0147
+   "observed_use_anthropic": 0.0,
+   "calibration": 0.7384
   },
   "910": {
    "name": "건설 및 광업 단순 종사자",
@@ -5048,7 +5050,8 @@
    "soc_prefix": [
     "53-7062",
     "53-7063",
-    "53-7065"
+    "53-7065",
+    "43-5053"
    ],
    "isco08": [
     9333,
@@ -5059,13 +5062,13 @@
     "Recycling and Reclamation Workers",
     "Laborers and Freight, Stock, and Material Movers, Hand"
    ],
-   "onet_occupations": 4,
+   "onet_occupations": 5,
    "exposure_2026": {
-    "eloundou": 0.1078,
+    "eloundou": 0.1077,
     "ilo": 0.275
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 0.7362
+   "calibration": 0.7304
   },
   "922": {
    "name": "배달원",
@@ -5262,7 +5265,8 @@
    "name": "계기‧자판기 및 주차 관리 종사자",
    "soc_prefix": [
     "53-6021",
-    "49-9091"
+    "49-9091",
+    "43-5041"
    ],
    "isco08": [
     9623,
@@ -5270,15 +5274,16 @@
    ],
    "us_examples": [
     "Parking Attendants",
-    "Coin, Vending, and Amusement Machine Servicers and Repairers"
+    "Coin, Vending, and Amusement Machine Servicers and Repairers",
+    "Meter Readers, Utilities"
    ],
-   "onet_occupations": 2,
+   "onet_occupations": 3,
    "exposure_2026": {
-    "eloundou": 0.1569,
+    "eloundou": 0.204,
     "ilo": 0.35
    },
    "observed_use_anthropic": 0.0,
-   "calibration": 1.1747
+   "calibration": 1.141
   },
   "999": {
    "name": "기타 서비스 관련 단순 종사자",
