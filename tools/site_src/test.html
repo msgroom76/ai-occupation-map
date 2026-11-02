@@ -71,6 +71,8 @@ h2 small{display:block;font-size:13px;font-weight:400;color:var(--ink2);letter-s
 .wnews li{padding:9px 0;border-bottom:1px solid var(--hair);font-size:14px;line-height:1.45}.wnews li a{color:var(--ink);text-decoration:none}.wnews li a:hover{text-decoration:underline}
 .wnews small{display:block;font-size:12px;color:var(--ink2);margin-top:2px}
 .wsrc{font-size:13px;color:var(--ink2);margin:20px 0 0;padding:12px 14px;background:var(--soft)}
+.trust{margin:14px 0 0;padding:12px 14px;border:1px solid var(--hair);font-size:14px}.trust b.g{display:inline-block;min-width:22px;text-align:center;margin-right:8px;padding:0 6px;border:1px solid currentColor;font-size:12px}
+.trust.gA b.g{color:var(--ink)}.trust.gC b.g{color:var(--hot)}.trust small{display:block;font-size:12px;color:var(--ink2);margin-top:4px}.trust a{color:var(--ink2);font-size:12px}
 /* 비슷한 일을 하는 직업 */
 .pick{margin:12px 0 4px;padding:14px 16px;border:1.5px solid var(--hot);font-size:15px;line-height:1.55}.pick b{color:var(--hot)}.pick small{display:block;font-size:13px;color:var(--ink2);margin-top:4px}
 .near{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--hair)}
@@ -190,7 +192,7 @@ function near(O,J,c,name,v){
   });
 }
 // ---------- 왜 이 숫자일까: 업무별 기여·실제로 하는 일·최근 소식·쓴 자료 ----------
-let EVP=null,FDP=null;
+let EVP=null,FDP=null,VAP=null;
 const p0=(r,y)=>RP[r][2]/(1+Math.exp(-RP[r][1]*(y-RP[r][0])));   // 주간 소식 반영 전
 const webUrl=u=>/^https?:\/\//i.test(String(u||'').trim())?String(u).trim():'';
 const iga=s=>{const k=String(s).charCodeAt(String(s).length-1)-0xAC00;return k>=0&&k<11172?(k%28?'이':'가'):'이(가)'};
@@ -210,6 +212,11 @@ function why(O,J,c,D,name,v,v30){
   if(rest.length)S.append(row(`나머지 업무 ${rest.length}가지`,`일의 ${pct(wRest)}% · 평균 ${pct(sumRest/Math.max(cal*wRest,1e-9))}%`,wRest,sumRest/Math.max(cal*wRest,1e-9),sumRest,'rest'));
   const sm=el('p','wsum');sm.innerHTML=`위 다섯 업무가 <b>${pct(v)}%</b> 가운데 <b>${pp(sumTop)}%p</b>를 차지해요. 가장 큰 몫은 '<b>${RN[top[0].r][0]}</b>'${ida(RN[top[0].r][0])}.`;S.append(sm);
   S.append(el('p','note',`업무별 AI 노출은 두 연구(미국 ${pct(D.e)}%·국제노동기구 ${pct(D.il)}%)의 평균에 맞춰 한 번 보정했어요(×${cal.toFixed(2)}).`));
+  // 근거 등급·불확실성 범위(validation.json, tools/validate.py)
+  if(c){const tb=el('div');S.append(tb);VAP=VAP||getJ('/validation.json',null);VAP.then(V=>{const x=V&&V.sm&&V.sm[c];if(!x)return;
+    const G={A:'근거 탄탄',B:'근거 보통',C:'근거 약함'},N=Object.keys(V.sm).length;tb.className='trust g'+x.g;
+    tb.innerHTML=`<b class="g">${x.g}</b><b>${G[x.g]}</b> · 계산 방식을 바꿔 보면 <b>${x.lo}~${x.hi}%</b> 사이, 직업 ${N}개 중 ${x.rk[0]}~${x.rk[1]}위예요.`;
+    const sm=el('small',null,(x.why.length?x.why.join(' · ')+'. ':'')+'두 연구 비중, 사람·AI 판정, 직업 연결 방식을 바꿔 2,000번 다시 계산한 범위예요. ');const a=el('a',null,'등급 기준 보기');a.href='/guide#trust';sm.append(a);tb.append(sm)})}
   // 2030년까지 가장 많이 오르는 업무
   const up=rows.map(x=>({...x,dz:x.z30-x.z})).sort((a,b)=>b.dz-a.dz)[0];
   if(up&&up.dz>.002){const p30=el('p','wsum');p30.innerHTML=`2030년까지 가장 많이 오르는 업무는 '<b>${RN[up.r][0]}</b>'${ida(RN[up.r][0])}. 이 업무에서 AI가 해낼 수 있는 정도가 ${pct(up.e)}%에서 ${pct(up.e30)}%로 올라, 전체를 <b>+${pp(up.dz)}%p</b> 끌어올려요.`;S.append(p30)}

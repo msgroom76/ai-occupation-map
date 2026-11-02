@@ -44,6 +44,7 @@ details[open] summary::after{content:"−"}details p{color:var(--ink2);margin:0 
 .foot{margin-top:56px;font-size:13px;color:var(--ink3)}
 @media (max-width:560px){.cards{grid-template-columns:1fr}h2{font-size:21px}.lede{font-size:16px}}
 /*@GH_CSS@*/
+.tc{display:block;background:var(--card);padding:16px 18px;border:1px solid var(--hair)}.tc b{display:block;margin-bottom:4px}.tc span{font-size:14px;color:var(--ink2)}
 </style></head><body><!--@HEADER:/guide@-->
 <main>
 <p class="kick">처음 오셨나요</p>
@@ -97,8 +98,17 @@ details[open] summary::after{content:"−"}details p{color:var(--ink2);margin:0 
 </dl>
 </section>
 
+<section id="trust">
+<h2><span class="n">5</span>이 숫자를 얼마나 믿을 수 있나</h2>
+<p>숫자를 내놓는 연구기관들(OECD·EU 공동연구센터의 지표 작성 지침, 국제노동기구, IMF, 각 논문)이 쓰는 방법으로 우리 숫자를 점검해요<span id="trustat"></span>. 사이트 숫자를 바꾸는 게 아니라, 얼마나 흔들릴 수 있는지 함께 보여 주는 거예요.</p>
+<div id="trustbox" class="cards"></div>
+<details><summary>근거 등급은 어떻게 정하나요?</summary><p id="trustrule">연결된 미국 직업 수, 두 연구가 보는 값의 차이, 계산 방식을 바꿨을 때 값이 흔들리는 폭으로 정해요.</p></details>
+<details><summary>‘계산 방식을 바꿔 보면’은 무슨 뜻인가요?</summary><p>지표를 만들 때는 사람이 정하는 선택이 들어가요. 두 연구를 반반 섞을지, AI 판정과 사람 판정 중 무엇을 쓸지, 한국 직업을 미국 직업에 어떤 표로 이을지 같은 것들이에요. 이 선택들을 무작위로 바꿔 2,000번 다시 계산하고, 그중 가운데 80%가 들어가는 범위를 보여 줘요. 범위가 넓을수록 숫자 하나에 기대기보다 순위와 흐름을 보는 게 좋아요.</p></details>
+<details><summary>예측이 맞았는지는 어떻게 아나요?</summary><p>분기마다 직업별 예측값을 날짜와 함께 고정해 공개해요(<a href="/forecasts/index.json">예측 기록</a>). 나중에 실제 AI 사용 통계와 직업별 고용·임금 통계가 나오면 이 기록과 비교해 채점 결과를 공개할 거예요. 첫 기록은 2026년 11월 2일이에요.</p></details>
+</section>
+
 <section id="more">
-<h2><span class="n">5</span>다른 메뉴</h2>
+<h2><span class="n">6</span>다른 메뉴</h2>
 <div class="cards">
 <a href="/test"><b>내 직업 전망 →</b><span>직업 이름 하나로 지금 어디까지 왔는지, 언제 더 차오르는지 한 장으로 보여줘요.</span></a>
 <a href="/org"><b>기업 자가 진단 →</b><span>우리 회사 직무와 인원을 넣으면 조직 전체가 AI에 얼마나 노출됐는지 계산해요.</span></a>
@@ -106,7 +116,7 @@ details[open] summary::after{content:"−"}details p{color:var(--ink2);margin:0 
 </section>
 
 <section id="faq">
-<h2><span class="n">6</span>자주 묻는 것</h2>
+<h2><span class="n">7</span>자주 묻는 것</h2>
 <details><summary>숫자가 높으면 그 직업은 없어지나요?</summary><p>아니에요. 노출도는 일의 일부를 AI가 맡을 수 있다는 뜻이지, 사람이 필요 없다는 뜻이 아니에요. 노출도가 높아도 일이 늘어나는 직업이 있고, 낮아도 줄어드는 직업이 있어요. 숫자는 ‘어디를 먼저 준비해야 하는지’ 보는 지도로 쓰는 게 좋아요.</p></details>
 <details><summary>왜 지난주와 숫자가 다른가요?</summary><p>매주 새로 나온 AI 소식을 반영해 업무별 수치를 고쳐요. 바뀐 이유는 지도 왼쪽의 ‘소식’과 주간 메일에 적어 둬요.</p></details>
 <details><summary>내 직업이 안 나와요.</summary><p>‘그로스 매니저’, ‘PM’처럼 회사에서 쓰는 직함도 꽤 많이 찾아요. 그래도 안 나오면 하는 일을 떠올려 ‘마케터’, ‘회계’, ‘상담원’처럼 흔한 이름으로 넣어 보세요. 공식 직업 분류에서 가장 가까운 직업으로 이어 줘요.</p></details>
@@ -116,5 +126,13 @@ details[open] summary::after{content:"−"}details p{color:var(--ink2);margin:0 
 <div class="cta"><a class="btn" href="/">지도 열기</a><a class="btn ghost" href="/test">내 직업 바로 찾기</a></div>
 <p class="foot">AI 점령 지도 · 숫자는 매주 바뀌어요.</p>
 </main>
-<script>try{localStorage.setItem('aimap.guide','1')}catch(e){}</script>
+<script>try{localStorage.setItem('aimap.guide','1')}catch(e){}
+fetch('/validation.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(V=>{if(!V)return;const S=V.summary,b=document.getElementById('trustbox'),f=x=>x==null?'-':x.toFixed(2);
+const card=(h,p)=>{const d=document.createElement('div');d.className='tc';d.innerHTML='<b>'+h+'</b><span>'+p+'</span>';b.appendChild(d)};
+if(V.at)document.getElementById('trustat').textContent='(마지막 점검 '+V.at.slice(5).replace('-','월 ')+'일 기준)';const ex=S.external,ag=S.agree,G=S.grades,E=S.grades_emp_share;
+card('두 연구가 같은 방향을 봐요','미국 연구(Eloundou 외)와 국제노동기구 연구의 직업 순위 상관 '+f(ag.eloundou_vs_ilo.rho)+'. 1에 가까울수록 같은 순서로 봐요.');
+card('다른 지표와도 순위가 비슷해요','실제 AI 사용(Anthropic) '+f(ex['observed_use(Anthropic)']&&ex['observed_use(Anthropic)'].rho)+(ex['AIOE(Felten 2021)']?' · Felten 외 AI 노출 지수 '+f(ex['AIOE(Felten 2021)'].rho):'')+(ex['applicability(Microsoft)']?' · Microsoft AI 적용도 '+f(ex['applicability(Microsoft)'].rho):'')+'. 같은 직업 연결표를 거친 비교라 완전히 따로 잰 건 아니에요.');
+card('직업 연결 방식을 바꿔도 크게 안 흔들려요','우리가 만든 연결표 대신 국가데이터처 공식 연계표로 이어도 순위 상관 '+f(ag.our_map_vs_official.rho)+'. 다만 '+S.route_gap_pp.over10+'개 직업은 10%p 넘게 달라져요.');
+card('근거 등급','탄탄(A) '+(G.A||0)+'개 · 보통(B) '+(G.B||0)+'개 · 약함(C) '+(G.C||0)+'개. 일하는 사람 기준으로는 '+Math.round((E.C||0)*100)+'%가 근거 약함 직업에 있어요.');
+const R=S.rules;document.getElementById('trustrule').textContent='탄탄(A): '+R.A+'. 약함(C): '+R.C+'. 보통(B): 그 사이. 연결된 미국 직업이 적을수록, 두 연구가 다르게 볼수록, 계산 방식에 따라 많이 흔들릴수록 낮아져요.'});</script>
 </body></html>

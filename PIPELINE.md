@@ -222,3 +222,11 @@ D1 풀어 설명하기 · D2 동료와 소통 · D3 고객 응대 · D4 관계 �
 - `python3 tools/build_evidence.py` → `evidence.json`: 직업(소분류·중분류)마다 가장 많이 하는 세부 작업(O*NET DWA) 8개와 그 작업이 속한 업무, 업무 구성을 가져온 미국 직업 이름. tasks.json·ksco_soc_map.json이 바뀌면 다시 만든다.
 - 같은 파일의 `sim`: 직업마다 하는 일이 닮은 직업 10개(41개 업무 비중 코사인 3할 + 세부 작업 겹침 7할). /test의 '비슷한 일을 하는 직업의 물때'가 쓴다.
 - /test의 '왜 ○○%일까요?'는 이 파일과 city_meta(업무 비중·업무별 곡선), feed.json(업무에 닿은 소식)으로 그린다.
+
+## 숫자 신뢰도 점검과 예측 기록 (2026-11-02부터)
+- `python3 tools/validate.py` → `validation.json`(공개: 소분류별 근거 등급 A·B·C, 2026 값의 10~90% 범위, 순위 범위, 요약 통계) + `reports/validation.md`(운영자용 표, 비공개).
+  - 출처 일치(Eloundou β vs ILO, GPT-4 판정 vs 사람 판정), 연결 경로 민감도(우리 연결표 vs 국가데이터처 KSCO→ISCO 연계표 → ESCO/ISCO→O*NET 연계표), 판단이 들어간 선택 4가지를 무작위로 2,000번 바꾼 불확실성 범위(OECD·JRC 합성지표 지침 7단계), 외부 지표(Anthropic 실제 사용, Microsoft 적용도, Felten 외 AIOE)와의 순위 상관, 주간 소식 독립 검토 통과율.
+  - Felten AIOE는 https://github.com/AIOE-Data/aioe 를 받아 `--aioe <경로>`로 준다(라이선스 표기가 없어 저장소에 넣지 않고, 상관계수만 공개).
+  - 사이트 숫자는 바꾸지 않는다. 데이터(파이프라인 결과)를 바꾸거나 분기 예측을 고정하기 전에 다시 돌린다.
+  - 등급 기준: A = 연결된 미국 직업 3개 이상 · 두 연구 차이 12%p 이하 · 순위 범위 15계단 이하 / C = 미국 직업 1개 이하 또는 두 연구 차이 20%p 초과 또는 순위 범위 30계단 초과 / B = 그 밖.
+- `python3 tools/snapshot_forecast.py [날짜]` → `forecasts/<날짜>.json`(직업별 2026·2027·2028·2030 값 + 2026 범위)과 `forecasts/index.json`(SHA-256). 공개(/forecasts/). **한 번 만든 스냅샷은 고치지 않는다.** 분기마다(1·4·7·10월 첫 주 지수 발표 뒤) 한 번. 채점은 다음 자료가 나오면 방향·순위 상관으로 한다.
