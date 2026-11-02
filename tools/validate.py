@@ -153,7 +153,8 @@ for c in CODES:
     side = 'up' if lo > v else 'down' if hi < v else None   # 다른 계산 방식 대부분이 우리 값보다 높게/낮게 봄
     lo, hi = min(lo, v), max(hi, v)
     rk = [min(q(ranks[c], .1), R0[c]), max(q(ranks[c], .9), R0[c])]
-    n = SM[c].get('n', 0) if SM[c].get('own') else 0
+    MID = next(j for j in M['jobs'] if any(x[0] == c for x in j['smalls']))
+    n = SM[c].get('n', 0) if SM[c].get('own') else (MID.get('nocc') or 0)   # 자기 연결이 없으면 중분류의 업무 구성을 쓴다 → 중분류의 미국 직업 수
     d = abs(E0[c] - IL[c]); rw = rk[1] - rk[0]   # 순위가 흔들리는 폭(JRC 지침: 값보다 순위 범위로 본다. 값 폭은 높은 직업일수록 커져서)
     if n >= 3 and d <= .12 and rw <= 15: g = 'A'
     elif n <= 1 or d > .2 or rw > 30: g = 'C'

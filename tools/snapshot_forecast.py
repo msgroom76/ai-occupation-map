@@ -29,6 +29,11 @@ snap = {'date': date, 'note': note, 'week': wk['week'], 'years': YEARS, 'unit': 
         'score_plan': '방향(오름/내림)과 순위 상관(스피어만)을 함께 채점. 비교 대상: Anthropic 경제지수 갱신(실제 사용), 지역별고용조사 직업별 취업자·임금, 채용공고 수.',
         'values': vals}
 json.dump(snap, open(f, 'w'), ensure_ascii=False, separators=(',', ':'))
+# 채점 기준선(2026 두 연구값 그대로) — criteria.json의 기준선 비교에 쓴다
+bl = {c: round((v['e'] + v['il']) / 2 * 100, 1) for c, v in M['sm'].items()}
+blb = json.dumps(bl, sort_keys=True, separators=(',', ':'))
+json.dump({'for': date, 'what': '기준선: 2026년 두 연구값(Eloundou 외 β·ILO)의 평균을 그대로 둔 예측. 연도 곡선·주간 소식 조정 없음', 'sha256': hashlib.sha256(blb.encode()).hexdigest(), 'sm': bl},
+          open(os.path.join(D, date + '.baseline.json'), 'w'), ensure_ascii=False, separators=(',', ':'))
 ix = os.path.join(D, 'index.json'); L = json.load(open(ix)) if os.path.exists(ix) else []
 L.append({'date': date, 'note': note, 'week': wk['week'], 'file': f'/forecasts/{date}.json', 'sha256': sha, 'n': len(vals['sm']) + len(vals['mid'])})
 json.dump(L, open(ix, 'w'), ensure_ascii=False, indent=1)
