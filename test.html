@@ -350,7 +350,7 @@ function show(j,k,title,scroll){
     if(x.cd==null){cf.remove();return}
     cf.innerHTML=`<b>신뢰도 ${x.cd}%</b><span>계산 방식을 바꿔 2,000번 다시 계산했을 때 ${x.zn!=null?`'${ST[x.zone][0]}' 또는 '${ST[x.zone+1][0]}'`:`'${ST[s][0]}'`}가 나온 비율이에요. <a href="/guide#trust">자세히</a></span>`})}
   // 반전
-  const tn=el('div','turn');tn.innerHTML=`<b>소멸하는 날은 없어요.</b> 직업이 통째로 사라지는 날을 계산할 수는 없어요. 우리가 셀 수 있는 건 그 일의 업무 가운데 AI가 해낼 수 있는 몫이에요. 지금 <b>${pct(v)}%</b>, 2030년이면 <b>${pct(v30)}%</b>가 돼요.`;O.append(tn);
+  const tn=el('div','turn');tn.innerHTML=`<b>이 직업이 사라진다고 단정할 수는 없어요.</b> 지금 데이터로 알 수 있는 건, 이 직업의 업무 가운데 AI가 해낼 수 있게 된 비율이에요. 지금은 <b>${pct(v)}%</b>, 2030년에는 <b>${pct(v30)}%</b>로 예상돼요.`;O.append(tn);
   // 물때 자
   const ru=el('div','ruler');const bar=el('div','bar');ST.forEach((x,i)=>{const t=el('i');t.style.setProperty('--k',(i+1)/6);bar.appendChild(t)});
   const mk=el('span','mk');mk.style.left=(v*100)+'%';mk.title=`지금 ${pct(v)}%`;const mf=el('span','mk f');mf.style.left=(v30*100)+'%';mf.title=`2030년 ${pct(v30)}%`;bar.append(mf,mk);
