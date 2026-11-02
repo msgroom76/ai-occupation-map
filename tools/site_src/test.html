@@ -80,6 +80,10 @@ h2 small{display:block;font-size:13px;font-weight:400;color:var(--ink2);letter-s
 .near li{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:2px 12px;padding:10px 0;border-bottom:1px solid var(--hair);align-items:center}
 .near li a{color:var(--ink);font-weight:600;text-decoration:none}.near li a:hover{text-decoration:underline}
 .near li small{display:block;font-size:12px;color:var(--ink2);font-weight:400;margin-top:1px}
+.sv{margin:40px 0 0;padding:20px 18px;background:var(--card);border:1px solid var(--hair)}.sv h2{margin:0 0 4px}.sv .agg{font-size:14px;margin:10px 0 0;padding:10px 12px;background:var(--soft)}.sv .agg b{color:var(--hot)}
+.sv .q{margin:16px 0 0}.sv .q>b{display:block;font-size:14px}.sv .q>small{display:block;font-size:12px;color:var(--ink2)}.sv .ch{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
+.sv .ch button{font:inherit;font-size:13px;padding:6px 10px;border:1px solid var(--hair);background:transparent;color:var(--ink);cursor:pointer}.sv .ch button.on{border-color:var(--hot);background:var(--hot);color:var(--bg)}
+.sv .go{margin-top:18px}.sv .msg{font-size:14px;margin:12px 0 0}.sv .hp{position:absolute;left:-9999px}
 .near .v{text-align:right;font-weight:800;font-feature-settings:"tnum"}.near .v small{display:block;font-weight:400}
 .near .m{grid-column:1/-1;height:6px;background:var(--hair);position:relative}.near .m i{position:absolute;left:0;top:0;bottom:0;background:var(--ink2)}
 .near li.me{background:var(--soft)}.near li.me .m i{background:var(--hot)}.near li.lo .v{color:var(--hot)}
@@ -159,6 +163,32 @@ const img=(s,a)=>{const pic=el('picture');const so=el('source');so.srcset=`/img/
 // 닮은 정도: 41개 업무 비중이 얼마나 비슷한지(3할) + 같은 세부 작업을 얼마나 함께 하는지(7할). evidence.json의 sim(tools/build_evidence.py)
 const jOf=code=>RJ_.findIndex(x=>x.code===String(code).slice(0,2));
 const smName=code=>{const j=jOf(code);return j<0?code:((RJ_[j].smalls||[]).find(x=>x[0]===code)||[,RJ_[j].name])[1]};
+// 현직자 설문(functions/api/survey.js). 개인정보 없음. 직업마다 15명이 모이면 평균을 보여 준다.
+const SURVEY_FROM='2026-11-09';
+const ro2=w=>{const k=w.charCodeAt(w.length-1)-44032;return k>=0&&k%28&&k%28!==8?'으로':'로'};
+function survey(O,J,c,name,v){
+  const today=new Date(Date.now()+9*3600e3).toISOString().slice(0,10);
+  if(today<SURVEY_FROM&&!/[?&]sv=1/.test(location.search))return;
+  const W=c?SMD[c].w:J.w41,RN=cm.RN,top=Object.entries(W).sort((a,b)=>b[1]-a[1]).slice(0,5),k=c||J.code;
+  const S=el('section','sv');const h=el('h2',null,`${name}${ro2(name)} 일하고 계세요?`);h.append(el('small',null,'1분이면 돼요. 지금 하는 일에서 AI가 실제로 맡는 몫을 알려 주세요. 이름·연락처는 받지 않아요.'));S.append(h);
+  const ag=el('div');S.append(ag);
+  getJ('/api/survey?k='+k,null).then(A=>{if(!A||!A.ok)return;if(A.share!=null){ag.className='agg';ag.innerHTML=`현직자 <b>${A.n}명</b>이 답했어요. 주요 업무 다섯 가지에서 평균 <b>${A.share}%</b>를 이미 AI로 한대요. 위 숫자 ${pct(v)}%는 AI가 해낼 수 <i>있는</i> 몫이에요.`}else if(A.n>0){ag.className='agg';ag.textContent=`지금까지 ${A.n}명이 답했어요. ${A.min}명이 모이면 평균을 보여 드려요.`}});
+  const start=el('button','btn','네, 이 일을 해요');start.type='button';S.append(start);
+  const F=el('form');F.hidden=true;S.append(F);const t0={t:0};
+  const pick=(q,opts)=>{const box=el('div','ch');let val=null;opts.forEach(([lab,v])=>{const b=el('button',null,lab);b.type='button';b.onclick=()=>{val=v;box.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b))};box.append(b)});q.append(box);return()=>val};
+  const gets=top.map(([r,w])=>{const q=el('div','q');q.append(el('b',null,RN[r][0]),el('small',null,`이 일의 ${pct(w)}% · 이 업무 가운데 AI로 하는 몫은?`));F.append(q);return[r,w,pick(q,[['안 써요',0],['조금',25],['절반',50],['대부분',75],['거의 다',100]])]});
+  const q1=el('div','q');q1.append(el('b',null,'AI 덕분에 줄어든 일 시간은?'));F.append(q1);const gS=pick(q1,[['없어요',0],['10% 미만',1],['10~30%',2],['30% 넘게',3]]);
+  const q2=el('div','q');q2.append(el('b',null,'이 일을 한 지 얼마나 됐나요?'));F.append(q2);const gT=pick(q2,[['1년 미만',0],['1~5년',1],['5~10년',2],['10년 넘게',3]]);
+  const hp=el('input','hp');hp.name='website';hp.tabIndex=-1;hp.autocomplete='off';hp.setAttribute('aria-hidden','true');F.append(hp);
+  const go=el('button','btn go','보내기');go.type='submit';const msg=el('p','msg');F.append(go,msg);
+  start.onclick=()=>{start.remove();F.hidden=false;t0.t=Date.now();track('survey','open:'+k)};
+  F.onsubmit=async e=>{e.preventDefault();const ans=gets.map(([r,w,g])=>({r,w,v:g()}));
+    if(ans.some(a=>a.v==null)){msg.textContent='업무마다 하나씩 골라 주세요.';return}
+    go.disabled=true;msg.textContent='보내는 중…';
+    try{const r=await fetch('/api/survey',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({code:J.code,sm:c,ans,saved:gS(),tenure:gT(),secs:(Date.now()-t0.t)/1000,website:hp.value})});const j=await r.json();msg.textContent=j.msg||(j.ok?'고마워요.':'잠시 후 다시 시도해 주세요.');if(j.ok){F.querySelectorAll('button').forEach(b=>b.disabled=true);track('survey','send:'+k)}else go.disabled=false}
+    catch(err){msg.textContent='보내지 못했어요. 잠시 후 다시 시도해 주세요.';go.disabled=false}};
+  O.append(S);
+}
 function near(O,J,c,name,v){
   const box=el('section','nearbox');O.append(box);EVP=EVP||getJ('/evidence.json',null);
   EVP.then(E=>{
@@ -320,6 +350,7 @@ function show(j,k,title,scroll){
   O.append(el('h2',null,'이 높이에서 할 일'));O.append(el('p','todo',TODO[s]));
   // 비슷한 일을 하는 직업의 물때(물이 늦게 차는 옆 직업 찾기)
   near(O,J,c,name,v);
+  survey(O,J,c,name,v);
   // 구독
   const cta=el('div','cta');cta.append(el('h3',null,'물때가 바뀌면 알려드릴게요'),el('p',null,`매주 월요일, 한 주 동안 AI 소식으로 물이 얼마나 찼는지와 '${J.name}'에 닿은 소식을 메일로 보내드려요.`));
   const f=el('form','fm');f.noValidate=true;const r=el('div','row');const em=el('input');em.type='email';em.placeholder='이메일 주소';em.autocomplete='email';em.setAttribute('aria-label','이메일 주소');

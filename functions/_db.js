@@ -23,7 +23,11 @@ export const MIGRATIONS = [
   // 3: 주간 메일 발송 기록(같은 주에 같은 사람에게 두 번 보내지 않게, 중간에 멈춰도 이어서 보내게)
   ["CREATE TABLE IF NOT EXISTS sends (week TEXT NOT NULL, email TEXT NOT NULL, status TEXT NOT NULL, at TEXT NOT NULL, id TEXT, err TEXT, PRIMARY KEY (week, email))"],
   // 4: 조직 자가 진단(/org)에서 들어온 보고서 요청. config는 담당자가 함께 보내기로 동의한 직무·인원(JSON)
-  ["CREATE TABLE IF NOT EXISTS org_requests (id INTEGER PRIMARY KEY AUTOINCREMENT, created TEXT NOT NULL, name TEXT, org TEXT, email TEXT NOT NULL, scope TEXT, msg TEXT, config TEXT, status TEXT NOT NULL DEFAULT 'new', updated TEXT)"]
+  ["CREATE TABLE IF NOT EXISTS org_requests (id INTEGER PRIMARY KEY AUTOINCREMENT, created TEXT NOT NULL, name TEXT, org TEXT, email TEXT NOT NULL, scope TEXT, msg TEXT, config TEXT, status TEXT NOT NULL DEFAULT 'new', updated TEXT)"],
+  // 5: 현직자 설문(/test 결과 화면). 개인정보 없음: 직업 코드·업무별 AI로 하는 몫·줄어든 시간·경력 구간만. ih는 중복 막기용 하루 해시(이틀 뒤 지움)
+  ["CREATE TABLE IF NOT EXISTS survey (id INTEGER PRIMARY KEY AUTOINCREMENT, code TEXT NOT NULL, sm TEXT, ans TEXT NOT NULL, share INTEGER NOT NULL, saved INTEGER, tenure INTEGER, secs INTEGER, ok INTEGER NOT NULL DEFAULT 1, created TEXT NOT NULL, ih TEXT)",
+   "CREATE INDEX IF NOT EXISTS sv_key ON survey(sm, code)",
+   "CREATE INDEX IF NOT EXISTS sv_ih ON survey(ih, created)"],
 ];
 async function migrate(DB) {
   await DB.batch(SCHEMA.map(s => DB.prepare(s)));
@@ -53,6 +57,8 @@ async function maintain(DB) {
   if (r && r.v === day) return;
   await DB.batch([
     DB.prepare("UPDATE feedback SET ih = NULL WHERE ih IS NOT NULL AND created < date('now', '+9 hours', '-2 day')"),       // 접속 해시: 이틀
+    DB.prepare("UPDATE survey SET ih = NULL WHERE ih IS NOT NULL AND created < date('now', '+9 hours', '-2 day')"),         // 설문 접속 해시: 이틀
+    DB.prepare("DELETE FROM survey WHERE created < date('now', '+9 hours', '-3 year')"),                                      // 설문 응답: 3년
     DB.prepare("UPDATE feedback SET note = NULL WHERE note IS NOT NULL AND created < date('now', '+9 hours', '-1 year')"),   // 의견 메모: 1년
     DB.prepare("DELETE FROM subscribers WHERE status = 'unsub' AND COALESCE(unsub_at, unsubscribed) < date('now', '+9 hours', '-30 day')"), // 해지: 30일 뒤 삭제
     DB.prepare("DELETE FROM subscribers WHERE status = 'pending' AND COALESCE(consent_at, created) < date('now', '+9 hours', '-30 day')"),  // 확인 안 한 신청: 30일 뒤 삭제

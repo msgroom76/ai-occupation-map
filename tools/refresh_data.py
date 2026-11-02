@@ -89,6 +89,18 @@ if done and not DRY:
     run('python3 tools/build_evidence.py')
     run('python3 tools/validate.py' + (' --aioe ' + os.environ['AIOE_DIR'] if os.environ.get('AIOE_DIR') else '') + ' > /dev/null')
     run('python3 tools/build_jobs.py')
+    # 일하는 사람 수(가중치)가 바뀌면 지난 주들의 전체 지수(total)도 새 가중치로 다시 계산한다(통계 개정). 주간 소식 반영(adj)은 그대로.
+    M2 = json.load(open('city_meta.json')); Rr = M2['R']; WS = sum(j['ws'] for j in M2['jobs'])
+    def oc(j, a): return min(.99, j['cal'] * sum(x * Rr[r][2] / (1 + math.exp(-Rr[r][1] * (2026 - Rr[r][0] + a.get(r, 0)))) for r, x in j['w41'].items()))
+    IX = json.load(open('index.json')); moved = []
+    for w in IX['weeks']:
+        if w.get('total') is None: continue
+        t = round(sum(j['ws'] * oc(j, w.get('adj') or {}) for j in M2['jobs']) / WS, 5)
+        if abs(t - w['total']) > 1e-5: moved.append((w['week'], w['total'], t)); w['total'] = t
+    if moved:
+        IX.setdefault('revisions', []).append({'date': TODAY, 'why': '; '.join(done), 'weeks': len(moved), 'last': {'week': moved[-1][0], 'from': moved[-1][1], 'to': moved[-1][2]}})
+        json.dump(IX, open('index.json', 'w'), ensure_ascii=False, indent=1)
+        notes.append(f'지난 {len(moved)}주의 전체 지수를 새 가중치로 다시 계산했어요(최근 {moved[-1][0]}: {moved[-1][1]*100:.2f}% → {moved[-1][2]*100:.2f}%). index.json revisions에 기록')
     run('python3 tools/check_data.py')
     after = json.load(open('city_meta.json')); R = after['R']
     def occ(s): return min(.99, s['cal'] * sum(x * R[r][2] / (1 + math.exp(-R[r][1] * (2026 - R[r][0]))) for r, x in s['w'].items()))
