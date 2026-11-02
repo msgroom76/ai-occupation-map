@@ -52,6 +52,25 @@ h2 small{display:block;font-size:13px;font-weight:400;color:var(--ink2);letter-s
 .pair .h b{color:var(--hot)}
 .meter{height:8px;background:var(--hair);margin-top:6px;position:relative}.meter i{position:absolute;left:0;top:0;bottom:0;background:var(--hot)}.meter i.g{background:var(--ink2)}
 .note{font-size:13px;color:var(--ink2);margin:8px 0 0}
+/* 왜 이 숫자일까: 업무별 기여 */
+.why .key{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--ink2);margin:10px 0 6px}
+.why .key i{display:inline-block;width:18px;height:8px;vertical-align:middle;margin-right:5px;background:var(--hair)}.why .key i.f{background:var(--hot)}
+.wrow{display:grid;grid-template-columns:minmax(0,1fr) 64px;gap:2px 12px;padding:10px 0;border-bottom:1px solid var(--hair);align-items:end}
+.wrow .t{font-size:15px;font-weight:600;line-height:1.35}.wrow .t small{display:block;font-size:12px;font-weight:400;color:var(--ink2);margin-top:2px}
+.wrow .v{font-size:17px;font-weight:800;text-align:right;color:var(--hot);font-feature-settings:"tnum";letter-spacing:-.02em}
+.wrow .bar{grid-column:1/-1;height:10px;background:transparent;position:relative;margin-top:6px}
+.wrow .bar b{position:absolute;left:0;top:0;bottom:0;background:var(--hair)}.wrow .bar b i{position:absolute;left:0;top:0;bottom:0;background:var(--hot)}
+.wrow.rest .t{font-weight:400;color:var(--ink2)}.wrow.rest .v{color:var(--ink2)}
+.wsum{font-size:14px;margin:12px 0 0}.wsum b{color:var(--hot)}
+.why h3{font-size:15px;margin:26px 0 4px;letter-spacing:-.01em}.why h3+p{font-size:13px;color:var(--ink2);margin:0 0 8px}
+.dwa{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.dwa li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair);font-size:14px}
+.dwa .lv{flex:none;font-size:12px;padding:1px 8px;border:1px solid var(--hair);color:var(--ink2);white-space:nowrap;align-self:center}
+.dwa .lv.h{border-color:var(--hot);color:var(--hot);font-weight:700}
+.wnews{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.wnews li{padding:9px 0;border-bottom:1px solid var(--hair);font-size:14px;line-height:1.45}.wnews li a{color:var(--ink);text-decoration:none}.wnews li a:hover{text-decoration:underline}
+.wnews small{display:block;font-size:12px;color:var(--ink2);margin-top:2px}
+.wsrc{font-size:13px;color:var(--ink2);margin:20px 0 0;padding:12px 14px;background:var(--soft)}
 table{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 0}td,th{padding:10px 8px 10px 0;border-bottom:1px solid var(--hair);text-align:left;vertical-align:top}
 th{font-weight:600;font-size:12px;color:var(--ink2)}td:first-child{font-weight:600;width:24%}td small{display:block;font-size:12px;color:var(--ink2);margin-top:2px}
 td.kr,th.kr{width:38%}
@@ -123,6 +142,51 @@ const TODO=[
  '헤엄치는 법을 익힐 때예요. AI가 만든 결과를 검토하고 책임지는 쪽으로 자리를 옮기세요.',
  '물이 얕은 곳을 찾아볼 때예요. 지금 하는 일 중 사람만 할 수 있는 몫을 키우거나, 옆 직업으로 옮길 길을 지도에서 찾아보세요.'];
 const img=(s,a)=>{const pic=el('picture');const so=el('source');so.srcset=`/img/water/s${s+1}-dark.png`;so.media='(prefers-color-scheme: dark)';const i=el('img','fig');i.src=`/img/water/s${s+1}-light.png`;i.width=720;i.height=900;i.alt=a;pic.append(so,i);return pic};
+// ---------- 왜 이 숫자일까: 업무별 기여·실제로 하는 일·최근 소식·쓴 자료 ----------
+let EVP=null,FDP=null;
+const p0=(r,y)=>RP[r][2]/(1+Math.exp(-RP[r][1]*(y-RP[r][0])));   // 주간 소식 반영 전
+const webUrl=u=>/^https?:\/\//i.test(String(u||'').trim())?String(u).trim():'';
+const iga=s=>{const k=String(s).charCodeAt(String(s).length-1)-0xAC00;return k>=0&&k<11172?(k%28?'이':'가'):'이(가)'};
+const ida=s=>{const k=String(s).charCodeAt(String(s).length-1)-0xAC00;return k>=0&&k<11172&&!(k%28)?'예요':'이에요'};
+const pp=x=>(x*100).toFixed(1).replace(/\.0$/,'');
+function why(O,J,c,D,name,v,v30){
+  const W=c?SMD[c].w:J.w41,cal=D.cal,RN=cm.RN;
+  const rows=Object.entries(W).map(([r,w])=>({r,w,e:p(r,2026),e30:p(r,2030),z:cal*w*p(r,2026),z30:cal*w*p(r,2030)})).sort((a,b)=>b.z-a.z);
+  const top=rows.slice(0,5),rest=rows.slice(5),sumTop=top.reduce((a,x)=>a+x.z,0),sumRest=rest.reduce((a,x)=>a+x.z,0),wRest=rest.reduce((a,x)=>a+x.w,0);
+  const S=el('section','why');
+  const h=el('h2',null,`왜 ${pct(v)}%일까요?`);h.append(el('small',null,`${name}${iga(name)} 하는 일을 업무별로 나눠, 업무마다 AI가 해낼 수 있는 정도를 곱해 더한 값이에요.`));S.append(h);
+  const key=el('div','key');key.innerHTML='<span><i></i>막대 길이: 이 일에서 차지하는 비중</span><span><i class="f"></i>진한 부분: 그중 AI가 해낼 수 있는 몫</span>';S.append(key);
+  const maxW=Math.max(...top.map(x=>x.w),wRest*.5||0);
+  const row=(t,sub,w,e,z,cls)=>{const d=el('div','wrow'+(cls?' '+cls:''));const tt=el('div','t',t);tt.append(el('small',null,sub));d.append(tt,el('div','v','+'+pp(z)+'%p'));
+    const bar=el('div','bar');const b=el('b');b.style.width=Math.min(100,w/maxW*100)+'%';const i=el('i');i.style.width=Math.min(100,e*100)+'%';b.appendChild(i);bar.appendChild(b);d.appendChild(bar);return d};
+  top.forEach(x=>S.append(row(RN[x.r][0],`일의 ${pct(x.w)}% · 이 업무는 AI가 ${pct(x.e)}% 해낼 수 있어요`,x.w,x.e,x.z)));
+  if(rest.length)S.append(row(`나머지 업무 ${rest.length}가지`,`일의 ${pct(wRest)}% · 평균 ${pct(sumRest/Math.max(cal*wRest,1e-9))}%`,wRest,sumRest/Math.max(cal*wRest,1e-9),sumRest,'rest'));
+  const sm=el('p','wsum');sm.innerHTML=`위 다섯 업무가 <b>${pct(v)}%</b> 가운데 <b>${pp(sumTop)}%p</b>를 차지해요. 가장 큰 몫은 '<b>${RN[top[0].r][0]}</b>'${ida(RN[top[0].r][0])}.`;S.append(sm);
+  S.append(el('p','note',`업무별 AI 노출은 두 연구(미국 ${pct(D.e)}%·국제노동기구 ${pct(D.il)}%)의 평균에 맞춰 한 번 보정했어요(×${cal.toFixed(2)}).`));
+  // 2030년까지 가장 많이 오르는 업무
+  const up=rows.map(x=>({...x,dz:x.z30-x.z})).sort((a,b)=>b.dz-a.dz)[0];
+  if(up&&up.dz>.002){const p30=el('p','wsum');p30.innerHTML=`2030년까지 가장 많이 오르는 업무는 '<b>${RN[up.r][0]}</b>'${ida(RN[up.r][0])}. 이 업무에서 AI가 해낼 수 있는 정도가 ${pct(up.e)}%에서 ${pct(up.e30)}%로 올라, 전체를 <b>+${pp(up.dz)}%p</b> 끌어올려요.`;S.append(p30)}
+  // 자리: 실제로 하는 일·소식·자료는 비동기로 채운다
+  const more=el('div');S.append(more);O.append(S);
+  EVP=EVP||getJ('/evidence.json',null);FDP=FDP||getJ('/feed.json',{items:[]});
+  Promise.all([EVP,FDP]).then(([E,F])=>{
+    const ev=E&&(c?E.sm[c]:E.mid[J.code]);
+    if(ev&&ev.d&&ev.d.length){
+      const h3=el('h3',null,'실제로 하는 일로 보면');more.append(h3,el('p',null,'이 직업이 가장 많이 하는 세부 작업이에요. 오른쪽은 그 작업이 속한 업무를 AI가 얼마나 해낼 수 있는지예요.'));
+      const ul=el('ul','dwa');ev.d.slice(0,6).forEach(([nm,r])=>{const e=p(r,2026),li=el('li');li.append(el('span',null,nm),el('span','lv'+(e>=.6?' h':''),`AI ${e>=.6?'높음':e>=.35?'중간':'낮음'} · ${pct(e)}%`));ul.appendChild(li)});more.append(ul);
+    }
+    // 최근 소식: 이 직업의 큰 업무에 닿은 것
+    const big=new Set(top.map(x=>x.r)),items=(F.items||[]).filter(n=>!n.base&&n.st!=='hold'&&(n.r||[]).some(r=>big.has(r))).sort((a,b)=>a.ts<b.ts?1:-1).slice(0,3);
+    let v0=0;{let a=0;for(const r in W)a+=W[r]*p0(r,2026);v0=Math.min(.99,cal*a)}
+    const dv=v-v0;
+    if(items.length||Math.abs(dv)>=.0005){
+      const h3=el('h3',null,'숫자를 움직인 최근 소식');more.append(h3,el('p',null,Math.abs(dv)>=.0005?`지금까지 반영한 주간 AI 소식으로 이 직업은 ${dv>0?'+':''}${pp(dv)}%p 움직였어요. 위 다섯 업무에 닿은 최근 소식이에요.`:'위 다섯 업무에 닿은 최근 소식이에요.'));
+      const ul=el('ul','wnews');items.forEach(n=>{const li=el('li'),u=webUrl(n.url),hd=n.hd.length>90?n.hd.slice(0,88)+'…':n.hd;const a=el(u?'a':'span',null,hd);if(u){a.href=u;a.target='_blank';a.rel='noopener'}
+        const rs=(n.r||[]).filter(r=>big.has(r)).map(r=>RN[r][0]).slice(0,2).join(', ');li.append(a,el('small',null,`${n.ts.slice(5,10).replace('-','.')} · ${n.src||''} · 닿은 업무: ${rs}`));ul.appendChild(li)});more.append(ul);
+    }
+    if(ev&&ev.us&&ev.us.length){const s=el('p','wsrc');s.innerHTML='';s.append(`업무 구성은 비슷한 일을 하는 미국 직업 ${ev.n}개(${ev.us.slice(0,5).join(', ')} 등)의 업무 목록(O*NET 31.0)에서 가져와, 한국 직업분류에 맞춰 묶었어요.`);more.append(s)}
+  });
+}
 // 첫 화면 문구: 한국 일자리 전체의 물때
 {const t=total(2026),s=stOf(t);$('#hcap').innerHTML=`한국 일자리 전체는 지금 <b>'${ST[s][0]}'</b>까지 찼어요 · 취업자 기준 AI 노출도 ${(t*100).toFixed(1)}%`;
  const H=$('#hero');H.src=`/img/water/crowd-s${s+1}-light.png`;H.previousElementSibling.srcset=`/img/water/crowd-s${s+1}-dark.png`;H.alt=`여러 직업의 사람들이 나란히 서 있고 물이 ${ST[s][0]} 높이까지 차 있는 그림`}
@@ -165,6 +229,8 @@ function show(j,k,title,scroll){
   const ax=el('div','ax');[0,20,35,50,65,100].forEach(n=>{const t=el('span',null,n+'%');t.style.left=n+'%';if(n===100)t.style.transform='translateX(-100%)';if(n===0)t.style.transform='none';ax.appendChild(t)});
   ru.append(ax,bar,lb);O.append(ru);
   const nx=el('p','next');nx.innerHTML=s>=4?`가장 높은 단계예요. 2030년이면 ${pct(v30)}%까지 차요. <span style="color:var(--ink2)">(점선)</span>`:ny?`<b>${yTxt(ny)}</b>이면 다음 단계 '${ST[s+1][0]}'에 닿아요. <span style="color:var(--ink2)">(실선 지금 · 점선 2030년)</span>`:`2050년까지 다음 단계 '${ST[s+1][0]}'에는 닿지 않아요. 물이 거의 멈춰 있는 일이에요.`;O.append(nx);
+  // 왜 이 숫자일까: 업무별로 나눠 보여 준다(근거)
+  why(O,J,c,D,name,v,v30);
   // 할 수 있는 몫 vs 이미 쓰는 몫
   const h1=el('h2',null,'할 수 있는 몫과 이미 쓰는 몫');h1.append(el('small',null,'연구가 말하는 가능성과, 미국에서 실제로 AI에 맡긴 기록은 달라요.'));O.append(h1);
   const pr=el('div','pair');pr.innerHTML=`<div class="h"><small>AI가 해낼 수 있는 몫<br>(연구 · 2026)</small><b>${pct(v)}%</b><div class="meter"><i style="width:${v*100}%"></i></div></div><div><small>미국에서 이미 쓰는 몫<br>(Anthropic 경제지수 · 실제 사용 기록)</small><b>${obs<.005?'1% 미만':pct(obs)+'%'}</b><div class="meter"><i class="g" style="width:${obs*100}%"></i></div></div>`;O.append(pr);
