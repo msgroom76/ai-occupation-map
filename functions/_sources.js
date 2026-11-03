@@ -19,7 +19,7 @@ export const SOURCES = [
   { id: 'onet', name: 'O*NET 데이터베이스(업무·작업 목록)', used: '업무 41개 비중, 직업별 세부 작업', have: '31.0', every: 6, due: '2027-02-28',
     check: { type: 'onet' }, url: 'https://www.onetcenter.org/database.html',
     how: '새 판 텍스트 묶음에서 extract_onet.py로 쓰는 부분만 뽑아 dl_onet/에 넣고 run.sh. 업무 비중이 조금 바뀔 수 있어 변경 기록 필요' },
-  { id: 'lfs', name: '지역별고용조사 직업 소분류 취업자', used: '지도 넓이(직업별 일하는 사람 수)', have: '202502', haveLabel: '2025년 하반기', every: 6, due: '2026-10-15',
+  { id: 'lfs', name: '지역별고용조사 직업 소분류 취업자', used: '지도 넓이(직업별 일하는 사람 수)', have: '202601', haveLabel: '2026년 상반기', every: 6, due: '2026-10-15',
     check: { type: 'kosis', org: '101', tbl: 'DT_1ES3B32J' }, url: 'https://kosis.kr/statHtml/statHtml.do?orgId=101&tblId=DT_1ES3B32J',
     how: '새 반기를 내려받아 dl_lfs/occ_YYYYhN.json으로 넣고 run.sh. 상반기 결과는 보통 10월, 하반기는 4월에 나와요' },
   { id: 'ind_mix', name: '지역별고용조사 산업×직업 대분류 취업자', used: '조직 진단(/org)·조직 리포트의 업종 평균(org_bench.json)', have: '202502', haveLabel: '2025년 하반기', every: 6, due: '2026-10-15',
