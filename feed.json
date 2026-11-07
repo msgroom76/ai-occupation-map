@@ -1,7 +1,60 @@
 {
- "updated": "2026-11-07T12:53:00+09:00",
+ "updated": "2026-11-07T12:58:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-11-06-gemini-omni-12-flash-ga",
+   "ts": "2026-11-07T00:00:00+09:00",
+   "src": "Google Cloud 블로그",
+   "url": "https://cloud.google.com/blog/products/ai-machine-learning/gemini-omni-1-2-flash-generally-available",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "kr": false,
+   "us": true,
+   "hd": "구글, 영상 생성·편집 모델 '제미나이 옴니 1.2 플래시' 정식 제공(GA) — 한 번에 최대 15초(이전 10초) 영상, 대화로 기존 영상의 상품·조명·카메라 각도 바꾸기, 상품 영상·가상 착용·광고용, 720p 초당 0.07달러(30% 인하)로 구글 Vids·API에서 사용",
+   "r": [
+    "B6"
+   ],
+   "st": "pending",
+   "grp": "video-gen-production",
+   "dwa": [
+    [
+     "4.A.2.b.2.I18.D17",
+     "d"
+    ],
+    [
+     "4.A.2.b.1.I11.D01",
+     "a"
+    ]
+   ]
+  },
+  {
+   "id": "2026-11-05-agiloft-execution-agents",
+   "ts": "2026-11-05T22:00:00+09:00",
+   "src": "Agiloft 보도자료(PR Newswire)",
+   "url": "https://www.prnewswire.com/news-releases/agiloft-targets-enterprise-value-leakage-with-new-suite-of-execution-focused-ai-agents-302929642.html",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "kr": false,
+   "us": true,
+   "hd": "미국 계약관리 기업 애질로프트, 실행형 AI 에이전트 3종 공개 — 검색 결과로 여러 계약 기록의 항목을 한꺼번에 고치는 '일괄 수정'(사람 확인 후 실행), 말로 설명하면 맞는 계약 요청 양식을 찾는 '계약 요청', 서명자·순서를 정해 어도비 전자서명을 띄우는 '전자서명' 에이전트(단계적 제공)",
+   "r": [
+    "C9",
+    "C5"
+   ],
+   "st": "pending",
+   "grp": "contract-ops-agent",
+   "dwa": [
+    [
+     "4.A.3.b.1.I06.D05",
+     "a"
+    ],
+    [
+     "4.A.3.b.6.I13.D05",
+     "a"
+    ]
+   ]
+  },
   {
    "id": "2026-11-06-toss-ai-detection-rules",
    "ts": "2026-11-06T14:39:00+09:00",
@@ -5228,6 +5281,19 @@
   }
  ],
  "runs": [
+  {
+   "at": "2026-11-07T12:58:00+09:00",
+   "push": {
+    "q": 23,
+    "cand": 10,
+    "acc": 2
+   },
+   "front": {
+    "q": 16,
+    "cand": 10,
+    "acc": 0
+   }
+  },
   {
    "at": "2026-11-07T12:53:00+09:00",
    "push": {
