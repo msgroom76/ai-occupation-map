@@ -1,7 +1,70 @@
 {
- "updated": "2026-11-08T08:50:00+09:00",
+ "updated": "2026-11-08T12:51:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-11-07-hyperstar-sales-influencer-agent",
+   "ts": "2026-11-07T02:00:00+09:00",
+   "src": "하이퍼스타 (PR Newswire 보도자료)",
+   "url": "https://www.prnewswire.com/news-releases/hyperstar-ranks-influencers-by-sales-not-followers-302931948.html",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "kr": true,
+   "hd": "서울 인플루언서 마케팅 기업 하이퍼스타, 팔로워 수가 아니라 실제 판매 실적으로 인플루언서를 고르는 AI 에이전트 출시 — 아마존·쇼피파이·틱톡샵·쿠팡·네이버쇼핑 등 8개 판매 채널 주문 데이터로 게시물별 매출을 추적하고, 선정·섭외·계약·캠페인 운영·성과 확인을 한 흐름으로 처리. 클로드·챗GPT에서 한 문장으로 요청 가능",
+   "r": [
+    "B4",
+    "A1"
+   ],
+   "st": "pending",
+   "grp": "marketing-agent",
+   "dwa": [
+    [
+     "4.A.2.a.4.I02.D08",
+     "d"
+    ],
+    [
+     "4.A.2.b.1.I09.D04",
+     "a"
+    ]
+   ],
+   "ind": [
+    "28"
+   ]
+  },
+  {
+   "id": "2026-11-06-churnzero-agentic-essentials",
+   "ts": "2026-11-06T22:00:00+09:00",
+   "src": "ChurnZero (PR Newswire 보도자료)",
+   "url": "https://www.prnewswire.com/news-releases/churnzero-charts-the-future-of-autonomous-customer-growth-at-zero-in-2026-302928656.html",
+   "tier": "1차 출처",
+   "sig": "능력",
+   "us": true,
+   "hd": "미국 고객 성공 소프트웨어 기업 천제로, 바로 쓰는 AI 에이전트 20여 종을 묶은 '에이전틱 에센셜' 공개 — 고객 이탈 위험·추가 판매 기회를 찾고, 업무 흐름을 실행하며, 부서 간 고객 인계와 고객 데이터 보강을 맡음",
+   "r": [
+    "A2",
+    "B4"
+   ],
+   "st": "pending",
+   "grp": "customer-success-agent",
+   "dwa": [
+    [
+     "4.A.3.b.6.I08.D15",
+     "a"
+    ]
+   ]
+  },
+  {
+   "id": "2026-11-04-canva-restructure-22pct",
+   "ts": "2026-11-04T09:00:00+09:00",
+   "src": "The Next Web",
+   "url": "https://thenextweb.com/news/canva-restructure-1271-jobs-22-percent-layoffs",
+   "tier": "신뢰 매체",
+   "sig": "고용",
+   "hd": "호주 디자인 플랫폼 캔바, 직원 22%(1,271명)에 영향을 주는 조직 개편 발표 — 감원·직무 변경·시드니 이전이 섞여 있고 각각의 인원은 밝히지 않음. 퍼킨스 CEO는 '새 기술이 창작 방식을 바꾸고 있다'며 작은 자율팀 중심 재편을 설명, 매출 성장 전망은 30%에서 20%로 낮춤",
+   "r": [],
+   "st": "none",
+   "note": "고용 변화 소식 · AI를 직접 감원 사유로 명시하진 않음"
+  },
   {
    "id": "2026-11-05-luma-agent-launchpad",
    "ts": "2026-11-05T22:00:00+09:00",
@@ -4339,6 +4402,40 @@
  ],
  "front": [
   {
+   "id": "2026-11-07-elvis-eminem-v-suno",
+   "ts": "2026-11-07T12:00:00+09:00",
+   "src": "The Express Tribune",
+   "url": "https://tribune.com.pk/story/2639163/elvis-presley-rights-holders-and-eminems-publisher-sue-ai-music-generator-suno",
+   "tier": "신뢰 매체",
+   "sig": "저항",
+   "kind": "판결·소송",
+   "fx": "약",
+   "ind": [
+    "29"
+   ],
+   "hd": "엘비스 프레슬리 곡 권리사들(어센틱 브랜즈 그룹 등)과 에미넘 곡 출판사 에이트마일스타일, 음악 생성 AI 수노를 미국 법원에 각각 제소 — 허락 없이 곡을 학습했고, 프레슬리의 목소리·에미넘의 가사·창법을 흉내 낸 곡을 만들게 한다고 주장(테네시주 ELVIS법 인용)",
+   "note": "음악 권리자가 생성 AI의 학습·목소리 모방에 대가·동의를 소송으로 요구 · 소송 제기 단계, 작곡·가수",
+   "st": "none",
+   "added": "2026-11-08T12:51:00+09:00"
+  },
+  {
+   "id": "2026-11-06-publishers-authors-v-grok",
+   "ts": "2026-11-07T07:00:00+09:00",
+   "src": "Law360",
+   "url": "https://www.law360.com/articles/2547420/grok-draws-3-copyright-suits-over-ai-training-with-books",
+   "tier": "신뢰 매체",
+   "sig": "저항",
+   "kind": "판결·소송",
+   "fx": "약",
+   "ind": [
+    "29"
+   ],
+   "hd": "출판사 두 곳과 작가 그룹, 책을 불법 복제해 AI 학습에 썼다며 그록(Grok) 개발사들을 상대로 저작권 소송 3건 제기",
+   "note": "작가·출판사가 AI 학습용 도서 사용에 소송으로 대응 · 소송 제기 단계, 작가·출판",
+   "st": "none",
+   "added": "2026-11-08T12:51:00+09:00"
+  },
+  {
    "id": "2026-11-05-kbs-mbc-sbs-v-naver-ai-news",
    "ts": "2026-11-05T17:07:00+09:00",
    "src": "디지털데일리",
@@ -5419,6 +5516,19 @@
   }
  ],
  "runs": [
+  {
+   "at": "2026-11-08T12:51:00+09:00",
+   "push": {
+    "q": 12,
+    "cand": 7,
+    "acc": 3
+   },
+   "front": {
+    "q": 12,
+    "cand": 6,
+    "acc": 2
+   }
+  },
   {
    "at": "2026-11-08T08:50:00+09:00",
    "push": {
