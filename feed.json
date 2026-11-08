@@ -1,7 +1,51 @@
 {
- "updated": "2026-11-08T12:51:00+09:00",
+ "updated": "2026-11-08T17:52:00+09:00",
  "rule": "1차 출처의 능력·도입 발표 = 도달 시점 3개월(0.25년) 앞당김, 신뢰 매체 = 1개월(1/12년). 미국 발표는 절반. 확인 필요는 반영 안 함. 매주 월요일 주간 지수에 한 번에 반영.",
  "items": [
+  {
+   "id": "2026-11-04-umobile-aidah-agentcore",
+   "ts": "2026-11-04T09:00:00+09:00",
+   "src": "AWS 머신러닝 블로그 (U Mobile 사례)",
+   "url": "https://aws.amazon.com/blogs/machine-learning/how-u-mobile-built-agentic-telco-operations-with-amazon-bedrock-agentcore",
+   "tier": "1차 출처",
+   "sig": "도입",
+   "kr": false,
+   "us": false,
+   "hd": "말레이시아 통신사 U모바일, 2단계(L2) 고객지원에 다중 AI 에이전트 헬프데스크 'AiDaH' 운영 — 가입자 문의의 원인 조사·진단과 해결안 작성까지 맡고, 계정 변경은 상담원 승인 후 실행. 콜센터·지점 직원 50명이 사용, 개통·네트워크 장애 문의 처리 건수 84.5% 감소(회사 내부 집계)",
+   "r": [
+    "D3",
+    "B5"
+   ],
+   "st": "pending",
+   "grp": "contact-center-agent",
+   "dwa": [
+    [
+     "4.A.4.a.8.I03.D05",
+     "a"
+    ]
+   ],
+   "ind": [
+    "36"
+   ]
+  },
+  {
+   "id": "2026-11-05-mistral-studio-managed-agents",
+   "ts": "2026-11-05T18:00:00+09:00",
+   "src": "Mistral AI",
+   "url": "https://mistral.ai/news/build-with-studio/",
+   "tier": "확인 필요",
+   "sig": "능력",
+   "kr": false,
+   "us": false,
+   "hd": "프랑스 미스트랄AI, 기업용 'Studio'에 관리형 에이전트·앱·자연어 워크플로 작성 기능 추가 — 여러 단계 업무를 하는 에이전트를 자체 서버에서도 운영, CMA CGM은 화물 인도·운송 주문 업무에 사용 중이라고 소개(대부분 공개 프리뷰)",
+   "r": [
+    "C5",
+    "B2"
+   ],
+   "st": "hold",
+   "note": "대부분 공개 프리뷰 단계 · 정식 제공 후 다시 확인",
+   "grp": "agent-builder"
+  },
   {
    "id": "2026-11-07-hyperstar-sales-influencer-agent",
    "ts": "2026-11-07T02:00:00+09:00",
@@ -4402,6 +4446,42 @@
  ],
  "front": [
   {
+   "id": "2026-11-05-taxi-union-av-law-demand",
+   "ts": "2026-11-06T09:00:00+09:00",
+   "src": "매일노동뉴스",
+   "url": "https://labortoday.co.kr/news/articleView.html?idxno=237599",
+   "tier": "신뢰 매체",
+   "kr": true,
+   "sig": "저항",
+   "kind": "노사",
+   "fx": "약",
+   "ind": [
+    "87"
+   ],
+   "hd": "전국택시노동조합연맹, 국회 입법박람회(5일)에서 자율주행 택시로 일자리를 잃을 수 있는 택시 기사 보호를 위해 산업전환고용안정법·자율주행자동차법 개정을 요구 — 재교육 위주인 현행법에 고용 보장과 기사들의 데이터 권리 보호를 넣으라는 것",
+   "note": "택시 기사 노조가 자율주행 전환에 고용 보장 입법을 요구 · 요구 단계, 법안 발의 전",
+   "st": "none",
+   "added": "2026-11-08T17:52:00+09:00"
+  },
+  {
+   "id": "2026-11-04-runway-dmca-mtd-denied",
+   "ts": "2026-11-05T04:21:00+09:00",
+   "src": "Mealey's (LexisNexis)",
+   "url": "https://www.mealeys.com/mealeys/mealeys-copyright/articles/2546420",
+   "tier": "신뢰 매체",
+   "kr": false,
+   "sig": "저항",
+   "kind": "판결·소송",
+   "fx": "약",
+   "ind": [
+    "29"
+   ],
+   "hd": "미국 뉴욕 연방법원, 영상 생성 AI 기업 런웨이의 소송 기각 신청을 받아들이지 않음 — 유튜브 영상 제작자들이 낸 집단소송에서 '공개된 영상이라도 유튜브의 접근 제한을 우회해 학습 데이터를 모았다'는 DMCA 우회 금지 위반 주장이 충분하다고 판단",
+   "note": "영상 제작자의 작품을 허락 없이 AI 학습에 쓴 데 대한 소송을 법원이 계속 진행시킴 · 본안 판결 전, 영상 창작",
+   "st": "none",
+   "added": "2026-11-08T17:52:00+09:00"
+  },
+  {
    "id": "2026-11-07-elvis-eminem-v-suno",
    "ts": "2026-11-07T12:00:00+09:00",
    "src": "The Express Tribune",
@@ -5516,6 +5596,19 @@
   }
  ],
  "runs": [
+  {
+   "at": "2026-11-08T17:52:00+09:00",
+   "push": {
+    "q": 28,
+    "cand": 16,
+    "acc": 2
+   },
+   "front": {
+    "q": 17,
+    "cand": 6,
+    "acc": 2
+   }
+  },
   {
    "at": "2026-11-08T12:51:00+09:00",
    "push": {
