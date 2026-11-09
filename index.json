@@ -474,6 +474,703 @@
      "hold": 0
     }
    }
+  },
+  {
+   "week": "2026-W46",
+   "date": "2026-11-09",
+   "adj": {
+    "B9": 0.1129,
+    "D9": 0.0417,
+    "C5": 0.4319,
+    "B4": 0.099,
+    "C9": 0.2271,
+    "B5": 0.0022,
+    "B7": 0.0,
+    "B2": 0.2002,
+    "A1": 0.0741,
+    "B3": 0.0444,
+    "B10": 0.0712,
+    "D3": 0.1218,
+    "D6": 0.0486,
+    "C1": 0.0005,
+    "C2": 0.0005,
+    "D15": 0.0022,
+    "A5": 0.0006,
+    "D14": 0.0,
+    "A2": 0.0713,
+    "D1": 0.0026,
+    "A3": 0.0011,
+    "B6": 0.0636,
+    "D2": 0.0,
+    "D8": 0.0007,
+    "D16": 0.0421,
+    "D13": 0.0004
+   },
+   "total": 0.31986,
+   "applied": [
+    "2026-11-08-yangpyeong-handwritten-tax-ai",
+    "2026-11-04-umobile-aidah-agentcore",
+    "2026-11-07-hyperstar-sales-influencer-agent",
+    "2026-11-06-churnzero-agentic-essentials",
+    "2026-11-05-luma-agent-launchpad",
+    "2026-11-03-gbsa-genai-admin",
+    "2026-11-06-finders-ai-vision-checkout",
+    "2026-11-04-smartsheet-engage-agents",
+    "2026-11-03-jecheon-genai-chatbot",
+    "2026-11-06-gemini-omni-12-flash-ga",
+    "2026-11-05-agiloft-execution-agents",
+    "2026-11-06-toss-ai-detection-rules",
+    "2026-11-04-bccard-moai-mate-agents",
+    "2026-11-06-lxpantos-tdl-robot-lab",
+    "2026-11-03-gsshop-md-curation-agents",
+    "2026-11-06-mfds-foodsafety-ai-search",
+    "2026-11-04-snowflake-coco-automations",
+    "2026-11-04-namyangju-nap-work-qa",
+    "2026-11-06-claude-personal-finance",
+    "2026-11-06-paradise-chatgpt-enterprise",
+    "2026-11-05-playd-pai-ad-agents",
+    "2026-11-05-kakaobank-ai-safety-callbot",
+    "2026-11-05-lg-ai-safety-management",
+    "2026-11-05-woori-fx-ai-compliance",
+    "2026-11-04-gkl-sevenluck-ai-callbot",
+    "2026-11-04-hyundai-steel-steel-x",
+    "2026-11-03-ktis-aicc-voicebot-14m",
+    "2026-11-03-bespin-helpnow-computer",
+    "2026-11-03-gcgf-ai-chatbot-callbot",
+    "2026-11-02-skecoplant-one-agent-per-person",
+    "2026-11-02-hd-hyundai-robotics-palantir-agent",
+    "2026-11-01-iqiyi-ai-film-studio",
+    "2026-11-02-pulmuone-designmeal-ai-chat",
+    "2026-10-29-aeon-kawaguchi-higashi-xd",
+    "2026-10-29-gemini-in-chat-file-editing",
+    "2026-10-29-cresta-agent-platform-self-service",
+    "2026-11-01-mois-onai-websearch",
+    "2026-10-30-plateer-xgen-product-registration",
+    "2026-10-30-lges-enswer-ess-trading-agent",
+    "2026-10-29-ubs-12700-personal-agents",
+    "2026-10-29-mistral-large-4-open-weights",
+    "2026-10-30-11st-ai-showhost",
+    "2026-10-28-nvidia-nemotron-3-5-transcribe",
+    "2026-10-29-skax-zfit-studio",
+    "2026-10-29-emro-gscaltex-procurement",
+    "2026-10-29-kt-voicebot-as",
+    "2026-10-29-zendesk-employee-service-agents",
+    "2026-10-29-igloo-air-security-agents",
+    "2026-10-28-github-copilot-fusion",
+    "2026-10-28-acryl-medical-llm",
+    "2026-10-27-daiso-ktcs-aicc",
+    "2026-10-26-oracle-fusion-scm-agents",
+    "2026-10-26-openai-gpt-6-1-terra",
+    "2026-10-26-samsungfire-ai-advisor",
+    "2026-10-26-maestro-wisdom-forensic-agent"
+   ],
+   "ledger": [
+    {
+     "id": "2026-11-08-yangpyeong-handwritten-tax-ai",
+     "grp": "doc-intake-agent",
+     "r": [
+      "B2",
+      "C5"
+     ],
+     "w": 0.00052,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5 · 업종 비중 ×0.02",
+     "dp": 1e-06
+    },
+    {
+     "id": "2026-11-04-umobile-aidah-agentcore",
+     "grp": "contact-center-agent",
+     "r": [
+      "D3",
+      "B5"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(contact-center-agent) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-07-hyperstar-sales-influencer-agent",
+     "grp": "marketing-agent",
+     "r": [
+      "B4",
+      "A1"
+     ],
+     "w": 0.00293,
+     "why": "1차 출처 0.250년 · 업종 비중 ×0.02",
+     "dp": 2.6e-05
+    },
+    {
+     "id": "2026-11-06-churnzero-agentic-essentials",
+     "grp": "customer-success-agent",
+     "r": [
+      "A2",
+      "B4"
+     ],
+     "w": 0.06315,
+     "why": "1차 출처 0.250년 · 해외 ×0.5",
+     "dp": 0.00041
+    },
+    {
+     "id": "2026-11-05-luma-agent-launchpad",
+     "grp": "patient-outreach-agent",
+     "r": [
+      "D1",
+      "D3"
+     ],
+     "w": 0.00259,
+     "why": "1차 출처 0.250년 · 해외 ×0.5 · 업종 비중 ×0.04",
+     "dp": 7e-06
+    },
+    {
+     "id": "2026-11-03-gbsa-genai-admin",
+     "grp": "gov-genai-platform",
+     "r": [
+      "A1",
+      "C9"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(gov-genai-platform) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-06-finders-ai-vision-checkout",
+     "grp": "retail-checkout-vision",
+     "r": [
+      "A3"
+     ],
+     "w": 0.00109,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5 · 업종 비중 ×0.05",
+     "dp": 1e-06
+    },
+    {
+     "id": "2026-11-04-smartsheet-engage-agents",
+     "grp": "work-mgmt-agent",
+     "r": [
+      "C9",
+      "B2"
+     ],
+     "w": 0.06315,
+     "why": "1차 출처 0.250년 · 해외 ×0.5",
+     "dp": 0.000328
+    },
+    {
+     "id": "2026-11-03-jecheon-genai-chatbot",
+     "grp": "gov-chatbot",
+     "r": [
+      "D3"
+     ],
+     "w": 0.00052,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5 · 업종 비중 ×0.02",
+     "dp": 1e-06
+    },
+    {
+     "id": "2026-11-06-gemini-omni-12-flash-ga",
+     "grp": "video-gen-production",
+     "r": [
+      "B6"
+     ],
+     "w": 0.06315,
+     "why": "1차 출처 0.250년 · 해외 ×0.5",
+     "dp": 0.000224
+    },
+    {
+     "id": "2026-11-05-agiloft-execution-agents",
+     "grp": "contract-ops-agent",
+     "r": [
+      "C9",
+      "C5"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 해외 ×0.5",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-06-toss-ai-detection-rules",
+     "grp": "security-soc-agent",
+     "r": [
+      "A2",
+      "C5"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(security-soc-agent)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-04-bccard-moai-mate-agents",
+     "grp": "enterprise-genai-platform",
+     "r": [
+      "B2",
+      "C5"
+     ],
+     "w": 0.02105,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5",
+     "dp": 4.2e-05
+    },
+    {
+     "id": "2026-11-06-lxpantos-tdl-robot-lab",
+     "grp": "warehouse-robot",
+     "r": [
+      "C2",
+      "C1"
+     ],
+     "w": 0.00045,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5 · 업종 비중 ×0.02",
+     "dp": 1e-06
+    },
+    {
+     "id": "2026-11-03-gsshop-md-curation-agents",
+     "grp": "merchandising-agent",
+     "r": [
+      "B4",
+      "B6"
+     ],
+     "w": 0.00049,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5 · 업종 비중 ×0.02",
+     "dp": 3e-06
+    },
+    {
+     "id": "2026-11-06-mfds-foodsafety-ai-search",
+     "grp": "gov-chatbot",
+     "r": [
+      "D3",
+      "A1"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(gov-chatbot)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-04-snowflake-coco-automations",
+     "grp": "data-platform-agent",
+     "r": [
+      "B4",
+      "C5"
+     ],
+     "w": 0.02105,
+     "why": "신뢰 매체 0.083년 · 해외 ×0.5",
+     "dp": 7.8e-05
+    },
+    {
+     "id": "2026-11-04-namyangju-nap-work-qa",
+     "grp": "gov-genai-platform",
+     "r": [
+      "A1",
+      "D2"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(gov-genai-platform) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-06-claude-personal-finance",
+     "grp": "personal-finance-agent",
+     "r": [
+      "B4"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 해외 ×0.5 · 업종 비중 ×0.02",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-06-paradise-chatgpt-enterprise",
+     "grp": "enterprise-genai-platform",
+     "r": [
+      "B2",
+      "C9"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(enterprise-genai-platform)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-05-playd-pai-ad-agents",
+     "grp": "marketing-agent",
+     "r": [
+      "B4",
+      "B6",
+      "C5"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(marketing-agent)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-05-kakaobank-ai-safety-callbot",
+     "grp": "voice-bot",
+     "r": [
+      "D3"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(voice-bot) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-05-lg-ai-safety-management",
+     "grp": "industrial-safety-ai",
+     "r": [
+      "A2",
+      "B3"
+     ],
+     "w": 0.00089,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5 · 업종 비중 ×0.04",
+     "dp": 4e-06
+    },
+    {
+     "id": "2026-11-05-woori-fx-ai-compliance",
+     "grp": "doc-intake-agent",
+     "r": [
+      "B2",
+      "C5"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(doc-intake-agent)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-04-gkl-sevenluck-ai-callbot",
+     "grp": "voice-bot",
+     "r": [
+      "D3"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(voice-bot) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-04-hyundai-steel-steel-x",
+     "grp": "enterprise-genai-platform",
+     "r": [
+      "A1",
+      "B2"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(enterprise-genai-platform)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-03-ktis-aicc-voicebot-14m",
+     "grp": "voice-bot",
+     "r": [
+      "D3",
+      "C9"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(voice-bot) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-03-bespin-helpnow-computer",
+     "grp": "computer-use-agent",
+     "r": [
+      "C5",
+      "B2",
+      "C9"
+     ],
+     "w": 0.0421,
+     "why": "신뢰 매체 0.083년",
+     "dp": 0.000236
+    },
+    {
+     "id": "2026-11-03-gcgf-ai-chatbot-callbot",
+     "grp": "gov-chatbot",
+     "r": [
+      "D3"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(gov-chatbot)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-02-skecoplant-one-agent-per-person",
+     "grp": "personal-agent",
+     "r": [
+      "C9",
+      "A1"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(personal-agent) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-02-hd-hyundai-robotics-palantir-agent",
+     "grp": "factory-agent",
+     "r": [
+      "B5"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(factory-agent) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-01-iqiyi-ai-film-studio",
+     "grp": "video-gen-production",
+     "r": [
+      "B6"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(video-gen-production)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-02-pulmuone-designmeal-ai-chat",
+     "grp": "contact-center-agent",
+     "r": [
+      "D3"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(contact-center-agent) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-29-aeon-kawaguchi-higashi-xd",
+     "grp": "warehouse-robot",
+     "r": [
+      "C2",
+      "C1"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(warehouse-robot)의 더 센 소식으로 대신",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-29-gemini-in-chat-file-editing",
+     "grp": "doc-agent",
+     "r": [
+      "C9"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(doc-agent) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-29-cresta-agent-platform-self-service",
+     "grp": "contact-center-agent",
+     "r": [
+      "D3"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(contact-center-agent) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-11-01-mois-onai-websearch",
+     "grp": "gov-genai-platform",
+     "r": [
+      "A1"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(gov-genai-platform) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-30-plateer-xgen-product-registration",
+     "grp": "agent-builder",
+     "r": [
+      "C5",
+      "B2"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(agent-builder) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-30-lges-enswer-ess-trading-agent",
+     "grp": "energy-trading-agent",
+     "r": [
+      "B4",
+      "A1"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 업종 비중 ×0.02",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-29-ubs-12700-personal-agents",
+     "grp": "bank-agent",
+     "r": [
+      "D14"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(bank-agent) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-29-mistral-large-4-open-weights",
+     "grp": "mistral-model",
+     "r": [
+      "C5"
+     ],
+     "w": 0.02105,
+     "why": "신뢰 매체 0.083년 · 해외 ×0.5",
+     "dp": 8e-06
+    },
+    {
+     "id": "2026-10-30-11st-ai-showhost",
+     "grp": "ai-show-host",
+     "r": [
+      "D6",
+      "D8"
+     ],
+     "w": 0.00065,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5 · 업종 비중 ×0.03",
+     "dp": 2e-06
+    },
+    {
+     "id": "2026-10-28-nvidia-nemotron-3-5-transcribe",
+     "grp": "speech-model",
+     "r": [
+      "C9"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(speech-model) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-29-skax-zfit-studio",
+     "grp": "hiring-interview-ai",
+     "r": [
+      "D16",
+      "B3"
+     ],
+     "w": 0.0421,
+     "why": "신뢰 매체 0.083년",
+     "dp": 9.9e-05
+    },
+    {
+     "id": "2026-10-29-emro-gscaltex-procurement",
+     "grp": "procurement-agent",
+     "r": [
+      "A5",
+      "B5"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 도입 ×0.5",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-29-kt-voicebot-as",
+     "grp": "voice-bot",
+     "r": [
+      "D3",
+      "C9"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(voice-bot) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-29-zendesk-employee-service-agents",
+     "grp": "employee-service-agent",
+     "r": [
+      "D15",
+      "C5"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 해외 ×0.5",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-29-igloo-air-security-agents",
+     "grp": "security-soc-agent",
+     "r": [
+      "A2",
+      "B4"
+     ],
+     "w": 0.00111,
+     "why": "신뢰 매체 0.083년 · 업종 비중 ×0.03",
+     "dp": 7e-06
+    },
+    {
+     "id": "2026-10-28-github-copilot-fusion",
+     "grp": "coding-model",
+     "r": [
+      "C5",
+      "B3"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(coding-model) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-28-acryl-medical-llm",
+     "grp": "medical-decision-support",
+     "r": [
+      "A1",
+      "B7"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 업종 비중 ×0.04",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-27-daiso-ktcs-aicc",
+     "grp": "voice-bot",
+     "r": [
+      "D3"
+     ],
+     "w": 0.0,
+     "why": "같은 묶음(voice-bot) 최근 13주 안에 반영됨",
+     "dp": 0.0
+    },
+    {
+     "id": "2026-10-26-oracle-fusion-scm-agents",
+     "grp": "supply-chain-agent",
+     "r": [
+      "B4",
+      "B5"
+     ],
+     "w": 0.00221,
+     "why": "1차 출처 0.250년 · 해외 ×0.5 · 업종 비중 ×0.03",
+     "dp": 1.3e-05
+    },
+    {
+     "id": "2026-10-26-openai-gpt-6-1-terra",
+     "grp": "openai-gpt-model",
+     "r": [
+      "C5"
+     ],
+     "w": 0.02105,
+     "why": "신뢰 매체 0.083년 · 해외 ×0.5",
+     "dp": 8e-06
+    },
+    {
+     "id": "2026-10-26-samsungfire-ai-advisor",
+     "grp": "insurance-sales-assist",
+     "r": [
+      "B4",
+      "D6",
+      "D13"
+     ],
+     "w": 0.00044,
+     "why": "신뢰 매체 0.083년 · 도입 ×0.5 · 업종 비중 ×0.02",
+     "dp": 2e-06
+    },
+    {
+     "id": "2026-10-26-maestro-wisdom-forensic-agent",
+     "grp": "forensics-agent",
+     "r": [
+      "A1",
+      "B4",
+      "C9"
+     ],
+     "w": 0.0,
+     "why": "확인 필요 0.000년 · 업종 비중 ×0.01",
+     "dp": 0.0
+    }
+   ],
+   "scale": 0.5052,
+   "rules": "v2",
+   "review": {
+    "by": "self",
+    "ok": 30,
+    "fix": 7,
+    "hold": 2,
+    "late": [],
+    "front": {
+     "ok": 29,
+     "fix": 3,
+     "hold": 1
+    }
+   }
   }
  ],
  "revisions": [
