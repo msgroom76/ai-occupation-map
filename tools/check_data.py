@@ -59,6 +59,17 @@ for k in ('items', 'front'):
     for n in ARC.get(k, []):
         if not str(n.get('url', '')).startswith('https://'): err(f'보관함 {n.get("id")}: url이 https가 아님')
         if not n.get('hd') or not n.get('ts'): err(f'보관함 {n.get("id")}: hd·ts 없음')
+# 소식 페이지 편집 칸
+for n in feed['items'] + feed.get('front', []):
+    if 'imp' in n and n['imp'] not in (1, 2): err(f'feed {n.get("id")}: imp는 1 또는 2')
+    if len(str(n.get('why', ''))) > 140: warn(f'feed {n.get("id")}: why가 140자 넘음')
+    if len(str(n.get('t', ''))) > 70: warn(f'feed {n.get("id")}: t가 70자 넘음')
+_all_ids = {n.get('id') for n in feed['items'] + feed.get('front', [])}
+for e in feed.get('editions', [])[:30]:
+    miss = [i for i in e.get('picks', []) if i not in _all_ids]
+    if miss: err(f'editions {e.get("at")}: 없는 소식 id {miss}')
+    if len(e.get('picks', [])) > 3: err(f'editions {e.get("at")}: picks는 최대 3건')
+if len(feed.get('editions', [])) > 30: warn('editions가 30개 넘음')
 _nb = [n for n in feed['items'] if not n.get('base')]
 if len(_nb) > 400: warn(f'feed: 기준 발표를 뺀 항목 {len(_nb)}개 (400개 초과 — 보관 작업이 도는지 확인)')
 

@@ -79,12 +79,39 @@ li.it:target,li.it.hl{background:var(--soft);margin:0 -12px;padding:14px 12px}
 .foot p{margin:0 0 6px}.foot a{color:var(--ink2)}
 @media (max-width:899px){.filters{position:static;margin-top:16px;border-bottom:0;padding-bottom:0}li.it{scroll-margin-top:130px}}
 @media (max-width:560px){.rx .opts button{padding:0 10px;font-size:12.5px}.lede{font-size:16px}.it h3{font-size:16px}.rx .bars div{grid-template-columns:92px 1fr 34px}}
+.sec{font-size:20px;letter-spacing:-.02em;margin:40px 0 4px}
+.ed{margin-top:8px}.ed .sec{margin-top:28px}
+ol.picks{list-style:none;margin:8px 0 0;padding:0;counter-reset:pk}
+ol.picks li{counter-increment:pk;position:relative;padding:16px 0 16px 44px;border-bottom:1px solid var(--hair)}
+ol.picks li::before{content:counter(pk);position:absolute;left:0;top:16px;font-size:30px;font-weight:800;line-height:1;color:var(--hot);font-variant-numeric:tabular-nums}
+ol.picks .lead{font-size:12.5px;color:var(--ink3);margin:0 0 4px}
+ol.picks h3{font-size:19px;line-height:1.4;margin:0;letter-spacing:-.015em}
+ol.picks h3 a{text-decoration:none}ol.picks h3 a:hover{color:var(--hot)}
+.why{font-size:15px;color:var(--ink2);margin:6px 0 0}
+.why::before{content:"왜 볼까 ";font-weight:700;color:var(--ink)}
+.it .why{font-size:14px;margin-top:4px}
+.how{margin-top:10px;font-size:13.5px;color:var(--ink2)}.how summary{cursor:pointer;color:var(--ink3);padding:6px 0}
+.how p{margin:4px 0}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:8px -16px 0;padding:0 16px}.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;min-height:32px;padding:0 10px;border:0;background:none;color:var(--ink2);font:inherit;font-size:13.5px;cursor:pointer;border-bottom:2px solid transparent}
+.chips button[aria-pressed="true"]{color:var(--ink);font-weight:700;border-bottom-color:var(--hot)}
+.chips button span{color:var(--ink3);margin-left:2px;font-size:12px}
+.pill.imp{background:var(--hot);color:var(--bg)}
+.tag{color:var(--ink3)}
+.day{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:var(--ink2);margin:26px 0 4px}
+.day::after{content:"";flex:1;height:1px;background:var(--hair)}
 /*@GH_CSS@*/
 </style></head><body><!--@HEADER:/news@-->
 <main>
-<p class="kick">AI 소식</p>
-<h1>소식</h1>
-<p class="lede">AI가 사람의 일을 해낼 수 있게 되는 소식과, 사람과 제도가 그걸 막거나 조건을 거는 소식을 함께 모았어요. 소식마다 출처 등급과 닿는 직업을 적어 두었어요. 하루 세 번 새로 찾아요.</p>
+<p class="kick" id="edk">AI 소식</p>
+<h1 id="edh">소식</h1>
+<p class="lede">AI가 사람의 일을 해낼 수 있게 되는 소식과, 사람과 제도가 그걸 막거나 조건을 거는 소식을 하루 세 번(아침·점심·저녁판) 모아요. 소식마다 출처 등급과 닿는 직업을 적어 두었어요.</p>
+
+<section class="ed" aria-labelledby="edt">
+  <h2 class="sec" id="edt">이번 판, 꼭 볼 소식</h2>
+  <ol class="picks" id="picks"></ol>
+  <details class="how"><summary>이번 판은 이렇게 골랐어요</summary><div id="how"></div></details>
+</section>
 
 <section class="scale" aria-label="최근 4주 소식 저울">
   <div class="t"><span>최근 4주에 모은 소식</span><span id="upd"></span></div>
@@ -92,10 +119,13 @@ li.it:target,li.it.hl{background:var(--soft);margin:0 -12px;padding:14px 12px}
   <div class="nums"><span class="p"><b id="np">–</b>건<small>AI가 일을 해내게 된 소식</small></span><span class="r"><b id="nr">–</b>건<small>막거나 조건을 건 소식</small></span></div>
 </section>
 
+<h2 class="sec" id="all">더 훑어보기</h2>
 <div class="filters" id="filters">
   <div class="tabs" role="group" aria-label="소식 성격" id="tabs"></div>
+  <div class="chips" role="group" aria-label="주제" id="chips"></div>
   <div class="row2">
     <select id="fg" aria-label="직업 분야"><option value="">모든 분야</option></select>
+    <select id="fd" aria-label="기간"><option value="">전체 기간</option><option value="1">오늘</option><option value="7">최근 7일</option><option value="30">최근 30일</option></select>
     <select id="fr" aria-label="지역"><option value="">국내·해외</option><option value="kr">국내</option><option value="ab">해외</option></select>
     <input type="search" id="fq" placeholder="찾기 (회사, 기술, 직업)" aria-label="소식 찾기">
     <label class="chk"><input type="checkbox" id="fh"> 확인 중인 소식도 보기</label>
@@ -112,6 +142,7 @@ li.it:target,li.it.hl{background:var(--soft);margin:0 -12px;padding:14px 12px}
 <div class="foot">
   <p><b>소식을 고르는 기준</b> · 기업·정부·법원의 원문을 확인한 것은 ‘1차 출처’, 주요 언론·전문지는 ‘신뢰 매체’로 적어요. 원문을 아직 확인하지 못한 소식은 ‘확인 중’으로 두고 기본 화면에서 숨겨요. 요약은 저희가 쓴 것이고, 자세한 내용은 원문 링크에서 보실 수 있어요.</p>
   <p><b>지도와의 관계</b> · ‘지수에 반영’ 표시가 있는 소식만 매주 월요일 주간 지수를 움직였어요. 막거나 조건을 건 소식(쟁점)은 숫자에 넣지 않고 따로 기록해요. <a href="/guide">보는 법</a> · <a href="/w/">주간 리포트</a></p>
+  <p><b>요약과 정정</b> · 제목과 요약, ‘왜 볼까’ 한 줄은 AI가 원문을 읽고 쓴 뒤 정해진 규칙(출처 확인·과장 금지)으로 점검한 것이에요. 틀릴 수 있으니 중요한 판단은 원문을 확인해 주세요. 잘못된 내용은 <a href="mailto:msgr@post-office.kr">msgr@post-office.kr</a>로 알려 주시면 고칠게요.</p>
   <p id="rxnote" hidden><b>독자 반응</b> · 이 페이지에 들어와 스스로 응답한 분들의 반응이라 전체 여론과는 달라요. 응답이 30명 넘게 모인 소식만 비율을 보여 드리고, 지도의 숫자에는 쓰지 않아요.</p>
 </div>
 </main>
@@ -135,10 +166,37 @@ const add=(n,front)=>{if(!n||!n.id||seen.has(n.id)||n.base||!webUrl(n.url))retur
 (FEED.items||[]).forEach(n=>add(n,false));(FEED.front||[]).forEach(n=>add(n,true));
 (ARC.items||[]).forEach(n=>add(n,false));(ARC.front||[]).forEach(n=>add(n,true));
 ALL.sort((a,b)=>a.ts<b.ts?1:a.ts>b.ts?-1:0);
+// 주제: 묶음(grp)·성격에서 정한다(처음 맞는 것)
+const TOP=[['모델 출시',/model|gemini-model|claude-model|gpt-model|exaone|mistral/],['로봇',/robot|humanoid/],['상담·음성',/voice|contact|call|speech|kiosk|customer|outreach|show-host/],['개발·코딩',/coding|hardware-design|system-agent|computer-use|browser|long-running/],['의료',/medical|patient/],['금융',/bank|insurance|finance|trading/],['공공',/gov|police|forensics/],['콘텐츠·마케팅',/video|marketing|3d|merchandis/],['제조·물류',/factory|supply|industrial|retail|warehouse/],['문서·사무',/doc|contract|work-mgmt|procurement|hr-|employee|data-platform|legal/],['에이전트 일반',/agent|genai/]];
+const topicOf=n=>{if(n.front)return n.kind||'쟁점';if(n.sig==='고용')return '일자리';if(n.sig==='정책'||n.sig==='규제')return '정책';const g=n.grp||'';for(const[t,re]of TOP)if(re.test(g))return t;return '기타'};
+// 중요도: 소식 작업이 정한 imp(2 중요, 1 참고)가 있으면 그것, 없으면 규칙(지수를 움직였거나, 효력 강한 쟁점, 국내 고용 소식)
+const impOf=n=>n.imp!=null?+n.imp:(n.front?(n.fx==='강'?2:1):((n.st==='applied'||n.sig==='고용')&&n.kr)?2:1);
+const scoreOf=n=>impOf(n)*10+(n.kr?3:0)+(n.tier==='1차 출처'?1:0)+(n.front?1:0);
 const kindOf=n=>n.front?'res':(n.sig==='능력'||n.sig==='도입')?'push':'emp';
 const groupsOf=n=>new Set((n.ind||[]).map(c=>String(c)[0]));
 const fmtD=s=>{const d=new Date(s);return isNaN(d)?'':`${d.getFullYear()}.${d.getMonth()+1}.${d.getDate()}`};
-const monthOf=s=>{const d=new Date(s);return isNaN(d)?'':`${d.getFullYear()}년 ${d.getMonth()+1}월`};
+const kday=s=>new Date(new Date(s).getTime()+9*3600e3).toISOString().slice(0,10);
+const TODAY=kday(Date.now()),YDAY=kday(Date.now()-864e5);
+const dayOf=s=>{const k=kday(s),d=new Date(k+'T00:00:00'),w='일월화수목금토'[d.getDay()],t=`${d.getMonth()+1}월 ${d.getDate()}일 (${w})`;return k===TODAY?'오늘 · '+t:k===YDAY?'어제 · '+t:(k.slice(0,4)!==TODAY.slice(0,4)?k.slice(0,4)+'년 ':'')+t};
+const EDN=h=>h<11?'아침판':h<15?'점심판':'저녁판';
+
+// ---- 이번 판 ----
+const ED=(FEED.editions||[])[0],RUN=(FEED.runs||[])[0];
+const edAt=new Date((ED&&ED.at)||(RUN&&RUN.at)||FEED.updated||Date.now());
+const edLabel=`${edAt.getMonth()+1}월 ${edAt.getDate()}일 ${EDN(new Date(edAt.getTime()+9*3600e3).getUTCHours())}`;
+$('edk').textContent='AI 소식 · '+edLabel;$('edh').textContent='소식';
+const BYID=Object.fromEntries(ALL.map(n=>[n.id,n]));
+let picks=(ED&&ED.picks||[]).map(i=>BYID[i]).filter(Boolean);
+if(!picks.length){const pool=ALL.filter(n=>n.st!=='hold'&&Date.now()-new Date(n.ts)<3*864e5);picks=pool.slice().sort((a,b)=>scoreOf(b)-scoreOf(a)||(a.ts<b.ts?1:-1)).slice(0,3)}
+{const ol=$('picks');picks.slice(0,3).forEach((n,i)=>{const li=el('li');
+  li.appendChild(el('p','lead',`${i===0?'이번 판에서 가장 크게 볼 일 · ':''}${n.front?(n.kind||'쟁점'):(n.sig||'')} · ${n.src||''} · ${n.kr?'국내':n.us?'미국':'해외'}`));
+  const h=el('h3'),a=el('a',null,short(n));a.href='#'+encodeURIComponent(n.id);a.onclick=e=>{e.preventDefault();openItem(n.id)};h.appendChild(a);li.appendChild(h);
+  const w=(ED&&ED.why&&ED.why[n.id])||n.why||(n.front?n.note:'');if(w)li.appendChild(el('p','why',w));ol.appendChild(li)})}
+{const box=$('how'),runs=(FEED.runs||[]).filter(r=>kday(r.at)===kday(edAt));
+  const sum=k=>runs.reduce((a,r)=>[a[0]+(r[k]?.q||0),a[1]+(r[k]?.cand||0),a[2]+(r[k]?.acc||0)],[0,0,0]);const P_=sum('push'),F_=sum('front');
+  if(runs.length)box.appendChild(el('p',null,`이날 ${runs.length}번 찾았어요. AI가 일을 해내게 된 소식은 검색 ${P_[0]}번 → 원문을 열어 본 후보 ${P_[1]}건 → 실은 것 ${P_[2]}건, 막거나 조건을 건 소식은 검색 ${F_[0]}번 → 후보 ${F_[1]}건 → ${F_[2]}건이에요.`));
+  if(ED&&ED.note)box.appendChild(el('p',null,ED.note));
+  box.appendChild(el('p',null,'두 갈래를 매번 같은 노력으로 찾고, 원문을 직접 열어 날짜·주체·내용을 확인한 소식만 실어요. 꼭 볼 소식은 한국에서 일하는 사람에게 미치는 영향이 큰 순서로 골랐어요(국내 소식, 지수를 움직인 소식, 효력이 강한 규제·판결을 앞에 둬요).'))}
 
 // ---- 저울(최근 4주) ----
 const since=Date.now()-28*864e5;
@@ -149,18 +207,22 @@ if(FEED.updated){const d=new Date(FEED.updated);$('upd').textContent=`${d.getMon
 
 // ---- 거르기 상태(주소에 남김) ----
 const P=new URLSearchParams(location.search);
-const S={k:P.get('k')||'',g:P.get('g')||'',r:P.get('r')||'',q:P.get('q')||'',h:P.get('h')==='1'};
+const S={k:P.get('k')||'',t:P.get('t')||'',g:P.get('g')||'',d:P.get('d')||'',r:P.get('r')||'',q:P.get('q')||'',h:P.get('h')==='1'};
 const TABS=[['','전체'],['push','AI가 해내게 된 일'],['emp','고용·정책'],['res','막거나 조건을 건 일']];
 const base=()=>ALL.filter(n=>S.h||n.st!=='hold');
+function drawChips(){const c=$('chips');c.replaceChildren();const b0=base().filter(n=>!S.k||kindOf(n)===S.k),cnt={};b0.forEach(n=>{const t=topicOf(n);cnt[t]=(cnt[t]||0)+1});
+  [['','모든 주제',b0.length],...Object.entries(cnt).sort((a,b)=>b[1]-a[1]).map(([t,c])=>[t,'#'+t,c])].forEach(([t,l,c_])=>{const b=el('button');b.type='button';b.setAttribute('aria-pressed',S.t===t);b.append(l,el('span',null,String(c_)));b.onclick=()=>{S.t=S.t===t?'':t;go()};c.appendChild(b)})}
 function drawTabs(){const t=$('tabs');t.replaceChildren();const b0=base();
   TABS.forEach(([k,l])=>{const b=el('button');b.type='button';b.setAttribute('aria-pressed',S.k===k);b.append(l,el('span',null,String(k?b0.filter(n=>kindOf(n)===k).length:b0.length)));
-    b.onclick=()=>{S.k=k;go()};t.appendChild(b)})}
+    b.onclick=()=>{S.k=k;S.t='';go()};t.appendChild(b)})}
 const fg=$('fg');Object.entries(GN).forEach(([k,v])=>{const o=el('option',null,v);o.value=k;fg.appendChild(o)});
-fg.value=S.g;$('fr').value=S.r;$('fq').value=S.q;$('fh').checked=S.h;
+$('fd').value=S.d;$('fd').onchange=()=>{S.d=$('fd').value;go()};fg.value=S.g;$('fr').value=S.r;$('fq').value=S.q;$('fh').checked=S.h;
 fg.onchange=()=>{S.g=fg.value;go()};$('fr').onchange=()=>{S.r=$('fr').value;go()};$('fh').onchange=()=>{S.h=$('fh').checked;go()};
 let qt;$('fq').oninput=()=>{clearTimeout(qt);qt=setTimeout(()=>{S.q=$('fq').value.trim();go()},200)};
 function match(n){
   if(S.k&&kindOf(n)!==S.k)return false;
+  if(S.t&&topicOf(n)!==S.t)return false;
+  if(S.d&&(S.d==='1'?kday(n.ts)!==TODAY:Date.now()-new Date(n.ts)>+S.d*864e5))return false;
   if(S.g&&!groupsOf(n).has(S.g))return false;
   if(S.r==='kr'&&!n.kr)return false;if(S.r==='ab'&&n.kr)return false;
   if(S.q){const w=S.q.toLowerCase(),txt=[n.t,n.hd,n.note,n.src,n.kind,n.sig,...(n.ind||[]).map(jobName)].join(' ').toLowerCase();if(!w.split(/\s+/).every(x=>txt.includes(x)))return false}
@@ -196,9 +258,11 @@ function rxBox(n){const kind=n.front?'stance':'feel',w=el('div','rx'),mine=ls.ge
 // ---- 소식 한 건 ----
 function item(n){const li=el('li','it');li.id=n.id;const k=kindOf(n);
   const m=el('div','meta');
+  if(impOf(n)>=2)m.append(el('span','pill imp','중요'));
   m.append(el('span','pill'+(k==='res'?' res':k==='emp'?' emp':''),n.front?(n.kind||'쟁점'):(n.sig||'소식')));
+  if(!n.front&&topicOf(n)!=='기타'&&topicOf(n)!==n.sig)m.append(el('span','tag','#'+topicOf(n)));
   if(n.front&&n.fx)m.append(el('span',null,`효력 ${n.fx}`));
-  m.append(el('span',null,fmtD(n.ts)),el('span',null,n.src||''),el('span','tier'+(n.st==='hold'?' hold':''),n.st==='hold'?'확인 중':n.tier||''),el('span',null,n.kr?'국내':n.us?'미국':'해외'));
+  m.append(el('span',null,n.src||''),el('span','tier'+(n.st==='hold'?' hold':''),n.st==='hold'?'확인 중':n.tier||''),el('span',null,n.kr?'국내':n.us?'미국':'해외'));
   const h=el('h3'),hb=el('button',null,short(n));hb.type='button';hb.setAttribute('aria-expanded','false');h.appendChild(hb);
   const jobs=el('div','jobs');const codes=[...new Set((n.ind||[]).map(c=>String(c)))].filter(c=>jobName(c));
   if(codes.length)codes.slice(0,4).forEach(c=>{const a=el('a',null,jobName(c));a.href='/j/'+encodeURIComponent(c);jobs.appendChild(a)});
@@ -214,7 +278,7 @@ function item(n){const li=el('li','it');li.id=n.id;const k=kindOf(n);
   else st.append('막거나 조건을 건 소식은 지도의 숫자에 넣지 않고 따로 기록해요.');
   body.appendChild(st);
   hb.onclick=()=>{body.hidden=!body.hidden;li.classList.toggle('open',!body.hidden);hb.setAttribute('aria-expanded',String(!body.hidden))};
-  li.append(m,h);if(jobs.children.length)li.appendChild(jobs);li.appendChild(body);
+  li.append(m,h);if(n.why)li.appendChild(el('p','why',n.why));if(jobs.children.length)li.appendChild(jobs);li.appendChild(body);
   if(RXOPEN)li.appendChild(rxBox(n));
   return li}
 
@@ -222,20 +286,20 @@ function item(n){const li=el('li','it');li.id=n.id;const k=kindOf(n);
 let shown=30;
 function go(push=true){
   if(push){const q=new URLSearchParams();Object.entries(S).forEach(([k,v])=>{if(v===true)q.set(k,'1');else if(v)q.set(k,v)});history.replaceState(null,'',location.pathname+(q.toString()?'?'+q:'')+location.hash);shown=30}
-  drawTabs();
+  drawTabs();drawChips();
   const L=base().filter(match),out=$('out');out.replaceChildren();
-  $('count').textContent=`소식 ${L.length}건`+(S.k||S.g||S.r||S.q?' (거른 결과)':'');
+  $('count').textContent=`소식 ${L.length}건`+(S.k||S.t||S.g||S.d||S.r||S.q?' (거른 결과)':'');
   if(!L.length){out.appendChild(el('p','empty','조건에 맞는 소식이 없어요. 거르기를 조금 풀어 보세요.'));$('more').hidden=true;return}
   let mon='',ul=null;
-  L.slice(0,shown).forEach(n=>{const mo=monthOf(n.ts);if(mo!==mon){mon=mo;out.appendChild(el('h2','month',mo));ul=el('ul','list');out.appendChild(ul)}ul.appendChild(item(n))});
+  L.slice(0,shown).forEach(n=>{const mo=dayOf(n.ts);if(mo!==mon){mon=mo;out.appendChild(el('h3','day',mo));ul=el('ul','list');out.appendChild(ul)}ul.appendChild(item(n))});
   $('more').hidden=L.length<=shown;$('more').textContent=`더 보기 (${L.length-shown}건 남음)`}
 $('more').onclick=()=>{shown+=30;go(false)};
-// 주소의 #id로 들어오면 그 소식을 펼쳐 보여준다
-const hid=decodeURIComponent(location.hash.slice(1));
-if(hid){const n=ALL.find(x=>x.id===hid);if(n){if(n.st==='hold')S.h=true;const idx=base().filter(match).indexOf(n);if(idx<0){S.k=S.g=S.r=S.q='';}}}
+// 주소의 #id(또는 꼭 볼 소식)로 그 소식을 펼쳐 보여준다
+function openItem(id){const n=BYID[id];if(!n)return;if(n.st==='hold')S.h=true;if(base().filter(match).indexOf(n)<0){S.k=S.t=S.g=S.d=S.r=S.q='';['fg','fd','fr','fq'].forEach(x=>$(x).value='')}
+  go(false);const L=base().filter(match),i=L.indexOf(n);if(i>=shown){shown=i+1;go(false)}
+  const li=document.getElementById(id);if(li){document.querySelectorAll('li.it.hl').forEach(x=>x.classList.remove('hl'));li.classList.add('hl');const b=li.querySelector('h3 button');if(!li.classList.contains('open'))b.click();li.scrollIntoView({block:'start'});history.replaceState(null,'','#'+encodeURIComponent(id))}}
 go(false);
-if(hid){const L=base().filter(match),i=L.findIndex(x=>x.id===hid);if(i>=shown){shown=i+1;go(false)}
-  const li=document.getElementById(hid);if(li){li.classList.add('hl');li.querySelector('h3 button').click();li.scrollIntoView({block:'start'})}}
+const hid=decodeURIComponent(location.hash.slice(1));if(hid&&BYID[hid])openItem(hid);
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8eb4d903bad84bb89dd088032173bafb"}'></script><!-- End Cloudflare Web Analytics -->
