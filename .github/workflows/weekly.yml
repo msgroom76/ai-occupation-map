@@ -1,0 +1,51 @@
+# 주간 지수: 매주 월요일 07:20 KST와 [Run workflow] 버튼.
+# Claude(구독 토큰 CLAUDE_CODE_OAUTH_TOKEN)가 .github/prompts/weekly.md대로 주간 지수·리포트·메일 원고를 만들고,
+# 이 워크플로가 check_data·guard_commit을 통과한 경우에만 main에 커밋·push한다(Claude는 push하지 않는다).
+name: weekly
+on:
+  schedule:
+    - cron: '20 22 * * 0'
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  id-token: write
+concurrency: { group: site-writes, cancel-in-progress: false }
+jobs:
+  weekly:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.13' }
+      - name: 공유 이미지 도구 설치
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+          pip install -q numpy==2.5.3 pillow==12.3.0 playwright==1.57.0 && python3 -m playwright install --with-deps chromium
+      - name: Claude가 주간 지수 발표
+        id: claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ github.token }}
+          prompt: '.github/prompts/weekly.md 파일을 읽고 그 지시를 처음부터 끝까지 그대로 수행해.'
+          claude_args: >-
+            --model claude-opus-5-5
+            --max-turns 250
+            --allowedTools "Read,Edit,Write,Glob,Grep,WebSearch,WebFetch,Task,Agent,Bash(python3 tools/weekly.py:*),Bash(python3 tools/check_data.py:*),Bash(python3 tools/build_pages.py:*),Bash(python3 tools/build_share.py:*),Bash(python3 tools/build_mail.py:*),Bash(python3 tools/find_dwa.py:*),Bash(python3 -m json.tool:*)"
+      - name: 점검·커밋·push
+        env: { EXEC: '${{ steps.claude.outputs.execution_file }}' }
+        run: |
+          git config user.name msgroom76; git config user.email msgroom76@users.noreply.github.com
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then echo "바뀐 것 없음"; exit 0; fi
+          msg=$(python3 tools/ci_commit_msg.py "$EXEC" "주간 지수 $(TZ=Asia/Seoul date +%G-W%V)")
+          python3 tools/check_data.py
+          python3 tools/guard_commit.py weekly
+          git add -A && git commit -q -m "$msg"
+          ok=0; for i in 1 2 3; do if git pull -q --rebase origin main && python3 tools/check_data.py >/dev/null && python3 tools/guard_commit.py weekly && git push -q origin HEAD:main; then ok=1; break; fi; sleep 10; done; [ $ok = 1 ]
+      - name: 실패하면 이슈로 알리기
+        if: failure()
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          gh issue create --title "주간 지수 실패 $(TZ=Asia/Seoul date +'%m-%d %H:%M')" --body "실행 기록: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true
