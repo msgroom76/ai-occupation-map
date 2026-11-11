@@ -8,7 +8,7 @@ W='tools/site_src/' if REPO else 'web/'
 O='' if REPO else 'site/'
 
 # ===== 공통 헤더: 메뉴를 바꿀 때는 여기 NAV만 고친다 =====
-NAV=[('/','지도'),('/test','내 직업 전망'),('/org','기업 자가 진단'),('/guide','보는 법')]
+NAV=[('/','지도'),('/news','소식'),('/test','내 직업 전망'),('/org','기업 자가 진단'),('/guide','보는 법')]
 def gnav(cur,cls='gnav'):
     return f'<nav class="{cls}" aria-label="주요 메뉴">'+''.join(f'<a href="{h}"'+(' aria-current="page"' if h==cur else '')+f'>{t}</a>' for h,t in NAV)+'</nav>'
 # 메뉴 모양(지도·하위 페이지 공통). 색은 각 페이지 변수(--ink, --ink2, --hot)를 쓴다
@@ -77,6 +77,6 @@ assert '/*@SEARCH@*/' in o
 open(O+'org.html','w').write(apply(o.replace('/*@SEARCH@*/',src[a:b])))
 print('built org')
 # 그 밖의 페이지(검색 코드 없이 공통 헤더만): 보는 법
-for f in ['guide.html']:
+for f in ['guide.html','news.html']:
     if os.path.exists(W+f):
         open(O+f,'w').write(apply(open(W+f).read())); print('built',f)

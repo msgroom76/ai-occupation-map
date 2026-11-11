@@ -28,6 +28,10 @@ export const MIGRATIONS = [
   ["CREATE TABLE IF NOT EXISTS survey (id INTEGER PRIMARY KEY AUTOINCREMENT, code TEXT NOT NULL, sm TEXT, ans TEXT NOT NULL, share INTEGER NOT NULL, saved INTEGER, tenure INTEGER, secs INTEGER, ok INTEGER NOT NULL DEFAULT 1, created TEXT NOT NULL, ih TEXT)",
    "CREATE INDEX IF NOT EXISTS sv_key ON survey(sm, code)",
    "CREATE INDEX IF NOT EXISTS sv_ih ON survey(ih, created)"],
+  // 6: 독자 반응(/news 소식마다 감정, 쟁점마다 찬반). 개인정보 없음: 소식 id·고른 답·고른 직업(선택)만. ih는 중복 막기용 하루 해시(이틀 뒤 지움)
+  ["CREATE TABLE IF NOT EXISTS reacts (id INTEGER PRIMARY KEY AUTOINCREMENT, nid TEXT NOT NULL, kind TEXT NOT NULL, v TEXT NOT NULL, code TEXT, created TEXT NOT NULL, ih TEXT)",
+   "CREATE INDEX IF NOT EXISTS rx_nid ON reacts(nid)",
+   "CREATE INDEX IF NOT EXISTS rx_ih ON reacts(ih, nid)"],
 ];
 async function migrate(DB) {
   await DB.batch(SCHEMA.map(s => DB.prepare(s)));
@@ -59,6 +63,8 @@ async function maintain(DB) {
     DB.prepare("UPDATE feedback SET ih = NULL WHERE ih IS NOT NULL AND created < date('now', '+9 hours', '-2 day')"),       // 접속 해시: 이틀
     DB.prepare("UPDATE survey SET ih = NULL WHERE ih IS NOT NULL AND created < date('now', '+9 hours', '-2 day')"),         // 설문 접속 해시: 이틀
     DB.prepare("DELETE FROM survey WHERE created < date('now', '+9 hours', '-3 year')"),                                      // 설문 응답: 3년
+    DB.prepare("UPDATE reacts SET ih = NULL WHERE ih IS NOT NULL AND created < date('now', '+9 hours', '-2 day')"),         // 독자 반응 접속 해시: 이틀
+    DB.prepare("DELETE FROM reacts WHERE created < date('now', '+9 hours', '-3 year')"),                                      // 독자 반응: 3년
     DB.prepare("UPDATE feedback SET note = NULL WHERE note IS NOT NULL AND created < date('now', '+9 hours', '-1 year')"),   // 의견 메모: 1년
     DB.prepare("DELETE FROM subscribers WHERE status = 'unsub' AND COALESCE(unsub_at, unsubscribed) < date('now', '+9 hours', '-30 day')"), // 해지: 30일 뒤 삭제
     DB.prepare("DELETE FROM subscribers WHERE status = 'pending' AND COALESCE(consent_at, created) < date('now', '+9 hours', '-30 day')"),  // 확인 안 한 신청: 30일 뒤 삭제

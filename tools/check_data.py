@@ -50,8 +50,17 @@ try:
     age = (datetime.now(KST) - up).total_seconds() / 3600
     if age > 36: warn(f'feed: 마지막 갱신이 {age:.0f}시간 전 (소식 갱신 작업이 멈췄을 수 있음)')
 except Exception: err('feed: updated 형식 이상')
+# 보관함(archive/news.json): 소식 페이지가 그대로 보여주므로 형식도 본다
+ARC = json.load(open('archive/news.json')) if os.path.exists('archive/news.json') else {'items': [], 'front': []}
+ARC_IDS = {n.get('id') for k in ('items', 'front') for n in ARC.get(k, [])}
+if len(ARC_IDS) != sum(len(ARC.get(k, [])) for k in ('items', 'front')): err('보관함: id 중복')
+if ARC_IDS & ({n.get('id') for n in feed['items']} | {n.get('id') for n in feed.get('front', [])}): err('보관함과 feed에 같은 id가 있음')
+for k in ('items', 'front'):
+    for n in ARC.get(k, []):
+        if not str(n.get('url', '')).startswith('https://'): err(f'보관함 {n.get("id")}: url이 https가 아님')
+        if not n.get('hd') or not n.get('ts'): err(f'보관함 {n.get("id")}: hd·ts 없음')
 _nb = [n for n in feed['items'] if not n.get('base')]
-if len(_nb) > 60: warn(f'feed: 기준 발표를 뺀 항목 {len(_nb)}개 (60개 초과)')
+if len(_nb) > 400: warn(f'feed: 기준 발표를 뺀 항목 {len(_nb)}개 (400개 초과 — 보관 작업이 도는지 확인)')
 
 # ---------- 저항·쟁점 (feed.front) ----------
 JOBC = {j['code'] for j in cm['jobs']} | set(cm['sm'])
@@ -174,7 +183,7 @@ if not feed_only:
         bad = [r for r in w['adj'] if r not in R]
         if bad: err(f'index {w["week"]}: 없는 업무 코드 {bad}')
         for a in w.get('applied', []):
-            if a not in ids: warn(f'index {w["week"]}: 반영 소식 {a}가 feed에 없음(60건 밖으로 밀렸을 수 있음)')
+            if a not in ids and a not in ARC_IDS: warn(f'index {w["week"]}: 반영 소식 {a}가 feed에도 보관함에도 없음')
     if len(wk) >= 2:
         a, b = wk[-2], wk[-1]
         d = (tot(b['adj']) - tot(a['adj'])) * 100

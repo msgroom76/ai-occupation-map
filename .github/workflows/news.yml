@@ -36,6 +36,7 @@ jobs:
           git config user.name msgroom76; git config user.email msgroom76@users.noreply.github.com
           if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then echo "바뀐 것 없음"; exit 0; fi
           msg=$(python3 tools/ci_commit_msg.py "$EXEC" "소식 갱신 $(TZ=Asia/Seoul date +'%Y-%m-%d %H')시")
+          python3 tools/archive_feed.py
           python3 tools/check_data.py --feed-only
           python3 tools/guard_commit.py news
           git add -A && git commit -q -m "$msg"

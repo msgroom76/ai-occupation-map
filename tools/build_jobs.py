@@ -102,6 +102,15 @@ def lede(v):
     return '이 일의 절반 이상을 AI가 해낼 수 있어요.' if v>=.5 else '이 일의 40% 이상을 AI가 해낼 수 있어요.' if v>=.4 else '아직 대부분 사람의 몫이에요.' if v<.2 else '이 일의 일부를 AI가 해낼 수 있어요.'
 os.makedirs('j',exist_ok=True)
 JV={j['code']:occw(j['w41'],j['cal'],2026) for j in J}
+
+# 직업과 닿은 최근 소식(소식 페이지 /news#id로 연결). 확인 중(hold)·기준 발표는 뺀다
+_FD=json.load(open('feed.json'));_AR=json.load(open('archive/news.json')) if os.path.exists('archive/news.json') else {'items':[],'front':[]}
+NEWS=sorted([dict(n,_f=k=='front') for src in (_FD,_AR) for k in ('items','front') for n in src.get(k,[]) if not n.get('base') and n.get('st')!='hold' and str(n.get('url','')).startswith('https://')],key=lambda n:n.get('ts',''),reverse=True)
+def newsfor(code,k=5):
+    hit=[n for n in NEWS if any(str(c).startswith(code) or code.startswith(str(c)) for c in n.get('ind',[]))][:k]
+    if not hit:return ''
+    li=''.join(f'<tr><td><a href="/news#{quote(n["id"])}">{H.escape(n.get("t") or str(n.get("hd","")).split(" — ")[0])}</a><div class="note">{n.get("ts","")[:10].replace("-",".")} · {H.escape(n.get("src",""))} · {"막거나 조건을 건 일 · "+H.escape(n.get("kind","")) if n["_f"] else H.escape(n.get("sig",""))}</div></td></tr>' for n in hit)
+    return f'<h2>이 직업과 닿은 최근 소식</h2><table>{li}</table><p class="note"><a href="/news">소식 모두 보기 →</a></p>'
 urls=[]
 for j in J:
     c=j['code'];v,u,st=stats(j['w41'],j['cal'],j.get('e'),j.get('il'),j.get('ob'))
@@ -120,7 +129,7 @@ for j in J:
 <p class="lede">{lede(v)}</p><div class="big">{pc(v)}<small>%</small></div><div class="sub">2026 현재 노출도 · 두 연구의 평균{cfx(VAL["mid"].get(c))}</div>{st}
 <div class="cta"><a class="p" href="/#j={c}">지도에서 보기 →</a><a href="/">다른 직업 찾기</a></div>
 {smr}<h2>주요 업무 8개</h2>{tasksrows(j["w41"],j["cal"])}<p class="note">대신하는 쪽: AI가 그 일을 대신하는 업무. 돕는 쪽: 사람이 AI와 함께 더 하게 되는 업무.</p>
-{'<h2>업무가 비슷하고 노출도가 낮은 직업</h2><table><tr><th>직업</th><th class="n">2026 노출도</th></tr>'+nr+'</table><p class="note">옮겨갈 길을 찾는 출발점이에요. 교육 기간·비용과 실제 이직 사례는 반영하지 않았어요.</p>' if nr else ''}
+{newsfor(c)}{'<h2>업무가 비슷하고 노출도가 낮은 직업</h2><table><tr><th>직업</th><th class="n">2026 노출도</th></tr>'+nr+'</table><p class="note">옮겨갈 길을 찾는 출발점이에요. 교육 기간·비용과 실제 이직 사례는 반영하지 않았어요.</p>' if nr else ''}
 <h2>자주 묻는 질문</h2>{faqhtml(qa)}
 <h2>인용하기</h2><div class="cite">출처: AI 점령 지도(포스트오피스), {ASOF} 기준, {H.escape(name)} 노출도 {pc(v)}%. {BASE}/j/{c}</div>'''
     page(f'j/{c}.html',title,desc,f'og/{c}.png',body,ldof(title,desc,f'{BASE}/j/{c}',qa));urls.append(f'{BASE}/j/{c}')
@@ -139,7 +148,7 @@ for j in J:
 {'<p class="note">연결된 미국 직업이 1~2개라 오차가 클 수 있어요.</p>' if thin else ''}{'' if d and d.get('own') else '<p class="note">이 소분류에 딱 맞는 미국 직업이 없어 업무 구성은 '+H.escape(name)+' 전체 값을 썼어요.</p>'}
 <div class="cta"><a class="p" href="/#j={c}&q={quote(nm)}">지도에서 보기 →</a><a href="/j/{c}">{H.escape(name)} 전체 →</a></div>
 <h2>주요 업무 8개</h2>{tasksrows(w,cal)}
-<h2>같은 지역의 다른 세부 직업</h2><table><tr><th>소분류</th><th class="n">2026 노출도</th></tr>{sib}</table>
+{newsfor(sc)}<h2>같은 지역의 다른 세부 직업</h2><table><tr><th>소분류</th><th class="n">2026 노출도</th></tr>{sib}</table>
 <h2>자주 묻는 질문</h2>{faqhtml(qa)}
 <h2>인용하기</h2><div class="cite">출처: AI 점령 지도(포스트오피스), {ASOF} 기준, {H.escape(nm)} 노출도 {pc(v)}%. {BASE}/j/{sc}</div>'''
         page(f'j/{sc}.html',title,desc,f'og/{c}.png',body,ldof(title,desc,f'{BASE}/j/{sc}',qa));urls.append(f'{BASE}/j/{sc}')

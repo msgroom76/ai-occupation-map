@@ -881,7 +881,7 @@ details.card[open] summary::after{content:"−"}
 
   <div class="legend glass" id="legend"></div>
 
-  <div class="topbar" id="topbar"><button type="button" class="menu" id="menu" aria-label="정보 패널 열기" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8.5h18M3 15.5h12"/></svg></button><a class="mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a><nav class="gnav" aria-label="주요 메뉴"><a href="/" aria-current="page">지도</a><a href="/test">내 직업 전망</a><a href="/org">기업 자가 진단</a><a href="/guide">보는 법</a></nav></div>
+  <div class="topbar" id="topbar"><button type="button" class="menu" id="menu" aria-label="정보 패널 열기" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8.5h18M3 15.5h12"/></svg></button><a class="mark" href="/" aria-label="AI 점령 지도 처음으로"><b>AI</b><span>Occupied<br>Map</span></a><nav class="gnav" aria-label="주요 메뉴"><a href="/" aria-current="page">지도</a><a href="/news">소식</a><a href="/test">내 직업 전망</a><a href="/org">기업 자가 진단</a><a href="/guide">보는 법</a></nav></div>
   <div class="ctl">
     <div class="grp glass"><button type="button" id="lyrbtn" aria-label="지도 유형" aria-expanded="false" aria-controls="lyr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></button></div>
     <div class="grp glass"><button type="button" id="zin" aria-label="확대"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><button type="button" id="zout" aria-label="축소"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button></div>
@@ -918,7 +918,7 @@ details.card[open] summary::after{content:"−"}
     <button type="button" class="grab" id="grab" aria-label="패널 크기 바꾸기"></button>
     <div class="scroll" id="scroll">
       <header class="head">
-        <nav class="gnav gnav-sheet" aria-label="주요 메뉴"><a href="/" aria-current="page">지도</a><a href="/test">내 직업 전망</a><a href="/org">기업 자가 진단</a><a href="/guide">보는 법</a></nav>
+        <nav class="gnav gnav-sheet" aria-label="주요 메뉴"><a href="/" aria-current="page">지도</a><a href="/news">소식</a><a href="/test">내 직업 전망</a><a href="/org">기업 자가 진단</a><a href="/guide">보는 법</a></nav>
         <div class="khead"><div class="logo"><h1 aria-label="AI 점령 지도 · AI Occupied Map"><span class="ai" aria-hidden="true">AI</span><span class="w en" aria-hidden="true">Occupied</span><span class="w en" aria-hidden="true">Map</span></h1></div><button type="button" class="dclose" id="dclose" aria-label="정보 패널 닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12H4.5M10.5 6l-6 6 6 6"/></svg></button></div>
         <p class="hero" id="hero">내 일, AI가 얼마나<br>해낼 수 있을까요?</p>
         <div class="hslot" id="hslot"></div>
@@ -1294,6 +1294,7 @@ function newsCard(){
   const c=el('section','card'),lab=el('div','lab');lab.append(el('span',null,'AI 소식'),el('span',null,FEED.updated?`${fmtT(FEED.updated)} 갱신`:''));c.append(lab);
   const ul=el('ul','news');(newsAll?FEED.items:FEED.items.slice(0,5)).forEach(n=>ul.appendChild(newsItem(n)));
   c.append(ul);
+  {const nl=el('a','more','소식 페이지에서 모두 보기 →');nl.href='/news';nl.style.cssText='display:inline-block;color:var(--tint);font-size:14px;text-decoration:none;margin-right:14px';c.appendChild(nl)}
   if(FEED.items.length>5){const mb=el('button','more',newsAll?'접기':`${FEED.items.length}개 모두 보기`);mb.type='button';mb.onclick=()=>{newsAll=!newsAll;render()};c.appendChild(mb)}
   c.append(el('p','rule','하루 세 번(8시·12시·18시) 소식을 모으고, 숫자는 매주 월요일 한 번에 움직여요. 1차 출처 발표는 해당 업무의 도달 시점을 3개월, 신뢰 매체는 1개월 앞당기고 미국 발표는 절반만 반영해요. "확인 필요"는 원 출처를 확인할 때까지 반영하지 않아요.'));return c}
 // ---------- 저항·쟁점(feed.front): 사람과 제도가 AI의 일 대체를 막거나 늦추는 사건. 노출도에는 반영하지 않는다 ----------
